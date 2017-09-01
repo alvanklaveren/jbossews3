@@ -537,7 +537,7 @@
 						<configuration>
 							<!-- Java EE doesn't require web.xml, Maven needs to catch up! -->
 							<failOnMissingWebXml>false</failOnMissingWebXml>
-							<outputDirectory>webapp</outputDirectory>
+							<outputDirectory></outputDirectory>
 							<warName>ROOT</warName>
 						</configuration>
 					</plugin>
