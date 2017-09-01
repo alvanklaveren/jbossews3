@@ -512,7 +512,24 @@
 	    <profile>
 	        <id>openshift</id>
 	        <build>
-<!-- 	            
+				<plugins>
+				    <plugin>
+				      <!-- Build an executable JAR -->
+				      <groupId>org.apache.maven.plugins</groupId>
+				      <artifactId>maven-jar-plugin</artifactId>
+				      <version>2.1.1</version>
+				      <configuration>
+				        <archive>
+				          <manifest>
+				            <addClasspath>true</addClasspath>
+				            <classpathPrefix>lib/</classpathPrefix>
+				            <mainClass>com.myforum.application.ForumApplication</mainClass>
+				          </manifest>
+				        </archive>
+				      </configuration>
+				    </plugin>
+				  </plugins>
+  <!-- 	            
 				<finalName>jbossews</finalName> 
 	            <plugins>
 	                <plugin>
