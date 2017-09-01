@@ -22,7 +22,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>jbossews</groupId>
 	<artifactId>jbossews</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>myWicket</name>
 	<version>1.0</version>
 	<description>my website</description>
