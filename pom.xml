@@ -512,7 +512,7 @@
 	    <profile>
 	        <id>openshift</id>
 	        <build>
-	            <finalName>jbossews3</finalName>
+	            <finalName>openjdk-avkforum</finalName>
 	            <plugins>
 	                <plugin>
 	                    <artifactId>maven-war-plugin</artifactId>
