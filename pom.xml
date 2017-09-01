@@ -527,6 +527,17 @@
 	    <profile>
 	        <id>openshift</id>
 	        <build>
+				<finalName>${project.artifactId}</finalName>
+				<plugins>
+					<plugin>
+						<artifactId>maven-war-plugin</artifactId>
+						<version>2.1.1</version>
+						<configuration>
+							<!-- Java EE doesn't require web.xml, Maven needs to catch up! -->
+							<failOnMissingWebXml>false</failOnMissingWebXml>
+						</configuration>
+					</plugin>
+				</plugins>
   <!-- 	            
 				<finalName>jbossews</finalName> 
 	            <plugins>
