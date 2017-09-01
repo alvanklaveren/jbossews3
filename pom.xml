@@ -529,7 +529,7 @@
 	    <profile>
 	        <id>openshift</id>
 	        <build>
-				<finalName>${project.artifactId}</finalName>
+				<finalName>jbossews</finalName>
 				<plugins>
 					<plugin>
 						<artifactId>maven-war-plugin</artifactId>
@@ -537,7 +537,7 @@
 						<configuration>
 							<!-- Java EE doesn't require web.xml, Maven needs to catch up! -->
 							<failOnMissingWebXml>false</failOnMissingWebXml>
-							<outputDirectory>deployments</outputDirectory>
+							<outputDirectory>webapp</outputDirectory>
 							<warName>ROOT</warName>
 						</configuration>
 					</plugin>
