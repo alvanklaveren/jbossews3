@@ -508,23 +508,4 @@
   -->
 	</repositories>
 
-	<profiles>
-	    <profile>
-	        <id>openshift</id>
-	        <build>
-	            <finalName>jbossews3</finalName>
-	            <plugins>
-	                <plugin>
-	                    <artifactId>maven-war-plugin</artifactId>
-	                    <version>2.1.1</version>
-	                    <configuration>
-	                        <outputDirectory></outputDirectory>
-	                        <warName>ROOT</warName>
-	                    </configuration>
-	                </plugin>
-	            </plugins>
-	        </build>
-	    </profile>
-	</profiles>
-
 </project>
