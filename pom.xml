@@ -429,8 +429,8 @@
 			</testResource>
 		</testResources>
 		<plugins>
-<!-- 
 		    <plugin>
+		      <!-- Build an executable JAR -->
 		      <groupId>org.apache.maven.plugins</groupId>
 		      <artifactId>maven-jar-plugin</artifactId>
 		      <version>3.0.2</version>
@@ -444,7 +444,6 @@
 		        </archive>
 		      </configuration>
 		    </plugin>
- -->		    
 			<plugin>
 				<inherited>true</inherited>
 				<groupId>org.apache.maven.plugins</groupId>
