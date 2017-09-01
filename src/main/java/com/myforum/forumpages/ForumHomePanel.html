@@ -1,0 +1,25 @@
+<html xmlns:wicket>
+<wicket:panel>
+	 <table class="table table-striped">
+	       <tr>
+		    	<td style="width:90%"><b>Category</b></td>
+		    	<td style="width:10%;text-align:center"><b># of Messages</b></td>    	
+		   </tr> 	
+		    <tr wicket:id="messagecategories">
+			    <td style="width:90%">
+			    	<a class=hoverblue wicket:id="description"></a>
+				    <form wicket:id="renamecategoryform">
+						<input type="text" wicket:id="categorydescription" style="width:75%"></input>
+						<input type="submit" wicket:id="renamebutton" value="Rename Category" style="width:24%"></input>
+					</form>	    		    
+			    </td>
+			    <td style="width:10%;text-align:center">
+			    <a wicket:id="messagecount"># of messages goes here</a>
+			    </td>
+		    </tr>		    
+    </table>
+    <div style="text-align:center">
+    	<span style="text-align:center" wicket:id="navigator">[listview navigator]</span>
+    </div>	
+</wicket:panel>
+</html>

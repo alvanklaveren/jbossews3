@@ -1,0 +1,67 @@
+<html xmlns:wicket>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="favicon.ico">
+
+ <title>AVK</title>
+
+ <!-- Bootstrap -->
+ <link href="css/bootstrap.min.css" rel="stylesheet">
+ 
+ <!--  Left Side Menu on Game Shop Page -->
+ <link href="css/leftsidemenu.css" rel="stylesheet">
+ 
+ <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+ <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+ <!-- Custom styles for this template --> 
+ <link href="css/navbar-fixed-top.css" rel="stylesheet">
+ 
+
+ <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+ <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+ <!--[if lt IE 9]>
+   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+ <![endif]-->
+</head>
+
+<body style="background:#EEEEEE; color:#333">	
+  <span wicket:id="topMenu">Menu</span>
+  <div style="width:100%;margin:0; padding: 0">
+    <span wicket:id="agreeToCookies"></span>
+    <div id="sidepanelleft" wicket:id="sidepanelleft" style="float:left; width: 24%; min-height: 100%; padding-left: 10px;"></div>
+    
+    <div class = "container" style="float:left; width: 50%; border: thin solid white; min-height: 100%; background:#FFFFFF">
+    	<span wicket:id="english">EN</span> / <span wicket:id="dutch">NL</span>  
+   		<a style="font-size:12; text-align:center"><br><br><br></a>
+    	<wicket:child/>
+    	<br>
+    </div>
+    
+    <div id="sidepanelright" wicket:id="sidepanelright" style="float:right; width: 24%; min-height: 100%; padding-left: 10px; padding-right: 10px;"> </div>
+    
+    <div style="clear:both"> </div>
+
+	<div wicket:id="footer">[Footer]</div>
+ 
+  	<div style="position:fixed; bottom:0px; height:20px; width:100%; background-color:#000000; border:thin solid black;">
+  		<span style="float:left; color:#FFFFFF">alvanklaveren.com</span>
+  		<span wicket:id=today style="float:right; color:#FFFFFF">01-01-2017</span>
+  	</div>
+
+  </div>
+
+  <!-- Placed at the end of the document so the pages load faster -->
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  	<script src="js/bootstrap.min.js"></script>
+  	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+</body>
+</html>

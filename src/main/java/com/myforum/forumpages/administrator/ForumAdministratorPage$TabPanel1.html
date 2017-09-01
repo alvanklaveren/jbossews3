@@ -1,0 +1,42 @@
+<html xmlns:wicket>
+<wicket:panel>
+	<br>
+	<h2>Manage Constants</h2>
+	
+	<form wicket:id="constantsform">
+		<table style="border-collapse:collapse; border: 0px solid white;">
+		  <tr>
+			<td width="150px">
+				Acme Address 
+			</td>
+			<td width="400px">
+				<input type="text" wicket:id="acme_address" style="width:400px"></input>  
+	 		</td>
+	 	  </tr>
+		  <tr>
+			<td width="150px">
+				Acme ID 
+			</td>
+			<td width="400px">
+				<input type="text" wicket:id="acme_id" style="width:400px"></input>  
+	 		</td>
+	 	  </tr>
+	    </table>
+		<br>
+		<br>
+ 		Upload Guest Avatar File <input type="file" wicket:id="avatarfile" style="width:300px"></input> 
+    	<img wicket:id="avatarpicture" width="100px" height="100px"/>
+ 		<br>
+ 		<br>
+ 		Upload Web Logo File <input type="file" wicket:id="weblogofile" style="width:300px"></input> 
+    	<img wicket:id="weblogopicture" width="100px" height="100px"/>
+ 		<br>
+ 		<br>
+ 		<input wicket:id="uploadbutton" type="submit" value="Upload File">
+ 		<br>
+ 		<input wicket:id="submit" type="submit" value="Apply Changes">
+	</form>
+</wicket:panel>
+</html>
+
+

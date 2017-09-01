@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+      "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+      "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">    
+<hibernate-configuration>
+<session-factory>
+ 
+<!-- hibernate.cfg.xml -->
+    <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+    <!-- <property name="hibernate.connection.driver_class">org.gjt.mm.mysql.Driver</property> -->
+
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+
+<!--
+	<property name="hibernate.connection.url">jdbc:mysql://127.8.178.130:3306/mysql?autoReconnect=true</property>   
+	<property name="hibernate.connection.username">adminHIesSIR</property>
+    <property name="hibernate.connection.password">8E8Al572iN4j</property>
+-->	  
+	<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mysql?autoReconnect=true</property>  
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">1234ab</property>
+
+<!--
+	<property name="hibernate.connection.url">jdbc:mysql://127.8.178.130:3306/mysql?autoReconnect=true</property>   
+    <property name="hibernate.connection.url">jdbc:mysql://localhost/mysql</property>
+	<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mysql?autoReconnect=true</property>  
+-->    
+    
+    <!-- <property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>  --> 
+    <property name="hibernate.connection.autocommit">false</property>
+	<property name="hibernate.connection.pool_size">0</property>
+	<property name="hibernate.connection.autoReconnect">true</property>
+    <property name="hibernate.connection.autoReconnectForPools">true</property>
+    <property name="hibernate.connection.is-connection-validation-required">true</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="show_sql">false</property>
+    <property name="format_sql">false</property>
+    <property name="use_sql_comments">false</property>
+
+    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.hbm2ddl.auto">update</property>
+    <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+    <property name="hibernate.search.lucene_version">LUCENE_CURRENT</property>
+
+    <property name="hibernate.query.substitutions">true 1, false 0</property>
+    
+    <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+    <property name="cache.use_query_cache">false</property>
+    <property name="cache.use_minimal_puts">false</property>
+    <property name="max_fetch_depth">10</property>   
+
+    <mapping class="com.myforum.tables.*" />
+
+<!--
+	NB: adding annotated classes is done in DBHELPER.JAVA !!!!
+    <mapping class="com.myforum.tables.Classification" />
+    <mapping class="com.myforum.tables.Constants" />
+    <mapping class="com.myforum.tables.ForumUser" />
+    <mapping class="com.myforum.tables.LoginCred" />
+    <mapping class="com.myforum.tables.Message" />
+    <mapping class="com.myforum.tables.MessageCategory" />
+    <mapping class="com.myforum.tables.Notifications" />
+    <mapping class="com.myforum.tables.SourceCategory" />
+    <mapping class="com.myforum.tables.SourceSubject" />
+    <mapping class="com.myforum.tables.SourceType" />
+    <mapping class="com.myforum.tables.SourceText" />
+ -->
+  
+</session-factory>
+</hibernate-configuration>
+

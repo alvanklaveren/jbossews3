@@ -1,0 +1,78 @@
+<html xmlns:wicket>
+<wicket:extend>
+	<h3>User Account</h3>
+	<br>
+	<div wicket:id="errormessage" class="alert alert-danger" role="alert"></div>
+	<br>
+
+	<form class="form-horizontal" wicket:id="useraccountform">
+	 	<div class="form-group">
+			<label for="username" class="col-sm-2 control-label">Username</label>
+			<div class="col-sm-10">
+				<label class="form-control" id="username" wicket:id="username"></label>
+			</div>
+ 		</div>
+	 	<div class="form-group">
+			<label for="displayname" class="col-sm-2 control-label">Displayed Name</label>	
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="displayname" wicket:id="displayname" placeholder="Displayed Full Name"></input>
+			</div>
+ 		</div>
+	 	<div class="form-group">
+			<label for="oldpassword" class="col-sm-2 control-label">Old Password</label>
+			<div class="col-sm-10">
+    			<input type="password" class="form-control" id="oldpassword" wicket:id="oldpassword" placeholder="Old Password"></input>    	
+			</div>
+		</div>
+	 	<div class="form-group">
+			<label for="password" class="col-sm-2 control-label">New Password</label>
+			<div class="col-sm-10">
+    			<input type="password" class="form-control" id="password" wicket:id="password" placeholder="New Password"></input>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="password" class="col-sm-2 control-label">Retype New Password</label>
+			<div class="col-sm-10">
+	   			<input type="password" class="form-control" id="retypepassword" wicket:id="retypepassword" placeholder="New Password"></input>
+			</div>
+		</div>
+	 	<div class="form-group">
+			<label for="emailaddress" class="col-sm-2 control-label">Email Address</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="emailaddress" wicket:id="emailaddress" placeholder="Email Address"></input>
+			</div>
+ 		</div>
+	    <div class="form-group">
+			<label for="classifications" class="col-sm-2 control-label">Classification</label>
+			<div class="col-sm-10">
+				<select class="form-control" id="classifications" wicket:id="classifications"></select>
+			</div>
+	    </div>
+	    <div class="form-group">
+			<label for="avatarfile" class="col-sm-2 control-label">Upload Avatar</label>
+			<div class="col-sm-10">
+				<input type="file" class="btn btn-default" id="avatarfile" wicket:id="avatarfile">
+			</div>
+	    </div>
+	    <div class="form-group">
+			<div class="col-sm-10">
+				<label for="uploadbutton" class="col-sm-2 control-label">( Maximum size of 1 MB allowed )</label>
+				<button type="submit" class="btn btn-primary" id="uploadbutton" wicket:id="uploadbutton">Upload</button>
+			</div>
+		</div>
+	    <div class="form-group">
+			<div class="col-sm-10">
+				<label for="avatarpicture" class="col-sm-2 control-label">Avatar</label>
+				<img wicket:id="avatarpicture" id="avatarpicture" width="100px" height="100px"/>
+			</div>	
+		</div>
+	    <div class="form-group">
+			<div class="col-sm-10">
+				<button type="submit" class="btn btn-primary" id="cancel" wicket:id="cancel">Cancel</button>
+				<button type="submit" class="btn btn-primary" id="applychanges" wicket:id="applychanges">Apply Changes</button>
+			</div>
+		</div>
+	</form>
+
+</wicket:extend>  
+</html>

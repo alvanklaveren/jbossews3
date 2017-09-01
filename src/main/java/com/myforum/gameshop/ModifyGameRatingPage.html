@@ -1,0 +1,21 @@
+<html xmlns:wicket>
+<wicket:extend>
+	<div wicket:id="errormessage" class="alert alert-danger" role="alert"></div>
+   	<table style="width:100%" class="table table-bordered">
+   	<h2 wicket:id="gamename"></h2>
+  	  <tr>
+	    <td>
+	      <form class="form-horizontal" wicket:id="gameratingform">
+	        <br>
+			Rating        <input    class="form-control" id="rating"         wicket:id="rating" placeholder="Rating #" type="text"></input>
+			Rating URL    <select   class="form-control" id="gameratingurls" wicket:id="gameratingurls"></select>
+			<br>
+			<button type="submit"  class="btn btn-primary" id="canceledit" wicket:id="canceledit">Cancel</button>
+			<button type="submit"  class="btn btn-primary" id="saveedit"   wicket:id="saveedit">Save</button>
+		  </form>
+	    </td>
+	  </tr>
+   	</table>
+
+</wicket:extend>
+</html>

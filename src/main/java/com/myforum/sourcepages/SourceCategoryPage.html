@@ -1,0 +1,52 @@
+<html xmlns:wicket>
+<wicket:extend>
+	<a class=hoverblue wicket:id="back">Back to ...</a>
+	<br>
+	<font color=red><span wicket:id="errormessage"></span></font>
+	<br>
+	<a wicket:id="deletePanel"></a>
+	<br><br>
+
+	<form wicket:id="newtopicform">
+	 <table class="table table-striped">
+			<tr>
+				<td style="width:12%">Select a source type </td>
+				<td style="width:90%">
+					<select style="width:20%" wicket:id="sourcetypes"></select>
+				</td>
+			</tr>
+			<tr>
+				<td style="width:10%">Choose a topic</td>
+				<td style="width:90%">
+					<input style="width:100%" wicket:id="topic" type="text"></input>
+				</td>
+			</tr> 	
+			</table>	
+		<input wicket:id="addnewtopic" type="submit" value="Add New Topic">	
+	</form>
+
+   	
+	<center><span wicket:id="navigator">[listview navigator]</span></center>	
+   	<table style="width:100%">
+   	  	<tr>
+   	    <td style="width:80%"><b>Subject</b></td>
+	    </tr>
+  	    <tr wicket:id="subjectlist">
+	   	    <td style="width:100%">
+		   	    <a class=hoverblue wicket:id="description">Subject description goes here.</a>
+		   	    <br>
+	   			<form wicket:id="renamecategoryform">
+					<input type="text" wicket:id="subjectdescription" style="width:75%"></input>
+					<input type="submit" wicket:id="renamebutton" value="Rename Category" style="width:24%"></input>
+				</form>
+				<form wicket:id="addsourcetypeform" style="width:100%">
+					Select a source type
+					<select wicket:id="newsourcetypes" style="width:20%"></select>
+					<input wicket:id="addnewsourcetype" type="submit" value="Add New Source Type">	
+				</form>			
+			</td>
+   		</tr>
+   	</table>
+	<br>  	 
+</wicket:extend>
+</html>

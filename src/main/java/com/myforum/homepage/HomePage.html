@@ -1,0 +1,24 @@
+<html xmlns:wicket>
+<wicket:extend>
+	<div style="text-align:center">
+		<H1><span wicket:id="hellolabel"></span></H1>
+	</div>
+	<br><br>
+   	<table wicket:id="messagelist" class="table table-bordered" style="width:100%">
+        <font size="2">
+    	<span wicket:id="userdisplayname"></span>  
+    	<span wicket:id="messagedate"></span>
+	    </font>  
+	    <tr>
+		  <td style="width:85%; text-align:justify; border:2" valign="top">
+			<p style="font-family:Georgia;font-size:100%" wicket:id="messagetext"></p>
+		  </td>
+		</tr>
+		<br>
+	</table>
+	<div style="text-align:center">
+		<span class="pagination" wicket:id="navigator">[listview navigator]</span>
+	</div>
+   	
+</wicket:extend>
+</html>

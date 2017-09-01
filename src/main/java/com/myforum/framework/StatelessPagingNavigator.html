@@ -1,0 +1,37 @@
+<html xmlns:wicket>
+  <wicket:panel>
+  <nav aria-label="Page navigation">
+	  <ul class="pagination">
+	    <li class="page-item">
+	      <a class="page-link" wicket:id="first" aria-label="First">
+	        <span aria-hidden="true">&laquo;</span>
+	        <span class="sr-only">First</span>
+	      </a>
+	    </li>
+	    <li class="page-item">
+	      <a class="page-link" wicket:id="prev" aria-label="Previous">
+	        <span aria-hidden="true">&lsaquo;</span>
+	        <span class="sr-only">Previous</span>
+	      </a>
+	    </li>
+		<li class="page-item active">
+		  <span wicket:id="navigation">
+      		<a class="page-link" wicket:id="pageLink"><span style="color:white;" wicket:id="pageNumber">5</span></a>
+      	  </span>
+    	</li>	
+    	<li class="page-item">
+      	  <a class="page-link" wicket:id="next" aria-label="Next">
+        	<span aria-hidden="true">&rsaquo;</span>
+        	<span class="sr-only">Next</span>
+      	  </a>
+    	</li>
+    	<li class="page-item">
+      	  <a class="page-link" wicket:id="last" aria-label="Last">
+        	<span aria-hidden="true">&raquo;</span>
+        	<span class="sr-only">Last</span>
+      	  </a>
+    	</li>
+	  </ul>
+  </nav>
+  </wicket:panel>	  
+</html>

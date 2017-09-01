@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Wicket and Spring</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="blog.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+<span>
+<div class="blog-header">
+  <h1 class="blog-title">Wicket and Spring</h1>
+  <p class="lead blog-description">Installing Spring Framework on top of Wicket. Here are a few things to remember...</p>
+</div>
+
+<div class="row">
+  <div class="col-sm-8 blog-main">
+    <div class="blog-post">
+           <h2 class="blog-post-title">Wicket and Spring</h2>
+           <p class="blog-post-meta">February 1, 2017 by <a href="#">Alex</a></p>
+
+           <p style="text-align:justify">The Spring Framework offers a couple of things Wicket doesn't. In order to use the Spring Framework in my Wicket web application,
+             I hit a few bumps: shared dependencies, configuration (like Property-> Deployment Assembly, applicationcontext.xml, web.xml and pom.xml), and missing Spring
+             jars, that were not clearly reported as missing in the (eclipse) Console. In this article, I will address all of them individually.</p>
+        <hr>
+	    <h3 class="h3">Spring library</h3>
+       	<p style="text-align:justify">The first thing to do is download (and/or copy the maven dependencies) all (yes ALL) spring jars from the maven repository. (You can always throw them
+                   away later, but for now, you do not want to be harrassed by missing objects or functions). To help you a little on your way, here is the part of xml for your pom.xml:</p>
+<pre><code><small>&lt;!--  SPRING DEPENDENCIES --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-aop&lt;/artifactId&gt;
+    &lt;version&gt;${spring.version}&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-context-support&lt;/artifactId&gt;
+    &lt;version&gt;${spring.version}&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-expression&lt;/artifactId&gt;
+    &lt;version&gt;${spring.version}&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+	&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+	&lt;artifactId&gt;spring-core&lt;/artifactId&gt;
+	&lt;version&gt;${spring.version}&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+	&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+	&lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+	&lt;version&gt;${spring.version}&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+	&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+	&lt;artifactId&gt;spring-web&lt;/artifactId&gt;
+	&lt;version&gt;${spring.version}&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-beans&lt;/artifactId&gt;
+    &lt;version&gt;${spring.version}&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+	&lt;groupId&gt;org.springframework&lt;/groupId&gt;
+	&lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
+	&lt;version&gt;${spring.version}&lt;/version&gt;
+&lt;/dependency&gt;</small></code></pre>            
+		<p style="text-align:justify">Make sure to add your Spring version to the pom.xml properties. In this example that would be:</p>  
+		<code><small>&lt;spring.version&gt;4.3.6.RELEASE&lt;/spring.version&gt;</small></code>
+		<p><br></p>
+	    <h3 class="h3">Wicket Libraries</h3>
+       	<p style="text-align:justify"> When everything seems to compile properly, it is time to add (at least) two more libraries to
+       	make Spring and Wicket play nice together: wicket-spring and wicket-ioc. Here are the dependencies for your <code>pom.xml</code>:</p>
+<pre><code><small>
+&lt;!-- Wicket & Spring --&gt;
+&lt;dependency&gt;
+	&lt;groupId&gt;org.apache.wicket&lt;/groupId&gt;
+	&lt;artifactId&gt;wicket-spring&lt;/artifactId&gt;
+	&lt;version&gt;${wicket.version}&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+	&lt;groupId&gt;org.apache.wicket&lt;/groupId&gt;
+	&lt;artifactId&gt;wicket-ioc&lt;/artifactId&gt;
+	&lt;version&gt;${wicket.version}&lt;/version&gt;
+&lt;/dependency&gt;
+</small></code></pre>
+		<p style="text-align:justify">Make sure to add your Spring version to the pom.xml properties. In this example that would be:</p>  
+		<code><small>&lt;wicket.version.version&gt;6.16.0&lt;/wicket.version&gt;</small></code>
+		<p><br></p>
+		<h3 class="h3">Eclipse: Property -> Deployment Assembly</h3>
+		<p style="text-align:justify">
+		One thing easily forgotten, when trying to run from eclipse directly, is adding the files that need to be deployed to your 
+		project deployment assembly. Since I normally use a Maven <code>pom.xml</code> to compile and copy my code to the necessary 
+		locations, this is one of those things I often forget. 
+		</p>  
+       <h3 class="h3">Context Listener</h3>
+		<p style="text-align:justify">
+		Make sure to add the following piece of code to your web.xml</p>
+<pre><code><small>&lt;listener&gt;
+&lt;listener-class&gt;
+	org.springframework.web.context.ContextLoaderListener
+&lt;/listener-class&gt;
+&lt;/listener&gt;  </small></code></pre> 
+		<p>  
+		The <code>web.xml</code> is usually located in your src/main/webapp/WEB-INF folder (at least, if you are using Eclipse with the  
+		standard folder hierarchy). When this is missing, your Spring Components (Beans) will not be found and instantiated by the Spring framework.
+		</p>
+       <h3 class="h3">Spring Application Context</h3>
+		<p style="text-align:justify">
+		You can use one (yes, just one) XML to manage your beans. To save you the trouble of specifying each bean singlehandedly, you can
+		use something called "component-scan", that will do the dirty work for you. The <code>applicationcontext.xml</code>, usually in the same
+		folder as your <code>web.xml</code>. The content looks more or less like:
+		</p>  
+<pre><code><small>&lt;beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			    http://www.springframework.org/schema/context
+			    http://www.springframework.org/schema/context/spring-context-3.0.xsd"&gt;
+		  
+	&lt;context:component-scan base-package="com.youproject.beans" /&gt;
+&lt;/beans&gt;
+</small></code></pre>
+		<p style="text-align:justify">Obviously, you would replace the base-package with your own beans package(s).
+		<br>
+		<br>If you don't like using the component-scan at applicationcontext level, you can also decide to create seperate context xmls
+		to manage your component-scanned beans. This can be done, for instance, by adding</p> 
+		<pre><code><small>@ContextConfiguration(locations={ "/aSeperateContext.xml" })"</small></code></pre>
+		<p style="text-align:justify">
+		to your class files. As you can see, you use an array of xml files as value for <code>locations</code>, so you can add as many as you want. 
+		Then there is also a way to fully specify each seperate bean, but why go through all the trouble? <br><br>
+		For each bean that you want to autoscan, the only thing you have to add to the class is @Component. Yes, it is that simple. Now Spring recognizes 
+		the bean in the component-scan. But what if it is a service, or a repository, or a controller. Should I specify all of them as @Component?
+		Well, yes and no. It is possible, but it is not considered good coding practice to specify all of them as @Component. It is like referring to all 
+		your classes as "Object", instead of there specialty. So if you add a service, controller or repository, be sure to instead tag them as @Service, @Controller or @Repository.
+		When you do specify it like this, you do not have to add @Component, because @Service, @Controller and @Repository are all recognized as
+		@Components. 
+		<br>
+		That is a lot of theoretical mumbo-jumbo. So lets put it in practice. Suppose we have a class called Figure we want to
+		have Spring manage for us:</p>
+<pre><code><small>package com.yourproject.beans;
+
+public class Figure{ 
+    <b>@Component</b>
+    public Figure(){ 
+        ... 
+        public draw(){
+            // do something 
+        }
+        ... 
+}</small></code></pre>
+
+		<p style="text-align:justify">
+		<br>Next we use this bean in another class, where we leave the creation (and management) of the Figure object to Spring
+		</p>
+
+<pre><code><small>
+public class Runner{
+    ...
+    <b>@Autowire</b>
+    Figure figure;
+    ...
+    public static void main(String[] arguments){
+        figure.draw();
+    }
+    ... 
+}</small></code></pre>
+		<p style="text-align:justify">
+		<br>So what did we just do?</p>
+		<ul>
+		<li><p style="text-align:justify">We defined a Pojo (Plain old java object) called Figure, and added @Component, for the component-scan to find it.</p></li>
+		<li><p style="text-align:justify">Next we added an object, named figure, of class Figure, but did not instantiate it (using new Figure(...)).</p></li>
+		<li><p style="text-align:justify">Then in the execution of class Runner we ask the figure to draw itself using figure.draw().</p></li>
+		</ul>
+		<p style="text-align:justify">
+		If we wouldn't be using the Spring framework, you would now get a nullpointer exception, because the variable figure
+		was not assigned a pointer to a Figure object. However, because we used @Autowire, the Spring Framework created it, 
+		and will manage it, for us. This is what is also called "inversion of control", specifically "dependency injection".
+		</p>
+		<br>
+		<h3 class="h3">Final Words</h3>
+		<p style="text-align:justify">
+		<br>Why is it so important to have Spring do things for you, like creating the objects? You could as easily create it yourself 
+		by using <code>new Figure()</code>, right?
+		<br>
+		<br>Yes, you could.
+		<br><br> 
+		But that would also mean you have to manage it yourself, creating massive amounts of code only to track and trace the object
+		in case your application is scaled, decide to keep it cached in memory and for how long, and deal with all kinds of security issues 
+		that come with creating large enterprise applications / websites. By using the Spring Framework, this is all done for you. 
+		It saves you time and hassle over the little (but extremely important) details, and that is what frameworks are all about. <br><br>
+		This article was not about explaining Spring to you, but making Spring and Wicket work out a peace treaty and coexist within the same
+		project. If you want to learn more about <a href="https://spring.io/">Spring</a>, you can visit all kinds of websites (including the 
+		original website) for exammples and application of the Spring Framework. It covers all kinds of Spring related concepts, like AOP 
+		(Aspect Oriented Programming), Web, ORM, and so on and so forth. 
+		<br><br>
+		But why would you keep on using Wicket, if you can instead use the Spring Framework? The easiest and best answer I can give you is:
+		<br><br>Why not?<br><br>
+		If you believe in golden hammers, silver bullets, and ponies that crap rainbows, then just one framework will be enough for you.
+		But in practice, have you ever encountered such a pony? I am sure that your pony is currently looking like a hybrid pony-cow-dragon,
+		because that one pony just wasn't good enough for you. Well, good luck rewriting all your code when you try to upgrade to the next
+		version of that framework. A framework is not meant for you to mess around with whenever you feel something is missing. Just accept that
+		you will have to take a different approach. Either code it from scratch, and by that I do not mean abuse features in the framework to mold
+		your own monster of Frankenstein, or try using multiple frameworks, which in the end allows you to use best of both worlds. True, there are
+		downside (and that is what this article is all about), but that is not a valid reason for simply not trying.
+		</p>
+		<br><br>
+		<p style="text-align:justify">
+		<hr>
+		<small>
+			The following tools and frameworks were used: 
+			<br>Eclipse Mars, Tomcat 7.0, Java EE 7, Hibernate 5.0.1, Wicket 6.16.0, Spring Framework 4.3.6	
+		</p>
+	
+		
+     </div><!-- /.blog-post -->
+   </div><!-- /.blog-main -->
+</div><!-- /.row -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+</span>
+</body>
+</html>

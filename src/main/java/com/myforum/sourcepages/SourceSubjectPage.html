@@ -1,0 +1,43 @@
+<html xmlns:wicket>
+<wicket:extend>
+	<a class=hoverblue wicket:id="back">Back to ...</a>
+	<br>
+	<span wicket:id="deletePanel">delete subject</span>
+	<form wicket:id="htmlform">
+		Import HTML Filename <input type="file" wicket:id="importhtmlfilename" style="width:600px"></input> 
+		<input type="submit" wicket:id='importhtmlbutton' value="Import HTML"></input>
+	</form>
+	<a wicket:id="exporthtmllink">Export HTML</a>	
+	<font color=red><span wicket:id="errormessage">errormessage</span></font>
+	<br>
+	<span wicket:id="sourcetypelist" style="text-align:center">
+		<a class=sourcetypes wicket:id="sourcetypedescription">sourcetypelist</a>
+	</span>
+	<br>
+	<h2><a wicket:id="description">description</a></h2>
+	<br>
+	<a wicket:id="subjecttextdescription">subject description</a>
+	<br>
+	<font size="2"><a class=hoverblue wicket:id="editsubject">edit</a></font>
+	<form wicket:id="editsubjecttextform">
+ 		<textarea wicket:id="editsubjecttext" style="width:100%;height:200px;"></textarea>
+ 		<input wicket:id="cancelsubjectedit" type="submit" value="Cancel">
+ 		<input wicket:id="savesubjectedit" type="submit" value="Save">
+	</form>
+	<br>
+	
+	<font size="2"><a class=hoverblue wicket:id="edittext">edit</a></font>
+	 <table class="table table-striped">
+	  <tr>
+		<td style="width:100%" bgcolor="#FFFFFF" valign="top">
+			<a wicket:id="htmldocument"></a>
+			<form wicket:id="editsourcetextform">	
+		 		<textarea wicket:id="editsourcetext" style="width:100%;height:200px;"></textarea>
+		 		<input wicket:id="canceledit" type="submit" value="Cancel">
+		 		<input wicket:id="saveedit" type="submit" value="Save">
+			</form>
+		</td>
+	  </tr>
+	</table>
+</wicket:extend>
+</html>

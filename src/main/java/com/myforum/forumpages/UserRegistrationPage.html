@@ -1,0 +1,44 @@
+<html xmlns:wicket>
+<head>
+</head>
+<body>
+	<wicket:extend>
+	<h3>User Registration</h3>
+
+	<form wicket:id="registrationform">
+	<table style="border-collapse:collapse; border: 0px solid white;">
+	<tr>
+		<td width="100px">
+			User Name 
+		</td>
+		<td width="200px">
+			<input type="text" wicket:id="username" style="width:200px"></input>  
+ 		</td>
+ 	</tr>
+ 	<tr>
+ 		<td width="100px">
+ 			Password
+ 		</td> 
+ 		<td width="200px">
+ 			<input type="password" wicket:id="password" style="width:200px"></input> 
+ 		</td>
+ 	</tr>
+ 	 <tr>
+ 		<td width="100px">
+ 			Email
+ 		</td> 
+ 		<td width="200px">
+ 			<input type="text" wicket:id="emailaddress" style="width:200px"></input> 
+ 		</td>
+ 	</tr>
+ 	<tr>
+ 		<td>
+ 			<input wicket:id="register" type="submit" value="Register">
+ 		</td>
+	</tr>
+	</table>
+	</form>
+</wicket:extend>
+    
+</body>
+</html>

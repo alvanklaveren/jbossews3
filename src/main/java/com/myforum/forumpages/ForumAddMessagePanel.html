@@ -1,0 +1,34 @@
+<html xmlns:wicket>
+<wicket:panel>
+	<h2>Add New Message</h2> 
+	
+	<font color=red><span wicket:id="errormessage"></span></font>
+ 
+	<form wicket:id="newmessageform">
+		<div class="row">
+			<div class="col-md-2">Styles</div>
+			<div class="col-md-2">**Bold** = <b>Bold</b></div>
+			<div class="col-md-2">*Italic* = <i>Italic</i></div>
+			<div class="col-md-2">`Highlighted` = <span style="background:#DDD">Highlighted</span></div>  
+		</div>
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				[h:http://www.alvanklaveren.com] = <a href="http://www.alvanklaveren.com">http://www.alvanklaveren.com</a>
+			</div>
+		</div>
+		<br>
+		Description <input type="text" wicket:id="replydescription" style="width:90%" maxlength="80"></input>
+	 	<br>
+	 	<textarea wicket:id="replymessage" style="width:100%;height:200px;"></textarea> 
+	 	<br>
+	 	<input class="btn btn-success" type="submit" wicket:id="cancel" value="Cancel">
+	 	<input class="btn btn-warning" type="submit" wicket:id="save" value="Save">
+	</form>
+	<br>
+	<input class="btn btn-success" wicket:id="preview" type="button" value="Preview Message">	
+	<br>
+	<span wicket:id="replymessagepreview" style="width:100%;height:200px;border:1"></span> 
+
+</wicket:panel>
+</html>

@@ -1,0 +1,42 @@
+<html xmlns:wicket>
+<wicket:panel>
+<div class="HeaderPanel">
+ 	<form wicket:id="loginForm" class="form-inline" style="float:right">
+	  <font size="2">
+	 	<div class="form-group">
+			<label class="sr-only" for="inputUsername">Username</label>
+	    	<input type="text" class="form-control" id="inputUsername" wicket:id="username" placeholder="Username">
+		</div>
+	 	<div class="form-group">
+			<label class="sr-only" for="inputPassword">Password</label>
+	    	<input type="password" class="form-control" id="inputPassword" wicket:id="password" placeholder="Password">
+		</div>
+	 	<div class="form-group">
+			<input wicket:id="login" type="submit" value="Login">
+		</div>
+		<br>
+		<a class="hoverblue" wicket:id="forgotpassword"><span wicket:id="forgotlabel">Forgot password?</span></a>
+	  </font>
+	</form>
+
+	<font size="2">
+		<form wicket:id="logoutForm" style="float:right">
+			<span wicket:id="activeuser"></span>
+			<button wicket:id="updateprofile">Update Profile</button>
+			<br>
+		 	<button wicket:id="logout">Logout</button>
+		 	<button wicket:id='adminmaintenance'>Administrator Maintenance</button>	
+		 	<button wicket:id="userregistration">Register New User</button>
+	 	</form>
+	</font>
+		
+	<div>
+		<h1 wicket:id="forumname"></h1>
+		<br><br>
+		<div wicket:id="errormessage" class="alert alert-danger" role="alert"></div>
+		<br>
+		<div wicket:id="breadcrumbs"></div>
+	</div>
+</div>
+</wicket:panel>
+</html>
