@@ -25,7 +25,8 @@ import com.myforum.security.CredentialLogics;
 import com.myforum.tables.ForumUser;
 import com.myforum.tables.dao.LoginCredDao;
 
-@RequireHttps 
+/*disabled HTTPS... is now a paid feature in openshift!*/
+/*@RequireHttps*/ 
 public class BasePage extends WebPage implements Serializable{
 	private static final long 	serialVersionUID = 1L;
 
