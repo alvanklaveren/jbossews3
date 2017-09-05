@@ -17,8 +17,8 @@
     <property name="hibernate.connection.password">8E8Al572iN4j</property>
 -->	  
 	<property name="hibernate.connection.url">jdbc:mysql://10.128.38.75:3306/avkdb?autoReconnect=true</property>  
-    <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">1234ab</property>
+    <property name="hibernate.connection.username">adminHIesSIR</property>
+    <property name="hibernate.connection.password">8E8Al572iN4j</property>
 
 <!--
 	<property name="hibernate.connection.url">jdbc:mysql://127.8.178.130:3306/mysql?autoReconnect=true</property>   
