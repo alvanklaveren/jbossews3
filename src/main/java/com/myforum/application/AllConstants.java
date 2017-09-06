@@ -10,8 +10,8 @@ import com.myforum.tables.Constants;
 public final class AllConstants {
 	
 	public static final String FORUM_NAME = "AVK Forum";
-	public static final String MY_EMAIL = "xxx@hotmail.com";
-	public static final String MY_EMAIL_PASSWORD = "xxx";
+	public static final String MY_EMAIL = getConstantStringValue("email_address");
+	public static final String MY_EMAIL_PASSWORD = getConstantStringValue("email_password");
 	
 	public static final int ADMINISTRATOR	= 0;
 	public static final int MEMBER 			= 1;
