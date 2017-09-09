@@ -22,6 +22,7 @@ public final class ArticleFactory {
 		addArticle(new Article(EArticleGroup.JAVA, "REST-EASY", "Using Rest-Easy for Restful services", "REST-EASY.html"));
 		addArticle(new Article(EArticleGroup.JAVA, "OPENSHIFT-TOMCAT7", "How to install a Java EE/Tomcat7 webapplication on OpenShift", "openshift-tomcat7.html"));
 		addArticle(new Article(EArticleGroup.JAVA, "Spring & Wicket", "How to add Spring to your existing Wicket application Part 1: Setup", "SpringWicket.html"));
+		addArticle(new Article(EArticleGroup.JAVA, "OPENSHIFTV3-WILDFLY", "How to install a Java EE/Wildfly webapplication on OpenShift v3", "openshift-wildfly.html"));
 	}
 	
 	// prevent creating this factory more than once.

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>OpenShift - Tomcat7</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="blog.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+<span>
+    <div class="container">
+      <div class="blog-header">
+        <h1 class="blog-title">OpenShift v3 - Wildfly</h1>
+        <p class="lead blog-description">OpenShift (RedHat), a fast and (optionally) free of cost hosting solution.</p>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+          <div class="blog-post">
+            <h2 class="blog-post-title">Using OpenShift for your Java EE webapplication</h2>
+            <p class="blog-post-meta">September 9, 2017 by <a href="#">Alex</a></p>
+
+            <p style="text-align:justify">Frustrating as it can be for developers, a lot of providers, that offer solutions for hosting your website, do not deliver the hosting for free.
+					  Except for OpenShift, which not so much delivers you an entirely free solution, but at least gives you enough space and CPU to test, develop
+					  and try out OpenShift before committing to pay for additional services. With a system they call cartridges, they offer fully pre-installed webservers
+					  to work with. So although it does not offer you full access to the webserver application itself (e.g. Tomcat or JBoss), it does
+					  save you the trouble of setting it up and managing it properly.<p>
+
+<hr>
+<h3 id="h3">Before we start...</h3>
+<p style="text-align:justify">
+Prior to reading the article I expect you to have at least some knowledge of and experience with:
+<ol class="blog-ul" style="text-align:justify">
+<li>the JAVA programming language</li>
+<li>relational databases, preferrably MySQL</li>
+<li>the Linux filesystem</li>
+<li>source version(ing) control software, preferrably GIT</li>
+<li>Maven .pom files (this is key to working with OpenShift !)</li>
+<li>Eclipse IDE (including EGit-plugin and Maven-plugin)</li>
+<li>RSA/SSH keys</li>
+</ol>
+<p style="text-align:justify">Before I start explaining the how-to, mind that this article's focus is on running a Java (EE) 
+webapplication on a Wildfly 10.1 server, with the java webapplication being developed in the Eclipse IDE. 
+Adding other languages (like Python) and webservers (like JBoss) will differ, sometimes slightly, and sometimes completely. 
+<br><br>
+<h3 id="h3">Setup of Webserver on OpenShift</h3>
+<p style="text-align:justify">
+First create an account on OpenShift (no explanation necessary). Next, Login to the Openshift webconsole
+<br>
+<img src="/images/openshift-wildfly-1.png" alt="<picture not found>" width="50%" height=30%" style="border:1px solid black"></img>
+<br><br>
+Click "Create Project"
+<br><br>
+In the next window, choose a name for your project, a display name, and a description</i>.
+<br><br>
+<img src="/images/openshift-wildfly-2.png" alt="<picture not found>" width="80%" height=40%" style="border:1px solid black"></img>
+<br><br>
+In the next window, click on "Java"</i>.
+<br><br>
+<img src="/images/openshift-wildfly-3.png" alt="<picture not found>" width="80%" height=40%" style="border:1px solid black"></img>
+<br><br>
+In the next window, click on "Wildfly"</i>.
+<br><br>
+<img src="/images/openshift-wildfly-4.png" alt="<picture not found>" width="80%" height=40%" style="border:1px solid black"></img>
+<br><br>
+In the next window, select version 10.1 and click "Select"</i>.
+<br><br>
+<img src="/images/openshift-wildfly-5.png" alt="<picture not found>" width="80%" height=40%" style="border:1px solid black"></img>
+<br><br>
+In the next window, give this wildfly pod a unique name, and add the address to your webapplication on GitHub</i>.
+<br><br>
+<img src="/images/openshift-wildfly-6.png" alt="<picture not found>" width="80%" height=40%" style="border:1px solid black"></img>
+<br><br>
+In the next window, copy the webhook on the right and add it to your github repository. </i>.
+<br><br>
+<img src="/images/openshift-wildfly-7.png" alt="<picture not found>" width="80%" height=40%" style="border:1px solid black"></img>
+<br><br>
+Now add this webhook in your github repository. This will auto trigger a build when you make change in your repository.
+<br><br>
+<img src="/images/openshift-wildfly-8.png" alt="<picture not found>" width="80%" height=40%" style="border:1px solid black"></img>
+<br><br>
+Go back to the overview window. You will now see a live pod for your webapp.
+<br><br>
+<img src="/images/openshift-wildfly-9.png" alt="<picture not found>" width="80%" height=40%" style="border:1px solid black"></img>
+<br><br>
+In the top of this window, click "Add to project" and select "Browse Catalog"
+<br><br>
+<img src="/images/openshift-wildfly-10.png" alt="<picture not found>" width="80%" height=40%" style="border:1px solid black"></img>
+<br><br>
+Click on "Datastores"
+<br><br>
+<img src="/images/openshift-wildfly-11.png" alt="<picture not found>" width="80%" height=40%" style="border:1px solid black"></img>
+<br><br>
+Click on "MySQL (Persistent)"
+<br><br>
+<img src="/images/openshift-wildfly-12.png" alt="<picture not found>" width="80%" height=40%" style="border:1px solid black"></img>
+<br><br>
+When you have added all the info necessary (user, password, databasename), press "Create".<br>
+<big>Important: Do NOT use the name "mysql" as your "Mysql database name". This is reserved for OpenShift and will fail building.<a></a><br>
+In the next window, remember to write down the username, password, and db_name for later use.
+<br><br>
+<img src="/images/openshift-wildfly-13.png" alt="<picture not found>" width="80%" height=40%" style="border:1px solid black"></img>
+<br><br>
+To configure your hibernate.cfg.xml with the correct reference to your MySQL db, in the next window click "Actions" and click "Edit YAML".
+<br><br>
+<img src="/images/openshift-wildfly-14.png" alt="<picture not found>" width="80%" height=40%" style="border:1px solid black"></img>
+<br><br>
+Now write down the "podIP"
+<br><br>
+<img src="/images/openshift-wildfly-15.png" alt="<picture not found>" width="80%" height=40%" style="border:1px solid black"></img>
+<br><br>
+From the overview, select the WebApp pod and click on "Add Storage to <your web app pod name>"
+<br><br>
+<img src="/images/openshift-wildfly-16.png" alt="<picture not found>" width="80%" height=40%" style="border:1px solid black"></img>
+<br><br>
+Because we only created the one MySQL pod, it will automatically select it.<br>
+You can mount it to /<podname> and as volume name use /<db_name>. This way it will be easier to find it again if ever needed. 
+<br><br>
+<img src="/images/openshift-wildfly-17.png" alt="<picture not found>" width="80%" height=40%" style="border:1px solid black"></img>
+<br><br>
+Last but not least, from the Overview go to "Applications" -> "Routes"
+<br><br>
+<img src="/images/openshift-wildfly-18.png" alt="<picture not found>" width="80%" height=40%" style="border:1px solid black"></img>
+<br><br>
+Technically, your website is already available using the (long) unique http address. But if you have bought a domain and want your<br>
+DNS cname to connect to this (long) address, you will have to add an additional route to your domain (in this case www.alvanklaveren.com),<br>
+so the route is allowed to openshift. Why is beyond me, but it works. 
+<br><br>
+If you want to access the database using a SQL workbench/tool on your local machine, you will have to install the OC application of openshift.<br>
+In a couple of the screenshots in this document, you will see a reference to OC, to command-line connect to your openshift account.<br>
+What you need to do to access the database is:<br>
+<pre><code>
+oc login https://api.starter-us-west-1.openshift.com -u<openshift_username>  -p<openshift_password>
+oc project $lt<name_of_your_project>$gt
+oc get pods #this is just an extra to get the unique id of the MySQL pod. You will need this in the next line
+oc port-forward <id_of_your_mysql_pod> 3300:3306 
+</code></pre>
+<br>
+You are free to choose any other port than 3300. The 3306 however is fixed. When you connect to this database from your tool,<br>
+use "localhost:3300", because the port-forward command just connected your port 3300 to port 3306 on your openshift MySQL pod.
+<big>Important: Login from your SQL tool as user 'root'. This way, you have full administrator rights !!<br>
+The password should be the same as the user password, unless you selected a different password for root when you created the MySQL pod.</big>
+<br><br>
+<h3 id="h3">Final words</h3>
+<p style="text-align:justify">
+In this document I described how to get started with OpenShift for your Java / Wildfly webapplication. Mind that this is the bare minimum of 
+things to do, but they are by far the most essential.
+
+<br><br>
+<small>The following tools and frameworks were used in this example: 
+<br>Eclipse Mars, Wildfly 10.1, Java EE 7
+</small>
+</p>
+
+          </div><!-- /.blog-post -->
+
+<!--
+          <nav>
+            <ul class="pager">
+              <li><a href="#">Previous</a></li>
+              <li><a href="#">Next</a></li>
+            </ul>
+          </nav>
+-->
+        </div><!-- /.blog-main -->
+
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+</span>
+  </body>
+</html>

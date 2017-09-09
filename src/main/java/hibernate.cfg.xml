@@ -12,20 +12,14 @@
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 
 <!--
-	<property name="hibernate.connection.url">jdbc:mysql://127.8.178.130:3306/mysql?autoReconnect=true</property>   
-	<property name="hibernate.connection.username">adminHIesSIR</property>
-    <property name="hibernate.connection.password">8E8Al572iN4j</property>
+	<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mysql?autoReconnect=true</property>  
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">1234ab</property>
 -->	  
 	<property name="hibernate.connection.url">jdbc:mysql://10.128.38.75:3306/avkdb?autoReconnect=true</property>  
     <property name="hibernate.connection.username">adminHIesSIR</property>
     <property name="hibernate.connection.password">8E8Al572iN4j</property>
-
-<!--
-	<property name="hibernate.connection.url">jdbc:mysql://127.8.178.130:3306/mysql?autoReconnect=true</property>   
-    <property name="hibernate.connection.url">jdbc:mysql://localhost/mysql</property>
-	<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mysql?autoReconnect=true</property>  
--->    
-    
+  
     <!-- <property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>  --> 
     <property name="hibernate.connection.autocommit">false</property>
 	<property name="hibernate.connection.pool_size">0</property>
