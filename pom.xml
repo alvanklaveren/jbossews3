@@ -23,7 +23,7 @@
 	<groupId>avkforum</groupId>
 	<artifactId>avkforum</artifactId>
 	<packaging>war</packaging>
-	<name>myWicket</name>
+	<name>avkforum</name>
 	<version>1.0</version>
 	<description>my website</description>
 	<!--
