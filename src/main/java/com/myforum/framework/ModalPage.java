@@ -3,12 +3,12 @@ package com.myforum.framework;
 import org.apache.wicket.PageReference;
 import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.markup.html.WebPage;
-import org.apache.wicket.protocol.https.RequireHttps;
+//import org.apache.wicket.protocol.https.RequireHttps;
 
 import com.myforum.base.BasePage;
 
 
-@RequireHttps
+//@RequireHttps
 public class ModalPage extends WebPage {
 	private static final long serialVersionUID = 1L;
 

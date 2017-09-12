@@ -158,10 +158,12 @@ oc get pods #this is just an extra to get the unique id of the MySQL pod. You wi
 oc port-forward <id_of_your_mysql_pod> 3300:3306 
 </code></pre>
 <br>
+<p style="text-align:justify">
 You are free to choose any other port than 3300. The 3306 however is fixed. When you connect to this database from your tool,<br>
-use "localhost:3300", because the port-forward command just connected your port 3300 to port 3306 on your openshift MySQL pod.
-<big>Important: Login from your SQL tool as user 'root'. This way, you have full administrator rights !!<br>
-The password should be the same as the user password, unless you selected a different password for root when you created the MySQL pod.</big>
+use "localhost:3300", because the port-forward command just connected your port 3300 to port 3306 on your openshift MySQL pod.<br>
+<big>Important</big>: Login from your SQL tool as user 'root'. This way, you have full administrator rights !!<br>
+The password should be the same as the user password, unless you selected a different password for root when you created the MySQL pod.
+</p>
 <br><br>
 <h3 id="h3">Final words</h3>
 <p style="text-align:justify">
