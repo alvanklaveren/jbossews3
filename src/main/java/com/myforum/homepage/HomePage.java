@@ -11,7 +11,7 @@ import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PageableListView;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.spring.injection.annot.SpringBean;
+//import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import com.myforum.application.CookieLogics;
 import com.myforum.application.StringLogics;
@@ -20,7 +20,7 @@ import com.myforum.base.menu.EMenuItem;
 import com.myforum.forumpages.ForumBasePage;
 import com.myforum.framework.StatefulPagingNavigator;
 import com.myforum.sourcepages.SourceHomePage;
-import com.myforum.springframework.HelloService;
+//import com.myforum.springframework.HelloService;
 import com.myforum.tables.Message;
 import com.myforum.tables.MessageCategory;
 import com.myforum.tables.dao.ForumUserDao;
@@ -35,8 +35,8 @@ public class HomePage extends BasePage {
 	private final SimpleDateFormat		dateFormat			= new SimpleDateFormat("yyyy/MM/dd");
 	private List<Message> 				messageList 		= Collections.synchronizedList( new ArrayList<Message>() );
 
-	@SpringBean
-	protected HelloService helloService;
+	//@SpringBean
+	//protected HelloService helloService;
 
 	public HomePage() {
 		super(EMenuItem.Home);
@@ -83,5 +83,10 @@ public class HomePage extends BasePage {
         addOrReplace( new StatefulPagingNavigator( "navigator", listView ) );       
 		
 	}
-		
+	
+    @Override
+    protected String getPageTitle() {
+    	return "AVK - Home";
+    }
+	
 }

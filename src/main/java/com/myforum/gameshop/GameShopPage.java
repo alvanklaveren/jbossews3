@@ -495,4 +495,10 @@ public class GameShopPage extends BasePage {
 		Label resultCounterLabel = new Label("resultcounter", resultCounterModel);
 		return resultCounterLabel;
 	}
+	
+    @Override
+    protected String getPageTitle() {
+    	return "AVK - Game Collection";
+    }
+
 }

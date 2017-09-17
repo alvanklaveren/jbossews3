@@ -9,7 +9,7 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.protocol.https.RequireHttps;
+//import org.apache.wicket.protocol.https.RequireHttps;
 
 import com.myforum.application.CookieLogics;
 import com.myforum.application.DBHelper;
@@ -64,6 +64,8 @@ public class BasePage extends WebPage implements Serializable{
 
 		add( new LanguageLabel("english", "EN", ELanguage.English) );
 		add( new LanguageLabel("dutch",   "NL", ELanguage.Dutch) );
+
+		add( new Label("pagetitle", getPageTitle()));
 		
 		Panel topMenu = new MenuPanel("topMenu", activeMenuItem);
 		add(topMenu);
@@ -143,6 +145,10 @@ public class BasePage extends WebPage implements Serializable{
         this.modalPassValue = passValue;
     }
 	
+    protected String getPageTitle() {
+    	return "AVK - Homepage";
+    }
+    
 	@Override public void renderHead(IHeaderResponse response){
 //		  response.render(CssHeaderItem.forReference(new CssResourceReference(BasePage.class,"css/basepage.css")));
 //		  response.render(JavaScriptHeaderItem.forReference(new JQueryPluginResourceReference(HomePage.class,"HomePage.js")));

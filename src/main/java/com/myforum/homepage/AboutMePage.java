@@ -28,4 +28,9 @@ public class AboutMePage extends BasePage {
 		add(yearsWorkingLabel);
 	}
 		
+    @Override
+    protected String getPageTitle() {
+    	return "AVK - About Me";
+    }
+
 }

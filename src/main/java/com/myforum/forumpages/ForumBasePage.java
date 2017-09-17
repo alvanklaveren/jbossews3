@@ -47,6 +47,12 @@ public class ForumBasePage extends BasePage{
     	}
     	return false;
     }
+
+    @Override
+    protected String getPageTitle() {
+    	return "AVK - Forum";
+    }
+
     
 	@Override
 	protected void onBeforeRender() {

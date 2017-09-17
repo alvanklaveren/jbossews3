@@ -62,6 +62,11 @@ public class ArticlePage extends BasePage {
 		return sb.toString();
 	}
 	
+    @Override
+    protected String getPageTitle() {
+    	return "AVK - Articles";
+    }
+
 	@Override
 	public void renderHead(IHeaderResponse response) {
 	    response.render(CssHeaderItem.forReference(new CssResourceReference(ArticlePage.class, "articles/blog.css")));
