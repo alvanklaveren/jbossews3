@@ -20,9 +20,9 @@ public final class ArticleFactory {
 	private void createArticles(){
 		// you can re-order the articles by simply moving the addArticle-line to the position you want	
 		addArticle(new Article(EArticleGroup.JAVA, "REST-EASY", "Using Rest-Easy for Restful services", "REST-EASY.html"));
-		addArticle(new Article(EArticleGroup.JAVA, "OPENSHIFT-TOMCAT7", "How to install a Java EE/Tomcat7 webapplication on OpenShift", "openshift-tomcat7.html"));
+		addArticle(new Article(EArticleGroup.JAVA, "OPENSHIFT v2 - TOMCAT7", "How to install a Java EE/Tomcat7 webapplication on OpenShift Online v2", "openshift-tomcat7.html"));
 		addArticle(new Article(EArticleGroup.JAVA, "Spring & Wicket", "How to add Spring to your existing Wicket application Part 1: Setup", "SpringWicket.html"));
-		addArticle(new Article(EArticleGroup.JAVA, "OPENSHIFTV3-WILDFLY", "How to install a Java EE/Wildfly webapplication on OpenShift v3", "openshift-wildfly.html"));
+		addArticle(new Article(EArticleGroup.JAVA, "OPENSHIFT v3 - WILDFLY", "How to install a Java EE/Wildfly webapplication on OpenShift Online v3", "openshift-wildfly.html"));
 	}
 	
 	// prevent creating this factory more than once.
