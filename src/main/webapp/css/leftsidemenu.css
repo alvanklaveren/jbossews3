@@ -19,14 +19,14 @@ body {
  
 .sidemenu-item {
   background: #fff;
-  width: 250px; 
+  width: 75%; 
 }
 
 .sidemenu-item h4 a {
   color: white;
   display: block;
   text-decoration: none;
-  width: 250px;
+  width: 75%;
 }
 
 .sidemenu-item h4 {
@@ -108,7 +108,7 @@ body {
   text-decoration: none;
   color: #555;
   display: block;
-  width: 250px;
+  width: 75%;
 }
  
 /*li Styles*/
