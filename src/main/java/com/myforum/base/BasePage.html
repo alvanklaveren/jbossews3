@@ -31,13 +31,13 @@
  <![endif]-->
 </head>
 
-<body style="background:#EEEEEE; color:#333">	
+<body style="background:#EEEEEE; color:#333">
   <span wicket:id="topMenu">Menu</span>
   <div style="width:100%;margin:0; padding: 0">
     <span wicket:id="agreeToCookies"></span>
     <div id="sidepanelleft" wicket:id="sidepanelleft" style="float:left; width: 20%; min-height: 100%; padding-left: 10px;"></div>
     
-    <div class = "container" style="float:left; width: 60%; border: thin solid white; min-height: 100%; background:#FFFFFF">
+    <div id="centerpanel" class = "container" style="float:left; width: 60%; border: thin solid white; min-height: 100%; background:#FFFFFF">
     	<span wicket:id="english">EN</span> / <span wicket:id="dutch">NL</span>  
    		<a style="font-size:12; text-align:center"><br><br><br></a>
     	<wicket:child/>
@@ -48,7 +48,7 @@
     
     <div style="clear:both"> </div>
 
-	<div wicket:id="footer">[Footer]</div>
+	<div id="footer" wicket:id="footer">[Footer]</div>
  
   	<div style="position:fixed; bottom:0px; height:20px; width:100%; background-color:#000000; border:thin solid black;">
   		<span style="float:left; color:#FFFFFF">alvanklaveren.com</span>
@@ -56,6 +56,15 @@
   	</div>
 
   </div>
+
+  <!--  below javascript ensures hiding the rigth sidepanel on smaller (mobile) devices -->
+  <script>
+  	window_width = $(window).width()
+  	if (window_width <= 1000){
+  		document.getElementById('sidepanelright').style.width = "0%";
+  		document.getElementById('centerpanel').style.width = "80%";
+  	}
+  </script>
 
   <!-- Placed at the end of the document so the pages load faster -->
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

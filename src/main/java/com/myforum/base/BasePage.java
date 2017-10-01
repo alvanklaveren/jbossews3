@@ -9,7 +9,10 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.protocol.http.ClientProperties;
+import org.apache.wicket.protocol.http.request.WebClientInfo;
 //import org.apache.wicket.protocol.https.RequireHttps;
+import org.apache.wicket.settings.IRequestCycleSettings;
 
 import com.myforum.application.CookieLogics;
 import com.myforum.application.DBHelper;
@@ -75,6 +78,13 @@ public class BasePage extends WebPage implements Serializable{
 
 		panelRight = new BasePanelRight("sidepanelright");
 		add(panelRight);
+		
+		// do not show the right panel, when on mobile devices
+		// this unfortunately DOES trigger some javascript, which may result in info shown on browser before continuing to page
+		// this has been replaced by java code IN the basepage.html
+		//if( getClientProperties().getBrowserWidth() <= 800) {
+		//	panelRight.setVisible(false);
+		//}
 
 		Panel footer = new FooterPanel("footer");
 		add(footer);
@@ -147,6 +157,30 @@ public class BasePage extends WebPage implements Serializable{
 	
     protected String getPageTitle() {
     	return "AVK - Homepage";
+    }
+    
+	 /**
+     * A helper function that makes sure that gathering of extended browser info
+     * is enabled when reading the ClientInfo's properties
+     *
+     * @return the currently available client info
+     */
+    protected ClientProperties getClientProperties()
+    {
+        IRequestCycleSettings requestCycleSettings = getApplication().getRequestCycleSettings();
+        boolean gatherExtendedBrowserInfo = requestCycleSettings.getGatherExtendedBrowserInfo();
+        ClientProperties properties = null;
+        try
+        {
+            requestCycleSettings.setGatherExtendedBrowserInfo(true);
+            WebClientInfo clientInfo = (WebClientInfo) getSession().getClientInfo();
+            properties = clientInfo.getProperties();
+        }
+        finally
+        {
+            requestCycleSettings.setGatherExtendedBrowserInfo(gatherExtendedBrowserInfo);
+        }
+        return properties;
     }
     
 	@Override public void renderHead(IHeaderResponse response){
