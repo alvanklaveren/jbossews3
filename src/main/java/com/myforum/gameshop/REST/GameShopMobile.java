@@ -9,6 +9,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import com.google.gson.Gson;
+import com.myforum.application.DBHelper;
 import com.myforum.application.ForumUtils;
 import com.myforum.application.StringLogics;
 import com.myforum.gameshop.GameShopLogics;
@@ -20,7 +21,6 @@ import com.myforum.tables.Product;
 import com.myforum.tables.ProductType;
 import java.io.*;
 import java.util.zip.*;
-import java.nio.charset.*;
 
 
 public class GameShopMobile extends WebPage{
@@ -42,11 +42,14 @@ public class GameShopMobile extends WebPage{
 	@SpringBean
 	private GameShopProductTypeService	gameShopProductTypeService;
 
-	// uses https://www.alvanklaveren.com/gameshopmobile/0/0
+	// uses http://www.alvanklaveren.com/gameshopmobile/0/0
 	public GameShopMobile(final PageParameters params){
 		consoleId 		= ForumUtils.getParmInt(params,    "console",        0);
 		typeId 			= ForumUtils.getParmInt(params,    "type",           0);
 		title			= ForumUtils.getParmString(params, "searchtitle",   "");
+		setVersioned(false);
+		setStatelessHint(true);
+		DBHelper.closeSession();
 	}
 
 	@Override
@@ -65,6 +68,7 @@ public class GameShopMobile extends WebPage{
 			List<String> productJsonList = createProductJsonList(title);
 			response.write( concatJson(productJsonList) );
 		}
+		DBHelper.closeSession();
     }
 
 
