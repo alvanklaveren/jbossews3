@@ -189,4 +189,11 @@ public class BasePage extends WebPage implements Serializable{
 //		  response.render(new FilteredHeaderItem(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(HomePage.class,"top.js")),JavaScriptFilteredIntoFooterHeaderResponse.HEADER_FILTER_NAME));
 		}
 
+	@Override
+	protected void onAfterRender()
+	{
+		// make sure to close hibernate session to prevent java heap space issues in Wildfly
+		DBHelper.closeSession();
+		super.onAfterRender();
+	}
 }
