@@ -32,7 +32,7 @@ public class LogoutForm extends StatelessForm<Object>{
 	    boolean isAdministrator = CredentialLogics.isAdministrator(activeUser);
 	    boolean isMember 		= CredentialLogics.isMember(activeUser);
 
-		Label activeUserLabel = new Label( "activeuser", activeUser.getDisplayName() + " is logged in" );
+		Label activeUserLabel = new Label( "activeuser", "Welcome " + activeUser.getDisplayName() );
 		add( activeUserLabel );
 
 		ResponseButton adminButton = new ResponseButton( "adminmaintenance", ForumAdministratorPage.class );

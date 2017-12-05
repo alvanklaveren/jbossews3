@@ -12,7 +12,7 @@
 	    	<input type="password" class="form-control" id="inputPassword" wicket:id="password" placeholder="Password">
 		</div>
 	 	<div class="form-group">
-			<input wicket:id="login" type="submit" value="Login">
+	 		<button type="submit" wicket:id="login" class="btn btn-primary">Login</button>
 		</div>
 		<br>
 		<a class="hoverblue" wicket:id="forgotpassword"><span wicket:id="forgotlabel">Forgot password?</span></a>
@@ -22,11 +22,11 @@
 	<font size="2">
 		<form wicket:id="logoutForm" style="float:right">
 			<span wicket:id="activeuser"></span>
-			<button wicket:id="updateprofile">Update Profile</button>
-			<br>
-		 	<button wicket:id="logout">Logout</button>
-		 	<button wicket:id='adminmaintenance'>Administrator Maintenance</button>	
-		 	<button wicket:id="userregistration">Register New User</button>
+		 	<button wicket:id="logout" class="btn btn-primary">Logout</button>
+		 	<br><br>
+			<button wicket:id="updateprofile" class="btn btn-primary">Update Profile</button>
+		 	<button wicket:id='adminmaintenance' class="btn btn-primary">Administrator Maintenance</button>	
+		 	<button wicket:id="userregistration" class="btn btn-primary">Register New User</button>
 	 	</form>
 	</font>
 		
