@@ -14,11 +14,13 @@ import org.apache.wicket.model.Model;
 //import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import com.myforum.application.CookieLogics;
+import com.myforum.application.ForumUtils;
 import com.myforum.application.StringLogics;
 import com.myforum.base.BasePage;
 import com.myforum.base.menu.EMenuItem;
 import com.myforum.forumpages.ForumBasePage;
 import com.myforum.framework.StatefulPagingNavigator;
+import com.myforum.framework.StatelessPagingNavigator;
 import com.myforum.sourcepages.SourceHomePage;
 //import com.myforum.springframework.HelloService;
 import com.myforum.tables.Message;
@@ -34,7 +36,8 @@ public class HomePage extends BasePage {
 	private final MessageCategoryDao 	messageCategoryDao 	= new MessageCategoryDao();
 	private final SimpleDateFormat		dateFormat			= new SimpleDateFormat("yyyy/MM/dd");
 	private List<Message> 				messageList 		= Collections.synchronizedList( new ArrayList<Message>() );
-
+	private long pageNumber = 0;
+	
 	//@SpringBean
 	//protected HelloService helloService;
 
@@ -43,6 +46,8 @@ public class HomePage extends BasePage {
 	
 		// First spring bean
 		//System.out.println(helloService.getHelloWorldMessage());
+		
+		pageNumber	= ForumUtils.getParmInt(getPageParameters(),    "page", 0);
 		
 		CookieLogics.deleteCookie("moveMessage");
 		CookieLogics.deleteCookie("codeMessageCategory");
@@ -80,7 +85,7 @@ public class HomePage extends BasePage {
         };
 		
         addOrReplace( listView ); 
-        addOrReplace( new StatefulPagingNavigator( "navigator", listView ) );       
+        addOrReplace( new StatelessPagingNavigator( "navigator", getPageParameters(), pageNumber, listView ) );       
 		
 	}
 	

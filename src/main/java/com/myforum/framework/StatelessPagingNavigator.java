@@ -16,15 +16,15 @@ public class StatelessPagingNavigator extends PagingNavigator
 
     private final PageParameters parameters;
 
-    public StatelessPagingNavigator(String id, PageParameters parameters, IPageable pageable)
+    public StatelessPagingNavigator(String id, PageParameters parameters, long pageNumber, IPageable pageable)
     {
         super(id, pageable);
 
         this.parameters = new PageParameters(parameters);
 
-        pageable.setCurrentPage(parameters.get(PAGING_PAGE_PARAMETER).toLong(0));
+        pageable.setCurrentPage(pageNumber);
     }
-
+    
     @Override
     protected AbstractLink newPagingNavigationIncrementLink(String id, IPageable pageable, int increment)
     {

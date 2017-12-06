@@ -14,10 +14,12 @@ import org.apache.wicket.model.Model;
 
 import com.myforum.application.CookieLogics;
 import com.myforum.application.DBHelper;
+import com.myforum.application.ForumUtils;
 import com.myforum.base.ClickableForumLabel;
 import com.myforum.framework.AreYouSurePanel;
 import com.myforum.framework.ResponseFormButton;
 import com.myforum.framework.StatefulPagingNavigator;
+import com.myforum.framework.StatelessPagingNavigator;
 import com.myforum.tables.Message;
 import com.myforum.tables.MessageCategory;
 import com.myforum.tables.dao.ForumUserDao;
@@ -32,10 +34,14 @@ public class ForumCategoryPanel extends ForumBasePanel{
 	private final SimpleDateFormat		dateFormat			= new SimpleDateFormat("yyyy/MM/dd");
 	private final SimpleDateFormat		timeFormat			= new SimpleDateFormat("HH:mm:ss");
 	private List<Message> 				messageList 		= Collections.synchronizedList( new ArrayList<Message>() );
+
+	private long						pageNumber = 0;
 	
 	public ForumCategoryPanel(final ForumBasePage parent){
 		super(parent);
-		
+	
+		pageNumber		= ForumUtils.getParmInt(parent.getPageParameters(),    "page", 0);
+
 		CookieLogics.deleteCookie("codeMessage"); // just in case
 
         final int codeMessageCategory = CookieLogics.getCookieInt("codeMessageCategory");
@@ -97,7 +103,7 @@ public class ForumCategoryPanel extends ForumBasePanel{
         };
 		
         addOrReplace( listView ); 
-        addOrReplace( new StatefulPagingNavigator( "navigator", listView ) );       
+        addOrReplace( new StatelessPagingNavigator( "navigator", parent.getPageParameters(), pageNumber, listView ) );       
 	} 	
 
 	

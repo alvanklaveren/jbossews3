@@ -13,8 +13,10 @@ import org.apache.wicket.markup.html.list.PageableListView;
 import org.apache.wicket.model.Model;
 
 import com.myforum.application.DBHelper;
+import com.myforum.application.ForumUtils;
 import com.myforum.base.ClickableForumLabel;
 import com.myforum.framework.StatefulPagingNavigator;
+import com.myforum.framework.StatelessPagingNavigator;
 import com.myforum.security.CredentialLogics;
 import com.myforum.tables.MessageCategory;
 import com.myforum.tables.dao.MessageCategoryDao;
@@ -24,10 +26,13 @@ public class ForumHomePanel extends ForumBasePanel {
 
 	private List<MessageCategory> 		messageCategories = Collections.synchronizedList(new ArrayList<MessageCategory>());
 	private final MessageCategoryDao 	messageCategoryDao 	= new MessageCategoryDao();
+	private long						pageNumber = 0;
 
 	public ForumHomePanel(final ForumBasePage parent) {
 		super(parent);
 		
+		pageNumber		= ForumUtils.getParmInt(parent.getPageParameters(),    "page", 0);
+
 		messageCategories = messageCategoryDao.list();
 		
 		if( !CredentialLogics.isAdministrator(getActiveUser())){
@@ -82,7 +87,7 @@ public class ForumHomePanel extends ForumBasePanel {
         };
                
         addOrReplace( listView );
-        addOrReplace( new StatefulPagingNavigator( "navigator", listView ) );
+        addOrReplace( new StatelessPagingNavigator( "navigator", parent.getPageParameters(), pageNumber, listView ) );       
 	}
 	
 }

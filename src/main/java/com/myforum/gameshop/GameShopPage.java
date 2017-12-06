@@ -32,6 +32,7 @@ import com.myforum.base.menu.EMenuItem;
 import com.myforum.framework.ErrorLabel;
 import com.myforum.framework.ResponseFormButton;
 import com.myforum.framework.StatefulPagingNavigator;
+import com.myforum.framework.StatelessPagingNavigator;
 import com.myforum.gameshop.DDC.CompanyDDC;
 import com.myforum.gameshop.DDC.GameConsoleDDC;
 import com.myforum.gameshop.DDC.ProductTypeDDC;
@@ -48,6 +49,7 @@ public class GameShopPage extends BasePage {
 
 	private 		int	   			consoleId, typeId, numberOfItems;
 	private 		String 			title 				= null;
+	private			long			pageNumber			= 0;
 	private final 	DDCSelectModel 	selectModel 		= new DDCSelectModel();
 	private 		List<Integer> 	numberOfItemsList 	= new ArrayList<Integer>();
 	
@@ -69,6 +71,7 @@ public class GameShopPage extends BasePage {
 		typeId 			= ForumUtils.getParmInt(params,    "type",           0);
 		title			= ForumUtils.getParmString(params, "searchtitle",   "");
 		numberOfItems	= ForumUtils.getParmInt(params,    "numberofitems", 15);
+		pageNumber		= ForumUtils.getParmInt(params,    "page", 0);
 
 		if( !numberOfItemsList.contains(numberOfItems) ){ numberOfItems = 15; }
 		
@@ -149,9 +152,9 @@ public class GameShopPage extends BasePage {
 		// Add results counter
 		addOrReplace( createResultCounter(productListView) );        
         
-		addOrReplace(new StatefulPagingNavigator( "navigatortop", productListView ));       
-		addOrReplace(new StatefulPagingNavigator( "navigator",    productListView ));       
-        
+        addOrReplace( new StatelessPagingNavigator( "navigatortop", getPageParameters(), pageNumber, productListView ) );       
+        addOrReplace( new StatelessPagingNavigator( "navigator", getPageParameters(), pageNumber, productListView ) );       
+       
 	}
 
 	/*
