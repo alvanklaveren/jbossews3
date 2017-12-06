@@ -1,6 +1,6 @@
 package com.myforum.base.menu;
 
-public class MenuDividerItem extends MenuItem {
+public class MenuDividerItem extends DDMenuItem {
 
 	public MenuDividerItem() {
 		super(EMenuItem.Divider);
@@ -8,6 +8,6 @@ public class MenuDividerItem extends MenuItem {
 
 	@Override
 	public String toHtml(){
-		return "<li role=\"separator\" class=\"divider\"></li>";
+		return "<div class=\"dropdown-divider\"></div>";
 	}
 }

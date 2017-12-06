@@ -1,19 +1,19 @@
 package com.myforum.base.menu;
 
-public class MenuItem{
+public class DDMenuItem{
 	private String 		itemText, itemHRef;
 	private boolean 	isActive = false, disabled = false;
 		
-	public MenuItem(EMenuItem item){
+	public DDMenuItem(EMenuItem item){
 		init(item);
 	}
 
-	public MenuItem(EMenuItem item, int activeMenuItemId){
+	public DDMenuItem(EMenuItem item, int activeMenuItemId){
 		init(item);
 		if(item.id() == activeMenuItemId){ isActive = true; }
 	}
 
-	public MenuItem init(EMenuItem item){
+	public DDMenuItem init(EMenuItem item){
 		itemText = item.defaultText();
 		itemHRef = item.hRef();	
 		return this;
@@ -23,7 +23,7 @@ public class MenuItem{
 		return createDynamicHtml(itemText, itemHRef);
 	};
 	
-	public MenuItem disable(){
+	public DDMenuItem disable(){
 		disabled = true;
 		return this;
 	}
@@ -38,11 +38,7 @@ public class MenuItem{
 
 	private String createDynamicHtml(String displayText, String href) {
 	    StringBuilder sb = new StringBuilder();
-	    sb.append("<li \" class=\"nav-item");
-
-	    if(isActive) sb.append(" active" );
-  
-	    sb.append("\"><a class=\"nav-link\" ");
+	    sb.append("<a \" class=\"dropdown-item\" ");
 
 	    if(!disabled){
 		    sb.append(getHRefHtml(href));
@@ -50,7 +46,7 @@ public class MenuItem{
 	    
 	    sb.append(">");
 	    sb.append(displayText);
-	    sb.append("</a></li>");
+	    sb.append("</a>");
 
 	    return sb.toString(); 
 	}

@@ -7,8 +7,6 @@ import org.apache.wicket.model.Model;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.myforum.application.ForumUtils;
-
 public class MenuPanel extends Panel {
 	private static final long serialVersionUID = 1L;
 	private StringBuilder menuItems;
@@ -24,11 +22,11 @@ public class MenuPanel extends Panel {
 		
 		DropDownMenuItem dropDownMenu = new DropDownMenuItem(EMenuItem.Applications.defaultText());
 		
-		dropDownMenu.addMenuItem(new MenuItem(EMenuItem.Forum, activeMenuItem));
-		//dropDownMenu.addMenuItem(new MenuItem(EMenuItem.Sources, activeMenuItem));
-		dropDownMenu.addMenuItem(new MenuItem(EMenuItem.GameShop, activeMenuItem));
-		dropDownMenu.addMenuItem(new MenuDividerItem());
-		dropDownMenu.addMenuItem(new MenuHeaderItem("More to come"));
+		dropDownMenu.addMenuItem(new DDMenuItem(EMenuItem.Forum, activeMenuItem));
+		dropDownMenu.addMenuItem(new DDMenuItem(EMenuItem.GameShop, activeMenuItem));
+		//dropDownMenu.addMenuItem(new DDMenuItem(EMenuItem.Sources, activeMenuItem));
+		//dropDownMenu.addMenuItem(new MenuDividerItem());
+		//dropDownMenu.addMenuItem(new DDMenuHeaderItem("More to come"));
 		//dropDownMenu.addMenuItem(new MenuItem(EMenuItem.AVKOS).disable());
 		//dropDownMenu.addMenuItem(new MenuItem(EMenuItem.AppCreator).disable());
 

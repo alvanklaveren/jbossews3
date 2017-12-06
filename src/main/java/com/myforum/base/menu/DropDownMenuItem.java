@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 public class DropDownMenuItem {
 	private String 				itemText;
-	private ArrayList<MenuItem>	menuItems;
+	private ArrayList<DDMenuItem>	menuItems;
 	
 	public DropDownMenuItem(String itemText){
 		this.itemText = itemText;
-		menuItems = new ArrayList<MenuItem>();
+		menuItems = new ArrayList<DDMenuItem>();
 	}
 
-	public void addMenuItem(MenuItem menuItem){
-		menuItems.add(menuItem);
+	public void addMenuItem(DDMenuItem ddMenuItem){
+		menuItems.add(ddMenuItem);
 	}
 	
 	public String toHtml(){
@@ -21,20 +21,19 @@ public class DropDownMenuItem {
 	
 	private String createDynamicHtml(String displayText) {
 	    StringBuilder sb = new StringBuilder();
-	    sb.append("<li class=\"dropdown\">");
-	    sb.append("<a href=\"#\" class=\"dropdown-toggle\" ");
-	    sb.append("data-toggle=\"dropdown\" role=\"button\" ");
+	    sb.append("<li class=\"nav-item dropdown\">");
+	    sb.append("<a href=\"#\" class=\"nav-link dropdown-toggle\" ");
+	    sb.append("data-toggle=\"dropdown\" role=\"button\" id=\"navbarDropdown\" ");
 	    sb.append("aria-haspopup=\"true\" aria-expanded=\"false\"");
 	    sb.append(">");
 	    sb.append(itemText);
-	    sb.append("<span class=\"caret\"></span></a>");
+	    sb.append("</a>");
 
-	    sb.append("<ul class=\"dropdown-menu\">");
-	    for(MenuItem menuItem:menuItems){
+	    sb.append("<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">");
+	    for(DDMenuItem menuItem:menuItems){
 	    	sb.append(menuItem.toHtml());
 	    }
-	    sb.append("</ul>");
-	    sb.append("</li>");
+	    sb.append("</div>");
 
 	    return sb.toString(); 
 	}

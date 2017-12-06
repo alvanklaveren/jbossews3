@@ -1,8 +1,8 @@
 package com.myforum.base.menu;
 
-public class MenuHeaderItem extends MenuItem {
+public class DDMenuHeaderItem extends DDMenuItem {
 
-	public MenuHeaderItem(String itemText) {
+	public DDMenuHeaderItem(String itemText) {
 		super(EMenuItem.Header);
 		setItemText(itemText);
 	}
