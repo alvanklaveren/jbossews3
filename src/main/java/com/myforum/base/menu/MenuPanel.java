@@ -38,13 +38,14 @@ public class MenuPanel extends Panel {
 		menuItemLabel.setEscapeModelStrings(false);
 		add(menuItemLabel);
 
-		// I have no idea why, but sometimes the weblogo HTML cannot be found and returns an error.
-		// So this piece of code is to debug this problem, or at least prevent the website from returning to the homepage.
-		try{
-			add( ForumUtils.getWebLogo() );
-		}catch(Exception e){
-			log.error(e.getMessage());
-		}
+//		REMOVED LOGO. Replaced by plain text (with alternating colors)
+		//		// I have no idea why, but sometimes the weblogo HTML cannot be found and returns an error.
+//		// So this piece of code is to debug this problem, or at least prevent the website from returning to the homepage.
+//		try{
+//			add( ForumUtils.getWebLogo() );
+//		}catch(Exception e){
+//			log.error(e.getMessage());
+//		}
 	}
 
 	 @Override 
