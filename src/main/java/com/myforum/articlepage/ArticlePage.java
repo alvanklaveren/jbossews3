@@ -48,17 +48,13 @@ public class ArticlePage extends BasePage {
 
 	private String getNavigatorHTML(Article article){
 		StringBuilder sb = new StringBuilder();
-		sb.append("<nav>");
-		sb.append("<ul class=\"pager\">");
 		if(!article.getPreviousArticle().getArticleRestId().equals("")){
-			sb.append("<li style=\"float:left\"><a href=\"" + article.getPreviousArticle().getArticleRestId() + "\">Previous</a></li>");
+			sb.append("<span style=\"float:left\"><a class=\"btn btn-outline-primary\" href=\"" + article.getPreviousArticle().getArticleRestId() + "\">Previous</a></span>");
 		}
 		
 		if(!article.getNextArticle().getArticleRestId().equals("")){
-			sb.append("<li style=\"float:right\"><a href=\"" + article.getNextArticle().getArticleRestId() + "\">Next</a></li>");
+			sb.append("<span style=\"float:right\"><a class=\"btn btn-outline-primary\" href=\"" + article.getNextArticle().getArticleRestId() + "\">Next</a></span>");
 		}
-		sb.append("</ul>");
-		sb.append("</nav>");
 		return sb.toString();
 	}
 	
