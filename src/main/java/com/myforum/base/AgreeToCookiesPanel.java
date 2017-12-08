@@ -5,20 +5,22 @@ import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import com.myforum.application.CookieLogics;
+import com.myforum.homepage.HomePage;
 
 public class AgreeToCookiesPanel extends Panel {
 	private static final long serialVersionUID = 1L;
 	
-	public AgreeToCookiesPanel(String id) {
+	public AgreeToCookiesPanel(final BasePage parent, String id) {
 		super(id);
 
+	
 		Link<String> seenCookies = new Link<String>("seenCookies"){
 			private static final long serialVersionUID = 1L;    
 
 			@Override
 			public void onClick() {
 				CookieLogics.setCookie("agreedToCookie", "yes");
-				setResponsePage( getPage().getClass());
+				setResponsePage( new HomePage() );
 				return;
 			}
 	    };
