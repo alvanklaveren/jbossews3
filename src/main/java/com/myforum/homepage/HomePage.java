@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.basic.MultiLineLabel;
-import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PageableListView;
 import org.apache.wicket.model.Model;
@@ -18,10 +17,7 @@ import com.myforum.application.ForumUtils;
 import com.myforum.application.StringLogics;
 import com.myforum.base.BasePage;
 import com.myforum.base.menu.EMenuItem;
-import com.myforum.forumpages.ForumBasePage;
-import com.myforum.framework.StatefulPagingNavigator;
 import com.myforum.framework.StatelessPagingNavigator;
-import com.myforum.sourcepages.SourceHomePage;
 //import com.myforum.springframework.HelloService;
 import com.myforum.tables.Message;
 import com.myforum.tables.MessageCategory;
@@ -47,7 +43,7 @@ public class HomePage extends BasePage {
 		// First spring bean
 		//System.out.println(helloService.getHelloWorldMessage());
 		
-		pageNumber	= ForumUtils.getParmInt(getPageParameters(),    "page", 0);
+		pageNumber	= ForumUtils.getParmInt(getPageParameters(), "page", 0);
 		
 		CookieLogics.deleteCookie("moveMessage");
 		CookieLogics.deleteCookie("codeMessageCategory");
