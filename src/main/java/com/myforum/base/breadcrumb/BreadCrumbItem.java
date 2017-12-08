@@ -87,7 +87,7 @@ public class BreadCrumbItem implements Serializable{
 			}
 		};
 		if(isActive){ 
-			sLink.add(new AttributeModifier("class", "Active"));
+			sLink.add(new AttributeModifier("class", "breadcrumb-item active"));
 		}
 		sLink.add(new Label("label", displayText));
 		return sLink;
