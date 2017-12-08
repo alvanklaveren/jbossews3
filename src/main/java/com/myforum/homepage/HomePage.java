@@ -56,8 +56,8 @@ public class HomePage extends BasePage {
 		Label helloLabel = new Label( "hellolabel", new Model<String>(translator.translateFullSentence("Hello Galaxy")));
 
 		addOrReplace(helloLabel);
-		addOrReplace(new BookmarkablePageLink<ForumBasePage>("forum", ForumBasePage.class));
-		addOrReplace(new BookmarkablePageLink<SourceHomePage>("sourcepage", SourceHomePage.class));
+		//addOrReplace(new BookmarkablePageLink<ForumBasePage>("forum", ForumBasePage.class));
+		//addOrReplace(new BookmarkablePageLink<SourceHomePage>("sourcepage", SourceHomePage.class));
 
 		
 		final MessageCategory messageCategory = messageCategoryDao.find( -1 );

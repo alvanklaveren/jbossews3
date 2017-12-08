@@ -14,7 +14,7 @@ import com.myforum.gameshop.GameShopPage;
 import com.myforum.gameshop.REST.GameShopMobile;
 import com.myforum.homepage.AboutMePage;
 import com.myforum.homepage.HomePage;
-import com.myforum.sourcepages.SourceHomePage;
+
 
 public class ForumApplication extends WebApplication {
     public ForumApplication() {
@@ -51,7 +51,7 @@ public class ForumApplication extends WebApplication {
 		
 		  //mountPage("/", HomePage.class); // DO NOT USE. will disable bootstrap (css)
 		  
-		  mountPage("/sources", SourceHomePage.class);
+		  //mountPage("/sources", SourceHomePage.class);
 		  mountPage("/forum", ForumBasePage.class);
 		  mountPage("/aboutme", AboutMePage.class);
 		  		  

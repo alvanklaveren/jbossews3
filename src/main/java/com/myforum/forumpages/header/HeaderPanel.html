@@ -12,23 +12,25 @@
 	    	<input type="password" class="form-control" id="inputPassword" wicket:id="password" placeholder="Password">
 		</div>
 	 	<div class="form-group">
-	 		<button type="submit" wicket:id="login" class="btn btn-primary">Login</button>
+	 		<button type="submit" wicket:id="login" class="btn btn-outline-primary">Login</button>
 		</div>
 		<br>
 		<a class="hoverblue" wicket:id="forgotpassword"><span wicket:id="forgotlabel">Forgot password?</span></a>
 	  </font>
 	</form>
 
-	<font size="2">
-		<form wicket:id="logoutForm" style="float:right">
+	<form wicket:id="logoutForm" style="float:right">
+		<font size="2">
+	 	  <div class="form-group">
 			<span wicket:id="activeuser"></span>
-		 	<button wicket:id="logout" class="btn btn-primary">Logout</button>
 		 	<br><br>
-			<button wicket:id="updateprofile" class="btn btn-primary">Update Profile</button>
-		 	<button wicket:id='adminmaintenance' class="btn btn-primary">Administrator Maintenance</button>	
-		 	<button wicket:id="userregistration" class="btn btn-primary">Register New User</button>
-	 	</form>
-	</font>
+		 	<button type="submit" wicket:id="logout" class="btn btn-outline-primary">Logout</button>
+			<button type="submit" wicket:id="updateprofile" class="btn btn-outline-primary">Update Profile</button>
+		 	<button type="submit" wicket:id='adminmaintenance' class="btn btn-outline-primary">Administrator Maintenance</button>	
+		 	<button type="submit" wicket:id="userregistration" class="btn btn-outline-primary">Register New User</button>
+		   </div>
+		</font>
+ 	</form>
 		
 	<div>
 		<h1 wicket:id="forumname"></h1>

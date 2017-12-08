@@ -20,8 +20,7 @@ public class StatelessPagingNavigator extends PagingNavigator
     {
         super(id, pageable);
 
-        this.parameters = new PageParameters(parameters);
-
+        this.parameters = parameters;
         pageable.setCurrentPage(pageNumber);
     }
     

@@ -31,7 +31,6 @@ import com.myforum.base.dictionary.EText;
 import com.myforum.base.menu.EMenuItem;
 import com.myforum.framework.ErrorLabel;
 import com.myforum.framework.ResponseFormButton;
-import com.myforum.framework.StatefulPagingNavigator;
 import com.myforum.framework.StatelessPagingNavigator;
 import com.myforum.gameshop.DDC.CompanyDDC;
 import com.myforum.gameshop.DDC.GameConsoleDDC;
@@ -53,8 +52,6 @@ public class GameShopPage extends BasePage {
 	private final 	DDCSelectModel 	selectModel 		= new DDCSelectModel();
 	private 		List<Integer> 	numberOfItemsList 	= new ArrayList<Integer>();
 	
-	private 		ModalWindow		modalAddRatingUrl;
-	
 	public GameShopPage(PageParameters params) {
 		super(EMenuItem.GameShop);
 
@@ -71,7 +68,7 @@ public class GameShopPage extends BasePage {
 		typeId 			= ForumUtils.getParmInt(params,    "type",           0);
 		title			= ForumUtils.getParmString(params, "searchtitle",   "");
 		numberOfItems	= ForumUtils.getParmInt(params,    "numberofitems", 15);
-		pageNumber		= ForumUtils.getParmInt(params,    "page", 0);
+		pageNumber		= ForumUtils.getParmInt(params,    "page", 			 0);
 
 		if( !numberOfItemsList.contains(numberOfItems) ){ numberOfItems = 15; }
 		
@@ -152,8 +149,8 @@ public class GameShopPage extends BasePage {
 		// Add results counter
 		addOrReplace( createResultCounter(productListView) );        
         
-        addOrReplace( new StatelessPagingNavigator( "navigatortop", getPageParameters(), pageNumber, productListView ) );       
-        addOrReplace( new StatelessPagingNavigator( "navigator", getPageParameters(), pageNumber, productListView ) );       
+        addOrReplace( new StatelessPagingNavigator( "navigatortop", params, pageNumber, productListView ) );       
+        addOrReplace( new StatelessPagingNavigator( "navigator", params, pageNumber, productListView ) );       
        
 	}
 
@@ -247,8 +244,6 @@ public class GameShopPage extends BasePage {
 		productInfoForm.add( new ProductTypeDDC("producttypes", product, "productType", true /*isAutoSave*/ ).create() );
 		productInfoForm.add( new GameConsoleDDC("gameconsoles", product, "gameConsole", true /*isAutoSave*/ ).create() );
 
-		productInfoForm.add( createFormModalButton( "addratingurl", translator.translate("Add Rating URL"), modalAddRatingUrl ) );
-	
 		Button modifyRatingButton = new Button( "modifyratingbutton" ){
 			private static final long serialVersionUID = 1L;
 
@@ -437,7 +432,6 @@ public class GameShopPage extends BasePage {
 	 */
 	private ResponseFormModalButton createFormModalButton( String id, String buttonText, ModalWindow modal ){
         ResponseFormModalButton formButton = new ResponseFormModalButton(id + "button", modal, isAdministrator(getActiveUser()));
-        formButton.setOutputMarkupId(true);
 
         final Label buttonLabel = new Label( id + "label", new Model<String>(translator.translate(buttonText)) );
         formButton.add(buttonLabel);

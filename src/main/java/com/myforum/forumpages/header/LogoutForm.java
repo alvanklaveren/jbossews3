@@ -1,10 +1,9 @@
 package com.myforum.forumpages.header;
 
-import org.apache.wicket.ajax.AjaxEventBehavior;
-import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.StatelessForm;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.myforum.application.AllConstants;
@@ -39,30 +38,30 @@ public class LogoutForm extends StatelessForm<Object>{
 		add( adminButton );
 		adminButton.setVisible(isAdministrator);
 	
-		Button updateProfileButton = new Button( "updateprofile" );
-		updateProfileButton.add( new AjaxEventBehavior( "onclick" ) {
+		Button updateProfileButton = new Button( "updateprofile" ) {
 			private static final long serialVersionUID = 1L;
 			@Override
-            protected void onEvent( AjaxRequestTarget target ) {
+			public void onSubmit() {
 				String urlEncoded = AllConstants.getCrypt().encryptUrlSafe( String.valueOf(activeUser.getCode()) );
 				PageParameters parameters = new PageParameters().set("codeforumuser", urlEncoded);
                 setResponsePage( UserModifyAccountPage.class, parameters );
             }
-        });		
+        };		
+        updateProfileButton.setDefaultFormProcessing( false );
 		add( updateProfileButton );
 
-		Button logoutButton = new Button( "logout" );
-		logoutButton.add( new AjaxEventBehavior( "onclick" ) {
+		Button logoutButton = new Button( "logout", new Model<String>("Logout") ) {
 			private static final long serialVersionUID = 1L;
 			@Override
-            protected void onEvent( AjaxRequestTarget target ) {
+			public void onSubmit() {
 				CookieLogics.deleteCookie("magictoken");
 				getSession().invalidateNow(); // remember that now the session is invalidated, all getsession-variables are reset to null
 				setResponsePage( ForumBasePage.class );
 				return;
             }
-        });		
-		add( logoutButton );
+        };		
+        logoutButton.setDefaultFormProcessing( false );
+	    add( logoutButton );
 	
 		ResponseButton userRegistrationButton = new ResponseButton( "userregistration", UserRegistrationPage.class );
 	    add( userRegistrationButton );
