@@ -3,6 +3,7 @@ package com.myforum.homepage;
 import java.util.Date;
 
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.model.Model;
 
 import com.myforum.application.ForumUtils;
 import com.myforum.base.BasePage;
@@ -14,6 +15,7 @@ public class AboutMePage extends BasePage {
 	public AboutMePage() {
 		super(EMenuItem.AboutMe);
 		
+		add( new Label("aboutme", new Model<String>(translator.translate("About Me"))) );
 		
 		Date startDate	= ForumUtils.createDate("01-04-2006", "dd-MM-yyyy"); // The day I started working at Maccs
 		int workingYears = ForumUtils.yearsBetween(startDate, ForumUtils.todayNow());

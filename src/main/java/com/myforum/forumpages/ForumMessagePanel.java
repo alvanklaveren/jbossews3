@@ -23,7 +23,6 @@ import com.myforum.application.StringLogics;
 import com.myforum.framework.AreYouSurePanel;
 import com.myforum.framework.ErrorLabel;
 import com.myforum.framework.ResponseFormButton;
-import com.myforum.security.CredentialLogics;
 import com.myforum.tables.ForumUser;
 import com.myforum.tables.Message;
 import com.myforum.tables.dao.ForumUserDao;
@@ -151,7 +150,7 @@ public class ForumMessagePanel extends ForumBasePanel {
 		// Form for move message button
         StatelessForm<Object> form = new StatelessForm<Object>("form");
 
-        ResponseFormButton button = new ResponseFormButton("movemessage", parent){
+        ResponseFormButton button = new ResponseFormButton("movemessage", "Move Message To Other Category", parent){
 			private static final long serialVersionUID = 1L;
 
 			@Override

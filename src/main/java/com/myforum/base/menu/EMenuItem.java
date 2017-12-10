@@ -1,5 +1,7 @@
 package com.myforum.base.menu;
 
+import com.myforum.base.dictionary.Translator;
+
 public enum EMenuItem {
 	DUMMY			(0, "", ""),
 	Home			(1, "Home", "/"),
@@ -18,6 +20,7 @@ public enum EMenuItem {
 	private int		id;
 	private String 	defaultText;
 	private String 	hRef;
+	private Translator translator = Translator.getInstance();
 	
 	private EMenuItem(int id, String defaultText, String href){
 		this.id = id;
@@ -34,6 +37,6 @@ public enum EMenuItem {
 	}
 	
 	public String defaultText(){
-		return defaultText;
+		return translator.translate( defaultText );
 	}
 }

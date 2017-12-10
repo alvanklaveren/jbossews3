@@ -10,6 +10,7 @@ import org.apache.wicket.model.Model;
 
 import com.myforum.application.CookieLogics;
 import com.myforum.base.BasePage;
+import com.myforum.base.dictionary.Translator;
 import com.myforum.forumpages.ForumBasePage;
 import com.myforum.forumpages.ForumBasePanel;
 
@@ -17,7 +18,7 @@ public class BreadCrumbItem implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private String cookiesToDelete;
-	private Model<String> displayText;
+	private String displayText;
 	boolean	isActive;
 	private Class<? extends ForumBasePanel> panelClass;
 	private Class<? extends BasePage> pageClass;
@@ -26,7 +27,7 @@ public class BreadCrumbItem implements Serializable{
 
 	public BreadCrumbItem(String text) {
 		isActive = false; // sb.append(" class=\"active\"");
-		this.displayText = new Model<String>(text);
+		this.displayText = text;
 	}
 
 	public BreadCrumbItem setPanel(Class<? extends ForumBasePanel> panelClass){
@@ -48,7 +49,7 @@ public class BreadCrumbItem implements Serializable{
 		this.id = id;
 	}
 
-	public Model<String> getDisplayText() {
+	public String getDisplayText() {
 		return displayText;
 	}
 
@@ -89,7 +90,7 @@ public class BreadCrumbItem implements Serializable{
 		if(isActive){ 
 			sLink.add(new AttributeModifier("class", "breadcrumb-item active"));
 		}
-		sLink.add(new Label("label", displayText));
+		sLink.add(new Label("label", new Model<String>( Translator.getInstance().translate(displayText))));
 		return sLink;
 	}
 

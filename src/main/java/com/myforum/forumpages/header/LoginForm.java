@@ -1,5 +1,6 @@
 package com.myforum.forumpages.header;
 
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.OnChangeAjaxBehavior;
 import org.apache.wicket.markup.html.basic.Label;
@@ -12,6 +13,7 @@ import org.apache.wicket.model.Model;
 
 import com.myforum.application.CookieLogics;
 import com.myforum.base.BasePage;
+import com.myforum.base.dictionary.Translator;
 import com.myforum.forumpages.ForgotPasswordPanel;
 import com.myforum.forumpages.ForumBasePage;
 import com.myforum.security.CredentialLogics;
@@ -23,6 +25,7 @@ public class LoginForm extends StatelessForm<Object>{
 	private static final long serialVersionUID = 1L;
 	
 	private ForumUser activeUser;
+	private Translator translator = Translator.getInstance();
 
 	public LoginForm( String componentName, final ForumUser activeUser ){
 		// Form for login credentials
@@ -32,6 +35,7 @@ public class LoginForm extends StatelessForm<Object>{
 		
 		final TextField<String> usernameTF = new TextField<String>( "username", new Model<String>() );
 		usernameTF.setModel( new Model<String>( (String) getSession().getAttribute( "loginname" ) ) );
+		usernameTF.add( new AttributeModifier("placeholder", new Model<String>( translator.translate("Username"))) );
 		add( usernameTF );
 		
 		usernameTF.add( new OnChangeAjaxBehavior(){
@@ -43,7 +47,8 @@ public class LoginForm extends StatelessForm<Object>{
 			}
 		});
 		
-		final PasswordTextField passwordTF = new PasswordTextField( "password", new Model<String>() ); 
+		final PasswordTextField passwordTF = new PasswordTextField( "password", new Model<String>() );
+		passwordTF.add( new AttributeModifier("placeholder", new Model<String>( translator.translate("Password"))) );
 		add( passwordTF );
 		
 		final StatelessLink<Object> forgotPasswordLink = new StatelessLink<Object>( "forgotpassword" ){
@@ -61,7 +66,7 @@ public class LoginForm extends StatelessForm<Object>{
 			}
 			
 		};
-		forgotPasswordLink.add(new Label("forgotlabel", new Model<String>("Forgot password?")));
+		forgotPasswordLink.add(new Label("forgotlabel", new Model<String>(translator.translate("Forgot password?"))));
         add( forgotPasswordLink );
 					
 	    Button loginButton = new Button( "login", new Model<String>("Login") ) {

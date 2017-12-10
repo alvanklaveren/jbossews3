@@ -4,35 +4,57 @@ public final class DictionaryDutch extends Dictionary {
 
 	DictionaryDutch(ELanguage language){
 		super(language);
-		translatedWordMap.put("to", 		"tot");
-		translatedWordMap.put("of", 		"van");
-		translatedWordMap.put("from", 		"van");
-		translatedWordMap.put("Search", 	"Zoek");
-		translatedWordMap.put("About", 		"Over");
-		translatedWordMap.put("Hello", 		"Hallo");
-		translatedWordMap.put("Galaxy", 	"Sterrenstelsel");
-		translatedWordMap.put("Articles", 	"Artikelen");
-		translatedWordMap.put("Firsthand", 	"Eerste");
-		translatedWordMap.put("experience", "ervaring");
-		translatedWordMap.put("with", 		"met");
-		translatedWordMap.put("Languages", 	"Talen");
-		translatedWordMap.put("Frameworks", "Frameworks");
-		translatedWordMap.put("and", 		"en");
-		translatedWordMap.put("IDE", 		"Ontwikkelomgeving");
-		translatedWordMap.put("IDEs", 		"Ontwikkelomgevingen");
-		translatedWordMap.put("Rating", 	"Beoordeling");
+		translatedWordMap.put("about", 			"over");
+		translatedWordMap.put("and", 			"en");
+		translatedWordMap.put("applications", 	"applicaties");
+		translatedWordMap.put("articles", 		"artikelen");
+		translatedWordMap.put("cancel", 		"annuleer");
+		translatedWordMap.put("category", 		"categorie");
+		translatedWordMap.put("categories", 	"categorieen");
+		translatedWordMap.put("collection", 	"verzameling");
+		translatedWordMap.put("experience", 	"ervaring");
+		translatedWordMap.put("firsthand", 		"eerste");
+		translatedWordMap.put("frameworks", 	"frameworks");
+		translatedWordMap.put("from", 			"van");
+		translatedWordMap.put("galaxy", 		"sterrenstelsel");
+		translatedWordMap.put("game", 			"spellen");
+		translatedWordMap.put("hello", 			"hallo");
+		translatedWordMap.put("home", 			"hoofdpagina");
+		translatedWordMap.put("ide", 			"ontwikkelomgeving");
+		translatedWordMap.put("ides", 			"ontwikkelomgevingen");
+		translatedWordMap.put("languages", 		"talen");
+		translatedWordMap.put("login", 			"aanmelden");
+		translatedWordMap.put("logout",			"afmelden");
+		translatedWordMap.put("me", 			"mij");
+		translatedWordMap.put("my", 			"mijn");
+		translatedWordMap.put("of", 			"van");
+		translatedWordMap.put("password", 		"wachtwoord");
+		translatedWordMap.put("rating", 		"beoordeling");
+		translatedWordMap.put("refresh", 		"ververs");
+		translatedWordMap.put("rename", 		"hernoem");
+		translatedWordMap.put("search", 		"zoek");
+		translatedWordMap.put("title", 			"titel");
+		translatedWordMap.put("to", 			"tot");
+		translatedWordMap.put("username", 		"gebruikersnaam");
+		translatedWordMap.put("welcome", 		"welkom");
+		translatedWordMap.put("with", 			"met");
 
-		translatedWordMap.put("Game Console", 		"Spel Computer");
-		translatedWordMap.put("Product Type", 		"Product Type");
-		translatedWordMap.put("Number of Items", 	"Aantal per Pagina");
-		
-		put(translatedSentenceMap, EText.RECENTLY_ADDED, "Recent toegevoegde producten");
-		put(translatedSentenceMap, EText.UPLOAD_FAILED, "Uploaden van bestand mislukt. Controleer de naam en de grootte (<100kb) van het bestand.");
 		put(translatedSentenceMap, EText.ADD_PRODUCT, "Product toevoegen");
 		put(translatedSentenceMap, EText.ADD_COMPANY, "Bedrijf toevoegen");
 		put(translatedSentenceMap, EText.ADD_RATING_URL, "Beoordeling URL toevoegen");
-		put(translatedSentenceMap, EText.REFRESH, "Ververs");
+		put(translatedSentenceMap, EText.ADMINISTRATOR_MAINTENANCE, "Administrator Onderhoud");
+		put(translatedSentenceMap, EText.FORGOT_PASSWORD, "Wachtwoord vergeten?");
+		put(translatedSentenceMap, EText.GAME_CONSOLE, "Spel Computer");
+		put(translatedSentenceMap, EText.INCORRECT_LOGIN_CREDENTIALS, "Onjuiste naam en wachtwoord");
+		put(translatedSentenceMap, EText.MOVE_MESSAGE, "Verplaats Bericht Naar Andere Category");
+		put(translatedSentenceMap, EText.NUMBER_OF_ITEMS, "Aantal per Pagina");
+		put(translatedSentenceMap, EText.PRODUCT_TYPE, "Type Product");
+		put(translatedSentenceMap, EText.RECENTLY_ADDED, "Recent toegevoegde producten");
+		put(translatedSentenceMap, EText.REGISTER_NEW_USER, "Registreer Nieuwe Gebruiker");
 		put(translatedSentenceMap, EText.SEARCH_RESULTS, "Zoek resultaten");
+		put(translatedSentenceMap, EText.UPLOAD_FAILED, "Uploaden van bestand mislukt. Controleer de naam en de grootte (<100kb) van het bestand.");
+		put(translatedSentenceMap, EText.UPDATE_PROFILE, "Pas Profiel Aan");
+		
 	}
 	
 }

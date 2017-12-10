@@ -18,7 +18,6 @@ import com.myforum.application.ForumUtils;
 import com.myforum.base.ClickableForumLabel;
 import com.myforum.framework.AreYouSurePanel;
 import com.myforum.framework.ResponseFormButton;
-import com.myforum.framework.StatefulPagingNavigator;
 import com.myforum.framework.StatelessPagingNavigator;
 import com.myforum.tables.Message;
 import com.myforum.tables.MessageCategory;
@@ -59,7 +58,7 @@ public class ForumCategoryPanel extends ForumBasePanel{
 		// Form for add message button
         StatelessForm<Object> form = new StatelessForm<Object>("form");
 
-        ResponseFormButton button = new ResponseFormButton("addnewmessage", parent){
+        ResponseFormButton button = new ResponseFormButton("addnewmessage", "Add New Message", parent){
 			private static final long serialVersionUID = 1L;
 
 			@Override

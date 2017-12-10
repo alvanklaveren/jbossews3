@@ -57,7 +57,7 @@ public class UserModifyAccountPage extends BasePage {
         final FileUploadField avatarfileUF 					= new FileUploadField( "avatarfile" );	
 		DropDownChoice<Classification> classificationsDDC 	= createClassificationDDC(forumUser);
 		Button uploadButton 								= createUploadButton(form, forumUser);		
-		ResponseButton cancelButton							= new ResponseButton("cancel", ForumBasePage.class);
+		ResponseButton cancelButton							= new ResponseButton("cancel", new Model<String>(translator.translate("cancel")), ForumBasePage.class);
 		Button applyChangesButton 							= createApplyChangesButton(form, forumUser);
    
     	form.add( usernameLabel );

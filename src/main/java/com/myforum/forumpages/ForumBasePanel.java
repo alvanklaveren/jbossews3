@@ -4,6 +4,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 
 import com.myforum.application.CookieLogics;
 import com.myforum.application.DBHelper;
+import com.myforum.base.dictionary.Translator;
 import com.myforum.forumpages.header.HeaderPanel;
 import com.myforum.homepage.HomePage;
 import com.myforum.security.CredentialLogics;
@@ -14,6 +15,7 @@ public abstract class ForumBasePanel extends Panel{
 	private static final long serialVersionUID = 1L;
 	protected String magicToken;
 	protected ForumBasePage parent;
+	protected Translator translator = Translator.getInstance();
 
 	public ForumBasePanel(final ForumBasePage parent) {
 		super("activepanel");
@@ -33,7 +35,7 @@ public abstract class ForumBasePanel extends Panel{
 	}
 	
 	public void setErrorMessage( String errorMessage ){
-		getSession().setAttribute( "errormessage", errorMessage );
+		getSession().setAttribute( "errormessage", Translator.getInstance().translate(errorMessage) );
 	}
 	
 	public void resetErrorMessage(){

@@ -3,6 +3,7 @@ package com.myforum.gameshop;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
@@ -91,19 +92,22 @@ public class GameShopPage extends BasePage {
 
 		// Form for add message button and refresh button
         final Form<String> addForm = new Form<String>("addform");
-        addForm.add( createFormModalButton( "addcompany",   translator.translate("Add Company"), modalAddCompany) );
-        addForm.add( createFormModalButton( "addratingurl", translator.translate("Add Rating URL"), modalAddRatingUrl) );
+        addForm.add( createFormModalButton( "addcompany",   "Add Company", 	modalAddCompany) );
+        addForm.add( createFormModalButton( "addratingurl", "Add Rating URL", modalAddRatingUrl) );
         
-        addForm.add( createFormButton( "addproduct", 	  translator.translate("Add Product"), AddGamePage.class) );
-        addForm.add( createFormButton( "refresh",    	  translator.translate("Refresh"), 	   GameShopPage.class) );
+        addForm.add( createFormButton( "addproduct", 	  "Add Product", AddGamePage.class) );
+        addForm.add( createFormButton( "refresh",    	  "Refresh", 	   GameShopPage.class) );
         addOrReplace(addForm);
 	    
         final Form<DDCSelectModel> searchForm 	= new Form<DDCSelectModel>("searchform", new CompoundPropertyModel<DDCSelectModel>(selectModel));
 	    final TextField<String> searchTitle 	= new TextField<String>("searchtitle", new Model<String>(title));
-	    final Label gameConsolesLabel 			= new Label("gameconsoleslabel", new Model<String>(translator.translate("Game Console")));
-	    final Label productTypesLabel 			= new Label("producttypeslabel", new Model<String>(translator.translate("Product Type")));
-	    final Label numberofitemslabel 			= new Label("numberofitemslabel", new Model<String>(translator.translate("Number of Items")));
 
+	    searchTitle.add( new AttributeModifier("placeholder", new Model<String>( translator.translate("Search Title"))) );
+
+	    final Label gameConsolesLabel 			= new Label("gameconsoleslabel",  new Model<String>(translator.translate("Game Console")));
+	    final Label productTypesLabel 			= new Label("producttypeslabel",  new Model<String>(translator.translate("Product Type")));
+	    final Label numberofitemslabel 			= new Label("numberofitemslabel", new Model<String>(translator.translate("Number of Items")));
+    
 	    DropDownChoice<GameConsole> ddcGameConsoles = createSelectGameConsolesDDC(consoleId);
 	    DropDownChoice<ProductType> ddcProductTypes = createSelectProductTypesDDC(typeId);
 
@@ -417,7 +421,7 @@ public class GameShopPage extends BasePage {
 	 * @Arguments: id - name in html, like addproductbutton, but without the 'button' text, so we can reuse addproduct for the label  
 	 */
 	private ResponseFormButton createFormButton( String id, String buttonText, Class<? extends BasePage> destinationPage ){
-        ResponseFormButton formButton = new ResponseFormButton(id + "button", destinationPage, getPageParameters(), isAdministrator(getActiveUser()));
+        ResponseFormButton formButton = new ResponseFormButton(id + "button", buttonText, destinationPage, getPageParameters(), isAdministrator(getActiveUser()));
         formButton.setOutputMarkupId(true);
 
         final Label buttonLabel = new Label( id + "label", new Model<String>(translator.translate(buttonText)) );
@@ -431,7 +435,7 @@ public class GameShopPage extends BasePage {
 	 * @Arguments: id - name in html, like addproductbutton, but without the 'button' text, so we can reuse addproduct for the label  
 	 */
 	private ResponseFormModalButton createFormModalButton( String id, String buttonText, ModalWindow modal ){
-        ResponseFormModalButton formButton = new ResponseFormModalButton(id + "button", modal, isAdministrator(getActiveUser()));
+        ResponseFormModalButton formButton = new ResponseFormModalButton(id + "button", translator.translate(buttonText), modal, isAdministrator(getActiveUser()));
 
         final Label buttonLabel = new Label( id + "label", new Model<String>(translator.translate(buttonText)) );
         formButton.add(buttonLabel);
