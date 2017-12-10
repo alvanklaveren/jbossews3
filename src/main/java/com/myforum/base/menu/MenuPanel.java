@@ -17,11 +17,8 @@ public class MenuPanel extends Panel {
 		super(id);
 		menuItems = new StringBuilder();
 		menuItems.append(new MenuItem(EMenuItem.Home, activeMenuItem).toHtml());
-		menuItems.append(new MenuItem(EMenuItem.AboutMe, activeMenuItem).toHtml());
-		menuItems.append(new MenuItem(EMenuItem.Articles, activeMenuItem).toHtml());
 		
 		DropDownMenuItem dropDownMenu = new DropDownMenuItem(EMenuItem.Applications.defaultText());
-		
 		dropDownMenu.addMenuItem(new DDMenuItem(EMenuItem.Forum, activeMenuItem));
 		dropDownMenu.addMenuItem(new DDMenuItem(EMenuItem.GameShop, activeMenuItem));
 		//dropDownMenu.addMenuItem(new DDMenuItem(EMenuItem.Sources, activeMenuItem));
@@ -31,6 +28,9 @@ public class MenuPanel extends Panel {
 		//dropDownMenu.addMenuItem(new MenuItem(EMenuItem.AppCreator).disable());
 
 		menuItems.append(dropDownMenu.toHtml());
+		menuItems.append(new MenuItem(EMenuItem.Articles, activeMenuItem).toHtml());
+		menuItems.append(new MenuItem(EMenuItem.AboutMe, activeMenuItem).toHtml());
+
 		
 		Label menuItemLabel = new Label("menuItems", new Model<String>(menuItems.toString()) );
 		menuItemLabel.setEscapeModelStrings(false);

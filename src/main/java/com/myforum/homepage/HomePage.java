@@ -74,7 +74,6 @@ public class HomePage extends BasePage {
 				String 	messagetext 	= StringLogics.prepareMessage(message.getMessageText());
 
 				listItem.add( new Label("messagedate", messageDate) );
-                listItem.add( new Label("userdisplayname", displayName) );
                 listItem.add( new MultiLineLabel("messagetext", messagetext).setEscapeModelStrings(false) );
                 
 			}
