@@ -12,6 +12,7 @@ public final class DictionaryDutch extends Dictionary {
 		translatedWordMap.put("category", 		"categorie");
 		translatedWordMap.put("categories", 	"categorieen");
 		translatedWordMap.put("collection", 	"verzameling");
+		translatedWordMap.put("delete", 		"verwijder");
 		translatedWordMap.put("experience", 	"ervaring");
 		translatedWordMap.put("firsthand", 		"eerste");
 		translatedWordMap.put("frameworks", 	"frameworks");
@@ -26,11 +27,15 @@ public final class DictionaryDutch extends Dictionary {
 		translatedWordMap.put("login", 			"aanmelden");
 		translatedWordMap.put("logout",			"afmelden");
 		translatedWordMap.put("me", 			"mij");
+		translatedWordMap.put("message", 		"bericht");
 		translatedWordMap.put("my", 			"mijn");
+		translatedWordMap.put("no", 			"nee");
 		translatedWordMap.put("of", 			"van");
 		translatedWordMap.put("password", 		"wachtwoord");
+		translatedWordMap.put("preview",		"voorvertoning");
 		translatedWordMap.put("rating", 		"beoordeling");
 		translatedWordMap.put("refresh", 		"ververs");
+		translatedWordMap.put("register", 		"registreer");
 		translatedWordMap.put("rename", 		"hernoem");
 		translatedWordMap.put("search", 		"zoek");
 		translatedWordMap.put("title", 			"titel");
@@ -38,11 +43,15 @@ public final class DictionaryDutch extends Dictionary {
 		translatedWordMap.put("username", 		"gebruikersnaam");
 		translatedWordMap.put("welcome", 		"welkom");
 		translatedWordMap.put("with", 			"met");
-
+		translatedWordMap.put("yes", 			"ja");
+		
+		put(translatedSentenceMap, EText.ADD_CATEGORY, "Category toevoegen");
 		put(translatedSentenceMap, EText.ADD_PRODUCT, "Product toevoegen");
 		put(translatedSentenceMap, EText.ADD_COMPANY, "Bedrijf toevoegen");
 		put(translatedSentenceMap, EText.ADD_RATING_URL, "Beoordeling URL toevoegen");
 		put(translatedSentenceMap, EText.ADMINISTRATOR_MAINTENANCE, "Administrator Onderhoud");
+		put(translatedSentenceMap, EText.APPLY_CHANGES, "Wijzigingen Toepassen");
+		put(translatedSentenceMap, EText.DO_DELETE_CATEGORY, "Wil je deze category echt verwijderen?");
 		put(translatedSentenceMap, EText.FORGOT_PASSWORD, "Wachtwoord vergeten?");
 		put(translatedSentenceMap, EText.GAME_CONSOLE, "Spel Computer");
 		put(translatedSentenceMap, EText.INCORRECT_LOGIN_CREDENTIALS, "Onjuiste naam en wachtwoord");

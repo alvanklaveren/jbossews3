@@ -58,7 +58,7 @@ public class ForumCategoryPanel extends ForumBasePanel{
 		// Form for add message button
         StatelessForm<Object> form = new StatelessForm<Object>("form");
 
-        ResponseFormButton button = new ResponseFormButton("addnewmessage", "Add New Message", parent){
+        ResponseFormButton button = new ResponseFormButton("addnewmessage", translator.translate("Add New Message"), parent){
 			private static final long serialVersionUID = 1L;
 
 			@Override

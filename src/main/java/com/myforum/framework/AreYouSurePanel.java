@@ -9,6 +9,8 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
+
+import com.myforum.base.dictionary.Translator;
  
  
 public abstract class AreYouSurePanel extends Panel {
@@ -28,12 +30,12 @@ public abstract class AreYouSurePanel extends Panel {
  
     protected void addElements( String id, String buttonName, String modalMessageText ) {
  
-        confirmModal = createConfirmModal( id, modalMessageText );
+        confirmModal = createConfirmModal( id, Translator.getInstance().translate(modalMessageText) );
  
         StatelessForm<Object> form = new StatelessForm<Object>( "confirmForm" );
         add(form);
  
-        AjaxButton confirmButton = new AjaxButton( "confirmButton", new Model<String>( buttonName ) ) {
+        AjaxButton confirmButton = new AjaxButton( "confirmButton", new Model<String>( Translator.getInstance().translate(buttonName) ) ) {
 
 			private static final long serialVersionUID = 1L;
 

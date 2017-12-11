@@ -2,10 +2,13 @@ package com.myforum.base.dictionary;
 
 public enum EText {
 
-	  ADD_PRODUCT( "Add Product")
+	  ADD_CATEGORY( "Add Category" )
+	, ADD_PRODUCT( "Add Product")
 	, ADD_COMPANY( "Add Company" )
 	, ADD_RATING_URL( "Add Rating URL" )
+	, APPLY_CHANGES( "Apply Changes" )
 	, ADMINISTRATOR_MAINTENANCE( "Administrator Maintenance" )
+	, DO_DELETE_CATEGORY( "Do you really want to delete this category?" )
 	, FORGOT_PASSWORD( "Forgot password?" )
 	, GAME_CONSOLE(	"Game Console")
 	, INCORRECT_LOGIN_CREDENTIALS( "Incorrect login credentials" )

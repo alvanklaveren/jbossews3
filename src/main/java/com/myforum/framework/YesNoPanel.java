@@ -6,6 +6,9 @@ import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.markup.html.basic.MultiLineLabel;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.Model;
+
+import com.myforum.base.dictionary.Translator;
  
 public class YesNoPanel extends Panel {
 
@@ -22,7 +25,7 @@ public class YesNoPanel extends Panel {
         modalWindow.setInitialHeight( 200 );
         modalWindow.setInitialWidth( 350 );
  
-        AjaxButton yesButton = new AjaxButton( "yesButton", yesNoForm ) {
+        AjaxButton yesButton = new AjaxButton( "yesButton", new Model<String>(Translator.getInstance().translate("Yes")), yesNoForm ) {
 
 			private static final long serialVersionUID = 1L;
 
@@ -35,7 +38,7 @@ public class YesNoPanel extends Panel {
             }
         };
  
-        AjaxButton noButton = new AjaxButton( "noButton", yesNoForm ) {
+        AjaxButton noButton = new AjaxButton( "noButton", new Model<String>(Translator.getInstance().translate("No")), yesNoForm ) {
  
 			private static final long serialVersionUID = 1L;
 

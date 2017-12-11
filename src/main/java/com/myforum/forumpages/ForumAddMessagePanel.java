@@ -73,7 +73,7 @@ public class ForumAddMessagePanel extends ForumBasePanel {
 			}
 	    });
 		
-		Button previewButton = new Button( "preview" );
+		Button previewButton = new Button( "preview", new Model<String>(translator.translate("Preview Message")) );
 		previewButton.add( new AjaxEventBehavior( "onclick" ) {
 			private static final long serialVersionUID = 1L;
 			@Override

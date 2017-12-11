@@ -51,13 +51,13 @@
 	    <div class="form-group">
 			<label for="avatarfile" class="col-sm-2 control-label">Upload Avatar</label>
 			<div class="col-sm-10">
-				<input type="file" class="btn btn-default" id="avatarfile" wicket:id="avatarfile">
+				<input type="file" class="btn btn-outline-primary btn-sm" id="avatarfile" wicket:id="avatarfile">
 			</div>
 	    </div>
 	    <div class="form-group">
 			<div class="col-sm-10">
-				<label for="uploadbutton" class="col-sm-2 control-label">( Maximum size of 1 MB allowed )</label>
-				<button type="submit" class="btn btn-primary" id="uploadbutton" wicket:id="uploadbutton">Upload</button>
+				<label for="uploadbutton" class="col-sm-2 control-label">(Max 1 MB allowed)</label>
+				<input type="submit" class="btn btn-outline-primary btn-sm" id="uploadbutton" wicket:id="uploadbutton" value="Upload">
 			</div>
 		</div>
 	    <div class="form-group">
@@ -68,8 +68,8 @@
 		</div>
 	    <div class="form-group">
 			<div class="col-sm-10">
-				<button type="submit" class="btn btn-primary" id="cancel" wicket:id="cancel">Cancel</button>
-				<button type="submit" class="btn btn-primary" id="applychanges" wicket:id="applychanges">Apply Changes</button>
+				<input type="submit" class="btn btn-outline-primary btn-sm" id="cancel" wicket:id="cancel" value="Cancel">
+				<input type="submit" class="btn btn-outline-primary btn-sm" id="applychanges" wicket:id="applychanges" value="Apply Changes">
 			</div>
 		</div>
 	</form>

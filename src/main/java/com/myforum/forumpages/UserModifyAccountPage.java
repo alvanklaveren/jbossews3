@@ -57,7 +57,7 @@ public class UserModifyAccountPage extends BasePage {
         final FileUploadField avatarfileUF 					= new FileUploadField( "avatarfile" );	
 		DropDownChoice<Classification> classificationsDDC 	= createClassificationDDC(forumUser);
 		Button uploadButton 								= createUploadButton(form, forumUser);		
-		ResponseButton cancelButton							= new ResponseButton("cancel", new Model<String>(translator.translate("cancel")), ForumBasePage.class);
+		ResponseButton cancelButton							= new ResponseButton("cancel", new Model<String>(translator.translate("Cancel")), ForumBasePage.class);
 		Button applyChangesButton 							= createApplyChangesButton(form, forumUser);
    
     	form.add( usernameLabel );
@@ -163,11 +163,15 @@ public class UserModifyAccountPage extends BasePage {
 			checkNewPassword(newPassword, retypePassword);
 		}
 
-		if( hasChanged(displayNameTF, forumUser.getDisplayName()) ){ 
+		String currentDisplayName = forumUser.getDisplayName();
+		if( currentDisplayName == null ) currentDisplayName = "";
+		if( hasChanged(displayNameTF, currentDisplayName) ){ 
 			forumUser.setDisplayName( displayName );		
 		}
 		
-		if( hasChanged(emailAddressTF, forumUser.getEmailAddress()) ){ 
+		String currentEmailAddress = forumUser.getEmailAddress();
+		if( currentEmailAddress == null ) currentEmailAddress = "";
+		if( hasChanged(emailAddressTF, currentEmailAddress) ){ 
 			if( !isValidEmailAddress(emailAddress) ){
 				setErrorMessage( "Please enter a valid emailaddress" );
 				String 			urlEncoded = AllConstants.getCrypt().encryptUrlSafe(String.valueOf( codeForumUser ));
@@ -266,7 +270,7 @@ public class UserModifyAccountPage extends BasePage {
 	}
 
 	private Button createApplyChangesButton(final Form<ForumUser> form, final ForumUser forumUser){
-		Button applyChangesButton = new Button( "applychanges" ) {
+		Button applyChangesButton = new Button( "applychanges", new Model<String>(translator.translate("Apply Changes")) ) {
 			private static final long serialVersionUID = 1L;
 
 			@Override

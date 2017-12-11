@@ -31,6 +31,7 @@ import com.myforum.application.ForumUtils;
 import com.myforum.application.IoLogics;
 import com.myforum.application.StringLogics;
 import com.myforum.base.BasePage;
+import com.myforum.base.dictionary.Translator;
 import com.myforum.base.menu.EMenuItem;
 import com.myforum.forumpages.ForumBasePage;
 import com.myforum.forumpages.UserModifyAccountPage;
@@ -157,7 +158,7 @@ public class ForumAdministratorPage extends BasePage {
     			});
     			form.add( weblogoImage );
 
-    			Button uploadButton = new Button( "uploadbutton" ){
+    			Button uploadButton = new Button( "uploadbutton", new Model<String>(Translator.getInstance().translate("Upload File")) ){
     				private static final long serialVersionUID = 1L;
 
     				@Override
@@ -179,7 +180,7 @@ public class ForumAdministratorPage extends BasePage {
     			};
     			form.add(uploadButton);
     		
-    		    Button button = new Button( "submit" ) {
+    		    Button button = new Button( "submit", new Model<String>(Translator.getInstance().translate("Apply Changes")) ) {
     				private static final long serialVersionUID = 1L;
 
     				@Override
@@ -279,7 +280,7 @@ public class ForumAdministratorPage extends BasePage {
 	        final TextField<String> categoryDescriptionTF = new TextField<String>( "description", new Model<String>() ); 
 			form.add( categoryDescriptionTF );
 
-		    Button addCategoryButton = new Button( "addcategory", new Model<String>("Add Category") ) {
+		    Button addCategoryButton = new Button( "addcategory", new Model<String>(Translator.getInstance().translate("Add Category")) ) {
 				private static final long serialVersionUID = 1L;
 
 				@Override

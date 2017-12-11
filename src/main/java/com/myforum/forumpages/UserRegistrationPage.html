@@ -3,37 +3,38 @@
 </head>
 <body>
 	<wicket:extend>
-	<h3>User Registration</h3>
+	<h3 wicket:id="lbl_title">User Registration</h3>
 
 	<form wicket:id="registrationform">
 	<table style="border-collapse:collapse; border: 0px solid white;">
 	<tr>
 		<td width="100px">
-			User Name 
+			<span wicket:id="lbl_username">User Name</span> 
 		</td>
 		<td width="200px">
-			<input type="text" wicket:id="username" style="width:200px"></input>  
+			<input type="text" wicket:id="username" class="form-control" placeholder="Username">  
  		</td>
  	</tr>
  	<tr>
  		<td width="100px">
- 			Password
+			<span wicket:id="lbl_password">Password</span> 
  		</td> 
  		<td width="200px">
- 			<input type="password" wicket:id="password" style="width:200px"></input> 
+ 			<input type="password" wicket:id="password" class="form-control" placeholder="Password"> 
  		</td>
  	</tr>
  	 <tr>
  		<td width="100px">
- 			Email
+			<span wicket:id="lbl_emailaddress">Email</span> 
  		</td> 
  		<td width="200px">
- 			<input type="text" wicket:id="emailaddress" style="width:200px"></input> 
+ 			<input type="text" wicket:id="emailaddress" class="form-control" placeholder="Email Address"> 
  		</td>
  	</tr>
  	<tr>
  		<td>
- 			<input wicket:id="register" type="submit" value="Register">
+ 			<input type="submit" class="btn btn-outline-primary btn-sm" wicket:id="register" value="Register">
+ 			<input type="submit" class="btn btn-outline-primary btn-sm" wicket:id="cancel" value="Cancel">
  		</td>
 	</tr>
 	</table>
