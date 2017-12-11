@@ -69,7 +69,7 @@ public class LoginForm extends StatelessForm<Object>{
 		forgotPasswordLink.add(new Label("forgotlabel", new Model<String>(translator.translate("Forgot password?"))));
         add( forgotPasswordLink );
 					
-	    Button loginButton = new Button( "login", new Model<String>("Login") ) {
+	    Button loginButton = new Button( "login", new Model<String>(translator.translate("Login")) ) {
 			private static final long serialVersionUID = 1L;
 	
 			@Override
