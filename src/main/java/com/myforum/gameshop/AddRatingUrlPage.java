@@ -11,6 +11,7 @@ import org.apache.wicket.model.PropertyModel;
 import com.myforum.application.DBHelper;
 import com.myforum.application.StringLogics;
 import com.myforum.base.BasePage;
+import com.myforum.base.dictionary.EText;
 import com.myforum.framework.ErrorLabel;
 import com.myforum.framework.ModalPage;
 import com.myforum.tables.RatingUrl;
@@ -28,7 +29,7 @@ public class AddRatingUrlPage extends ModalPage {
 		
 		addOrReplace( new ErrorLabel() );
 		// and immediately reset the error message
-		getSession().setAttribute( "errormessage", "" );
+		setErrorMessage( "" );
 
 		// Form for product info
 		final Form<RatingUrl> ratingUrlForm = new Form<RatingUrl>( "ratingurlform" ) {
@@ -77,7 +78,7 @@ public class AddRatingUrlPage extends ModalPage {
 				DBHelper.saveAndCommit(ratingUrl);
 
 				// reset the error message
-				getSession().setAttribute( "errormessage", "" );
+				setErrorMessage( "" );
 				
 				parent.close(target);
 				
@@ -113,12 +114,12 @@ public class AddRatingUrlPage extends ModalPage {
 	private boolean canSave(RatingUrl ratingUrl){
 		String url = ratingUrl.getUrl();
 		if (StringLogics.isEmpty(url)){
-			getSession().setAttribute( "errormessage", "Please add a URL" );
+			setErrorMessage( EText.PLEASE_ADD_URL );
 			return false;
 		}
 		
 		if( new RatingUrlDao().findKey( url ) > 0 ){
-			getSession().setAttribute( "errormessage", "Rating URL '" + url + "' already exists in the database" );
+			setErrorMessage( "Rating URL '" + url + "' already exists in the database" );
 			return false;
 		};
 			

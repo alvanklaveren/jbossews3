@@ -41,28 +41,6 @@ public final class Translator implements Serializable{
 		return translate(eText.toString(), getDefaultLanguage());
 	};
 
-	public String translateFullSentence(String sentence){
-		return translateFullSentence(sentence, getDefaultLanguage());
-	}
-	
-	public String translateFullSentence(String sentence, ELanguage language){
-		String translatedSentence = translate(sentence.trim(), language);
-
-		// when no translation occurred, try to split the string up
-		if(translatedSentence.equals(sentence.trim())){
-			StringBuilder sb = new StringBuilder();
-			String[] words = sentence.trim().split("\\s+");
-			for(String word:words){
-				sb.append( translate(word) );
-				sb.append(" ");
-			}
-			
-			translatedSentence = sb.toString().trim();
-		}
-		
-		return translatedSentence;
-	}
-	
 	/*
 	 * Retrieves the default language, set for the specific browserclient
 	 */

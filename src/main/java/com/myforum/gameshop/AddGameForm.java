@@ -9,6 +9,7 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import com.myforum.application.DBHelper;
 import com.myforum.application.ForumUtils;
 import com.myforum.application.StringLogics;
+import com.myforum.framework.AVKButton;
 import com.myforum.gameshop.DDC.CompanyDDC;
 import com.myforum.gameshop.DDC.GameConsoleDDC;
 import com.myforum.gameshop.DDC.ProductTypeDDC;
@@ -47,7 +48,7 @@ public class AddGameForm extends Form<AddProduct> {
 	private Button createSaveButton(){
 		final Form<AddProduct> form = this;
 		
-		Button saveEditButton = new Button( "saveedit" ) {
+		Button saveEditButton = new AVKButton( "saveedit", "Save" ) {
 			private static final long serialVersionUID = 1L;
 
 			@SuppressWarnings("unchecked")
@@ -79,7 +80,7 @@ public class AddGameForm extends Form<AddProduct> {
 	 * Creates a button that cancels the form and returns to the gameshop. For safety reasons, the transaction (for product) is rollbacked
 	 */
 	private Button createCancelButton(){
-		Button saveEditButton = new Button( "canceledit" ) {
+		Button saveEditButton = new AVKButton( "canceledit", "Cancel" ) {
 			private static final long serialVersionUID = 1L;
 
 			@Override

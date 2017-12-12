@@ -130,7 +130,7 @@ public class ForumMessagePanel extends ForumBasePanel {
         add( new Label( "description", 			message.getDescription() ) );
 		add( new Label( "messagedate", 			dateFormat.format(message.getMessageDate() ) ) );
 		add( new Label( "userdisplayname", 		messageOwner.getDisplayName() ) );
-		add( new ErrorLabel() );
+		addOrReplace( new ErrorLabel() );
 
 		add(form);
 		add( ForumUtils.loadAvatar( messageOwner, "avatarpicture" ) );

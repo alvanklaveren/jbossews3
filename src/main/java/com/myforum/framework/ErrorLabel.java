@@ -4,6 +4,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.Model;
 
 import com.myforum.application.StringLogics;
+import com.myforum.base.dictionary.Translator;
 
 public class ErrorLabel extends Label{
 	private static final long serialVersionUID = 1L;
@@ -14,7 +15,7 @@ public class ErrorLabel extends Label{
 		if(StringLogics.isEmpty(errorMessage)){
 			setVisible(false);
 		}else{
-			Model<String> errorModel = new Model<String>(errorMessage);
+			Model<String> errorModel = new Model<String>(Translator.getInstance().translate(errorMessage));
 			setDefaultModel(errorModel);
 			setVisible(true);
 		}

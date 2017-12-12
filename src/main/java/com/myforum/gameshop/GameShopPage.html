@@ -61,10 +61,10 @@
    	      <br>
 		  <form class="form-horizontal" wicket:id="uploadform">
 		    <div class="form-group">
-				<input type="file" class="btn btn-default" id="imagefile" wicket:id="productImage">
+				<input type="file" class="form-control-file" id="imagefile" wicket:id="productImage">
 				<br>
 				<label for="uploadbutton" class="col-sm-1 control-label"></label>
-				<button type="submit" class="btn btn-primary" id="uploadbutton" wicket:id="uploadbutton">Upload</button>
+				<input type="submit" class="btn btn-primary" id="uploadbutton" wicket:id="uploadbutton" value="Upload">
 			</div>
 		  </form>
 		  <small wicket:id="company.description">[Name of Developer]</small>
@@ -85,10 +85,10 @@
 			GameConsole <select class="form-control" id="gameconsoles" wicket:id="gameconsoles"></select>
 			Product Type <select class="form-control" id="producttypes" wicket:id="producttypes"></select>
 			Developer <select class="form-control" id="companies" wicket:id="companies"></select>
-			<button type="submit" class="btn btn-primary" id="modifyratingbutton" wicket:id="modifyratingbutton">Modify Rating</button>
+			<input type="submit" class="btn btn-primary" id="modifyratingbutton" wicket:id="modifyratingbutton" value ="Modify Rating">
 			<br><br>
-			<button type="submit" class="btn btn-primary" id="deleteproductbutton" wicket:id="deleteproductbutton">Delete Product</button>
-			<button type="submit" class="btn btn-primary" id="saveedit" wicket:id="saveedit">Save</button>
+			<input type="submit" class="btn btn-primary" id="deleteproductbutton" wicket:id="deleteproductbutton" value="Delete Product">
+			<input type="submit" class="btn btn-primary" id="saveedit" wicket:id="saveedit" value="Save">
 		  </form>
 	    </td>
 	  </tr>

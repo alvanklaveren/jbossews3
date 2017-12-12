@@ -30,6 +30,9 @@ public abstract class Dictionary{
 	}
 
 	public String translate(String text){
+		if(text == null) 	return null;
+		if(text.equals("")) return "";
+
 		String foreignText = null;
 		// first check whether it is a full sentence
 		foreignText = translatedSentenceMap.get(text);

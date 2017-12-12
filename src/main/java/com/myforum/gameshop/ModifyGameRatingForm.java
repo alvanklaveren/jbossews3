@@ -8,6 +8,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.myforum.application.DBHelper;
 import com.myforum.application.ForumUtils;
+import com.myforum.framework.AVKButton;
 import com.myforum.gameshop.DDC.RatingUrlDDC;
 import com.myforum.tables.ProductRating;
 
@@ -40,7 +41,7 @@ public class ModifyGameRatingForm extends Form<ProductRating> {
 	private Button createSaveButton(){
 		final Form<ProductRating> form = this;
 		
-		Button saveEditButton = new Button( "saveedit" ) {
+		Button saveEditButton = new AVKButton( "saveedit", "Save" ) {
 			private static final long serialVersionUID = 1L;
 
 			@SuppressWarnings("unchecked")
@@ -81,7 +82,7 @@ public class ModifyGameRatingForm extends Form<ProductRating> {
 	 * Creates a button that cancels the form and returns to the gameshop. For safety reasons, the transaction (for product) is rollbacked
 	 */
 	private Button createCancelButton(){
-		Button saveEditButton = new Button( "canceledit" ) {
+		Button saveEditButton = new AVKButton( "canceledit", "Cancel" ) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -101,7 +102,7 @@ public class ModifyGameRatingForm extends Form<ProductRating> {
 	private boolean canSave(ProductRating productRating){
 		String errorMessage = null;
 		
-		if(productRating.getRating() < 0)	{ errorMessage = "please apply a rating"; }
+		if(productRating.getRating() < 0)	{ errorMessage = "Please apply a rating"; }
 		
 		getSession().setAttribute( "errormessage", errorMessage );
 		if(errorMessage != null){ return false; }

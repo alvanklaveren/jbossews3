@@ -4,6 +4,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 
 import com.myforum.application.CookieLogics;
 import com.myforum.application.DBHelper;
+import com.myforum.base.dictionary.EText;
 import com.myforum.base.dictionary.Translator;
 import com.myforum.forumpages.header.HeaderPanel;
 import com.myforum.homepage.HomePage;
@@ -38,8 +39,13 @@ public abstract class ForumBasePanel extends Panel{
 		getSession().setAttribute( "errormessage", Translator.getInstance().translate(errorMessage) );
 	}
 	
+	public void setErrorMessage( EText eText ){
+		getSession().setAttribute( "errormessage", translator.translate( eText.toString() ) );
+	}
+
 	public void resetErrorMessage(){
-		setErrorMessage( null );
+		String text = null;
+		setErrorMessage( text );
 	}
     
 	protected boolean allowModification(ForumUser forumUser){

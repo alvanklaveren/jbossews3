@@ -309,7 +309,7 @@ public class GameShopPage extends BasePage {
 
 	private Button createSaveEditButton(final Form<Product> form, final ListItem<Product> listItem){
 		final Product product = listItem.getModelObject();
-		Button saveEditButton = new Button( "saveedit" ) {
+		Button saveEditButton = new AVKButton( "saveedit", "Save" ) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -333,7 +333,7 @@ public class GameShopPage extends BasePage {
 	}
 	
 	private Button createDeleteButton(final Product product){
-        Button deleteButton = new Button("deleteproductbutton"){
+        Button deleteButton = new AVKButton("deleteproductbutton", "Delete Product"){
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -496,7 +496,7 @@ public class GameShopPage extends BasePage {
 				  .append("of")										.append(space)
 				  .append( String.valueOf(totalNumberOfResults) );
 				
-				return translator.translateFullSentence(sb.toString());
+				return translator.translate(sb.toString());
 			}
 			
 		};

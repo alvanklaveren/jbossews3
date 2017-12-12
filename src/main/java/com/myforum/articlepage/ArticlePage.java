@@ -37,7 +37,7 @@ public class ArticlePage extends BasePage {
 		}
 
 		htmlContent = htmlContent.replace("<titlelabel/>", translator.translate("Articles") );
-		htmlContent = htmlContent.replace("<descriptionlabel/>", translator.translateFullSentence("Firsthand experience with Languages, Frameworks and IDEs") );
+		htmlContent = htmlContent.replace("<descriptionlabel/>", translator.translate("Firsthand experience with Languages, Frameworks and IDEs") );
 		
 		Label htmlContentLabel = new Label("htmlcontent", htmlContent);
 		htmlContentLabel.setEscapeModelStrings(false);

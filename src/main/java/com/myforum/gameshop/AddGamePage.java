@@ -25,15 +25,15 @@ public class AddGamePage extends BasePage {
 		int		typeId		= ForumUtils.getParmInt(   params, "type",         0);
 		int		companyId	= ForumUtils.getParmInt(   params, "company",      0);
 		
+		addOrReplace( new ErrorLabel() );
+
 		AddProduct newProduct = new AddProduct();
-		
+	
 		if (!StringLogics.isEmpty(name))		{ newProduct.setName(name); }
 		if (!StringLogics.isEmpty(description))	{ newProduct.setDescription(description); }
 		if (consoleId != 0)						{ newProduct.setGameConsole(new GameConsoleDao().find(consoleId)); }
 		if (typeId != 0)						{ newProduct.setProductType(new ProductTypeDao().find(typeId)); }
 		if (companyId != 0)						{ newProduct.setCompany(new CompanyDao().find(companyId)); }
-
-		addOrReplace( new ErrorLabel() );
 
 		// Form for game info
 		final Form<AddProduct> addGameForm = new AddGameForm(newProduct);

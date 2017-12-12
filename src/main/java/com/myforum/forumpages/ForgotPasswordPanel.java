@@ -12,7 +12,9 @@ import org.slf4j.LoggerFactory;
 
 import com.myforum.application.DBHelper;
 import com.myforum.application.StringLogics;
+import com.myforum.base.dictionary.EText;
 import com.myforum.email.HotmailMessage;
+import com.myforum.framework.AVKButton;
 import com.myforum.tables.ForumUser;
 import com.myforum.tables.dao.ForumUserDao;
 
@@ -39,7 +41,7 @@ public class ForgotPasswordPanel extends ForumBasePanel {
 		final TextField<String> usernameOrEmailTF = new TextField<String>( "usernameoremail", new Model<String>( loginname ) );
 		form.add( usernameOrEmailTF );
 		
-	    Button sendPasswordButton = new Button( "sendpassword", new Model<String>( "Send Password" ) ) {
+	    Button sendPasswordButton = new AVKButton( "sendpassword", "Send Password" ) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -59,7 +61,7 @@ public class ForgotPasswordPanel extends ForumBasePanel {
         		String newPassword = forumUserDao.generateNewPassword(forumUser);
         		if(StringLogics.isEmpty(newPassword)){
         			DBHelper.getTransaction().rollback();
-        			setErrorMessage( "Failed to generate a new password." );
+        			setErrorMessage( EText.FAILED_GENERATE_PASSWORD );
         			setResponsePage(ForumBasePage.class);
         			return;
         		}  
@@ -67,7 +69,7 @@ public class ForgotPasswordPanel extends ForumBasePanel {
                 if( DBHelper.saveAndCommit(forumUser)){
                 	emailPassword(forumUser.getEmailAddress(), forumUser.getUsername(), newPassword);
                 }else{
-					setErrorMessage( "Failed to change your password. Sucks to be you." );
+					setErrorMessage( EText.FAILED_CHANGE_PASSWORD );
 				}
 	        	
 	        	setResponsePage(ForumBasePage.class);
@@ -89,11 +91,11 @@ public class ForgotPasswordPanel extends ForumBasePanel {
         try {
         	hotmailMessage.send();
         } catch (AddressException e) {
-        	setErrorMessage("Unable to send email");
+        	setErrorMessage( EText.UNABLE_SEND_EMAIL );
 	    	log.error("AddressException: " + e.getMessage());
 			e.printStackTrace();
         } catch (MessagingException e) {
-        	setErrorMessage("Unable to send email");
+        	setErrorMessage( EText.UNABLE_SEND_EMAIL );
 	    	log.error("MessagingException: " + e.getMessage());
 			e.printStackTrace();
         }

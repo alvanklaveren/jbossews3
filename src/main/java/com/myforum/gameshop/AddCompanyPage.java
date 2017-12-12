@@ -28,7 +28,7 @@ public class AddCompanyPage extends ModalPage {
 		
 		addOrReplace( new ErrorLabel() );
 		// and immediately reset the error message
-		getSession().setAttribute( "errormessage", "" );
+		setErrorMessage( "" );
 
 		// Form for product info
 		final Form<Company> companyForm = new Form<Company>( "companyform" ) {
@@ -77,7 +77,7 @@ public class AddCompanyPage extends ModalPage {
 				DBHelper.saveAndCommit(company);
 
 				// reset the error message
-				getSession().setAttribute( "errormessage", "" );
+				setErrorMessage(  "" );
 				
 				parent.close(target);
 				
@@ -113,12 +113,12 @@ public class AddCompanyPage extends ModalPage {
 	private boolean canSave(Company company){
 		String description = company.getDescription();
 		if (StringLogics.isEmpty(description)){
-			getSession().setAttribute( "errormessage", "Description is empty" );
+			setErrorMessage(  "Description is empty" );
 			return false;
 		}
 		
 		if( new CompanyDao().findByDescription( description ) != null ){
-			getSession().setAttribute( "errormessage", "Company '" + description + "' already exists in the database" );
+			setErrorMessage( "Company '" + description + "' already exists in the database" );
 			return false;
 		};
 			
