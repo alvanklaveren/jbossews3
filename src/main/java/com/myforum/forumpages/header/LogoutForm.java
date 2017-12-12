@@ -3,7 +3,6 @@ package com.myforum.forumpages.header;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.StatelessForm;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.myforum.application.AllConstants;
@@ -13,6 +12,7 @@ import com.myforum.forumpages.ForumBasePage;
 import com.myforum.forumpages.UserModifyAccountPage;
 import com.myforum.forumpages.UserRegistrationPage;
 import com.myforum.forumpages.administrator.ForumAdministratorPage;
+import com.myforum.framework.AVKButton;
 import com.myforum.framework.ResponseButton;
 import com.myforum.security.CredentialLogics;
 import com.myforum.tables.ForumUser;
@@ -36,11 +36,11 @@ public class LogoutForm extends StatelessForm<Object>{
 		Label activeUserLabel = new Label( "activeuser", translator.translate( "Welcome" ) + " " + activeUser.getDisplayName() );
 		add( activeUserLabel );
 
-		ResponseButton adminButton = new ResponseButton( "adminmaintenance", new Model<String>(translator.translate("Administrator Maintenance")), ForumAdministratorPage.class );
+		ResponseButton adminButton = new ResponseButton( "adminmaintenance", "Administrator Maintenance", ForumAdministratorPage.class );
 		add( adminButton );
 		adminButton.setVisible(isAdministrator);
 	
-		Button updateProfileButton = new Button( "updateprofile", new Model<String>(translator.translate("Update Profile") ) ) {
+		Button updateProfileButton = new AVKButton( "updateprofile", "Update Profile" ) {
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void onSubmit() {
@@ -52,7 +52,7 @@ public class LogoutForm extends StatelessForm<Object>{
         updateProfileButton.setDefaultFormProcessing( false );
 		add( updateProfileButton );
 
-		Button logoutButton = new Button( "logout", new Model<String>(translator.translate("Logout")) ) {
+		Button logoutButton = new AVKButton( "logout", "Logout" ) {
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void onSubmit() {
@@ -65,7 +65,7 @@ public class LogoutForm extends StatelessForm<Object>{
         logoutButton.setDefaultFormProcessing( false );
 	    add( logoutButton );
 	
-		ResponseButton userRegistrationButton = new ResponseButton( "userregistration", new Model<String>(translator.translate("Register New User")), UserRegistrationPage.class );
+		ResponseButton userRegistrationButton = new ResponseButton( "userregistration", "Register New User", UserRegistrationPage.class );
 	    add( userRegistrationButton );
 		userRegistrationButton.setVisible(isAdministrator || isMember);
 	    	

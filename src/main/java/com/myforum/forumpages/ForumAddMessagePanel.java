@@ -12,6 +12,7 @@ import org.apache.wicket.model.Model;
 
 import com.myforum.application.CookieLogics;
 import com.myforum.application.StringLogics;
+import com.myforum.framework.AVKButton;
 import com.myforum.framework.ErrorLabel;
 import com.myforum.homepage.HomePage;
 import com.myforum.tables.MessageCategory;
@@ -73,7 +74,7 @@ public class ForumAddMessagePanel extends ForumBasePanel {
 			}
 	    });
 		
-		Button previewButton = new Button( "preview", new Model<String>(translator.translate("Preview Message")) );
+		Button previewButton = new AVKButton( "preview", "Preview Message" );
 		previewButton.add( new AjaxEventBehavior( "onclick" ) {
 			private static final long serialVersionUID = 1L;
 			@Override

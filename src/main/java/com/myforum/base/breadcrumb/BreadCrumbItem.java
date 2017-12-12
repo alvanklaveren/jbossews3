@@ -4,15 +4,13 @@ import java.io.Serializable;
 import java.lang.reflect.Constructor;
 
 import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.StatelessLink;
-import org.apache.wicket.model.Model;
 
 import com.myforum.application.CookieLogics;
 import com.myforum.base.BasePage;
-import com.myforum.base.dictionary.Translator;
 import com.myforum.forumpages.ForumBasePage;
 import com.myforum.forumpages.ForumBasePanel;
+import com.myforum.framework.AVKLabel;
 
 public class BreadCrumbItem implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -90,7 +88,7 @@ public class BreadCrumbItem implements Serializable{
 		if(isActive){ 
 			sLink.add(new AttributeModifier("class", "breadcrumb-item active"));
 		}
-		sLink.add(new Label("label", new Model<String>( Translator.getInstance().translate(displayText))));
+		sLink.add(new AVKLabel("label", displayText));
 		return sLink;
 	}
 

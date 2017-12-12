@@ -15,6 +15,7 @@ import org.apache.wicket.model.Model;
 import com.myforum.application.DBHelper;
 import com.myforum.application.ForumUtils;
 import com.myforum.base.ClickableForumLabel;
+import com.myforum.framework.AVKButton;
 import com.myforum.framework.StatelessPagingNavigator;
 import com.myforum.security.CredentialLogics;
 import com.myforum.tables.MessageCategory;
@@ -62,7 +63,7 @@ public class ForumHomePanel extends ForumBasePanel {
 				categoryDescriptionTF.setModel( new Model<String>( listItem.getModelObject().getDescription() ) );
 				renameCategoryForm.add( categoryDescriptionTF );
 				
-			    Button renameButton = new Button( "renamebutton", new Model<String>(translator.translate("Rename Category")) ){
+			    Button renameButton = new AVKButton( "renamebutton", "Rename Category" ){
 					private static final long serialVersionUID = 1L;
 
 					public void onSubmit(){

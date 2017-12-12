@@ -14,6 +14,8 @@ import com.myforum.application.CryptWithPBKDF2;
 import com.myforum.application.DBHelper;
 import com.myforum.application.StringLogics;
 import com.myforum.base.BasePage;
+import com.myforum.framework.AVKButton;
+import com.myforum.framework.AVKLabel;
 import com.myforum.framework.ResponseButton;
 import com.myforum.homepage.HomePage;
 import com.myforum.tables.ForumUser;
@@ -42,16 +44,16 @@ public class UserRegistrationPage extends BasePage {
 			private static final long serialVersionUID = 1L;
 		};
 
-		final Label titleLabel 					= new Label( "lbl_title", 	 	 new Model<String>(translator.translate("User Registration")));
-		final Label usernameLabel 				= new Label( "lbl_username", 	 new Model<String>(translator.translate("Username")));
-		final Label passwordLabel				= new Label( "lbl_password", 	 new Model<String>(translator.translate("Password")));
-		final Label emailAddressLabel 			= new Label( "lbl_emailaddress", new Model<String>(translator.translate("Email")));
+		final Label titleLabel 					= new AVKLabel( "lbl_title", 	 	"User Registration");
+		final Label usernameLabel 				= new AVKLabel( "lbl_username", 	"Username");
+		final Label passwordLabel				= new AVKLabel( "lbl_password", 	"Password");
+		final Label emailAddressLabel 			= new AVKLabel( "lbl_emailaddress", "Email");
 		
 		final TextField<String> usernameTF 		= new TextField<String>( "username",	 new Model<String>() ); 
 		final PasswordTextField passwordTF 		= new PasswordTextField( "password", 	 new Model<String>() ); 
 		final TextField<String> emailaddressTF 	= new TextField<String>( "emailaddress", new Model<String>() ); 
 			
-	    Button registerButton = new Button( "register", new Model<String>(translator.translate("Register")) ) {
+	    Button registerButton = new AVKButton( "register", "Register" ) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -109,7 +111,7 @@ public class UserRegistrationPage extends BasePage {
 	    };
 	    registerButton.setDefaultFormProcessing(false);
 
-	    Button cancelButton = new ResponseButton("cancel", new Model<String>(translator.translate("Cancel")), ForumBasePage.class);
+	    Button cancelButton = new ResponseButton("cancel", "Cancel", ForumBasePage.class);
 
 		add( titleLabel );
 		

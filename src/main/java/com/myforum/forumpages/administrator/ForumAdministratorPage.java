@@ -31,10 +31,10 @@ import com.myforum.application.ForumUtils;
 import com.myforum.application.IoLogics;
 import com.myforum.application.StringLogics;
 import com.myforum.base.BasePage;
-import com.myforum.base.dictionary.Translator;
 import com.myforum.base.menu.EMenuItem;
 import com.myforum.forumpages.ForumBasePage;
 import com.myforum.forumpages.UserModifyAccountPage;
+import com.myforum.framework.AVKButton;
 import com.myforum.tables.Classification;
 import com.myforum.tables.Constants;
 import com.myforum.tables.ForumUser;
@@ -158,7 +158,7 @@ public class ForumAdministratorPage extends BasePage {
     			});
     			form.add( weblogoImage );
 
-    			Button uploadButton = new Button( "uploadbutton", new Model<String>(Translator.getInstance().translate("Upload File")) ){
+    			Button uploadButton = new AVKButton( "uploadbutton", "Upload File" ){
     				private static final long serialVersionUID = 1L;
 
     				@Override
@@ -180,7 +180,7 @@ public class ForumAdministratorPage extends BasePage {
     			};
     			form.add(uploadButton);
     		
-    		    Button button = new Button( "submit", new Model<String>(Translator.getInstance().translate("Apply Changes")) ) {
+    		    Button button = new AVKButton( "submit", "Apply Changes" ) {
     				private static final long serialVersionUID = 1L;
 
     				@Override
@@ -280,7 +280,7 @@ public class ForumAdministratorPage extends BasePage {
 	        final TextField<String> categoryDescriptionTF = new TextField<String>( "description", new Model<String>() ); 
 			form.add( categoryDescriptionTF );
 
-		    Button addCategoryButton = new Button( "addcategory", new Model<String>(Translator.getInstance().translate("Add Category")) ) {
+		    Button addCategoryButton = new AVKButton( "addcategory", "Add Category" ) {
 				private static final long serialVersionUID = 1L;
 
 				@Override

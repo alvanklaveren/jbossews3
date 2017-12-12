@@ -3,7 +3,6 @@ package com.myforum.forumpages.header;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.OnChangeAjaxBehavior;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.StatelessForm;
@@ -16,6 +15,8 @@ import com.myforum.base.BasePage;
 import com.myforum.base.dictionary.Translator;
 import com.myforum.forumpages.ForgotPasswordPanel;
 import com.myforum.forumpages.ForumBasePage;
+import com.myforum.framework.AVKButton;
+import com.myforum.framework.AVKLabel;
 import com.myforum.security.CredentialLogics;
 import com.myforum.tables.ForumUser;
 import com.myforum.tables.dao.ForumUserDao;
@@ -66,10 +67,10 @@ public class LoginForm extends StatelessForm<Object>{
 			}
 			
 		};
-		forgotPasswordLink.add(new Label("forgotlabel", new Model<String>(translator.translate("Forgot password?"))));
+		forgotPasswordLink.add(new AVKLabel("forgotlabel", "Forgot password?"));
         add( forgotPasswordLink );
 					
-	    Button loginButton = new Button( "login", new Model<String>(translator.translate("Login")) ) {
+	    Button loginButton = new AVKButton( "login", "Login" ) {
 			private static final long serialVersionUID = 1L;
 	
 			@Override

@@ -30,6 +30,8 @@ import com.myforum.application.StringLogics;
 import com.myforum.base.BasePage;
 import com.myforum.base.dictionary.EText;
 import com.myforum.base.menu.EMenuItem;
+import com.myforum.framework.AVKButton;
+import com.myforum.framework.AVKLabel;
 import com.myforum.framework.ErrorLabel;
 import com.myforum.framework.ResponseFormButton;
 import com.myforum.framework.StatelessPagingNavigator;
@@ -65,21 +67,17 @@ public class GameShopPage extends BasePage {
 		addOrReplace( new ErrorLabel() );
 		addOrReplace( new GameShopPanelLeft("sidepanelleft") );
 		
+		title			= ForumUtils.getParmString(params, "searchtitle",   "");
 		consoleId 		= ForumUtils.getParmInt(params,    "console",        0);
 		typeId 			= ForumUtils.getParmInt(params,    "type",           0);
-		title			= ForumUtils.getParmString(params, "searchtitle",   "");
 		numberOfItems	= ForumUtils.getParmInt(params,    "numberofitems", 15);
 		pageNumber		= ForumUtils.getParmInt(params,    "page", 			 0);
+		
+		// reset title when user has chosen to go to a particular console or type (games/accesoires/etc).
+		if( consoleId != 0 || typeId != 0 ){ title = ""; }
 
 		if( !numberOfItemsList.contains(numberOfItems) ){ numberOfItems = 15; }
 		
-		// when looking for a title, ignore the gameConsole and productType selection in the dropdownlists
-		if(!StringLogics.isEmpty(title)){
-	        getPageParameters().remove("searchtitle");
-	        consoleId 	= 0;
-	        typeId 		= 0;
-		}
-
 		selectModel.setGameConsoleId(consoleId);
 		selectModel.setProductTypeId(typeId);
 
@@ -92,21 +90,21 @@ public class GameShopPage extends BasePage {
 
 		// Form for add message button and refresh button
         final Form<String> addForm = new Form<String>("addform");
-        addForm.add( createFormModalButton( "addcompany",   "Add Company", 	modalAddCompany) );
+        addForm.add( createFormModalButton( "addcompany",   "Add Company", 	  modalAddCompany) );
         addForm.add( createFormModalButton( "addratingurl", "Add Rating URL", modalAddRatingUrl) );
         
-        addForm.add( createFormButton( "addproduct", 	  "Add Product", AddGamePage.class) );
+        addForm.add( createFormButton( "addproduct", 	  "Add Product",   AddGamePage.class) );
         addForm.add( createFormButton( "refresh",    	  "Refresh", 	   GameShopPage.class) );
         addOrReplace(addForm);
 	    
         final Form<DDCSelectModel> searchForm 	= new Form<DDCSelectModel>("searchform", new CompoundPropertyModel<DDCSelectModel>(selectModel));
-	    final TextField<String> searchTitle 	= new TextField<String>("searchtitle", new Model<String>(title));
+	    final TextField<String> searchTitle 	= new TextField<String>("searchtitle",   new Model<String>(title));
 
-	    searchTitle.add( new AttributeModifier("placeholder", new Model<String>( translator.translate("Search Title"))) );
+	    searchTitle.add( new AttributeModifier("placeholder", new Model<String>( translator.translate("Search Title") )) );
 
-	    final Label gameConsolesLabel 			= new Label("gameconsoleslabel",  new Model<String>(translator.translate("Game Console")));
-	    final Label productTypesLabel 			= new Label("producttypeslabel",  new Model<String>(translator.translate("Product Type")));
-	    final Label numberofitemslabel 			= new Label("numberofitemslabel", new Model<String>(translator.translate("Number of Items")));
+	    final Label gameConsolesLabel 			= new AVKLabel("gameconsoleslabel",  "Game Console");
+	    final Label productTypesLabel 			= new AVKLabel("producttypeslabel",  "Product Type");
+	    final Label numberofitemslabel 			= new AVKLabel("numberofitemslabel", "Number of Items");
     
 	    DropDownChoice<GameConsole> ddcGameConsoles = createSelectGameConsolesDDC(consoleId);
 	    DropDownChoice<ProductType> ddcProductTypes = createSelectProductTypesDDC(typeId);
@@ -131,13 +129,17 @@ public class GameShopPage extends BasePage {
 
 			@Override
 			public void onSubmit() {
-				getPageParameters().set("searchtitle", ForumUtils.getInput(searchTitle));
-				getPageParameters().set("numberofitems", numberOfItems);
-				setResponsePage( new GameShopPage(getPageParameters()) );
+				PageParameters params = getPageParameters();
+				params.set("searchtitle", ForumUtils.getInput(searchTitle));
+				params.set("numberofitems", numberOfItems);
+				// reset console and type, to make sure only results for the search title are shown
+				params.set("console", 0);
+				params.set("type",    0);
+				setResponsePage( GameShopPage.class, params );
 				return;
 			}
 	    };    
-	    final Label searchLabel = new Label( "searchlabel", new Model<String>(translator.translate("Search")) );
+	    final Label searchLabel = new AVKLabel("searchlabel", "Search");
 	    searchButton.addOrReplace(searchLabel);
 	    searchForm.addOrReplace(searchButton);
 	    
@@ -192,7 +194,7 @@ public class GameShopPage extends BasePage {
         			url = productRating.getRatingUrl().getUrl();   				
     			};
 
-    			final Label  ratingTextLabel	 = new Label( "ratingText", translator.translate("Rating") + " #" );
+    			final Label  ratingTextLabel	 = new AVKLabel( "ratingText", "Rating #" );
     			final Label	 ratingLabel 		 = new Label( "rating", rating + " - " );
     			final ExternalLink ratingUrlLink = new ExternalLink( "ratingUrl", url, url );
     			
@@ -248,7 +250,7 @@ public class GameShopPage extends BasePage {
 		productInfoForm.add( new ProductTypeDDC("producttypes", product, "productType", true /*isAutoSave*/ ).create() );
 		productInfoForm.add( new GameConsoleDDC("gameconsoles", product, "gameConsole", true /*isAutoSave*/ ).create() );
 
-		Button modifyRatingButton = new Button( "modifyratingbutton" ){
+		Button modifyRatingButton = new AVKButton( "modifyratingbutton", "Modify Rating" ){
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -260,7 +262,6 @@ public class GameShopPage extends BasePage {
 				return;
 			}
 		};
-		modifyRatingButton.setDefaultModel( new Model<String>(translator.translate("Modify Rating")) );
 		productInfoForm.add(modifyRatingButton);
 				
 		productInfoForm.add(createDeleteButton(product));
@@ -424,7 +425,7 @@ public class GameShopPage extends BasePage {
         ResponseFormButton formButton = new ResponseFormButton(id + "button", buttonText, destinationPage, getPageParameters(), isAdministrator(getActiveUser()));
         formButton.setOutputMarkupId(true);
 
-        final Label buttonLabel = new Label( id + "label", new Model<String>(translator.translate(buttonText)) );
+        final Label buttonLabel = new AVKLabel( id + "label", buttonText );
         formButton.add(buttonLabel);
 
         return formButton;
@@ -435,14 +436,20 @@ public class GameShopPage extends BasePage {
 	 * @Arguments: id - name in html, like addproductbutton, but without the 'button' text, so we can reuse addproduct for the label  
 	 */
 	private ResponseFormModalButton createFormModalButton( String id, String buttonText, ModalWindow modal ){
-        ResponseFormModalButton formButton = new ResponseFormModalButton(id + "button", translator.translate(buttonText), modal, isAdministrator(getActiveUser()));
+        ResponseFormModalButton formButton = new ResponseFormModalButton(id + "button", buttonText, modal, isAdministrator(getActiveUser()));
 
-        final Label buttonLabel = new Label( id + "label", new Model<String>(translator.translate(buttonText)) );
+        final Label buttonLabel = new AVKLabel( id + "label", buttonText );
         formButton.add(buttonLabel);
 
         return formButton;
 	}
 
+	/**
+	 * Returns a label containing the header info, which can be a different text depending on the current selections in the window
+	 * 
+	 *  @param	none
+	 *  @return	An initialized Wicket Label
+	 */
 	private Label createHeaderLabel(){
 		Model<String> headerModel = new Model<String>(){
 			private static final long serialVersionUID = 1L;
