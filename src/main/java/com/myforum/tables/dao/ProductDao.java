@@ -55,6 +55,9 @@ public class ProductDao extends HibernateDao<Product, Integer>{
 
     	Criteria criteria = session.createCriteria( daoType );
     	
+		// prevent duplicate results because of using restrictions.disjunction and LIKE operators
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+    	
     	if( gameConsoleCode != 0 ){
     		criteria.add(Restrictions.eqOrIsNull( "gameConsole.code", gameConsoleCode ) );
     	}
@@ -101,6 +104,9 @@ public class ProductDao extends HibernateDao<Product, Integer>{
 		Session session = prepareTransaction();
 
 		Criteria criteria = session.createCriteria( daoType );
+		
+		// prevent duplicate results because of using restrictions.disjunction and LIKE operators
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
     	
     	// translate (roman) numbers, if any. E.g. a 2 becomes II, and a IV becomes 4
 		String convertedTitle = StringLogics.convertVersionNumbers(title); 
