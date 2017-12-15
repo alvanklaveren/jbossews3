@@ -74,7 +74,6 @@ public class UserModifyAccountPage extends BasePage {
 	    form.add( cancelButton );
 	    form.add( applyChangesButton );			
 
-	    addOrReplace(new ErrorLabel());
 		addOrReplace( form );
 	}
 

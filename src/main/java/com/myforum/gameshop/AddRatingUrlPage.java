@@ -27,10 +27,6 @@ public class AddRatingUrlPage extends ModalPage {
 		
 		final RatingUrl ratingUrl = new RatingUrl();
 		
-		addOrReplace( new ErrorLabel() );
-		// and immediately reset the error message
-		setErrorMessage( "" );
-
 		// Form for product info
 		final Form<RatingUrl> ratingUrlForm = new Form<RatingUrl>( "ratingurlform" ) {
 			private static final long serialVersionUID = 1L;
@@ -70,8 +66,6 @@ public class AddRatingUrlPage extends ModalPage {
 			protected void onEvent(AjaxRequestTarget target) {			
 				if (!canSave(ratingUrl)){
 					//setResponsePage(AddRatingUrlPage.class, toPageParameters(ratingUrl));
-					// TODO: Onderstaande werkt niet !
-					target.getPage().addOrReplace(new ErrorLabel());
 					return; // necessary, because otherwise the below lines will also be triggered.
 				}
 

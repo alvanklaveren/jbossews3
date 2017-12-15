@@ -60,6 +60,7 @@ public final class DictionaryDutch extends Dictionary {
 		put(translatedSentenceMap, EText.ADD_RATING_URL, "Beoordeling URL toevoegen");
 		put(translatedSentenceMap, EText.ADMINISTRATOR_MAINTENANCE, "Administrator Onderhoud");
 		put(translatedSentenceMap, EText.APPLY_CHANGES, "Wijzigingen Toepassen");
+		put(translatedSentenceMap, EText.CIB_LABEL, "CIB = compleet in box, maar moet hier worden gelezen als \"bevat in ieder geval een handleiding\"" );
 		put(translatedSentenceMap, EText.DO_DELETE_CATEGORY, "Wil je deze category echt verwijderen?");
 		put(translatedSentenceMap, EText.FAILED_GENERATE_PASSWORD, "Aanmaken nieuw wachtwoord is mislukt." );
 		put(translatedSentenceMap, EText.FORGOT_PASSWORD, "Wachtwoord vergeten?");

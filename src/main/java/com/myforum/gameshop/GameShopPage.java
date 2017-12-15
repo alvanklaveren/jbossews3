@@ -32,19 +32,14 @@ import com.myforum.base.dictionary.EText;
 import com.myforum.base.menu.EMenuItem;
 import com.myforum.framework.AVKButton;
 import com.myforum.framework.AVKLabel;
-import com.myforum.framework.ErrorLabel;
 import com.myforum.framework.ResponseFormButton;
 import com.myforum.framework.StatelessPagingNavigator;
 import com.myforum.gameshop.DDC.CompanyDDC;
 import com.myforum.gameshop.DDC.GameConsoleDDC;
 import com.myforum.gameshop.DDC.ProductTypeDDC;
-import com.myforum.tables.GameConsole;
 import com.myforum.tables.Product;
 import com.myforum.tables.ProductImage;
 import com.myforum.tables.ProductRating;
-import com.myforum.tables.ProductType;
-import com.myforum.tables.dao.GameConsoleDao;
-import com.myforum.tables.dao.ProductTypeDao;
 
 public class GameShopPage extends BasePage {
 	private static final long serialVersionUID = 1L;
@@ -58,25 +53,22 @@ public class GameShopPage extends BasePage {
 	public GameShopPage(PageParameters params) {
 		super(EMenuItem.GameShop);
 
-		numberOfItemsList.add(15);
-		numberOfItemsList.add(25);
-		numberOfItemsList.add(50);
-		numberOfItemsList.add(75);
-		numberOfItemsList.add(100);
+		numberOfItemsList.add(10);
+		numberOfItemsList.add(20);
+		numberOfItemsList.add(30);
 
-		addOrReplace( new ErrorLabel() );
 		addOrReplace( new GameShopPanelLeft("sidepanelleft") );
 		
 		title			= ForumUtils.getParmString(params, "searchtitle",   "");
 		consoleId 		= ForumUtils.getParmInt(params,    "console",        0);
 		typeId 			= ForumUtils.getParmInt(params,    "type",           0);
-		numberOfItems	= ForumUtils.getParmInt(params,    "numberofitems", 15);
+		numberOfItems	= ForumUtils.getParmInt(params,    "numberofitems", 10);
 		pageNumber		= ForumUtils.getParmInt(params,    "page", 			 0);
 		
-		// reset title when user has chosen to go to a particular console or type (games/accesoires/etc).
+		// reset title when user has chosen to go to a particular console or type (games/accessories/etc).
 		if( consoleId != 0 || typeId != 0 ){ title = ""; }
 
-		if( !numberOfItemsList.contains(numberOfItems) ){ numberOfItems = 15; }
+		if( !numberOfItemsList.contains(numberOfItems) ){ numberOfItems = 10; }
 		
 		selectModel.setGameConsoleId(consoleId);
 		selectModel.setProductTypeId(typeId);
@@ -98,33 +90,15 @@ public class GameShopPage extends BasePage {
         addOrReplace(addForm);
 	    
         final Form<DDCSelectModel> searchForm 	= new Form<DDCSelectModel>("searchform", new CompoundPropertyModel<DDCSelectModel>(selectModel));
-	    final TextField<String> searchTitle 	= new TextField<String>("searchtitle",   new Model<String>(title));
 
+        final TextField<String> searchTitle 	= new TextField<String>("searchtitle",   new Model<String>(title));
 	    searchTitle.add( new AttributeModifier("placeholder", new Model<String>( translator.translate("Search Title") )) );
+	    searchForm.addOrReplace( searchTitle );
 
-	    final Label gameConsolesLabel 			= new AVKLabel("gameconsoleslabel",  "Game Console");
-	    final Label productTypesLabel 			= new AVKLabel("producttypeslabel",  "Product Type");
-	    final Label numberofitemslabel 			= new AVKLabel("numberofitemslabel", "Number of Items");
-    
-	    DropDownChoice<GameConsole> ddcGameConsoles = createSelectGameConsolesDDC(consoleId);
-	    DropDownChoice<ProductType> ddcProductTypes = createSelectProductTypesDDC(typeId);
-
-	    // better use the left side menu to navigate instead of these dropdowns
-	    gameConsolesLabel.setVisible(false);
-	    productTypesLabel.setVisible(false);
-	    ddcProductTypes.setVisibilityAllowed(false);
-	    ddcGameConsoles.setVisibilityAllowed(false);
-
-	    searchForm.addOrReplace(searchTitle);
-	    searchForm.addOrReplace( ddcGameConsoles );
-	    searchForm.addOrReplace( ddcProductTypes );
 	    searchForm.addOrReplace( createSelectnumberOfItemsDDC(numberOfItems) );
-
-	    searchForm.addOrReplace(gameConsolesLabel);
-	    searchForm.addOrReplace(productTypesLabel);
-	    searchForm.addOrReplace(numberofitemslabel);
+	    searchForm.addOrReplace(new AVKLabel("numberofitemslabel", "Number of Items"));
 	    
-	    final Button searchButton = new Button( "searchbutton"){
+	    final Button searchButton = new AVKButton("searchbutton", "Search"){
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -139,15 +113,16 @@ public class GameShopPage extends BasePage {
 				return;
 			}
 	    };    
-	    final Label searchLabel = new AVKLabel("searchlabel", "Search");
-	    searchButton.addOrReplace(searchLabel);
 	    searchForm.addOrReplace(searchButton);
 	    
 	    addOrReplace(searchForm);
 
 		// Add header text
 	    addOrReplace( createHeaderLabel() );
-			
+		
+	    Label CIBLabel = new AVKLabel("ciblabel", EText.CIB_LABEL );
+	    addOrReplace(CIBLabel);
+	    
 		// Add list of products
 		final PageableListView<Product> productListView = createProductListView(consoleId, typeId, title);
 		addOrReplace(productListView);
@@ -156,7 +131,7 @@ public class GameShopPage extends BasePage {
 		addOrReplace( createResultCounter(productListView) );        
         
         addOrReplace( new StatelessPagingNavigator( "navigatortop", params, pageNumber, productListView ) );       
-        addOrReplace( new StatelessPagingNavigator( "navigator", params, pageNumber, productListView ) );       
+        addOrReplace( new StatelessPagingNavigator( "navigator",    params, pageNumber, productListView ) );       
        
 	}
 
@@ -300,6 +275,8 @@ public class GameShopPage extends BasePage {
 				if( !GameShopLogics.uploadFile(listItem, imageFile)){
 					setErrorMessage( EText.UPLOAD_FAILED );
 				};
+				setResponsePage(GameShopPage.class, getPageParameters());
+				return;
 			}
 		};
 		uploadButton.setDefaultFormProcessing( false );
@@ -349,50 +326,6 @@ public class GameShopPage extends BasePage {
         return deleteButton;
 	}
 
-	private DropDownChoice<ProductType> createSelectProductTypesDDC(int productTypeId){
-		List<ProductType> productTypes = new ProductTypeDao().list();
-		final IModel<ProductType> myModel = new Model<ProductType>(new ProductTypeDao().find(productTypeId));
-		DropDownChoice<ProductType> productTypesDDC = new DropDownChoice<ProductType>( "producttypes", myModel, productTypes );
-		productTypesDDC.add(new AjaxFormComponentUpdatingBehavior("onchange") {
-			private static final long serialVersionUID = 1L;
-
-			protected void onUpdate(AjaxRequestTarget target) {
-				PageParameters params = new PageParameters();
-				params.set("console", 		consoleId);
-				params.set("numberofitems", numberOfItems);
-
-				ProductType productType = (ProductType) myModel.getObject();
-				params.set("type", productType.getCode());			
-				setResponsePage( new GameShopPage(params) );
-				return;
-			}
-		});
-		productTypesDDC.setOutputMarkupId(true);
-		return productTypesDDC;
-	}
-	
-	private DropDownChoice<GameConsole> createSelectGameConsolesDDC(int gameConsoleId){
-		List<GameConsole> gameConsoles = new GameConsoleDao().list();
-		final IModel<GameConsole> myModel = new Model<GameConsole>(new GameConsoleDao().find(gameConsoleId));
-		DropDownChoice<GameConsole> gameConsolesDDC = new DropDownChoice<GameConsole>( "gameconsoles", myModel, gameConsoles );
-		gameConsolesDDC.add(new AjaxFormComponentUpdatingBehavior("onchange") {
-			private static final long serialVersionUID = 1L;
-
-			protected void onUpdate(AjaxRequestTarget target) {
-				PageParameters params = new PageParameters();
-				params.set("type", 			typeId);
-				params.set("numberofitems", numberOfItems);
-				
-				GameConsole gameConsole = (GameConsole) myModel.getObject();
-				params.set("console", gameConsole.getCode());
-				setResponsePage( new GameShopPage(params) );
-				return;
-			}
-		});
-		gameConsolesDDC.setOutputMarkupId(true);
-		return gameConsolesDDC;
-	}
-
 	private DropDownChoice<Integer> createSelectnumberOfItemsDDC(int numberOfItems){
 		final IModel<Integer> myModel   = new Model<Integer>(numberOfItems);
 
@@ -432,7 +365,7 @@ public class GameShopPage extends BasePage {
 	}
 
 	/*
-	 * The below function creates form buttons, like 'Add Product'. 
+	 * The below function creates form buttons, like 'Add Company', which will open a MODAL WINDOW when clicked. 
 	 * @Arguments: id - name in html, like addproductbutton, but without the 'button' text, so we can reuse addproduct for the label  
 	 */
 	private ResponseFormModalButton createFormModalButton( String id, String buttonText, ModalWindow modal ){
@@ -473,7 +406,13 @@ public class GameShopPage extends BasePage {
 		return headerLabel;
 	}
 
-	private Label createResultCounter(final PageableListView<Product> resultListView){
+	/**
+	 * Creates a result counter, showing something in the line of "item x to y of z" 
+	 * 
+	 *  @param	none
+	 *  @return	An initialized Wicket Label
+	 */
+private Label createResultCounter(final PageableListView<Product> resultListView){
 		Model<String> resultCounterModel = new Model<String>(){
 			private static final long serialVersionUID = 1L;
 			

@@ -132,10 +132,13 @@ public class GameShopLogics {
 	 *  Delete all images for a given product
 	 */
 	public static void deleteAllImages(Product product){
+		// what you are about to see is a manual "ON CASCADE DELETE"... I do not know why I chose to do so, but there it is
 		for( ProductImage image:new ProductImageDao().list(product)){
 			DBHelper.deleteAndCommit(image);
 		}
-		DBHelper.deleteAndCommit(product);      				
+		// the below product will no longer contain the link to the images in product, and will delete nicely. 
+		// this would not have worked on the product in the arguments, because it still has a reference to the images we just deleted.
+		Product toBeDeleted = new ProductDao().find(product.getCode());
+		DBHelper.deleteAndCommit(toBeDeleted);
 	}
-
 }

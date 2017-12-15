@@ -13,7 +13,6 @@ import org.apache.wicket.model.Model;
 import com.myforum.application.CookieLogics;
 import com.myforum.application.StringLogics;
 import com.myforum.framework.AVKButton;
-import com.myforum.framework.ErrorLabel;
 import com.myforum.homepage.HomePage;
 import com.myforum.tables.MessageCategory;
 import com.myforum.tables.dao.MessageCategoryDao;
@@ -91,7 +90,6 @@ public class ForumAddMessagePanel extends ForumBasePanel {
 
 		
 		addOrReplace(new Label("messagecategory", new Model<String>(messageCategory.getDescription())));
-		addOrReplace(new ErrorLabel());
 		addOrReplace(form);
 		addOrReplace(previewButton);
 		addOrReplace(replyMessagePreview);	

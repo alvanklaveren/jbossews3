@@ -1,17 +1,15 @@
 package com.myforum.forumpages.header;
 
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 
 import com.myforum.base.BasePage;
 import com.myforum.base.breadcrumb.BreadCrumbPanel;
-import com.myforum.framework.ErrorLabel;
+import com.myforum.framework.AVKPanel;
 import com.myforum.tables.ForumUser;
 
-public class HeaderPanel extends Panel {
+public class HeaderPanel extends AVKPanel {
 	private static final long serialVersionUID = 1L;
-	
 	private ForumUser activeUser;
 
 	public HeaderPanel() {
@@ -21,8 +19,6 @@ public class HeaderPanel extends Panel {
         addOrReplace( new Label("forumname", new Model<String>("AVK Forum")) );			
 			
 		addOrReplace( new BreadCrumbPanel("breadcrumbs") );
-        
-		addOrReplace( new ErrorLabel() );
     }
 
     @Override

@@ -8,6 +8,7 @@ public enum EText {
 	, ADD_RATING_URL( "Add Rating URL" )
 	, APPLY_CHANGES( "Apply Changes" )
 	, ADMINISTRATOR_MAINTENANCE( "Administrator Maintenance" )
+	, CIB_LABEL( "CIB = complete in box, but should be read as \"at least includes manual\"" ) 
 	, DO_DELETE_CATEGORY( "Do you really want to delete this category?" )
 	, FAILED_CHANGE_PASSWORD( "Failed to change your password. Sucks to be you." )
 	, FAILED_GENERATE_PASSWORD( "Failed to generate a new password." )

@@ -22,6 +22,7 @@ import com.myforum.base.dictionary.EText;
 import com.myforum.base.dictionary.Translator;
 import com.myforum.base.menu.EMenuItem;
 import com.myforum.base.menu.MenuPanel;
+import com.myforum.framework.ErrorLabel;
 import com.myforum.framework.LanguageLabel;
 import com.myforum.homepage.HomePage;
 import com.myforum.security.CredentialLogics;
@@ -68,7 +69,7 @@ public class BasePage extends WebPage implements Serializable{
 		add( new LanguageLabel("english", "EN", ELanguage.English) );
 		add( new LanguageLabel("dutch",   "NL", ELanguage.Dutch) );
 
-		add( new Label("pagetitle", getPageTitle()));
+		add( new Label("pagetitle", getPageTitle()) );
 		
 		Panel topMenu = new MenuPanel("topMenu", activeMenuItem);
 		add(topMenu);
@@ -86,6 +87,14 @@ public class BasePage extends WebPage implements Serializable{
 		//	panelRight.setVisible(false);
 		//}
 
+		// Not all pages will show error messages, but the ones that do (and should) have different "ideal" locations to show this error,
+		// so we allow putting it in each page manually, but we do not want to explicitly repeat the code for it, hence the below try-catch
+		try {
+				addOrReplace( new ErrorLabel() );
+		}catch(Exception e) {
+			// do nothing... it is okay if it did not succeed
+		}
+		
 		Panel footer = new FooterPanel("footer");
 		add(footer);
 		

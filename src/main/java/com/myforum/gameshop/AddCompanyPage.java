@@ -26,10 +26,6 @@ public class AddCompanyPage extends ModalPage {
 		
 		final Company company = new Company();
 		
-		addOrReplace( new ErrorLabel() );
-		// and immediately reset the error message
-		setErrorMessage( "" );
-
 		// Form for product info
 		final Form<Company> companyForm = new Form<Company>( "companyform" ) {
 			private static final long serialVersionUID = 1L;
@@ -69,8 +65,6 @@ public class AddCompanyPage extends ModalPage {
 			protected void onEvent(AjaxRequestTarget target) {			
 				if (!canSave(company)){
 					//setResponsePage(AddCompanyPage.class, toPageParameters(company));
-					// TODO: Onderstaande werkt niet !
-					target.getPage().addOrReplace(new ErrorLabel());
 					return; // necessary, because otherwise the below lines will also be triggered.
 				}
 

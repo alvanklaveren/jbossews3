@@ -6,7 +6,6 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.myforum.application.ForumUtils;
 import com.myforum.base.BasePage;
-import com.myforum.framework.ErrorLabel;
 import com.myforum.tables.Product;
 import com.myforum.tables.ProductRating;
 import com.myforum.tables.dao.ProductDao;
@@ -25,8 +24,6 @@ public class ModifyGameRatingPage extends BasePage {
 		Label gameNameLabel = new Label( "gamename", product.getName());
 		add(gameNameLabel);
 		
-		addOrReplace( new ErrorLabel() );
-
 		final ProductRating productRating = new ProductRatingDao().findOrCreateByProduct(codeProduct);
 
 		// Form for product rating info

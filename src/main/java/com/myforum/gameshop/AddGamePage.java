@@ -25,8 +25,6 @@ public class AddGamePage extends BasePage {
 		int		typeId		= ForumUtils.getParmInt(   params, "type",         0);
 		int		companyId	= ForumUtils.getParmInt(   params, "company",      0);
 		
-		addOrReplace( new ErrorLabel() );
-
 		AddProduct newProduct = new AddProduct();
 	
 		if (!StringLogics.isEmpty(name))		{ newProduct.setName(name); }

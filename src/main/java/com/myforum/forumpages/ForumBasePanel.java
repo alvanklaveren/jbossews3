@@ -1,18 +1,17 @@
 package com.myforum.forumpages;
 
-import org.apache.wicket.markup.html.panel.Panel;
-
 import com.myforum.application.CookieLogics;
 import com.myforum.application.DBHelper;
 import com.myforum.base.dictionary.EText;
 import com.myforum.base.dictionary.Translator;
 import com.myforum.forumpages.header.HeaderPanel;
+import com.myforum.framework.AVKPanel;
 import com.myforum.homepage.HomePage;
 import com.myforum.security.CredentialLogics;
 import com.myforum.tables.ForumUser;
 import com.myforum.tables.dao.LoginCredDao;
 
-public abstract class ForumBasePanel extends Panel{
+public abstract class ForumBasePanel extends AVKPanel{
 	private static final long serialVersionUID = 1L;
 	protected String magicToken;
 	protected ForumBasePage parent;

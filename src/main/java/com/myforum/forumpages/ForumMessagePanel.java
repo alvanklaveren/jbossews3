@@ -21,7 +21,6 @@ import com.myforum.application.DBHelper;
 import com.myforum.application.ForumUtils;
 import com.myforum.application.StringLogics;
 import com.myforum.framework.AreYouSurePanel;
-import com.myforum.framework.ErrorLabel;
 import com.myforum.framework.ResponseFormButton;
 import com.myforum.tables.ForumUser;
 import com.myforum.tables.Message;
@@ -130,7 +129,6 @@ public class ForumMessagePanel extends ForumBasePanel {
         add( new Label( "description", 			message.getDescription() ) );
 		add( new Label( "messagedate", 			dateFormat.format(message.getMessageDate() ) ) );
 		add( new Label( "userdisplayname", 		messageOwner.getDisplayName() ) );
-		addOrReplace( new ErrorLabel() );
 
 		add(form);
 		add( ForumUtils.loadAvatar( messageOwner, "avatarpicture" ) );

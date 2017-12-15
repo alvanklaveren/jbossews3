@@ -9,7 +9,7 @@
 		  <div class="form-inline" style="float:right">
 			<div>
 			  <input type="text" class="form-control" id="searchtitle" wicket:id="searchtitle" placeholder="Search title">
-			  <button type="submit" wicket:id="searchbutton" class="btn btn-outline-primary"><div wicket:id="searchlabel">Search</div></button>
+			  <input type="submit" wicket:id="searchbutton" class="btn btn-outline-primary" value="Search">
 			</div>
 	 	  </div>
 
@@ -17,20 +17,6 @@
 			<label for="numberofitems" wicket:id="numberofitemslabel" class="col-sm-2 control-label">Number of Items</label>	
 			  <div class="col-sm-2">
 				<select class="form-control" id="numberofitems" wicket:id="numberofitems"></select>
-			  </div>
-	 	  </div>	  
-
-		  <div class="form-group">
-			<label for="gameconsoles" wicket:id="gameconsoleslabel" class="col-sm-2 control-label">Game Console</label>	
-			<div class="col-sm-4">
-			  <select class="form-control" id="gameconsoles" wicket:id="gameconsoles"></select>
-			  </div>
-	 	  </div>
-
-		  <div class="form-group">
-			<label for="producttypes" wicket:id="producttypeslabel" class="col-sm-2 control-label">Product Type</label>	
-			  <div class="col-sm-4">
-				<select class="form-control" id="producttypes" wicket:id="producttypes"></select>
 			  </div>
 	 	  </div>	  
 	</form>
@@ -46,7 +32,7 @@
 
     <span wicket:id="navigatortop">[listview navigator]</span>
     <br>
-    <small>(CIB = complete in box, but should be read as "at least includes manual" )</small>
+    <span wicket:id="ciblabel"></span>
 	<br>
 	<h2 wicket:id="headerlabel">[e.g. Most recently added products]</h2>
 
