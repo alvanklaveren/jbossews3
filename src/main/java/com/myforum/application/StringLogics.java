@@ -35,6 +35,17 @@ public final class StringLogics{
 		return false;
 	}
 
+	public static boolean isNumeric(String aString){
+		try {
+				Integer.parseInt(aString);	
+		} 
+		catch(NumberFormatException nfe) {
+				return false;			
+		}
+
+		return true;
+	}
+	
 	public String urlEncode(String message){
 		String encodedMessage = ""; 
 		

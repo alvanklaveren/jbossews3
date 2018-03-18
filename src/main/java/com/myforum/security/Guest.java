@@ -16,6 +16,8 @@ import com.myforum.gameshop.AddCompanyPage;
 import com.myforum.gameshop.AddGamePage;
 import com.myforum.gameshop.GameShopPage;
 import com.myforum.gameshop.ModifyGameRatingPage;
+import com.myforum.gameshop.codetable.CTCompanyPage;
+import com.myforum.gameshop.codetable.ModifyCompanyPage;
 import com.myforum.homepage.AboutMePage;
 import com.myforum.homepage.HomePage;
 import com.myforum.sourcepages.SourceCategoryPage;
@@ -53,6 +55,10 @@ public class Guest extends UserRole{
 		addPrivilege( SourceHomePage.class, 		true, false, true );
 		addPrivilege( SourceSubjectPage.class, 		true, false, true );
 		addPrivilege( ModifyGameRatingPage.class, 	false, false, false );
+		
+		addPrivilege( CTCompanyPage.class, 			false, false, false );
+		addPrivilege( ModifyCompanyPage.class, 		false, false, false );
+
 	}
 		
 }

@@ -1,32 +1,37 @@
-package com.myforum.gameshop;
-
-import org.apache.wicket.PageReference;
+package com.myforum.gameshop.codetable;
 import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextArea;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.myforum.application.DBHelper;
+import com.myforum.application.ForumUtils;
 import com.myforum.application.StringLogics;
 import com.myforum.base.BasePage;
-import com.myforum.framework.ModalPage;
+import com.myforum.base.menu.EMenuItem;
 import com.myforum.tables.Company;
 import com.myforum.tables.dao.CompanyDao;
 
-public class AddCompanyPage extends ModalPage {
+
+public class ModifyCompanyPage extends BasePage {
 	private static final long serialVersionUID = 1L;
 
 	private final TextArea<String> editDescription;
 	
-	public AddCompanyPage(final PageReference modalWindowPageRef, final BasePage originPage) {
-		super(modalWindowPageRef, originPage);
+	public ModifyCompanyPage(PageParameters params) {
+		super(EMenuItem.DUMMY);
 		
-		final Company company = new Company();
+		int code = ForumUtils.getParmInt(params, "code", -1);
+		
+		final Company company = new CompanyDao().find(code);
 		
 		// Form for product info
-		final Form<Company> companyForm = new Form<Company>( "companyform" ) {
+		final Form<Company> companyForm = new Form<Company>( "codetableform" ) {
 			private static final long serialVersionUID = 1L;
 		};
 		
@@ -48,6 +53,7 @@ public class AddCompanyPage extends ModalPage {
 		companyForm.add(createSaveEditButton(companyForm, company));
 		companyForm.add(createCancelButton(companyForm, company));
 		
+		add(new Label("codetable", Model.of("Modify Company")));		
 		add(companyForm);
 	}
 
@@ -70,10 +76,8 @@ public class AddCompanyPage extends ModalPage {
 				DBHelper.saveAndCommit(company);
 
 				// reset the error message
-				originPage.setErrorMessage( "" );
-				
-				parent.close(target);
-				
+				setErrorMessage( "" );
+				setResponsePage(CTCompanyPage.class);			
 				return;
 			}
 	    });   
@@ -92,7 +96,7 @@ public class AddCompanyPage extends ModalPage {
 			@Override
 			protected void onEvent(AjaxRequestTarget target) {
 				DBHelper.rollback();
-				parent.close(target);
+				setResponsePage(CTCompanyPage.class);			
 				return;
 			}
 	    });   
@@ -106,21 +110,16 @@ public class AddCompanyPage extends ModalPage {
 	private boolean canSave(Company company){
 		String description = company.getDescription();
 		if (StringLogics.isEmpty(description)){
-			originPage.setErrorMessage(  "Description is empty" );
+			setErrorMessage( "Description is empty" );
 			return false;
 		}
 		
 		if( new CompanyDao().findByDescription( description ) != null ){
-			originPage.setErrorMessage( "Company '" + description + "' already exists in the database" );
+			setErrorMessage( "Company '" + description + "' already exists in the database" );
 			return false;
 		};
 			
 		return true;
 	}
-	
-	@Override
-	protected String getTitle(){
-		return "";
-	}
-
 }
+

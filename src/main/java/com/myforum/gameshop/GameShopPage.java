@@ -37,6 +37,7 @@ import com.myforum.framework.StatelessPagingNavigator;
 import com.myforum.gameshop.DDC.CompanyDDC;
 import com.myforum.gameshop.DDC.GameConsoleDDC;
 import com.myforum.gameshop.DDC.ProductTypeDDC;
+import com.myforum.gameshop.codetable.CTCompanyPage;
 import com.myforum.tables.Product;
 import com.myforum.tables.ProductImage;
 import com.myforum.tables.ProductRating;
@@ -87,6 +88,9 @@ public class GameShopPage extends BasePage {
         
         addForm.add( createFormButton( "addproduct", 	  "Add Product",   AddGamePage.class) );
         addForm.add( createFormButton( "refresh",    	  "Refresh", 	   GameShopPage.class) );
+
+        addForm.add( createFormButton( "ctcompany", 	  "CodeTable Company",   CTCompanyPage.class) );
+
         addOrReplace(addForm);
 	    
         final Form<DDCSelectModel> searchForm 	= new Form<DDCSelectModel>("searchform", new CompoundPropertyModel<DDCSelectModel>(selectModel));
