@@ -17,8 +17,12 @@ import com.myforum.gameshop.AddGamePage;
 import com.myforum.gameshop.GameShopPage;
 import com.myforum.gameshop.ModifyGameRatingPage;
 import com.myforum.gameshop.codetable.CTCompanyPage;
+import com.myforum.gameshop.codetable.CTGameConsolePage;
+import com.myforum.gameshop.codetable.CTProductTypePage;
 import com.myforum.gameshop.codetable.CodeTablesPage;
 import com.myforum.gameshop.codetable.ModifyCompanyPage;
+import com.myforum.gameshop.codetable.ModifyGameConsolePage;
+import com.myforum.gameshop.codetable.ModifyProductTypePage;
 import com.myforum.homepage.AboutMePage;
 import com.myforum.homepage.HomePage;
 import com.myforum.sourcepages.SourceCategoryPage;
@@ -59,7 +63,13 @@ public class Administrator extends UserRole{
 
 		addPrivilege( CodeTablesPage.class,			true, true, true );
 		addPrivilege( CTCompanyPage.class, 			true, true, true );
+		
+		addPrivilege( CTGameConsolePage.class,		true, true, true );
+		addPrivilege( CTProductTypePage.class,		true, true, true );
 		addPrivilege( ModifyCompanyPage.class, 		true, true, true );
+		addPrivilege( ModifyGameConsolePage.class, 	true, true, true );
+		addPrivilege( ModifyProductTypePage.class,  true, true, true );
+
 	}
 		
 }

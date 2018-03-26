@@ -17,8 +17,12 @@ import com.myforum.gameshop.AddGamePage;
 import com.myforum.gameshop.GameShopPage;
 import com.myforum.gameshop.ModifyGameRatingPage;
 import com.myforum.gameshop.codetable.CTCompanyPage;
+import com.myforum.gameshop.codetable.CTGameConsolePage;
+import com.myforum.gameshop.codetable.CTProductTypePage;
 import com.myforum.gameshop.codetable.CodeTablesPage;
 import com.myforum.gameshop.codetable.ModifyCompanyPage;
+import com.myforum.gameshop.codetable.ModifyGameConsolePage;
+import com.myforum.gameshop.codetable.ModifyProductTypePage;
 import com.myforum.homepage.AboutMePage;
 import com.myforum.homepage.HomePage;
 import com.myforum.sourcepages.SourceCategoryPage;
@@ -59,7 +63,11 @@ public class Member extends UserRole{
 		
 		addPrivilege( CodeTablesPage.class,			false, false, false );
 		addPrivilege( CTCompanyPage.class, 			false, false, false );
+		addPrivilege( CTGameConsolePage.class,		false, false, false );
+		addPrivilege( CTProductTypePage.class,		false, false, false );
 		addPrivilege( ModifyCompanyPage.class, 		false, false, false );
+		addPrivilege( ModifyGameConsolePage.class, 	false, false, false );
+		addPrivilege( ModifyProductTypePage.class,  false, false, false );
 	}
 		
 }

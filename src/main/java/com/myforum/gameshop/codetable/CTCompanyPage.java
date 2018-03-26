@@ -15,7 +15,7 @@ import org.apache.wicket.model.Model;
 
 import com.myforum.tables.Company;
 
-public class CTCompanyPage extends CodeTablePage{
+public class CTCompanyPage extends CodeTableBasePage{
 	private static final long serialVersionUID = 1L;
 	
 	public CTCompanyPage(PageParameters params) {

@@ -40,4 +40,18 @@ public class ProductTypeDao extends HibernateDao<ProductType, Integer>{
     	
         return findKey; 
     }
+	
+	public ProductType findByDescription( String description ){
+		Session session = prepareTransaction();
+
+    	Criteria criteria = session.createCriteria( daoType );
+    	criteria.add(Restrictions.eq( "description", description ).ignoreCase() );
+    	
+    	ProductType productType = null;
+    	if( criteria.list().size() > 0 ){
+    		productType = (ProductType) criteria.list().get( 0 );
+    	}
+    	
+        return productType; 
+    }
 }

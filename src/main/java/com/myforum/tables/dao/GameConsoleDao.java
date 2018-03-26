@@ -51,5 +51,18 @@ public class GameConsoleDao extends HibernateDao<GameConsole, Integer>{
     	
         return findKey; 
     }
+	
+	public GameConsole findByDescription( String description ){
+		Session session = prepareTransaction();
 
+    	Criteria criteria = session.createCriteria( daoType );
+    	criteria.add(Restrictions.eq( "description", description ).ignoreCase() );
+    	
+    	GameConsole gameConsole = null;
+    	if( criteria.list().size() > 0 ){
+    		gameConsole = (GameConsole) criteria.list().get( 0 );
+    	}
+    	
+        return gameConsole; 
+    }
 }

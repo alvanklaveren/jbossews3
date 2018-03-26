@@ -22,6 +22,8 @@ public class CodeTablesPage extends BasePage {
 		
 		switch(codeTable.toLowerCase()) {
 		case "company":			setResponsePage(CTCompanyPage.class); break;
+		case "gameconsole":		setResponsePage(CTGameConsolePage.class); break;
+		case "producttype":		setResponsePage(CTProductTypePage.class); break;
 		default:				
 			// codetable doesn't exist. Return to home page
 			log.error("Invalid/unknown codetable " + codeTable + " requested");
