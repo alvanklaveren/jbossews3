@@ -17,6 +17,7 @@ import com.myforum.gameshop.AddGamePage;
 import com.myforum.gameshop.GameShopPage;
 import com.myforum.gameshop.ModifyGameRatingPage;
 import com.myforum.gameshop.codetable.CTCompanyPage;
+import com.myforum.gameshop.codetable.CodeTablesPage;
 import com.myforum.gameshop.codetable.ModifyCompanyPage;
 import com.myforum.homepage.AboutMePage;
 import com.myforum.homepage.HomePage;
@@ -56,6 +57,7 @@ public class Administrator extends UserRole{
 		addPrivilege( SourceSubjectPage.class, 		true, true, true );
 		addPrivilege( ModifyGameRatingPage.class, 	true, true, true );
 
+		addPrivilege( CodeTablesPage.class,			true, true, true );
 		addPrivilege( CTCompanyPage.class, 			true, true, true );
 		addPrivilege( ModifyCompanyPage.class, 		true, true, true );
 	}

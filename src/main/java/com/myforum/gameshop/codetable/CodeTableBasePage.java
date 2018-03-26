@@ -18,7 +18,7 @@ import org.apache.wicket.model.Model;
 import com.myforum.application.StringLogics;
 import com.myforum.base.BasePage;
 
-public abstract class CodeTablePage extends BasePage {
+public abstract class CodeTableBasePage extends BasePage {
 	private static final long serialVersionUID = 1L;
 
 	/*

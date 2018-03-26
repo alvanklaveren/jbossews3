@@ -14,7 +14,9 @@ public enum EMenuItem {
 	Divider			(8, "<Divider>", "#"),
 	Header			(9, "<Header not initialised>", "#"),
 	AVKOS			(10, "AVK OS", "#"),
-	AppCreator		(11, "App Creator", "#")
+	AppCreator		(11, "App Creator", "#"),
+	CodeTables		(12, "Code Tables", "#"),
+	CTCompany		(13, "Company", "/codetable/company")
 	;
 	
 	private int		id;

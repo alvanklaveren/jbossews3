@@ -7,6 +7,11 @@ import org.apache.wicket.model.Model;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.myforum.application.CookieLogics;
+import com.myforum.security.CredentialLogics;
+import com.myforum.tables.ForumUser;
+import com.myforum.tables.dao.LoginCredDao;
+
 public class MenuPanel extends Panel {
 	private static final long serialVersionUID = 1L;
 	private StringBuilder menuItems;
@@ -26,8 +31,14 @@ public class MenuPanel extends Panel {
 		//dropDownMenu.addMenuItem(new DDMenuHeaderItem("More to come"));
 		//dropDownMenu.addMenuItem(new MenuItem(EMenuItem.AVKOS).disable());
 		//dropDownMenu.addMenuItem(new MenuItem(EMenuItem.AppCreator).disable());
-
 		menuItems.append(dropDownMenu.toHtml());
+
+		if ( isAdministrator(getActiveUser()) ){
+			DropDownMenuItem dropDownMenu2 = new DropDownMenuItem(EMenuItem.CodeTables.defaultText());
+			dropDownMenu2.addMenuItem(new DDMenuItem(EMenuItem.CTCompany, activeMenuItem));
+			menuItems.append(dropDownMenu2.toHtml());
+		}
+		
 		menuItems.append(new MenuItem(EMenuItem.Articles, activeMenuItem).toHtml());
 		menuItems.append(new MenuItem(EMenuItem.AboutMe, activeMenuItem).toHtml());
 
@@ -46,10 +57,24 @@ public class MenuPanel extends Panel {
 //		}
 	}
 
-	 @Override 
-	 protected void onBeforeRender() { 
-	  super.onBeforeRender(); 
-	 } 
+	public ForumUser getActiveUser() {
+		String magicToken = CookieLogics.getCookie("magictoken");
+		if(new LoginCredDao().tokenExpired(magicToken)){
+			return null;
+		}
+		
+		ForumUser activeUser = new LoginCredDao().getForumUserByMagicToken(magicToken);
+		return activeUser;
+	}
+
+	protected boolean isAdministrator(ForumUser forumUser){
+		return CredentialLogics.isAdministrator(forumUser);
+	}
+	
+	@Override 
+	protected void onBeforeRender() { 
+	 super.onBeforeRender(); 
+	} 
 	 
 	@Override public void renderHead(IHeaderResponse response){
 	}
