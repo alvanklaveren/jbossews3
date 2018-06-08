@@ -27,7 +27,10 @@ public class GameConsole extends AVKTable implements Serializable{
 
 	@Column(name = "description")
 	private String description;
-	
+
+	@Column(name = "sortorder")
+	private int sortorder;
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "code_company", nullable=false, insertable=true, updatable=true)
 	private Company company;
@@ -48,8 +51,14 @@ public class GameConsole extends AVKTable implements Serializable{
 		return description;
 	}
 	
+	public int getSortorder() {
+		return sortorder;
+	}
+	public void setSortorder(int sortorder) {
+		this.sortorder = sortorder;
+	}
+
 	public String toString(){
 		return getDescription();
 	}
-
 }

@@ -4,6 +4,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.NumberTextField;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
@@ -22,6 +23,7 @@ public class ModifyGameConsolePage extends BasePage {
 	private static final long serialVersionUID = 1L;
 
 	private final TextArea<String> editDescription;
+	private final NumberTextField<Integer> editSortorder;
 	
 	public ModifyGameConsolePage(PageParameters params) {
 		super(EMenuItem.DUMMY);
@@ -36,9 +38,25 @@ public class ModifyGameConsolePage extends BasePage {
 		};
 		
 		editDescription = new TextArea<String>( "editdescription" );
-		editDescription.setModel( new PropertyModel<String>(gameConsole, "description") );
+		editDescription.setModel( new PropertyModel<String>( gameConsole, "description") );
 		editDescription.setOutputMarkupId(true);
 		gameConsoleForm.add(editDescription);
+		
+		editDescription.add(new AjaxEventBehavior("onchange"){
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected void onEvent(AjaxRequestTarget target) {
+				gameConsole.setDescription(editDescription.getInput());
+			}
+			
+		});
+
+		// editSortorder = new NumberTextField<Integer>( "sortorder" ).setMinimum(0).setMaximum(99);
+		editSortorder = new NumberTextField<Integer>( "sortorder" );
+		editSortorder.setModel( new PropertyModel<Integer>( gameConsole, "sortorder") );
+		editSortorder.setOutputMarkupId(true);
+		gameConsoleForm.add(editSortorder);
 		
 		editDescription.add(new AjaxEventBehavior("onchange"){
 			private static final long serialVersionUID = 1L;
@@ -118,7 +136,7 @@ public class ModifyGameConsolePage extends BasePage {
 			setErrorMessage( "GameConsole '" + description + "' already exists in the database" );
 			return false;
 		};
-			
+
 		return true;
 	}
 }
