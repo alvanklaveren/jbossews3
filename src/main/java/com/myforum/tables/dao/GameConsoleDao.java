@@ -20,6 +20,7 @@ public class GameConsoleDao extends HibernateDao<GameConsole, Integer>{
 		Session session = prepareTransaction();
 
     	Criteria criteria = session.createCriteria( daoType );
+    	criteria.addOrder( Order.asc( "sortorder" ) );
     	criteria.addOrder( Order.asc( "description" ) );
     	
         return (List<GameConsole>) criteria.list(); 
