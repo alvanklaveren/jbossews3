@@ -52,18 +52,21 @@ public class ModifyGameConsolePage extends BasePage {
 			
 		});
 
-		// editSortorder = new NumberTextField<Integer>( "sortorder" ).setMinimum(0).setMaximum(99);
-		editSortorder = new NumberTextField<Integer>( "sortorder" );
+		// <input type="number" class="form-control" id="editsortorder" wicket:id="editsortorder" placeholder="Sortorder">
+		//editSortorder = new NumberTextField<Integer>( "sortorder" ).setMinimum(0).setMaximum(99);
+
+		editSortorder = new NumberTextField<Integer>( "editsortorder" );
 		editSortorder.setModel( new PropertyModel<Integer>( gameConsole, "sortorder") );
 		editSortorder.setOutputMarkupId(true);
 		gameConsoleForm.add(editSortorder);
 		
-		editDescription.add(new AjaxEventBehavior("onchange"){
+		editSortorder.add(new AjaxEventBehavior("onchange"){
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			protected void onEvent(AjaxRequestTarget target) {
-				gameConsole.setDescription(editDescription.getInput());
+				int sortorder = Integer.parseInt(editSortorder.getInput());
+				gameConsole.setSortorder( sortorder );
 			}
 			
 		});
@@ -132,11 +135,6 @@ public class ModifyGameConsolePage extends BasePage {
 			return false;
 		}
 		
-		if( new GameConsoleDao().findByDescription( description ) != null ){
-			setErrorMessage( "GameConsole '" + description + "' already exists in the database" );
-			return false;
-		};
-
 		return true;
 	}
 }

@@ -16,7 +16,9 @@ public enum EMenuItem {
 	AVKOS			(10, "AVK OS", "#"),
 	AppCreator		(11, "App Creator", "#"),
 	CodeTables		(12, "Code Tables", "#"),
-	CTCompany		(13, "Company", "/codetable/company")
+	CTCompany		(13, "Company", "/codetable/company"),
+	CTGameConsole	(14, "Game Console", "/codetable/gameconsole"),
+	CTProductType	(15, "Product Type", "/codetable/producttype")
 	;
 	
 	private int		id;

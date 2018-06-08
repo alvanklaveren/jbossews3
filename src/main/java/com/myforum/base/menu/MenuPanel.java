@@ -36,6 +36,8 @@ public class MenuPanel extends Panel {
 		if ( isAdministrator(getActiveUser()) ){
 			DropDownMenuItem dropDownMenu2 = new DropDownMenuItem(EMenuItem.CodeTables.defaultText());
 			dropDownMenu2.addMenuItem(new DDMenuItem(EMenuItem.CTCompany, activeMenuItem));
+			dropDownMenu2.addMenuItem(new DDMenuItem(EMenuItem.CTGameConsole, activeMenuItem));
+			dropDownMenu2.addMenuItem(new DDMenuItem(EMenuItem.CTProductType, activeMenuItem));
 			menuItems.append(dropDownMenu2.toHtml());
 		}
 		

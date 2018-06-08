@@ -23,6 +23,7 @@ public class CTGameConsolePage extends CodeTableBasePage{
 
         columns.add(new CTPopulator<GameConsole>("code"));
         columns.add(new CTPopulator<GameConsole>("description"));
+        columns.add(new CTPopulator<GameConsole>("sortorder"));
         
         add(new Label("codetable", Model.of("Game Consoles")));
         
@@ -44,6 +45,7 @@ public class CTGameConsolePage extends CodeTableBasePage{
 			switch(property){
 				case "code": 		description = String.valueOf(gameConsole.getCode()); break;  
 				case "description": description = gameConsole.getDescription();  break;
+				case "sortorder":   description = String.valueOf(gameConsole.getSortorder());  break;
 				default: 			description = "Unknown column: " + property; break;
 			}
 			return description;

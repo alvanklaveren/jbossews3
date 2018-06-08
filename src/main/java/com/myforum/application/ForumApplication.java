@@ -12,6 +12,7 @@ import com.myforum.articlepage.ArticlePage;
 import com.myforum.forumpages.ForumBasePage;
 import com.myforum.gameshop.GameShopPage;
 import com.myforum.gameshop.REST.GameShopMobile;
+import com.myforum.gameshop.codetable.CodeTablesPage;
 import com.myforum.homepage.AboutMePage;
 import com.myforum.homepage.HomePage;
 
@@ -58,6 +59,7 @@ public class ForumApplication extends WebApplication {
 		  // now for some REST stuff supported by Wicket
 		  mountPage("/articles/#{id}", ArticlePage.class);
 		  mountPage("/gameshop/#{console}/#{type}/#{searchtitle}", GameShopPage.class);
+		  mountPage("/codetable/#{codetable}", CodeTablesPage.class);
 		  
 		  // to REST pages, not inherited from basepage, therefore NOT https !!
 		  // acme_address in constants contains the verification code from the HTTPS provider to verify that I am who I say I am
