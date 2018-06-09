@@ -3,6 +3,8 @@ package com.myforum.homepage;
 import java.util.Date;
 
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.ExternalLink;
+
 import com.myforum.application.ForumUtils;
 import com.myforum.base.BasePage;
 import com.myforum.base.menu.EMenuItem;
@@ -19,8 +21,9 @@ public class AboutMePage extends BasePage {
 		Date startDate	= ForumUtils.createDate("01-04-2006", "dd-MM-yyyy"); // The day I started working at Maccs
 		int workingYears = ForumUtils.yearsBetween(startDate, ForumUtils.todayNow());
 		
-		// ExternalLink pdfLink = new ExternalLink("pdf", "images/cv.pdf");
-		// add(pdfLink);
+		// Appears to be working on alvanklaveren.com, but does not work on localhost (not sure why...)
+		ExternalLink pdfLink = new ExternalLink("pdf", "images/cv.pdf");
+		add(pdfLink);
 		
 		String years = "many";
 		
