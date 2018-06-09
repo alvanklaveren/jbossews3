@@ -76,6 +76,18 @@ public final class DictionaryDutch extends Dictionary {
 		put(translatedSentenceMap, EText.SEARCH_RESULTS, "Zoek resultaten");
 		put(translatedSentenceMap, EText.UPLOAD_FAILED, "Uploaden van bestand mislukt. Controleer de naam en de grootte (<100kb) van het bestand.");
 		put(translatedSentenceMap, EText.UPDATE_PROFILE, "Pas Profiel Aan");
+		put(translatedSentenceMap, EText.ABOUT_WEBSITE, "Over deze website ...");
+
+		StringBuilder aboutText = new StringBuilder();
+		aboutText.append( "Alvanklaveren.com is gemaakt, geschreven en wordt onderhouden door  A.L. van Klaveren. Momenteel is het gebouwd in " ); 
+		aboutText.append( "Java (EE), gebruikmakend van <a href=\"http://hibernate.org/\">Apache Hibernate</a>, <a href=\"http://wicket.apache.org/\">Apache Wicket</a>, " );
+		aboutText.append( "en <a href=\"https://spring.io/\">Spring Framework</a>. De website draait op <a href=\"http://tomcat.apache.org/\">Tomcat 8</a> " );
+		aboutText.append( "op een hosting platform genaamd <a href = \"https://www.digitalocean.com/\">Digital Ocean</a>. Verder wordt de layout van de website " ); 
+		aboutText.append( "ondersteunt door <a href=\"http://getbootstrap.com/\"> Bootstrap</a>. <br><br>" ); 
+		aboutText.append( "Als je een vraag hebt of om een andere reden contact wilt zoeken met de maker van deze website, stuur dan een email naar <a wicket:id=\"myemail\"></a>." ); 
+		put(translatedSentenceMap, EText.ABOUT_WEBSITE_TEXT, aboutText.toString());
+
+
 		
 	}
 	
