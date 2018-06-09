@@ -27,13 +27,7 @@ public enum EText {
 	, UPDATE_PROFILE( "Update Profile")
 	, UPLOAD_FAILED( "Could not upload file. Check file name and size (< 100kb)" )
 	, ABOUT_WEBSITE ("About this website ..." )
-	, ABOUT_WEBSITE_TEXT( "Alvanklaveren.com is created, written and maintained by A.L. van Klaveren. It is (currently) built " +  
-					 	  "in Java (EE), using <a href=\"http://hibernate.org/\">Apache Hibernate</a>, <a href=\"http://wicket.apache.org/\">Apache Wicket</a> " +
-					 	  "and <a href=\"https://spring.io/\">Spring Framework</a>. The website is running on <a href=\"http://tomcat.apache.org/\">Tomcat 8</a> " +
-					 	  "on a hosting platform called <a href = \"https://www.digitalocean.com/\">Digital Ocean</a>. Last but not least, the website's layout is " +
-					 	  "supported by <a href=\"http://getbootstrap.com/\"> Bootstrap</a>. <br><br> " +
-					 	  "If you have a question or just want to contact the author, please leave a message at <a wicket:id=\"myemail\"></a>." 
-				   )
+	, ABOUT_WEBSITE_TEXT( "<Translation not found>" )
 	;
 	
 
