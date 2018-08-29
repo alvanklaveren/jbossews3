@@ -100,7 +100,7 @@ public class ProductDao extends HibernateDao<Product, Integer>{
     }
 
 	@SuppressWarnings("unchecked")
-	public List<Product> list( String title ){
+	public List<Product> search( String title ){
 		Session session = prepareTransaction();
 
 		Criteria criteria = session.createCriteria( daoType );
@@ -109,7 +109,16 @@ public class ProductDao extends HibernateDao<Product, Integer>{
 		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
     	
     	// translate (roman) numbers, if any. E.g. a 2 becomes II, and a IV becomes 4
-		String convertedTitle = StringLogics.convertVersionNumbers(title); 
+		String convertedTitle = StringLogics.convertVersionNumbers(title);
+		
+		// to include even more hits, replace the spaces with wildcards, just in case the whitespace is missing in a word,
+		// e.g. when you search for far cry, and somewhere accidently the title description said farcry	
+		title = title.replace(" ", "%");
+		convertedTitle = convertedTitle.replace(" ", "%");
+		
+		// next surround with wildcards, so "fin" will also fetch "final" and "race" also fetches "trace"
+		title = "%" + title + "%";
+		convertedTitle = "%" + convertedTitle + "%";
  	
     	// using disjunction creates an OR expression for the below LIKE's.
     	criteria.add(Restrictions.disjunction()

@@ -53,7 +53,7 @@ public class GameShopLogics {
 		if(!StringLogics.isEmpty(searchTitle)){
 			//search on title
 			searchTitle = StringLogics.prepareMessage(searchTitle);
-			productList = productDao.list( searchTitle );
+			productList = productDao.search( searchTitle );
 			return productList;
 		}
 
