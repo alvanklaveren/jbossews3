@@ -46,9 +46,12 @@ public class GameShopPage extends BasePage {
 
 	private 		int	   			consoleId, typeId, numberOfItems;
 	private 		String 			title 				= null;
+	private			String			sortOrder			= null;
 	private			long			pageNumber			= 0;
 	private final 	DDCSelectModel 	selectModel 		= new DDCSelectModel();
 	private 		List<Integer> 	numberOfItemsList 	= new ArrayList<Integer>();
+	private 		List<String> 	sortOrderList	 	= new ArrayList<String>();
+
 	
 	public GameShopPage(PageParameters params) {
 		super(EMenuItem.GameShop);
@@ -57,18 +60,24 @@ public class GameShopPage extends BasePage {
 		numberOfItemsList.add(20);
 		numberOfItemsList.add(30);
 
+		sortOrderList.add(ESortOrder.AZ.getDescription());
+		sortOrderList.add(ESortOrder.ZA.getDescription());
+		sortOrderList.add(ESortOrder.Rating.getDescription());
+		
 		addOrReplace( new GameShopPanelLeft("sidepanelleft") );
 		
-		title			= ForumUtils.getParmString(params, "searchtitle",   "");
-		consoleId 		= ForumUtils.getParmInt(params,    "console",        0);
-		typeId 			= ForumUtils.getParmInt(params,    "type",           0);
-		numberOfItems	= ForumUtils.getParmInt(params,    "numberofitems", 10);
-		pageNumber		= ForumUtils.getParmInt(params,    "page", 			 0);
+		title			= ForumUtils.getParmString(	params, "searchtitle",	 ""	);
+		consoleId 		= ForumUtils.getParmInt(	params, "console",        0	);
+		typeId 			= ForumUtils.getParmInt(	params, "type",           0	);
+		numberOfItems	= ForumUtils.getParmInt(	params, "numberofitems", 10	);
+		pageNumber		= ForumUtils.getParmInt(	params, "page", 		  0	);
+		sortOrder		= ForumUtils.getParmString(	params, "sortorder", 	 ESortOrder.AZ.getDescription()	);
 		
 		// reset title when user has chosen to go to a particular console or type (games/accessories/etc).
 		if( consoleId != 0 || typeId != 0 ){ title = ""; }
 
 		if( !numberOfItemsList.contains(numberOfItems) ){ numberOfItems = 10; }
+		if( !sortOrderList.contains(sortOrder) ){ sortOrder = ESortOrder.AZ.getDescription(); }
 		
 		selectModel.setGameConsoleId(consoleId);
 		selectModel.setProductTypeId(typeId);
@@ -98,6 +107,10 @@ public class GameShopPage extends BasePage {
 
 	    searchForm.addOrReplace( createSelectnumberOfItemsDDC(numberOfItems) );
 	    searchForm.addOrReplace(new AVKLabel("numberofitemslabel", "Number of Items"));
+
+	    searchForm.addOrReplace( createSelectSortorderDDC(sortOrder) );
+	    searchForm.addOrReplace(new AVKLabel("sortorderlabel", "Sort By"));
+   
 	    
 	    final Button searchButton = new AVKButton("searchbutton", "Search"){
 			private static final long serialVersionUID = 1L;
@@ -107,6 +120,8 @@ public class GameShopPage extends BasePage {
 				PageParameters params = getPageParameters();
 				params.set("searchtitle", ForumUtils.getInput(searchTitle));
 				params.set("numberofitems", numberOfItems);
+				params.set("sortorder", sortOrder);
+
 				// reset console and type, to make sure only results for the search title are shown
 				params.set("console", 0);
 				params.set("type",    0);
@@ -125,7 +140,7 @@ public class GameShopPage extends BasePage {
 	    addOrReplace(CIBLabel);
 	    
 		// Add list of products
-		final PageableListView<Product> productListView = createProductListView(consoleId, typeId, title);
+		final PageableListView<Product> productListView = createProductListView(consoleId, typeId, title, ESortOrder.getSortOrder(sortOrder));
 		addOrReplace(productListView);
 
 		// Add results counter
@@ -139,9 +154,9 @@ public class GameShopPage extends BasePage {
 	/*
 	 *  Creates a PageableListView containing all the products requested by console and type, or title
 	 */
-	private PageableListView<Product> createProductListView(int gameConsoleId, int productTypeId, String searchTitle){
+	private PageableListView<Product> createProductListView(int gameConsoleId, int productTypeId, String searchTitle, ESortOrder sortOrder){
 		// first, gather all products belonging to the search arguments gameConsoleId, productTypeId, and/or title
-		List<Product> productList = GameShopLogics.getProductList(gameConsoleId, productTypeId, searchTitle);
+		List<Product> productList = GameShopLogics.getProductList(gameConsoleId, productTypeId, searchTitle, sortOrder);
 
 		PageableListView<Product> productListView = new PageableListView<Product>( "productlist", productList, numberOfItems ) {
 			private static final long serialVersionUID = 1L;
@@ -339,9 +354,11 @@ public class GameShopPage extends BasePage {
 
 				params.set("type", 	  typeId);
 				params.set("console", consoleId);
+				params.set("sortorder", sortOrder);
 
 				Integer numberOfItems = (Integer) myModel.getObject();
 				params.set("numberofitems", numberOfItems);			
+
 				setResponsePage( new GameShopPage(params) );
 				return;
 			}
@@ -350,7 +367,33 @@ public class GameShopPage extends BasePage {
 		numberOfItemsDDC.setOutputMarkupId(true);
 		return numberOfItemsDDC;
 	}
-	
+
+	private DropDownChoice<String> createSelectSortorderDDC(String sortOrder){
+		final IModel<String> myModel   = new Model<String>(sortOrder);
+
+		DropDownChoice<String> sortOrderDDC = new DropDownChoice<String>( "sortorder", myModel, sortOrderList );
+		sortOrderDDC.add(new AjaxFormComponentUpdatingBehavior("onchange") {
+			private static final long serialVersionUID = 1L;
+
+			protected void onUpdate(AjaxRequestTarget target) {
+				PageParameters params = new PageParameters();
+
+				params.set("type", 	  typeId);
+				params.set("console", consoleId);
+				params.set("numberofitems", numberOfItems);
+
+				String sortOrder = (String) myModel.getObject();
+				params.set("sortorder", sortOrder);
+
+				setResponsePage( new GameShopPage(params) );
+				return;
+			}
+		});
+		
+		sortOrderDDC.setOutputMarkupId(true);
+		return sortOrderDDC;
+	}
+
 	/*
 	 * The below function creates form buttons, like 'Add Product'. 
 	 * @Arguments: id - name in html, like addproductbutton, but without the 'button' text, so we can reuse addproduct for the label  
@@ -413,7 +456,7 @@ public class GameShopPage extends BasePage {
 	 *  @param	none
 	 *  @return	An initialized Wicket Label
 	 */
-private Label createResultCounter(final PageableListView<Product> resultListView){
+	private Label createResultCounter(final PageableListView<Product> resultListView){
 		Model<String> resultCounterModel = new Model<String>(){
 			private static final long serialVersionUID = 1L;
 			

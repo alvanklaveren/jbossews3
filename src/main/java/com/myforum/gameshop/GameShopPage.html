@@ -6,19 +6,24 @@
 	<div wicket:id="errormessage" class="alert alert-danger" role="alert"></div>
 	
 	<form class="form-horizontal" wicket:id="searchform">
+		  <div class="form-group">
+		  	<div class="col-sm-3">
+		  	  <label for="numberofitems" wicket:id="numberofitemslabel">Number of Items</label>
+  			  <select class="form-control" id="numberofitems" wicket:id="numberofitems"></select>
+  			</div>
+  			
+		  	<div class="col-sm-3">
+		  	  <label for="sortorder" wicket:id="sortorderlabel">Sort On</label>
+			  <select class="form-control" id="sortorder" wicket:id="sortorder"></select>
+			</div>
+	 	  </div>	  
+
 		  <div class="form-inline" style="float:right">
 			<div>
 			  <input type="text" class="form-control" id="searchtitle" wicket:id="searchtitle" placeholder="Search title">
 			  <input type="submit" wicket:id="searchbutton" class="btn btn-outline-primary" value="Search">
 			</div>
 	 	  </div>
-
-		  <div class="form-group" style="left">
-			<label for="numberofitems" wicket:id="numberofitemslabel" class="col-sm-2 control-label">Number of Items</label>	
-			  <div class="col-sm-2">
-				<select class="form-control" id="numberofitems" wicket:id="numberofitems"></select>
-			  </div>
-	 	  </div>	  
 	</form>
 
 	<form class="form-horizontal" wicket:id="addform">

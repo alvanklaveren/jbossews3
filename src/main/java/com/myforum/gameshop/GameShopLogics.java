@@ -42,7 +42,7 @@ public class GameShopLogics {
 	/*
 	 * Returns a list of products based on arguments console and type, or title
 	 */
-	public static List<Product> getProductList(int gameConsoleId, int productTypeId, String searchTitle){
+	public static List<Product> getProductList(int gameConsoleId, int productTypeId, String searchTitle, ESortOrder sortOrder){
 		GameConsoleDao gameConsoleDao = new GameConsoleDao();
 		ProductTypeDao productTypeDao = new ProductTypeDao();
 		ProductDao productDao = new ProductDao();
@@ -63,17 +63,17 @@ public class GameShopLogics {
 			productList = productDao.list(40 /*Maximum number of result*/ ); // get most recently added products
 		}
 		if( gameConsole != null && productType == null){	
-			productList = productDao.list( gameConsole );
+			productList = productDao.list( gameConsole, sortOrder );
 		}		
 
 		if( gameConsole == null && productType != null){	
-			productList = productDao.list( productType );
+			productList = productDao.list( productType, sortOrder );
 		}		
 
 		if( gameConsole != null && productType != null){	
-			productList = productDao.list( gameConsole, productType );
+			productList = productDao.list( gameConsole, productType, sortOrder );
 		}
-		
+				
 		return productList;
 	}
 

@@ -9,6 +9,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.myforum.application.StringLogics;
+import com.myforum.gameshop.ESortOrder;
 import com.myforum.tables.GameConsole;
 import com.myforum.tables.Product;
 import com.myforum.tables.ProductType;
@@ -50,7 +51,7 @@ public class ProductDao extends HibernateDao<Product, Integer>{
     }
 
 	@SuppressWarnings("unchecked")
-	public List<Product> list( int gameConsoleCode, int productTypeCode ){
+	public List<Product> list( int gameConsoleCode, int productTypeCode, ESortOrder sortOrder ){
 		Session session = prepareTransaction();
 
     	Criteria criteria = session.createCriteria( daoType );
@@ -69,33 +70,46 @@ public class ProductDao extends HibernateDao<Product, Integer>{
     	
     	criteria.createAlias( "gameConsole", "gc" );
     	criteria.addOrder( Order.asc( "gc.description" ) );
-
-    	criteria.addOrder( Order.asc( "name" ) );
+ 	
+    	switch(sortOrder) {
+    	case AZ:    	criteria.addOrder( Order.asc(  "name" ) );	break;
+    	case ZA:		criteria.addOrder( Order.desc( "name" ) );	break;
+    	case Rating: 	
+    					// Careful: using this alias eliminates all results from the list that do NOT have a rating 
+    					criteria.createAlias( "productRatings", "prs" );
+    					criteria.addOrder( Order.asc(  "prs.rating" ) ); 	
+    					criteria.addOrder( Order.asc(  "name" ) ); 	
+    					break; 
+    					
+		default:		criteria.addOrder( Order.asc(  "name" ) );	break;
+    	}
+    	
+    	
 
         return (List<Product>) criteria.list(); 
     }
 
-	public List<Product> list( GameConsole gameConsole ){
+	public List<Product> list( GameConsole gameConsole, ESortOrder sortOrder ){
 		int gameConsoleCode = 0;
 		int productTypeCode = 0;
 		if( gameConsole != null){	gameConsoleCode = gameConsole.getCode(); }
-		return list(gameConsoleCode, productTypeCode);
+		return list(gameConsoleCode, productTypeCode, sortOrder);
     }
 
-	public List<Product> list( ProductType productType ){
+	public List<Product> list( ProductType productType, ESortOrder sortOrder ){
 		int gameConsoleCode = 0;
 		int productTypeCode = 0;
 		if( productType != null){	productTypeCode = productType.getCode(); }
-		return list(gameConsoleCode, productTypeCode);
+		return list(gameConsoleCode, productTypeCode, sortOrder);
     }
 
-	public List<Product> list( GameConsole gameConsole, ProductType productType ){
+	public List<Product> list( GameConsole gameConsole, ProductType productType, ESortOrder sortOrder ){
 		int gameConsoleCode = 0;
 		int productTypeCode = 0;
 		
 		if( gameConsole != null ){	gameConsoleCode = gameConsole.getCode(); }
 		if( productType != null ){	productTypeCode = productType.getCode(); } 
-		return list(gameConsoleCode, productTypeCode);
+		return list(gameConsoleCode, productTypeCode, sortOrder);
 
     }
 
