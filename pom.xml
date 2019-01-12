@@ -493,6 +493,11 @@
 
 	<repositories>
 		<repository>
+		    <id>repository.spring.milestone</id>
+		    <name>Spring Milestone Repository</name>
+		    <url>http://repo.spring.io/milestone</url>
+  		</repository>
+		<repository>
 			<id>eap</id>
 			<url>http://maven.repository.redhat.com/techpreview/all</url>
 			<releases>
