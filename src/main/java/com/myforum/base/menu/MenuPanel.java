@@ -20,6 +20,10 @@ public class MenuPanel extends Panel {
 
 	public MenuPanel(String id, int activeMenuItem) {
 		super(id);
+		
+		//Label logoText = new Label("logotext", "ALVANKLAVEREN.COM");
+		//add(logoText);
+		
 		menuItems = new StringBuilder();
 		menuItems.append(new MenuItem(EMenuItem.Home, activeMenuItem).toHtml());
 		
