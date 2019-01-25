@@ -26,7 +26,7 @@ public enum EText {
 	, UNABLE_SEND_EMAIL( "Unable to send email" )
 	, UPDATE_PROFILE( "Update Profile")
 	, UPLOAD_FAILED( "Could not upload file. Check file name and size (< 100kb)" )
-	, ABOUT_WEBSITE ("About this website ..." )
+	, ABOUT_WEBSITE ("About ..." )
 	, ABOUT_WEBSITE_TEXT( "<Translation not found>" )
 	;
 	
