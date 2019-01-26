@@ -1,14 +1,11 @@
 package com.myforum.base;
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.util.Date;
 
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.protocol.http.ClientProperties;
 import org.apache.wicket.protocol.http.request.WebClientInfo;
 //import org.apache.wicket.protocol.https.RequireHttps;
@@ -98,19 +95,6 @@ public class BasePage extends WebPage implements Serializable{
 		Panel footer = new FooterPanel("footer");
 		add(footer);
 		
-		Label today = new Label("today", new Model<String>("today"){
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public String getObject(){
-				Date today = new Date();
-				// now return the date in the 'locale' format
-				return DateFormat.getDateInstance().format(today);
-			}
-			
-		});
-		add(today);
-	
 	}
 
 	public void setErrorMessage( String errorMessage ){
