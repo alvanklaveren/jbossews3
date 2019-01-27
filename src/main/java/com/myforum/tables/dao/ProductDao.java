@@ -78,7 +78,8 @@ public class ProductDao extends HibernateDao<Product, Integer>{
     					// Careful: using this alias eliminates all results from the list that do NOT have a rating 
     					criteria.createAlias( "productRatings", "prs" );
     					criteria.addOrder( Order.asc(  "prs.rating" ) ); 	
-    					criteria.addOrder( Order.asc(  "name" ) ); 	
+    					criteria.addOrder( Order.asc(  "name" ) );
+    					criteria.add(Restrictions.neOrIsNotNull( "prs.rating", 0 ) );
     					break; 
     					
 		default:		criteria.addOrder( Order.asc(  "name" ) );	break;
