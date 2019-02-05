@@ -9,7 +9,6 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.basic.MultiLineLabel;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PageableListView;
-//import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import com.myforum.application.CookieLogics;
 import com.myforum.application.ForumUtils;
@@ -18,10 +17,8 @@ import com.myforum.base.BasePage;
 import com.myforum.base.menu.EMenuItem;
 import com.myforum.framework.AVKLabel;
 import com.myforum.framework.StatelessPagingNavigator;
-//import com.myforum.springframework.HelloService;
 import com.myforum.tables.Message;
 import com.myforum.tables.MessageCategory;
-import com.myforum.tables.dao.ForumUserDao;
 import com.myforum.tables.dao.MessageCategoryDao;
 import com.myforum.tables.dao.MessageDao;
 
@@ -66,10 +63,10 @@ public class HomePage extends BasePage {
 			
 			@Override
 			public void populateItem(final ListItem<Message> listItem) {
-				final ForumUserDao forumUserDao = new ForumUserDao();
+				//final ForumUserDao forumUserDao = new ForumUserDao();
 				
 				Message message 		= listItem.getModelObject();
-				String 	displayName		= forumUserDao.find(message).getDisplayName();
+				//String 	displayName		= forumUserDao.find(message).getDisplayName();
 				String 	messageDate 	= dateFormat.format(listItem.getModelObject().getMessageDate());
 				String 	messagetext 	= StringLogics.prepareMessage(message.getMessageText());
 
