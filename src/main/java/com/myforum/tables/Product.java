@@ -31,7 +31,10 @@ public class Product extends AVKTable implements Serializable{
 
 	@Column(name = "description")
 	private String description;
-	
+
+	@Column(name = "year", unique = false, nullable=false, insertable=true, updatable=true)
+	private int year;
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "code_game_console", nullable=false, insertable=true, updatable=true)
 	private GameConsole gameConsole;
@@ -83,6 +86,14 @@ public class Product extends AVKTable implements Serializable{
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public void setYear(int year){
+	    this.year = year;
+	}
+
+	public int getYear(){
+	    return year;
 	}
 
 	public void setGameConsole(GameConsole gameConsole) {

@@ -30,11 +30,15 @@ public class AddGameForm extends Form<AddProduct> {
         TextArea<String> editDescription = new TextArea<String>( "editDescription" );
 		editDescription.setOutputMarkupId(true);
 
+		TextField<String> editYear = new TextField<String>( "editYear" );
+        editYear.setOutputMarkupId(true);
+
 		Button saveButton   = createSaveButton();
 		Button cancelButton = createCancelButton();
 		
         add( editName );
 		add( editDescription );
+		add( editYear );
 		add( new CompanyDDC(	"companies", 	newProduct, "company", 	   false /*isAutoSave*/ ).create() );
 		add( new ProductTypeDDC("producttypes", newProduct, "productType", false /*isAutoSave*/ ).create() );
 		add( new GameConsoleDDC("gameconsoles", newProduct, "gameConsole", false /*isAutoSave*/ ).create() );
@@ -55,13 +59,22 @@ public class AddGameForm extends Form<AddProduct> {
 			@Override
 			public void onSubmit() { 
 				final TextField<String> editNameTF	 	 = (TextField<String>) form.get("editName");
+				final TextField<String> editYearTF	 	 = (TextField<String>) form.get("editYear");
 				final TextArea<String> editDescriptionTF = (TextArea<String>)  form.get("editDescription");
 
 				AddProduct newProduct = form.getModelObject();				
 
 				newProduct.setName( ForumUtils.getInput(editNameTF) );
 				newProduct.setDescription( ForumUtils.getInput(editDescriptionTF) );
-							
+
+				int year = 0;
+				try {
+					year = Integer.parseInt(ForumUtils.getInput(editYearTF));
+				} catch (NumberFormatException e) {
+					// too bad. Stick to zero
+				}
+				newProduct.setYear( year );
+				
 				if ( !canSave(newProduct) ){
 					setResponsePage(AddGamePage.class, newProduct.toPageParameters());
 					return; // necessary, because otherwise the below lines will also be triggered.

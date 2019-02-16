@@ -18,5 +18,9 @@ public class AddProductModel extends CompoundPropertyModel<AddProduct> implement
 	public String getEditName(){ return getObject().getName(); }
 
 	public void setEditName(String name){ getObject().setName(name); }
+	
+	public int getYear() { return getObject().getYear(); }
+	
+	public void setYear(int year) { getObject().setYear(year); }
 
 }

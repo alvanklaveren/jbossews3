@@ -12,9 +12,11 @@ public class AddProduct extends Product implements Serializable{
 
 	public String getEditDescription(){ return getDescription(); }
 	public String getEditName(){ return getName(); }
+	public int	  getEditYear() { return getYear(); }
 
 	public void setEditDescription(String description){ setDescription(description); }
 	public void setEditName(String name){ setName(name); }
+	public void setEditYear(int year) { setYear(year); }
 	
 	/*
 	 * Turns the necessary fields of products used in this form to page parameters
@@ -23,6 +25,7 @@ public class AddProduct extends Product implements Serializable{
 		PageParameters params = new PageParameters();
 		if(!StringLogics.isEmpty(getName())){ 		params.add("name", 		   getName()); }
 		if(!StringLogics.isEmpty(getDescription())){ params.add("description", getDescription()); }
+		params.add("year", getEditYear());
 		
 		if(getGameConsole() != null){ params.add("console", getGameConsole().getCode()); }
 		if(getProductType() != null){ params.add("type",    getProductType().getCode()); }
@@ -38,6 +41,7 @@ public class AddProduct extends Product implements Serializable{
 		Product product = new Product();
 		product.setCode(getCode());
 		product.setName(getName());
+		product.setYear(getYear());
 		product.setDescription(getDescription());
 		product.setGameConsole(getGameConsole());
 		product.setProductType(getProductType());

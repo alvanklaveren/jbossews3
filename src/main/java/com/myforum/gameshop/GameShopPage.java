@@ -173,6 +173,7 @@ public class GameShopPage extends BasePage {
                 final MultiLineLabel developer 	 = new MultiLineLabel( "company.description" );
                 final MultiLineLabel gameConsole = new MultiLineLabel( "gameConsole.description" );
                 final MultiLineLabel name 		 = new MultiLineLabel( "name" );
+                final MultiLineLabel year 		 = new MultiLineLabel( "year" );
         		final MultiLineLabel description = new MultiLineLabel( "htmlDescription" );
         		description.setEscapeModelStrings(false);
 
@@ -199,6 +200,7 @@ public class GameShopPage extends BasePage {
                 listItem.add(gameConsole);
                 listItem.add(name);
                 listItem.add(description);
+                listItem.add(year);
                 listItem.add(ratingLabel);
                 listItem.add(ratingTextLabel);
                 listItem.add(ratingUrlLink);
@@ -236,6 +238,11 @@ public class GameShopPage extends BasePage {
 		editDescription.setModel( new PropertyModel<String>(product, "description") );
 		editDescription.setOutputMarkupId(true);
 		productInfoForm.add(editDescription);
+
+        final TextField<String> editYear = new TextField<String>( "edityear" );
+        editYear.setModel( new PropertyModel<String>(product, "year") );
+        editYear.setOutputMarkupId(true);
+        productInfoForm.add(editYear);
 
 		productInfoForm.add( new CompanyDDC(	"companies", 	product, "company", 	true  /*isAutoSave*/ ).create() );
 		productInfoForm.add( new ProductTypeDDC("producttypes", product, "productType", true /*isAutoSave*/ ).create() );
@@ -310,13 +317,26 @@ public class GameShopPage extends BasePage {
 			public void onSubmit() {
 				final TextField<String> editNameTF	 		= (TextField<String>) form.get("editname");
 				final TextArea<String> editDescriptionTF	= (TextArea<String>) form.get("editdescription");
+				final TextField<String> editYearTF	 		= (TextField<String>) form.get("edityear");
 
 				String editName		 	= ForumUtils.getInput( editNameTF ); 
 				String editDescription	= ForumUtils.getInput( editDescriptionTF );
+				String editYear		 	= ForumUtils.getInput( editYearTF ); 
 				
 				product.setName(editName);
 				product.setDescription(editDescription);
 				
+				int year = 0;
+				try {
+					year = Integer.parseInt(editYear);
+				} catch (NumberFormatException e) {
+					String errorMessage = "Rating should be a number";
+					getSession().setAttribute( "errormessage", errorMessage );
+					return; // necessary, because otherwise the below lines will also be triggered.
+				}
+				
+				product.setYear(year);
+								
 				DBHelper.saveAndCommit(product);
 			}
 	    };   
