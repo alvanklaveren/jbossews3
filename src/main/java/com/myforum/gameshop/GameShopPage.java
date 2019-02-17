@@ -170,7 +170,12 @@ public class GameShopPage extends BasePage {
        			CompoundPropertyModel<Product> productModel = new CompoundPropertyModel<Product>(product);
       			listItem.setModel(productModel);
        			
-                final MultiLineLabel developer 	 = new MultiLineLabel( "company.description" );
+      			String companyAndYear = product.getCompany().getDescription();
+      			if (product.getYear() != 0) {
+      				companyAndYear +=  " (" + product.getYear() + ")";
+      			}
+      			
+                final MultiLineLabel developer 	 = new MultiLineLabel( "companyandyear", companyAndYear );
                 final MultiLineLabel gameConsole = new MultiLineLabel( "gameConsole.description" );
                 final MultiLineLabel name 		 = new MultiLineLabel( "name" );
                 final MultiLineLabel year 		 = new MultiLineLabel( "year" );
