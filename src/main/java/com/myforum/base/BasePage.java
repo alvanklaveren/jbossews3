@@ -56,13 +56,6 @@ public class BasePage extends WebPage implements Serializable{
 			return;
 		}
 		
-		if(CookieLogics.getCookie("agreedToCookie").equals("yes")){
-			add(new Label("agreeToCookies", ""));
-		}else{
-			Panel agreeToCookies = new AgreeToCookiesPanel(this, "agreeToCookies");
-			addOrReplace(agreeToCookies);		
-		}
-
 		add( new LanguageLabel("english", "EN", ELanguage.English) );
 		add( new LanguageLabel("dutch",   "NL", ELanguage.Dutch) );
 

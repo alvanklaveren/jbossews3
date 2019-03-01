@@ -17,9 +17,11 @@
  
  <!--  Left Side Menu on Game Shop Page -->
  <link href="css/leftsidemenu.css" rel="stylesheet">
- 
+
  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
  <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+  <link href="css/cookiealert.css" rel="stylesheet">
 
  <!-- Custom styles for this template --> 
   <!--<link href="css/navbar-fixed-top.css" rel="stylesheet"> -->
@@ -37,7 +39,17 @@
   <span wicket:id="topMenu">Menu</span>
   <br>
   <div style="width:100%;margin:0; padding: 0">
-    <span wicket:id="agreeToCookies"></span>
+	<div class="alert alert-dismissible text-center cookiealert" role="alert">
+	  <div class="cookiealert-container">
+    	This site only uses technical cookies that are necessary for this site to function. By continuing to use this site   
+  		you consent to the use of cookies on your device. If you disabled cookies in your browser settings, this site may 
+  	 	not function properly.<a href="http://cookiesandyou.com/" target="_blank">Learn more about cookies.</a>
+	      <button type="button" class="btn btn-primary btn-sm acceptcookies" aria-label="Close">
+	          Understood
+	      </button>
+	  </div>
+	</div>
+
     <div id="sidepanelleft" wicket:id="sidepanelleft" style="float:left; width: 15%; min-height: 100%; padding-left: 10px;"></div>
     
     <div id="centerpanel" style="float:left; width: 70%; border: thin solid white; min-height: 100%; padding-left: 10px; padding-right: 10px; background:#FFFFFF; box-shadow:5px 5px 20px grey;">
@@ -77,9 +89,12 @@
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
   <!-- <script src="js/bootstrap.min.js"></script> -->
-  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+  <!--  Cookie Banner -->
+  <script src="js/cookiealert.js"></script>
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <!-- <script src="js/ie10-viewport-bug-workaround.js"></script> -->
 </body>
