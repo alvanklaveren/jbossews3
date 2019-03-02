@@ -178,7 +178,6 @@ public class GameShopPage extends BasePage {
                 final MultiLineLabel developer 	 = new MultiLineLabel( "companyandyear", companyAndYear );
                 final MultiLineLabel gameConsole = new MultiLineLabel( "gameConsole.description" );
                 final MultiLineLabel name 		 = new MultiLineLabel( "name" );
-                final MultiLineLabel year 		 = new MultiLineLabel( "year" );
         		final MultiLineLabel description = new MultiLineLabel( "htmlDescription" );
         		description.setEscapeModelStrings(false);
 
@@ -205,7 +204,6 @@ public class GameShopPage extends BasePage {
                 listItem.add(gameConsole);
                 listItem.add(name);
                 listItem.add(description);
-                listItem.add(year);
                 listItem.add(ratingLabel);
                 listItem.add(ratingTextLabel);
                 listItem.add(ratingUrlLink);

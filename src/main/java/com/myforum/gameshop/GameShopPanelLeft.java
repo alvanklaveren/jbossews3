@@ -30,11 +30,7 @@ public class GameShopPanelLeft extends BasePanelLeft {
 		sb.append("<div class=\"sidemenu-item\">");
 		sb.append("<h4><a href=\"/gameshop\">"+ translator.translate( EText.RECENTLY_ADDED ) +"</a></h4>");
 	    sb.append("</div>");
-
-	    // remove the image
-	    meImage.setVisible(false);
-	    addOrReplace( meImage );
-	    
+   
 		for(GameConsole gameConsole:gameConsoleList){
 			sb.append("<div class=\"sidemenu-item\">");
 			sb.append("<h4><a href=\"/gameshop/" + gameConsole.getCode() + "\">" + gameConsole.getDescription() + "</a></h4>");
