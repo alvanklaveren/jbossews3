@@ -65,6 +65,7 @@ public class ArticlePage extends BasePage {
 
 	@Override
 	public void renderHead(IHeaderResponse response) {
-	    response.render(CssHeaderItem.forReference(new CssResourceReference(ArticlePage.class, "css/blog.css")));
+	    response.render(CssHeaderItem.forReference(new CssResourceReference(ArticlePage.class, "blog.css")));
+	    response.render(CssHeaderItem.forReference(new CssResourceReference(ArticlePage.class, "ie10-viewport-bug-workaround.css")));
 	}
 }
