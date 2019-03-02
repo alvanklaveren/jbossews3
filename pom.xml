@@ -20,12 +20,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>avkforum</groupId>
-	<artifactId>avkforum</artifactId>
+	<groupId>ROOT</groupId>
+	<artifactId>ROOT</artifactId>
 	<packaging>war</packaging>
-	<name>avkforum</name>
+	<name>ROOT</name>
 	<version>1.0</version>
-	<description>my website</description>
+	<description>alvanklaveren.com</description>
 	<!--
 		<organization>
 			<name>company name</name>
@@ -399,38 +399,64 @@
 		<resources>
 			<resource>
 				<filtering>false</filtering>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.*</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<filtering>false</filtering>
 				<directory>src/main/resources</directory>
 				<includes>
-					<include>**</include>
+					<include>images/*.*</include>
+					<include>css/*.*</include>
+					<include>js/*.*</include>
+					<include>*.*</include>
 				</includes>
 			</resource>
 			<resource>
 				<filtering>false</filtering>
-				<directory>src/main/java</directory>
+				<directory>src/main/resources</directory>
+				<targetPath>/home/avk/Software Development/tomcat8/webapps</targetPath>
 				<includes>
-					<include>**</include>
+					<include>**/*.*</include>
 				</includes>
-				<excludes>
-					<exclude>**/*.java</exclude>
-				</excludes>
 			</resource>
+<!-- 
+			<resource>
+				<filtering>false</filtering>
+				<directory>src/main/resources</directory>
+				<targetPath>${project.build.directory}/resources</targetPath>
+				<includes>
+					<include>**/*.*</include>
+				</includes>
+			</resource>
+ -->
 		</resources>
+<!-- 
 		<testResources>
 			<testResource>
 				<filtering>false</filtering>
-				<directory>src/main/resources</directory>
-			</testResource>
-			<testResource>
-				<filtering>false</filtering>
 				<directory>src/main/java</directory>
 				<includes>
-					<include>**</include>
+					<include>**/*.*</include>
 				</includes>
 				<excludes>
 					<exclude>**/*.java</exclude>
 				</excludes>
 			</testResource>
+			<testResource>
+				<filtering>false</filtering>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.*</include>
+				</includes>
+			</testResource>
 		</testResources>
+ -->
 		<plugins>
 <!-- 
 		    <plugin>
