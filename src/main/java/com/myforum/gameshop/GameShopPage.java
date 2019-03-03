@@ -200,6 +200,18 @@ public class GameShopPage extends BasePage {
     				ratingUrlLink.setVisible(false);
     			}
     			
+    			// when administrator, all the data is shown as editable fields, so hide the non-editable labels
+    			// as it only uses up space (which is annoying when you are mass editing a lot of data
+    			if(isAdministrator(getActiveUser())) {
+    				developer.setVisible(false);
+    				gameConsole.setVisible(false);
+    				name.setVisible(false);
+    				description.setVisible(false);
+    				ratingLabel.setVisible(false);
+    				ratingTextLabel.setVisible(false);
+    				ratingUrlLink.setVisible(false);
+    			}
+    			
     			listItem.add(developer);
                 listItem.add(gameConsole);
                 listItem.add(name);
