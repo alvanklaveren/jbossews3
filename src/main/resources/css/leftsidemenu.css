@@ -1,67 +1,31 @@
-* {
+/* Fixed sidenav, full height */
+.sidenav {
   margin: 0px;
   padding: 0px;
-}
- 
-body {
-  background: #e5e5e7;
-}
- 
-.sidemenu nav {
+  background-color: #F3F3FC;
   font-family: Helvetica, Arial, "Lucida Grande", sans-serif;
   line-height: 0.8;
-  margin: 50px auto; /*for display only*/
-  width: 250px;
-  -webkit-box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-     -moz-box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-          box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-}
- 
-.sidemenu-item {
-  background: #fff;
-  width: 75%; 
-}
-
-.sidemenu-item h4 a {
-  color: white;
-  display: block;
-  text-decoration: none;
   width: 75%;
 }
 
-.sidemenu-item h4 {
-  border-bottom: 1px solid rgba(0,0,0,0.3);
-  border-top: 1px solid rgba(255,255,255,0.2);
-  color: #fff;
-  font-size: 15px;
-  font-weight: 500;
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
   padding: 1px 12px;
- 
+  color: #fff;
   background: #337ab7;
-}
-
-/* FOR SAFE KEEP
-.sidemenu-item h4 {
+  text-decoration: none;
+  font-size: 15px;
+  display: block;
+  width: 100%;
   border-bottom: 1px solid rgba(0,0,0,0.3);
   border-top: 1px solid rgba(255,255,255,0.2);
-  color: #fff;
-  font-size: 15px;
   font-weight: 500;
-  padding: 7px 12px;
-  
-  background: #729fcf; 
-  background: #14b6fc;
-  background: -moz-linear-gradient(top, #204a87 0%, #729fcf 44%, #14b6fc 100%); 
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,##204a87), color-stop(44%,#729fcf), color-stop(100%,#14b6fc)); 
-  background: -webkit-linear-gradient(top, #204a87 0%,#729fcf 44%,#14b6fc 100%); 
-  background: -o-linear-gradient(top, #204a87 0%,#729fcf 44%,#14b6fc 100%); 
-  background: -ms-linear-gradient(top, #204a87 0%,#729fcf 44%,#14b6fc 100%); 
-  background: linear-gradient(top, #204a87 0%,#729fcf 44%,#14b6fc 100%); 
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#204a87', endColorstr='#14b6fc',GradientType=0 ); 
+  cursor: pointer;
+  outline: none;
 }
-*/
 
-.sidemenu-item h4:hover {  
+/* On mouse-over */
+.dropdown-btn:hover {
   background: #729fcf; /* Old browsers */
   background: -moz-linear-gradient(top,  #729fcf 0%, #729fcf 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#729fcf), color-stop(100%,#729fcf)); /* Chrome,Safari4+ */
@@ -72,50 +36,45 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#729fcf', endColorstr='#729fcf',GradientType=0 ); /* IE6-9 */
 }
 
-/*First Item Styles*/
-.alpha p {
-	font-size: 13px;
-	padding: 8px 12px;
-	color: #aaa;
+/* Add an active class to the active dropdown button */
+.active {
+  color: white;
+  background: #729fcf; /* Old browsers */
+  background: -moz-linear-gradient(top,  #729fcf 0%, #729fcf 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#729fcf), color-stop(100%,#729fcf)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #729fcf 0%,#729fcf 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #729fcf 0%,#729fcf 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #729fcf 0%,#729fcf 100%); /* IE10+ */
+  background: linear-gradient(top,  #729fcf 0%,#729fcf 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#729fcf', endColorstr='#729fcf',GradientType=0 ); /* IE6-9 */
 }
 
-/*ul Styles*/
-.sidemenu-item ul {
-  background: #fff;
-  font-size: 12px;
-  line-height: 20px;
-  height: 0px;
-  list-style-type: none;
-  height: 0px; /*Collapses the menu*/
-  overflow: hidden;
-  padding: 0px;
-  
-  /*Animation*/
-  -webkit-transition: height 1s ease;
-     -moz-transition: height 1s ease;
-       -o-transition: height 1s ease;
-      -ms-transition: height 1s ease;
-          transition: height 1s ease;
+/* Dropdown container */
+.dropdown-container{
+  display: none; /*default (at start of opening the page) hidden. Clicked event will make it visible (display: block) in leftsidemenu.js*/
 }
 
-
-.sidemenu-item:hover ul {
-  height: 84px;
-}
- 
-.sidemenu-item ul a {
-  margin-left: 20px;
+.dropdown-container a{
   text-decoration: none;
+  width: 100%;
   color: #555;
-  display: block;
-  width: 75%;
-}
- 
-/*li Styles*/
-.sidemenu-item li {
+  background: #fff;
   border-bottom: 1px solid #eee;
 }
- 
-.sidemenu-item li:hover {
+
+.dropdown-container a:hover {
   background: #eee;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+
+
+/* Some media queries for responsiveness */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
 }

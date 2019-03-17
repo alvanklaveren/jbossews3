@@ -27,21 +27,24 @@ public class GameShopPanelLeft extends BasePanelLeft {
 		List<GameConsole> gameConsoleList = new GameConsoleDao().list();
 		List<ProductType> productTypeList = new ProductTypeDao().list(); 
 
-		sb.append("<div class=\"sidemenu-item\">");
-		sb.append("<h4><a href=\"/gameshop\">"+ translator.translate( EText.RECENTLY_ADDED ) +"</a></h4>");
-	    sb.append("</div>");
-   
+	    sb.append("<br/>");
+		sb.append("<div class=\"sidenav\">");
+		sb.append("<a href=\"/gameshop\">"+ translator.translate( EText.RECENTLY_ADDED ) +"</a>");
+	    sb.append("<br/>");
+
 		for(GameConsole gameConsole:gameConsoleList){
-			sb.append("<div class=\"sidemenu-item\">");
-			sb.append("<h4><a href=\"/gameshop/" + gameConsole.getCode() + "\">" + gameConsole.getDescription() + "</a></h4>");
-		    sb.append("<ul class=\"sidemenu-item\">");
+			sb.append("<button class=\"dropdown-btn\">" + gameConsole.getDescription() + "<i class=\"fa fa-caret-down\"></i></button>");
+
+			sb.append("<div class=\"dropdown-container\">");
 			for(ProductType productType:productTypeList){
-			    sb.append("<li class=\"sidemenu-item\"><a class=\"sidemenu-item\" href=\"/gameshop/" + gameConsole.getCode() + "/" + productType.getCode() + "\">" + productType.getDescription() + "</a></li>");
+			    sb.append("<a href=\"/gameshop/" + gameConsole.getCode() + "/" + productType.getCode() + "\">" + productType.getDescription() + "</a>");
 			}
-		    sb.append("</ul>");
 		    sb.append("</div>");
+		    sb.append("<br/>");
 		}
-		
+
+	    sb.append("</div>");
+
 		Label leftSideMenuLabel = new Label("leftsidemenu", new Model<String>( sb.toString() ));
 		leftSideMenuLabel.setEscapeModelStrings(false);
 		add(leftSideMenuLabel);
