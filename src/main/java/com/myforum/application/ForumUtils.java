@@ -253,7 +253,7 @@ public final class ForumUtils{
 		
 		return inputValue;
 	}
-	
+
 	public static ModalWindow createModalWindow(String wicketId, final BasePage parent, final ModalPage modalPage){
         // Create the modal window.
         final ModalWindow modal;

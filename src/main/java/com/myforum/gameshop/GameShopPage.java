@@ -23,7 +23,9 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.apache.wicket.util.lang.Generics;
 
+import com.googlecode.wicket.jquery.ui.form.autocomplete.AutoCompleteTextField;
 import com.myforum.application.DBHelper;
 import com.myforum.application.ForumUtils;
 import com.myforum.application.StringLogics;
@@ -40,6 +42,7 @@ import com.myforum.gameshop.DDC.ProductTypeDDC;
 import com.myforum.tables.Product;
 import com.myforum.tables.ProductImage;
 import com.myforum.tables.ProductRating;
+import com.myforum.tables.dao.ProductDao;
 
 public class GameShopPage extends BasePage {
 	private static final long serialVersionUID = 1L;
@@ -93,24 +96,50 @@ public class GameShopPage extends BasePage {
         final Form<String> addForm = new Form<String>("addform");
         addForm.add( createFormModalButton( "addcompany",   "Add Company", 	  modalAddCompany) );
         addForm.add( createFormModalButton( "addratingurl", "Add Rating URL", modalAddRatingUrl) );
-        
+       
         addForm.add( createFormButton( "addproduct", 	  "Add Product",   AddGamePage.class) );
         addForm.add( createFormButton( "refresh",    	  "Refresh", 	   GameShopPage.class) );
 
         addOrReplace(addForm);
 	    
-        final Form<DDCSelectModel> searchForm 	= new Form<DDCSelectModel>("searchform", new CompoundPropertyModel<DDCSelectModel>(selectModel));
-
-        final TextField<String> searchTitle 	= new TextField<String>("searchtitle",   new Model<String>(title));
-	    searchTitle.add( new AttributeModifier("placeholder", new Model<String>( translator.translate("Search Title") )) );
-	    searchForm.addOrReplace( searchTitle );
+        final Form<DDCSelectModel> searchForm = new Form<DDCSelectModel>("searchform", new CompoundPropertyModel<DDCSelectModel>(selectModel));
 
 	    searchForm.addOrReplace( createSelectnumberOfItemsDDC(numberOfItems) );
 	    searchForm.addOrReplace(new AVKLabel("numberofitemslabel", "Number of Items"));
 
 	    searchForm.addOrReplace( createSelectSortorderDDC(sortOrder) );
 	    searchForm.addOrReplace(new AVKLabel("sortorderlabel", "Sort By"));
-   
+
+        final AutoCompleteTextField<String> searchTitle = new AutoCompleteTextField<String>("searchtitle", new Model<String>()) {
+        	private static final long serialVersionUID = 1L;
+
+			@Override
+			protected List<String> getChoices(String input)
+			{
+				List<String> choices = Generics.newArrayList();
+				
+				int count = 0;
+				for (Product product : new ProductDao().list())
+				{
+					if (product.getName().toLowerCase().contains(input.toLowerCase()))
+					{
+						choices.add(product.getName());
+
+						// limits the number of results
+						if (++count == 20)
+						{
+							break;
+						}
+					}
+				}
+
+				return choices;
+			}
+			
+		};
+
+        searchTitle.add( new AttributeModifier("placeholder", new Model<String>( translator.translate("Search Title") )) );
+		searchForm.addOrReplace( searchTitle );
 	    
 	    final Button searchButton = new AVKButton("searchbutton", "Search"){
 			private static final long serialVersionUID = 1L;
@@ -118,7 +147,8 @@ public class GameShopPage extends BasePage {
 			@Override
 			public void onSubmit() {
 				PageParameters params = getPageParameters();
-				params.set("searchtitle", ForumUtils.getInput(searchTitle));
+
+				params.set("searchtitle", searchTitle.getInput().trim());
 				params.set("numberofitems", numberOfItems);
 				params.set("sortorder", sortOrder);
 
@@ -131,7 +161,7 @@ public class GameShopPage extends BasePage {
 	    };    
 	    searchForm.addOrReplace(searchButton);
 	    
-	    addOrReplace(searchForm);
+        addOrReplace(searchForm);
 
 		// Add header text
 	    addOrReplace( createHeaderLabel() );
