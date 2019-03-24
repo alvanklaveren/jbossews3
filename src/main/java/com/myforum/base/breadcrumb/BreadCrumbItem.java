@@ -7,7 +7,7 @@ import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.link.StatelessLink;
 
 import com.myforum.application.CookieLogics;
-import com.myforum.base.BasePage;
+import com.myforum.base.AVKPage;
 import com.myforum.forumpages.ForumBasePage;
 import com.myforum.forumpages.ForumBasePanel;
 import com.myforum.framework.AVKLabel;
@@ -19,7 +19,7 @@ public class BreadCrumbItem implements Serializable{
 	private String displayText;
 	boolean	isActive;
 	private Class<? extends ForumBasePanel> panelClass;
-	private Class<? extends BasePage> pageClass;
+	private Class<? extends AVKPage> pageClass;
    	//private static Logger log = LoggerFactory.getLogger(BreadCrumbItem.class);
 
 
@@ -33,7 +33,7 @@ public class BreadCrumbItem implements Serializable{
 		return this;
 	}
 
-	public BreadCrumbItem setPage(Class<? extends BasePage> pageClass){
+	public BreadCrumbItem setPage(Class<? extends AVKPage> pageClass){
 		this.pageClass = pageClass;
 		return this;
 	}

@@ -11,7 +11,7 @@ import org.apache.wicket.markup.html.link.StatelessLink;
 import org.apache.wicket.model.Model;
 
 import com.myforum.application.CookieLogics;
-import com.myforum.base.BasePage;
+import com.myforum.base.AVKPage;
 import com.myforum.base.dictionary.Translator;
 import com.myforum.forumpages.ForgotPasswordPanel;
 import com.myforum.forumpages.ForumBasePage;
@@ -79,7 +79,7 @@ public class LoginForm extends StatelessForm<Object>{
 	        	String password = passwordTF.getInput();
         	    	        	        	
 	        	if(!CredentialLogics.validCredentials(username, password)){
-	        		((BasePage) getPage()).setErrorMessage( "Incorrect login credentials" );
+	        		((AVKPage) getPage()).setErrorMessage( "Incorrect login credentials" );
 	        		CookieLogics.deleteCookie("magictoken");
 	        	}else{  	      	
 		        	// user name + password valid. Connect user to forum.

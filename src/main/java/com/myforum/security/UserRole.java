@@ -5,7 +5,7 @@ import java.util.HashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.myforum.base.BasePage;
+import com.myforum.base.AVKPage;
 import com.myforum.tables.Classification;
 
 public abstract class UserRole {
@@ -23,7 +23,7 @@ public abstract class UserRole {
 
 	@SuppressWarnings("rawtypes") 
 	protected void addPrivilege(Class windowId, boolean canRead, boolean canWrite, boolean canOpen){
-		windowPrivilegeMap.put( windowId, new WindowPrivilege(BasePage.class, canRead, canWrite, canOpen) );
+		windowPrivilegeMap.put( windowId, new WindowPrivilege(AVKPage.class, canRead, canWrite, canOpen) );
 	}
 
 	@SuppressWarnings("rawtypes")

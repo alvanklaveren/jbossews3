@@ -21,7 +21,7 @@ import com.myforum.application.DBHelper;
 import com.myforum.application.ForumUtils;
 import com.myforum.application.IoLogics;
 import com.myforum.application.StringLogics;
-import com.myforum.base.BasePage;
+import com.myforum.base.AVKPage;
 import com.myforum.base.ForumLogics;
 import com.myforum.framework.AVKButton;
 import com.myforum.framework.ErrorLabel;
@@ -31,7 +31,7 @@ import com.myforum.tables.Classification;
 import com.myforum.tables.ForumUser;
 import com.myforum.tables.dao.ForumUserDao;
 
-public class UserModifyAccountPage extends BasePage {
+public class UserModifyAccountPage extends AVKPage {
 	private static final long 				serialVersionUID 	= 1L;
 	private final 		 ForumUserDao		forumUserDao 		= new ForumUserDao(); 
 	private static 		 Classification 	currentClassification;

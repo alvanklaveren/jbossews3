@@ -13,7 +13,7 @@ import com.myforum.application.AllConstants;
 import com.myforum.application.CryptWithPBKDF2;
 import com.myforum.application.DBHelper;
 import com.myforum.application.StringLogics;
-import com.myforum.base.BasePage;
+import com.myforum.base.AVKPage;
 import com.myforum.framework.AVKButton;
 import com.myforum.framework.AVKLabel;
 import com.myforum.framework.ResponseButton;
@@ -22,7 +22,7 @@ import com.myforum.tables.ForumUser;
 import com.myforum.tables.dao.ClassificationDao;
 import com.myforum.tables.dao.ForumUserDao;
 
-public class UserRegistrationPage extends BasePage {
+public class UserRegistrationPage extends AVKPage {
  	
 	private static final long 	serialVersionUID 	= 1L;
 	private final ForumUserDao 	forumUserDao 		= new ForumUserDao();

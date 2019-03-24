@@ -11,7 +11,7 @@ import org.apache.wicket.model.Model;
 import com.myforum.application.CookieLogics;
 import com.myforum.application.DBHelper;
 import com.myforum.application.StringLogics;
-import com.myforum.base.BasePage;
+import com.myforum.base.AVKPage;
 import com.myforum.tables.ForumUser;
 import com.myforum.tables.Message;
 import com.myforum.tables.MessageCategory;
@@ -83,7 +83,7 @@ public class ForumMessageForm extends StatelessForm<Object> {
     			// only check for a title in new messages. Comments do not have a title.
     			if( codeMessage == 0 ){
 					if( StringLogics.isEmpty( newMessage.getDescription() ) ){
-						((BasePage) getPage()).setErrorMessage( "Please add a title" );
+						((AVKPage) getPage()).setErrorMessage( "Please add a title" );
 		        		isError = true;
 					}else{
 		    			getSession().setAttribute( "messageDescription", newMessage.getDescription() );

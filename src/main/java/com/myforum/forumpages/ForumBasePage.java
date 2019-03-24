@@ -1,10 +1,10 @@
 package com.myforum.forumpages;
 
 import com.myforum.application.CookieLogics;
-import com.myforum.base.BasePage;
+import com.myforum.base.AVKPage;
 import com.myforum.base.menu.EMenuItem;
 
-public class ForumBasePage extends BasePage{
+public class ForumBasePage extends AVKPage{
 	private static final long 	serialVersionUID = 1L;
 	private ForumBasePanel		activePanel;
 

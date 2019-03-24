@@ -6,11 +6,11 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.ExternalLink;
 
 import com.myforum.application.ForumUtils;
-import com.myforum.base.BasePage;
+import com.myforum.base.AVKPage;
 import com.myforum.base.menu.EMenuItem;
 import com.myforum.framework.AVKLabel;
 
-public class AboutMePage extends BasePage {
+public class AboutMePage extends AVKPage {
 	private static final long serialVersionUID = 1L;
 
 	public AboutMePage() {

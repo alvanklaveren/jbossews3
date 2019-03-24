@@ -1,7 +1,7 @@
 package com.myforum.security;
 
 import com.myforum.articlepage.ArticlePage;
-import com.myforum.base.BasePage;
+import com.myforum.base.AVKPage;
 import com.myforum.forumpages.ForgotPasswordPanel;
 import com.myforum.forumpages.ForumAddMessagePanel;
 import com.myforum.forumpages.ForumBasePage;
@@ -34,7 +34,7 @@ public class Member extends UserRole{
 	public Member(){
 		
 		// windowPrivilege( windowId, canRead, canWrite, canOpen ;
-		addPrivilege( BasePage.class,				true, false, true );
+		addPrivilege( AVKPage.class,				true, false, true );
 		
 		addPrivilege( AboutMePage.class, 			true, false, true );
 		addPrivilege( HomePage.class, 				true, false, true );

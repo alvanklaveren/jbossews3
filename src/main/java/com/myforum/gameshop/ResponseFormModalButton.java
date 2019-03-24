@@ -6,14 +6,14 @@ import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.Model;
 
-import com.myforum.base.BasePage;
+import com.myforum.base.AVKPage;
 import com.myforum.base.dictionary.Translator;
 
 public class ResponseFormModalButton extends AjaxButton{
 	private static final long serialVersionUID = 1L;
 
 	ModalWindow	modal;
-	BasePage parent;
+	AVKPage parent;
 	
 	public ResponseFormModalButton(String id, String buttonText, final ModalWindow modal, boolean visible) {
 		super(id, new Model<String>(Translator.getInstance().translate(buttonText)) );

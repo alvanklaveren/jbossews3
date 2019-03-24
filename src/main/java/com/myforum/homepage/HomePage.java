@@ -13,7 +13,7 @@ import org.apache.wicket.markup.html.list.PageableListView;
 import com.myforum.application.CookieLogics;
 import com.myforum.application.ForumUtils;
 import com.myforum.application.StringLogics;
-import com.myforum.base.BasePage;
+import com.myforum.base.AVKPage;
 import com.myforum.base.menu.EMenuItem;
 import com.myforum.framework.AVKLabel;
 import com.myforum.framework.StatelessPagingNavigator;
@@ -23,7 +23,7 @@ import com.myforum.tables.dao.MessageCategoryDao;
 import com.myforum.tables.dao.MessageDao;
 
 
-public class HomePage extends BasePage {
+public class HomePage extends AVKPage {
 	private static final long serialVersionUID = 1L;
 
 	private final MessageCategoryDao 	messageCategoryDao 	= new MessageCategoryDao();

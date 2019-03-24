@@ -6,7 +6,9 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.Transformers;
 
 import com.myforum.application.StringLogics;
 import com.myforum.gameshop.ESortOrder;
@@ -27,6 +29,21 @@ public class ProductDao extends HibernateDao<Product, Integer>{
     	criteria.createAlias( "productType", "pt" );
     	criteria.addOrder( Order.asc( "pt.description" ) );
     	criteria.addOrder( Order.asc( "name" ) );
+    	
+        return (List<Product>) criteria.list();
+    }
+
+	@SuppressWarnings("unchecked")
+	public List<Product> listUniqueNames(){
+		Session session = prepareTransaction();
+    	
+		Criteria criteria = session.createCriteria( daoType ).setProjection(
+	    Projections.distinct(Projections.projectionList()
+	    	       .add(Projections.property("name"), "name")))
+	    		   .setResultTransformer(Transformers.aliasToBean(Product.class));
+		
+    	criteria.addOrder( Order.asc( "name" ) );
+    	//criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY); // not unique enough
     	
         return (List<Product>) criteria.list();
     }

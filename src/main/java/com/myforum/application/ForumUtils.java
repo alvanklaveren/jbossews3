@@ -23,6 +23,7 @@ import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.myforum.base.AVKPage;
 import com.myforum.base.BasePage;
 import com.myforum.framework.ModalPage;
 import com.myforum.tables.ForumUser;

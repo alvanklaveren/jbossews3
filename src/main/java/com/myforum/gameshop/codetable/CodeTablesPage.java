@@ -5,11 +5,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.myforum.application.ForumUtils;
-import com.myforum.base.BasePage;
+import com.myforum.base.AVKPage;
 import com.myforum.base.menu.EMenuItem;
 import com.myforum.homepage.HomePage;
 
-public class CodeTablesPage extends BasePage {
+public class CodeTablesPage extends AVKPage {
 
 	private static final long serialVersionUID = 1L;
 	

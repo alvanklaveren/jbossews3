@@ -2,6 +2,7 @@ package com.myforum.framework;
 
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
+import com.myforum.base.AVKPage;
 import com.myforum.base.BasePage;
 
 public class ResponseFormButton extends AVKButton{

@@ -29,7 +29,7 @@ import org.apache.wicket.util.time.Duration;
 import com.myforum.application.DBHelper;
 import com.myforum.application.IoLogics;
 import com.myforum.application.StringLogics;
-import com.myforum.base.BasePage;
+import com.myforum.base.AVKPage;
 import com.myforum.base.menu.EMenuItem;
 import com.myforum.framework.AreYouSurePanel;
 import com.myforum.security.CredentialLogics;
@@ -40,7 +40,7 @@ import com.myforum.tables.dao.SourceSubjectDao;
 import com.myforum.tables.dao.SourceTextDao;
 import com.myforum.tables.dao.SourceTypeDao;
 
-public class SourceSubjectPage extends BasePage {
+public class SourceSubjectPage extends AVKPage {
 
 	private static final long 		serialVersionUID = 1L;
 

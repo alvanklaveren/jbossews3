@@ -16,9 +16,9 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import com.myforum.application.StringLogics;
-import com.myforum.base.BasePage;
+import com.myforum.base.AVKPage;
 
-public abstract class CodeTableBasePage extends BasePage {
+public abstract class CodeTableBasePage extends AVKPage {
 	private static final long serialVersionUID = 1L;
 
 	/*

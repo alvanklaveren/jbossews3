@@ -11,7 +11,7 @@ import org.apache.wicket.model.Model;
 import com.myforum.application.DBHelper;
 import com.myforum.application.ForumUtils;
 import com.myforum.application.StringLogics;
-import com.myforum.base.BasePage;
+import com.myforum.base.AVKPage;
 import com.myforum.tables.ForumUser;
 import com.myforum.tables.Message;
 import com.myforum.tables.MessageCategory;
@@ -73,14 +73,14 @@ public class SourceTextForm extends StatelessForm<Object> {
 				newMessage.setMessageText( messageTextTA.getInput() );
 				
 		    	if( ForumUtils.isNullOrZero( (Integer) getSession().getAttribute( "codeforumuser" ) ) ){
-	        		((BasePage) getPage()).setErrorMessage( "You have to be logged in to write messages" );
+	        		((AVKPage) getPage()).setErrorMessage( "You have to be logged in to write messages" );
     				isError = true;
     			}   			
 		    	    			
     			// only check for a title in new messages. Comments do not have a title.
     			if( codeMessage == 0 ){
 					if( StringLogics.isEmpty( newMessage.getDescription() ) ){
-						((BasePage) getPage()).setErrorMessage( "Please add a title" );
+						((AVKPage) getPage()).setErrorMessage( "Please add a title" );
 		        		isError = true;
 					}else{
 		    			getSession().setAttribute( "messageDescription", newMessage.getDescription() );
@@ -89,7 +89,7 @@ public class SourceTextForm extends StatelessForm<Object> {
 
     			
 				if( StringLogics.isEmpty( newMessage.getMessageText() ) ){
-					((BasePage) getPage()).setErrorMessage( "Please add message content" );
+					((AVKPage) getPage()).setErrorMessage( "Please add message content" );
 	        		isError = true;
 				}else{
 	    			getSession().setAttribute( "messageText", newMessage.getMessageText() );

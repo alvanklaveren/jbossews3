@@ -8,10 +8,10 @@ import org.apache.wicket.request.resource.CssResourceReference;
 
 import com.myforum.application.ForumUtils;
 import com.myforum.application.IoLogics;
-import com.myforum.base.BasePage;
+import com.myforum.base.AVKPage;
 import com.myforum.base.menu.EMenuItem;
 
-public class ArticlePage extends BasePage {
+public class ArticlePage extends AVKPage {
 	private static final long serialVersionUID = 1L;
 
 	public ArticlePage(PageParameters params) {

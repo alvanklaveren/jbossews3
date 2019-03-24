@@ -1,5 +1,8 @@
 <html xmlns:wicket>
-<wicket:extend>
+  <wicket:head>
+    <link href="css/jquery-ui.css" rel="stylesheet">
+  </wicket:head>
+  <wicket:extend>
 	<div wicket:id="modalAddCompany"></div>
 	<div wicket:id="modalAddRatingUrl"></div>
 
@@ -90,5 +93,8 @@
       <span style="text-align:center" wicket:id="navigator">[listview navigator]</span>
     </div>
 	
-</wicket:extend>
+	<script src="js/leftsidemenu.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  </wicket:extend>
 </html>

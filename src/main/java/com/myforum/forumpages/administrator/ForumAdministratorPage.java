@@ -30,7 +30,7 @@ import com.myforum.application.DBHelper;
 import com.myforum.application.ForumUtils;
 import com.myforum.application.IoLogics;
 import com.myforum.application.StringLogics;
-import com.myforum.base.BasePage;
+import com.myforum.base.AVKPage;
 import com.myforum.base.menu.EMenuItem;
 import com.myforum.forumpages.ForumBasePage;
 import com.myforum.forumpages.UserModifyAccountPage;
@@ -44,7 +44,7 @@ import com.myforum.tables.dao.ConstantsDao;
 import com.myforum.tables.dao.ForumUserDao;
 import com.myforum.tables.dao.MessageCategoryDao;
 
-public class ForumAdministratorPage extends BasePage {
+public class ForumAdministratorPage extends AVKPage {
 	private static final long 	serialVersionUID = 1L;
 
 	public ForumAdministratorPage(){

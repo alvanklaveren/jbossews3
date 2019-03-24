@@ -15,14 +15,14 @@ import org.apache.wicket.markup.html.list.PageableListView;
 import org.apache.wicket.model.Model;
 
 import com.myforum.application.DBHelper;
-import com.myforum.base.BasePage;
+import com.myforum.base.AVKPage;
 import com.myforum.base.menu.EMenuItem;
 import com.myforum.framework.StatefulPagingNavigator;
 import com.myforum.security.CredentialLogics;
 import com.myforum.tables.SourceCategory;
 import com.myforum.tables.dao.SourceCategoryDao;
 
-public class SourceHomePage extends BasePage {
+public class SourceHomePage extends AVKPage {
 
 	private static final long 			serialVersionUID 	= 1L;
 	private List<SourceCategory> 		sourceCategoryList  = Collections.synchronizedList( new ArrayList<SourceCategory>() );

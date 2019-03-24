@@ -3,7 +3,6 @@ package com.myforum.gameshop;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
@@ -119,14 +118,14 @@ public class GameShopPage extends BasePage {
 				List<String> choices = Generics.newArrayList();
 				
 				int count = 0;
-				for (Product product : new ProductDao().list())
+				for (Product product : new ProductDao().listUniqueNames())
 				{
 					if (product.getName().toLowerCase().contains(input.toLowerCase()))
-					{
+					{				
 						choices.add(product.getName());
 
 						// limits the number of results
-						if (++count == 20)
+						if (++count == 30)
 						{
 							break;
 						}
@@ -136,10 +135,17 @@ public class GameShopPage extends BasePage {
 				return choices;
 			}
 			
+
+//			@Override
+//			protected void onSelected(AjaxRequestTarget target)
+//			{
+//				String name = this.getModelObject();
+//			} 
+			
 		};
 
-        searchTitle.add( new AttributeModifier("placeholder", new Model<String>( translator.translate("Search Title") )) );
-		searchForm.addOrReplace( searchTitle );
+        //searchTitle.add( new AttributeModifier("placeholder", new Model<String>( translator.translate("Search Title") )) );
+		searchForm.add( searchTitle );
 	    
 	    final Button searchButton = new AVKButton("searchbutton", "Search"){
 			private static final long serialVersionUID = 1L;
@@ -148,7 +154,11 @@ public class GameShopPage extends BasePage {
 			public void onSubmit() {
 				PageParameters params = getPageParameters();
 
-				params.set("searchtitle", searchTitle.getInput().trim());
+				String search = searchTitle.getInput().trim();
+				// remove characters that are not accepted in a SEARCH
+				search = search.replace(':', ' ');
+
+				params.set("searchtitle", search);
 				params.set("numberofitems", numberOfItems);
 				params.set("sortorder", sortOrder);
 

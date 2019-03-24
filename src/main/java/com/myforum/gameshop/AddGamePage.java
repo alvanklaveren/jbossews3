@@ -6,13 +6,13 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.myforum.application.ForumUtils;
 import com.myforum.application.StringLogics;
-import com.myforum.base.BasePage;
+import com.myforum.base.AVKPage;
 import com.myforum.models.AddProduct;
 import com.myforum.tables.dao.CompanyDao;
 import com.myforum.tables.dao.GameConsoleDao;
 import com.myforum.tables.dao.ProductTypeDao;
 
-public class AddGamePage extends BasePage {
+public class AddGamePage extends AVKPage {
 	private static final long serialVersionUID = 1L;
 
 	public AddGamePage(PageParameters params) {
