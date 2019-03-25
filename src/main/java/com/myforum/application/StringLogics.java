@@ -115,34 +115,59 @@ public final class StringLogics{
 	}
 
 	public static String setHyperLink( String messageText ){
-		String source = "[h:";
-		StringBuilder buildString = new StringBuilder();
+
+		String modifiedMessageText = messageText;
 		
-		
-		for( int i = 0; i < messageText.length(); i++ ){
-			if( i < messageText.length() - ( source.length() - 1 ) && messageText.substring( i, i + source.length() ).equals( source ) ) {
-				i = i + source.length();
-				int k = i;
-				while( k < (messageText.length() - 1) && messageText.charAt( k ) != ']' ){
-					k++;
-				}
-				
-				String hyperlink = "<a target=\"_blank\" rel=\"nofollow\" href=\"";
-				if(!messageText.substring( i, k ).startsWith("http")){
-					hyperlink += "http://"; 
-				}
-				hyperlink += messageText.substring( i, k ) + "\">" + messageText.substring( i, k ) + "</a>"; 
-				buildString.append( hyperlink );		
-				i = k;
-				
-			}else{
-				buildString.append( messageText.charAt( i ) );				
+		String hrefCoded = findFirst(modifiedMessageText, "[h:", "]");
+
+		while (hrefCoded.length() > 0) { 
+			String[] content = hrefCoded.replace("[h:", "").replaceAll("]", "").split(";");
+			
+			String href = "";
+			String hrefText = "";
+			
+			switch (content.length) {
+				case 1:	
+					href = content[0];
+					hrefText = href;
+					break;
+					
+				case 2:
+					href = content[0];
+					hrefText = content[1];
+					break;
+					
+				default:
 			}
-		}	
-		return( buildString.toString().trim() );
+				
+			if(!href.startsWith("http"))
+				href = "http://" + href; 
+				
+			String hyperlink = "<a target=\"_blank\" rel=\"nofollow\" href=\"" + href + "\">" + hrefText + "</a>";;
+			
+			modifiedMessageText = modifiedMessageText.replace(hrefCoded, hyperlink);
+			
+			hrefCoded = findFirst(modifiedMessageText, "[h:", "]");
+		}
+				
+		return modifiedMessageText.trim();
 
 	}
 
+	private static String findFirst(String source, String start, String end) {
+		int startPos = source.indexOf(start);
+		if (startPos == -1) {
+			return "";
+		}
+		
+		int endPos = source.indexOf(end, startPos + 1);
+		if (endPos == -1) {
+			return ""; 
+		}
+			
+		return source.substring(startPos, endPos + end.length());
+	}
+	
 	/*
 	 *  This function does the setEscapeModelStrings( true ) for text that is in HTML. 
 	 *  To make editing easier, **** will be recognised as <table class=sourcetext>
