@@ -53,6 +53,7 @@ public final class DictionaryDutch extends Dictionary {
 		translatedWordMap.put("welcome", 		"welkom");
 		translatedWordMap.put("with", 			"met");
 		translatedWordMap.put("yes", 			"ja");
+		translatedWordMap.put("message", 		"bericht");
 		
 		put(translatedSentenceMap, EText.ADD_CATEGORY, "Category toevoegen");
 		put(translatedSentenceMap, EText.ADD_PRODUCT, "Product toevoegen");
@@ -84,7 +85,7 @@ public final class DictionaryDutch extends Dictionary {
 		aboutText.append( "en <a href=\"https://spring.io/\">Spring Framework</a>. De website draait op <a href=\"http://tomcat.apache.org/\">Tomcat 8</a> " );
 		aboutText.append( "op een hosting platform genaamd <a href = \"https://www.digitalocean.com/\">Digital Ocean</a>. Verder wordt de layout van de website " ); 
 		aboutText.append( "ondersteunt door <a href=\"http://getbootstrap.com/\"> Bootstrap</a>. <br><br>" ); 
-		aboutText.append( "Als je een vraag hebt of om een andere reden contact wilt zoeken met de maker van deze website, stuur dan een email naar " ); 
+		aboutText.append( "Als je een vraag hebt of om een andere reden contact wilt zoeken met de maker van deze website, stuur dan een " ); 
 		put(translatedSentenceMap, EText.ABOUT_WEBSITE_TEXT, aboutText.toString());
 		
 	}
