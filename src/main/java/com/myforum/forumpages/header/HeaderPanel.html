@@ -1,6 +1,7 @@
 <html xmlns:wicket>
 <wicket:panel>
 <div class="HeaderPanel">
+  <div>
  	<form wicket:id="loginForm" class="form-inline" style="float:right">
 	 	<div class="form-group">
 			<label class="sr-only" for="inputUsername">Username</label>
@@ -28,14 +29,18 @@
 		   </div>
 		</font>
  	</form>
-		
-	<div>
-		<h1 wicket:id="forumname"></h1>
-		<br><br>
-		<div wicket:id="errormessage" class="alert alert-danger" role="alert"></div>
-		<br>
-		<div wicket:id="breadcrumbs"></div>
-	</div>
+ 	<br><br>
+  </div>	
+  
+  <div style="clear:both"></div>
+  
+  <div>
+	<h1 wicket:id="forumname"></h1>
+	<br><br>
+	<div wicket:id="errormessage" class="alert alert-danger" role="alert"></div>
+	<br>
+	<div wicket:id="breadcrumbs"></div>
+  </div>
 </div>
 </wicket:panel>
 </html>

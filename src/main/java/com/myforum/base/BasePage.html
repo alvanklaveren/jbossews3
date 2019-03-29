@@ -23,37 +23,41 @@
  <style>
     #basepanelleft {
 		float:left;
-		width:15%;
 		min-height: 100%; 
 		padding-left: 10px;
 	}
 
 	#centerpanel{
-		float:left; 
-		border: thin solid white; 
 		min-height: 100%; 
-		padding-left: 10px; 
-		padding-right: 10px; 
 		background:#FFFFFF; 
+		border: thin solid white; 
 		box-shadow:5px 5px 20px grey;
 	}
 
     #basepanelright {
 		float:right; 
-		width: 15%; 
 		min-height: 100%; 
 		padding-left: 10px; 
 		padding-right: 10px;
 	}
 
-	/* Small devices (tablets, 768px and up) */
+	/* Small devices and up (tablets, 768px and up) */
 	@media only screen and (min-width:768px){
+	  #basepanelleft{
+	  display:block;
+		width:15%;
+	  }
+	  
 	  #centerpanel{
+		float:left; 
 	  	width:70%;
+		padding-left: 10px; 
+		padding-right: 10px; 
 	  }
 
 	  #basepanelright{
 	  	display:block;
+	  	width:15%;
 	  }
 
 	  #footerabout{
@@ -63,12 +67,22 @@
 
 	/* Extra Small devices (phones, > 768px) */
 	 @media only screen and (max-width:767px){
+	  #basepanelleft{
+	  	display:none;
+	  }
+
+      #mypicture {
+	  	display:none;
+	  }
+
 	  #centerpanel{
-	  	width:84%;
+	  	width:98%;
+		margin-left: auto; 
+		margin-right: auto; 
 	  }
 
 	  #basepanelright{
-	  	display:none
+	  	display:none;
 	  }
 	  
 	  #footerabout{
@@ -111,7 +125,6 @@
     <div id="basepanelleft" wicket:id="sidepanelleft"></div>
     
     <!-- <div class="basepanelcenter" id="centerpanel"> -->
-    <!-- <div id="centerpanel" style="float:left; width: 84%; border: thin solid white; min-height: 100%; padding-left: 10px; padding-right: 10px; background:#FFFFFF; box-shadow:5px 5px 20px grey;"> -->
     <div id="centerpanel">
     	<span wicket:id="english">EN</span> / <span wicket:id="dutch">NL</span>  
    		<a style="font-size:12; text-align:center"><br><br><br></a>
