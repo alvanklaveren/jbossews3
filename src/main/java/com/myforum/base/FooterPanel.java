@@ -4,12 +4,19 @@ import java.text.DateFormat;
 import java.util.Date;
 
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
+
+import com.myforum.application.AllConstants;
+import com.myforum.base.dictionary.EText;
+import com.myforum.base.dictionary.Translator;
 
 public class FooterPanel extends Panel{
 	private static final long serialVersionUID = 1L;
 
+	private Translator translator = Translator.getInstance();
+	
 	public FooterPanel(String id){
 		super(id);	
 
@@ -24,7 +31,13 @@ public class FooterPanel extends Panel{
 			}
 			
 		});
+		
 		add(today);
+		
+		add( new Label("aboutwebsitetext", translator.translate(EText.ABOUT_WEBSITE_TEXT)).setEscapeModelStrings(false) );
+		
+		String emailAddress = AllConstants.MY_EMAIL;
+		addOrReplace(new ExternalLink("myemail", "mailto:" + emailAddress, translator.translate("message")) );
 	}
 
 }

@@ -1,7 +1,38 @@
 <html xmlns:wicket>
   <wicket:head>
-    <link href="css/jquery-ui.css" rel="stylesheet">
+    <link href="css/jquery-ui.css" rel="stylesheet"> <!-- necessary for autocomplete list in search inputfield -->
+    <style>
+	    #mypicture {
+	    	display:none;
+	    }
+		
+		/* Small devices (tablets, 768px and up) */
+		@media only screen and (min-width:768px){
+		  #basepanelleft{
+		  	width:15%;
+		  }
+		  #centerpanel{
+		  	width:70%;
+		  }
+		}
+		
+		/* Extra Small devices (phones, > 768px) */
+		 @media only screen and (max-width:767px){
+		  #basepanelleft{
+		  	width:30%;
+		  }
+		  #centerpanel{
+		  	width:69%;
+		  }
+		}
+		
+		/*removing the selected value in the gameshop search bar to not display at the bottom of the page*/ 
+		.ui-helper-hidden-accessible{
+	        display:none !important;
+	    }
+    </style>
   </wicket:head>
+  
   <wicket:extend>
 	<div wicket:id="modalAddCompany"></div>
 	<div wicket:id="modalAddRatingUrl"></div>
