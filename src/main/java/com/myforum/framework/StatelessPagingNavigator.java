@@ -1,5 +1,6 @@
 package com.myforum.framework;
 
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
@@ -28,7 +29,10 @@ public class StatelessPagingNavigator extends PagingNavigator
     protected AbstractLink newPagingNavigationIncrementLink(String id, IPageable pageable, int increment)
     {
         long pageNumber = pageable.getCurrentPage() + increment;
-        return newPageLink(id, pageNumber);
+
+        AbstractLink pageLink = newPageLink(id, pageNumber);
+       
+        return pageLink;
     }
 
     @Override
@@ -39,20 +43,31 @@ public class StatelessPagingNavigator extends PagingNavigator
         {
             pageNumber += pageable.getPageCount();
         }
-        return newPageLink(id, pageNumber);
+        
+        AbstractLink pageLink = newPageLink(id, pageNumber);     
+        
+        return pageLink;
     }
 
     @Override
     protected PagingNavigation newNavigation(final String id, final IPageable pageable, final IPagingLabelProvider labelProvider) {
-        return new PagingNavigation(id, pageable, labelProvider){
+    	PagingNavigation pagingNavigation =  new PagingNavigation(id, pageable, labelProvider){
 			private static final long serialVersionUID = 1L;
 
 			@Override
-            protected AbstractLink newPagingNavigationLink(String id, IPageable pageable, long pageNumber)
-            {
-                return newPageLink(id, pageNumber);
+            protected AbstractLink newPagingNavigationLink(String id, IPageable pageable, long pageNumber) {
+		        AbstractLink pageLink = newPageLink(id, pageNumber);
+		        
+		        if (pageNumber == pageable.getCurrentPage()) {
+		        	pageLink.add(new AttributeModifier("class","page-link active"));
+		        }
+
+				return pageLink;
             }
         };
+        
+        pagingNavigation.setViewSize(4); // no more than 4 page links, to prevent the navigator becoming too large
+        return pagingNavigation;
     }
 
     @Override

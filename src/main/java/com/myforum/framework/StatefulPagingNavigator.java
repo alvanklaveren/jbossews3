@@ -26,7 +26,7 @@ public class StatefulPagingNavigator extends AjaxPagingNavigator{
 
 				// add css for enable/disable link
 				long pageIndex = getStartIndex() + iteration;
-				item.add(new AttributeModifier("class", new PageLinkCssModel(pageable, pageIndex, "active")));
+				item.add(new AttributeModifier("class", new PageLinkCssModel(pageable, pageIndex, "page-link active")));
 
 				return item;
 			}
