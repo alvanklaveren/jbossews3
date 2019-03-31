@@ -1,15 +1,12 @@
 package com.myforum.application;
 
 import java.io.File;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-
-import javax.servlet.ServletContext;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.wicket.Page;
@@ -20,7 +17,6 @@ import org.apache.wicket.markup.html.form.AbstractTextComponent;
 import org.apache.wicket.markup.html.image.NonCachingImage;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.AbstractReadOnlyModel;
-import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.request.resource.DynamicImageResource;
 import org.hibernate.Criteria;
@@ -315,6 +311,7 @@ public final class ForumUtils{
 		File resourceFile = null;
 		
 		if(filepath == null || filename == null) {
+			
 			log.error("filepath or filename in arguments is null");
 			return null;
 		}
@@ -330,29 +327,43 @@ public final class ForumUtils{
 			resource = filename;
 		}
 			
-		WebApplication webApplication = WebApplication.get();
-		if(webApplication!=null){
-			ServletContext servletContext = webApplication.getServletContext();
-			if(servletContext!=null){
-				//rootContext = servletContext.getServletContextName();
-				//resourcePaths = servletContext.getResourcePaths("/");
-				try {
-					URL url = servletContext.getResource(resource);
-					resource = url.getFile().replace("%20", " ");
-					resourceFile = new File(resource);
-				} catch (MalformedURLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}else{
-				//do nothing
-			}
-		}else{
-			//do nothing
-		}
+		log.info("Trying to read: " + resource);
+		
+//		WebApplication webApplication = WebApplication.get();
+//		if(webApplication!=null){
+//			ServletContext servletContext = webApplication.getServletContext();
+//			if(servletContext!=null){
+//				//rootContext = servletContext.getServletContextName();
+//				//resourcePaths = servletContext.getResourcePaths("/");
+//				URL url = null;
+//				try {
+//					url = servletContext.getResource(resource);
+//					String res = url.getFile().replace("%20", " ");
+//					resourceFile = new File(res);
+//				} catch (MalformedURLException e) {
+//					// TODO Auto-generated catch block
+//					log.error(e.getMessage());
+//					e.printStackTrace();
+//				}
+//			}else{
+//				//do nothing
+//			}
+//		}else{
+//			//do nothing
+//		}
+		
+		URL url = BasePage.class.getResource("/");
+		log.info("Resource path = " + url.getPath());
+		String res = url.getPath().replace("%20", " ") + resource;
+		resourceFile = new File(res);
 		
 		return resourceFile;
 		
+	}
+
+	public static File getFileResource(Class<BasePage> class1, String filepath, String filename) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
