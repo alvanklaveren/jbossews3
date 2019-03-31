@@ -12,7 +12,6 @@ import java.util.Scanner;
 
 import org.apache.wicket.markup.html.form.upload.FileUpload;
 import org.apache.wicket.markup.html.form.upload.FileUploadField;
-import org.apache.wicket.util.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
  
@@ -83,21 +82,6 @@ public final class IoLogics{
 
         return sb.toString();
 
-	}
-
-	public static String getFileContent(Class<?> clazz, String filename){
-		InputStream htmlStream = clazz.getResourceAsStream(filename);
-		String htmlContent="";
-	
-		try {
-			htmlContent = IOUtils.toString(htmlStream);
-		} catch (IOException e) {
-			e.printStackTrace();
-			log.error("failed to convert stream to String in getFileContent(Class<?>, filename)");
-			return "";
-		}
-		
-		return htmlContent;
 	}
 
 }

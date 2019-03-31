@@ -1,19 +1,28 @@
 package com.myforum.articlepage;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.request.resource.CssResourceReference;
+import org.apache.wicket.util.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.myforum.application.ForumUtils;
-import com.myforum.application.IoLogics;
 import com.myforum.base.AVKPage;
 import com.myforum.base.menu.EMenuItem;
 
 public class ArticlePage extends AVKPage {
 	private static final long serialVersionUID = 1L;
 
+	private static Logger LOG = LoggerFactory.getLogger(ArticlePage.class); 
+	
 	public ArticlePage(PageParameters params) {
 		super(EMenuItem.Articles);
 		String articleRestId = ForumUtils.getParmString(params, "id", "");
@@ -21,11 +30,28 @@ public class ArticlePage extends AVKPage {
 		Article article = ArticleFactory.getInstance().getArticle(articleRestId);
 
 		String htmlFileName	= article.getHtmlFileName();
-		String filePath		= "/com/myforum/articlepage/articles/";
-		String htmlContent	= IoLogics.getFileContent(getClass(), filePath + htmlFileName);
+		
+		String htmlContent = "<html><body><H1>Article not found !!</H1></body></html>";
+		try {
+			File file = ForumUtils.getFileResource("articlepages", htmlFileName);
+			FileInputStream fileInputStream;
+			fileInputStream = new FileInputStream(file);
+			htmlContent = IOUtils.toString(fileInputStream);
+		} catch (FileNotFoundException e) {
+			
+			LOG.error(e.getMessage());
+			e.printStackTrace();
+		} catch (IOException e) {
+			
+			LOG.error(e.getMessage());
+			e.printStackTrace();
+		}
 		
 		// only for the default article, dynamically add the articles to form an index
 		if(article == ArticleFactory.getInstance().getDefaultArticle()){
+			// refresh article setup based on articles.xml
+			ArticleFactory.createArticles();
+			
 			htmlContent = htmlContent.replace("<articleindex/>", ArticleFactory.getInstance().getArticleIndex() );
 			Label navigatorLabel = new Label("navigator", "");
 			navigatorLabel.setVisible(false);

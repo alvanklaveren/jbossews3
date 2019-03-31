@@ -4,13 +4,13 @@ public class Article {
 
 	private String 			articleRestId, articleDescription, htmlFileName;
 	private Article			previousArticle, nextArticle;
-	private EArticleGroup	eArticleGroup;
+	private String			articleGroup;
 	
-	public Article(EArticleGroup eArticleGroup, String articleRestId, String articleDescription, String htmlFileName){
+	public Article(String articleGroup, String articleRestId, String articleDescription, String htmlFileName){
 		this.articleRestId 		= articleRestId;
 		this.articleDescription = articleDescription;
 		this.htmlFileName 		= htmlFileName;
-		this.eArticleGroup		= eArticleGroup;
+		this.articleGroup		= articleGroup;
 	}
 
 	public String getHtmlFileName() {
@@ -34,7 +34,7 @@ public class Article {
 	}
 	
 	public String getArticleGroupDescription(){
-		return eArticleGroup.getDescription();
+		return articleGroup;
 	}
 
 	public void setArticleDescription(String articleDescription) {

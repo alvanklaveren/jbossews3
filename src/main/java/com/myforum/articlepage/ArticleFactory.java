@@ -2,27 +2,67 @@ package com.myforum.articlepage;
 
 import java.util.HashMap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import com.myforum.application.XMLLogics;
+
 public final class ArticleFactory {
 
+	private static Logger LOG = LoggerFactory.getLogger(ArticleFactory.class);
+	
 	static 	ArticleFactory 				singleton;
-			HashMap<String, Article> 	articleMapper = new HashMap<String, Article>();
-			Article 					defaultArticle, previousArticle, nextArticle;
+	static  HashMap<String, Article> 	articleMapper = new HashMap<String, Article>();
+	static  Article 					defaultArticle, previousArticle, nextArticle;
 	
 	
 	private ArticleFactory(){
-		defaultArticle 	= new Article(EArticleGroup.INDEX, "", "Articles", "Article-Index.html");
-		previousArticle = defaultArticle;
-		nextArticle 	= defaultArticle;
-		
+		defaultArticle 	= new Article("", "Index", "Articles", "Article-Index.html");
+			
 		createArticles();
 	}
 	
-	private void createArticles(){
-		// you can re-order the articles by simply moving the addArticle-line to the position you want	
-		addArticle(new Article(EArticleGroup.JAVA, "REST-EASY", "Using Rest-Easy for Restful services", "REST-EASY.html"));
-		addArticle(new Article(EArticleGroup.JAVA, "OPENSHIFT v2 - TOMCAT7", "How to install a Java EE/Tomcat7 webapplication on OpenShift Online v2", "openshift-tomcat7.html"));
-		addArticle(new Article(EArticleGroup.JAVA, "Spring & Wicket", "How to add Spring to your existing Wicket application Part 1: Setup", "SpringWicket.html"));
-		addArticle(new Article(EArticleGroup.JAVA, "OPENSHIFT v3 - WILDFLY", "How to install a Java EE/Wildfly webapplication on OpenShift Online v3", "openshift-wildfly.html"));
+	/**
+	 * To allow modification of articles (and index page), always run 
+	 * createArticles again when opening the articles page
+	 * 
+	 */
+	public static void createArticles(){
+		articleMapper = new HashMap<String, Article>();
+		
+		previousArticle = defaultArticle;
+		nextArticle 	= defaultArticle;
+		defaultArticle.setPreviousArticle(defaultArticle);
+		defaultArticle.setNextArticle(defaultArticle);
+	
+		Document doc = XMLLogics.toDocument("articlepages", "articles.xml");
+        
+        if (!doc.getDocumentElement().getNodeName().equals("avkarticles")) {
+        	
+        	LOG.error("articles.xml does not start with <avkarticles>");
+        	return;
+        };
+         
+        NodeList nodes = doc.getElementsByTagName("articlegroup");
+        for(Node node:XMLLogics.asList(nodes)) {
+        	
+        	Element element = (Element) node;
+        	String articleGroupTitle = element.getElementsByTagName("title").item(0).getTextContent();
+        	       	
+        	for(Node articleNode: XMLLogics.asList(element.getElementsByTagName("article"))) {
+        		
+        		Element articleElement = (Element) articleNode;
+        		String articleRestId = articleElement.getElementsByTagName("id").item(0).getTextContent();
+    			String articleTitle = articleElement.getElementsByTagName("title").item(0).getTextContent();
+    			String articleDocument = articleElement.getElementsByTagName("document").item(0).getTextContent();
+
+    			addArticle(new Article(articleGroupTitle, articleRestId, articleTitle, articleDocument));
+        	}
+        }	
 	}
 	
 	// prevent creating this factory more than once.
@@ -33,7 +73,7 @@ public final class ArticleFactory {
 		return singleton;
 	}
 		
-	private void addArticle(Article article){
+	private static void addArticle(Article article){
 		article.setPreviousArticle(previousArticle);
 		article.setNextArticle(nextArticle);	
 	
@@ -49,11 +89,14 @@ public final class ArticleFactory {
 	}
 	
 	public Article getArticle(String articleRestId){
-		if( !articleMapper.containsKey(articleRestId) ){
+		if(articleRestId == null || articleRestId.trim().isEmpty() || articleRestId.equals("Index")) 
 			return defaultArticle;
-		}
+		
+		if( !articleMapper.containsKey(articleRestId) )
+			return defaultArticle;
+		
 		return articleMapper.get(articleRestId);
-	};
+	}
 	
 	public String getArticleIndex(){
 		Article article 	= ArticleFactory.getInstance().getDefaultArticle();

@@ -1,5 +1,13 @@
 package com.myforum.application;
 
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.servlet.ServletContext;
+
 import org.apache.wicket.Page;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.protocol.https.HttpsConfig;
@@ -86,7 +94,7 @@ public class ForumApplication extends WebApplication {
 		  // the next line activates https (using port 8443 on localhost and 843 on openshift)
 		  setRootRequestMapper(new HttpsMapper(getRootRequestMapper(), new HttpsConfig() ));
     }
-    
+   
     /**
      * @see org.apache.wicket.Application#getHomePage()
      */

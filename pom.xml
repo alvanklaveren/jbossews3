@@ -423,6 +423,7 @@
 				<filtering>false</filtering>
 				<directory>src/main/resources</directory>
 				<includes>
+					<include>articlepages/*.*</include>
 					<include>images/*.*</include>
 					<include>css/*.*</include>
 					<include>js/*.*</include>

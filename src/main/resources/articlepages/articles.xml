@@ -1,0 +1,29 @@
+<avkarticles>
+  <articlegroup>
+    <title>JAVA related</title>
+    
+    <article>
+      <id>REST-EASY</id>
+      <title>Using Rest-Easy for Restful services</title>
+      <document>REST-EASY.html</document>
+    </article>
+    
+    <article>
+      <id>Spring &amp; Wicket</id>
+      <title>How to add Spring to your existing Wicket application Part 1: Setup</title>
+      <document>SpringWicket.html</document>
+    </article>
+    
+    <article>
+      <id>OPENSHIFT v2 - TOMCAT7</id>
+      <title>How to install a Java EE/Tomcat7 webapplication on OpenShift Online v2</title>
+      <document>openshift-tomcat7.html</document>
+    </article>
+    
+    <article>
+      <id>OPENSHIFT v3 - WILDFLY</id>
+      <title>How to install a Java EE/Wildfly webapplication on OpenShift Online v3</title>
+      <document>openshift-wildfly.html</document>
+    </article>
+  </articlegroup>
+</avkarticles>

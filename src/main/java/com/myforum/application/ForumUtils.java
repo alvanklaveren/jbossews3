@@ -1,10 +1,15 @@
 package com.myforum.application;
 
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
+import javax.servlet.ServletContext;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.wicket.Page;
@@ -15,6 +20,7 @@ import org.apache.wicket.markup.html.form.AbstractTextComponent;
 import org.apache.wicket.markup.html.image.NonCachingImage;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.AbstractReadOnlyModel;
+import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.request.resource.DynamicImageResource;
 import org.hibernate.Criteria;
@@ -23,7 +29,6 @@ import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.myforum.base.AVKPage;
 import com.myforum.base.BasePage;
 import com.myforum.framework.ModalPage;
 import com.myforum.tables.ForumUser;
@@ -297,5 +302,57 @@ public final class ForumUtils{
         return modal;
 	}
 
+	/** helper function to better access resources
+	 * 
+	 * @param filepath - path to resource file
+	 * @param filename - resource file 
+	 * @return File found in resources folder "filepath"
+	 */
+	public static File getFileResource(String filepath, String filename) {
+	
+    	// filepath + filename (e.g. "articlepages/articles.xml")
+    	
+		File resourceFile = null;
+		
+		if(filepath == null || filename == null) {
+			log.error("filepath or filename in arguments is null");
+			return null;
+		}
+		
+		String resource;
+		if(!filepath.isEmpty()) {
+			if(filepath.endsWith("/") || filepath.endsWith("\\")){
+				resource = filepath + filename;
+			} else {
+				resource = filepath + "/" + filename;
+			}
+		}else {
+			resource = filename;
+		}
+			
+		WebApplication webApplication = WebApplication.get();
+		if(webApplication!=null){
+			ServletContext servletContext = webApplication.getServletContext();
+			if(servletContext!=null){
+				//rootContext = servletContext.getServletContextName();
+				//resourcePaths = servletContext.getResourcePaths("/");
+				try {
+					URL url = servletContext.getResource(resource);
+					resource = url.getFile().replace("%20", " ");
+					resourceFile = new File(resource);
+				} catch (MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else{
+				//do nothing
+			}
+		}else{
+			//do nothing
+		}
+		
+		return resourceFile;
+		
+	}
 
 }
