@@ -22,7 +22,7 @@ public class AboutMePage extends AVKPage {
 		int workingYears = ForumUtils.yearsBetween(startDate, ForumUtils.todayNow());
 		
 		// Appears to be working on alvanklaveren.com, but does not work on localhost (not sure why...)
-		ExternalLink pdfLink = new ExternalLink("pdf", "images/cv.pdf");
+		ExternalLink pdfLink = new ExternalLink("pdf", "../images/cv.pdf");
 		add(pdfLink);
 		
 		String years = "many";
