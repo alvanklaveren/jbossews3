@@ -9,7 +9,7 @@ public class AcmePage extends WebPage {
 	private static final long serialVersionUID = 1L;
 	
 	public AcmePage() {
-		// this page technically has a pageparameter called "acme_address", defined in ForumApplication.class
+		// this page technically has a pageparameter called "acme_address", defined in AVKApplication.class
 		// but we technically do not need it, because we fake the file name (stored in acme_address), and return
 		// the so said content of that file using the constant stored in "acme"
 	}

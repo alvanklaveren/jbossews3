@@ -431,16 +431,7 @@
 					<include>*.*</include>
 				</includes>
 			</resource>
-<!-- 
-			<resource>
-				<filtering>false</filtering>
-				<directory>src/main/resources</directory>
-				<targetPath>/home/avk/Software Development/tomcat8/webapps</targetPath>
-				<includes>
-					<include>**/*.*</include>
-				</includes>
-			</resource>
- -->
+
 <!-- 
 			<resource>
 				<filtering>false</filtering>

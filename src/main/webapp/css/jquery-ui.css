@@ -1,0 +1,28 @@
+.ui-autocomplete {
+	width: 300px;
+	max-height: 300px;
+	overflow-y: auto;
+	overflow-x: auto;
+	background: #fff;
+	opacity: 1.0;
+}	
+
+.ui-menu {
+	display: block;
+	color: #000;
+	background: #fff;
+	padding: 0px;
+  	border: 1px solid black;
+}	
+
+.ui-menu-item {
+	width: 100%;
+	list-style-type: none;
+	color: #000;
+	background: #fff;
+	padding: 0px;
+    text-decoration: none;
+	cursor: pointer;
+  	outline: none;
+  	border-bottom: 1px solid #ddd;
+}	

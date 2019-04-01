@@ -25,8 +25,8 @@ import com.myforum.homepage.AboutMePage;
 import com.myforum.homepage.HomePage;
 
 
-public class ForumApplication extends WebApplication {
-    public ForumApplication() {
+public class AVKApplication extends WebApplication {
+    public AVKApplication() {
    		//System.setProperty( "java.awt.headless", "true" );
     }
 
@@ -47,7 +47,7 @@ public class ForumApplication extends WebApplication {
 		getDebugSettings().setAjaxDebugModeEnabled( false );
 		
 		// load css IMMEDIATELY when rebuilding the page TODO: doesn't work the way I want
-		//getResourceBundles().addCssBundle( ForumApplication.class, "css/basepage.css",
+		//getResourceBundles().addCssBundle( AVKApplication.class, "css/basepage.css",
 		//	(CssResourceReference) CustomCssReference.INSTANCE );
 	
 		  // On wicket session timeout or wicket exception, redirect to main page 
