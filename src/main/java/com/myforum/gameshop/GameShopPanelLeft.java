@@ -33,7 +33,7 @@ public class GameShopPanelLeft extends BasePanelLeft {
 	    sb.append("<br/>");
 
 		for(GameConsole gameConsole:gameConsoleList){
-			sb.append("<button class=\"dropdown-btn\">" + gameConsole.getDescription() + "<i class=\"fa fa-caret-down\"></i></button>");
+			sb.append("<button class=\"dropdown-btn\">" + gameConsole.getDescription() + "</button>");
 
 			sb.append("<div class=\"dropdown-container\">");
 			for(ProductType productType:productTypeList){
