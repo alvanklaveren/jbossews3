@@ -1,20 +1,12 @@
 package com.myforum.application;
 
-import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.servlet.ServletContext;
-
 import org.apache.wicket.Page;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.protocol.https.HttpsConfig;
 import org.apache.wicket.protocol.https.HttpsMapper;
 import org.apache.wicket.response.filter.AjaxServerAndClientTimeFilter;
-import org.apache.wicket.util.lang.Bytes;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
+import org.apache.wicket.util.lang.Bytes;
 
 import com.myforum.articlepage.ArticlePage;
 import com.myforum.forumpages.ForumBasePage;
@@ -79,7 +71,7 @@ public class AVKApplication extends WebApplication {
 	        acme_address += "#{acme_address}";
 	        
 	        if(StringLogics.isEmpty(acme_address)){
-	        	acme_address = "/.well-known/acme-challenge/address_lost";
+	        	acme_address = "/.well-known/pki-validation/address_lost";
 	        }
 
 		  //mountPage("/.well-known/acme-challenge/1LXCE9UAw5-3ciPOFvsnLvexpQLtIQRc3KJYIpt9amU", AcmePage.class);

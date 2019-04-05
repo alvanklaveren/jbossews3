@@ -8,7 +8,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.protocol.http.ClientProperties;
 import org.apache.wicket.protocol.http.request.WebClientInfo;
-//import org.apache.wicket.protocol.https.RequireHttps;
+import org.apache.wicket.protocol.https.RequireHttps;
 import org.apache.wicket.settings.IRequestCycleSettings;
 
 import com.myforum.application.CookieLogics;
@@ -27,7 +27,7 @@ import com.myforum.tables.ForumUser;
 import com.myforum.tables.dao.LoginCredDao;
 
 /*disabled HTTPS... is now a paid feature in openshift!*/
-/*@RequireHttps*/ 
+@RequireHttps 
 public class BasePage extends WebPage implements Serializable{
 	private static final long 	serialVersionUID = 1L;
 
