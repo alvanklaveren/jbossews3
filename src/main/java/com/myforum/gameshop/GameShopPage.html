@@ -74,27 +74,35 @@
 	<div wicket:id="modalAddRatingUrl"></div>
 
 	<div wicket:id="errormessage" class="alert alert-danger" role="alert"></div>
-	
-	<form wicket:id="configform" style="float:left; margin-left:20px; width:25%">
-	  <div class="form-group row">
-	  	  <label class="col-sm-6 col-md-6 col-lg-6 col-form-label" for="numberofitems" wicket:id="numberofitemslabel" ></label>
-		  <select class="col-sm-6 col-md-6 col-lg-4 form-control" id="numberofitems" wicket:id="numberofitems"></select>
- 	  </div>
- 		  
- 	  <div class="form-group row">
-	  	  <label class="col-sm-6 col-md-6 col-lg-6 col-form-label" for="sortorder" wicket:id="sortorderlabel"></label>
-		  <select class="col-sm-6 col-md-6 col-lg-4 form-control" id="sortorder" wicket:id="sortorder"></select>
-	  </div>
-	</form>
 
-	<form wicket:id="searchform"> 
-	  <div class="form-inline" style="float:right">
-	    <input type="text" class="form-control" id="searchtitle" wicket:id="searchtitle" placeholder="Search title">
-		<input type="submit" wicket:id="searchbutton" class="btn btn-outline-primary" value="Search">
- 	  </div>
-	</form>
+	<div class="container">
+		<div class="row">
+		  	<div class="col-lg-6 col-md-auto">
+				<form wicket:id="configform" style="margin-left:0px; width:100%">
+				  <div class="d-flex bd-highlight" style="width:100%">
+					<div class="p-2 flex-fill bd-highlight" style="width:50%">
+				  	  <label wicket:id="numberofitemslabel"></label>
+					  <select class="form-control" id="numberofitems" wicket:id="numberofitems"></select>
+					</div>
+					<div class="p-2 flex-fill bd-highlight" style="width:50%">
+				  	  <label wicket:id="sortorderlabel"></label>
+					  <select class="form-control" id="sortorder" wicket:id="sortorder"></select>
+					</div>
+				  </div>
+				</form>
+			</div>
+			<div class="col">
+				<form wicket:id="searchform" class="d-flex bd-highlight"> 
+				  <div class="form-inline ml-auto p-2 flex-fill bd-highlight">
+				    <input type="text" class="form-control" id="searchtitle" wicket:id="searchtitle" placeholder="Search title">
+					<input type="submit" wicket:id="searchbutton" class="btn btn-outline-primary" value="Search">
+			 	  </div>
+				</form>
+			</div>
+		</div>
+	</div>
 
-	<form class="form-horizontal" wicket:id="addform">
+	<form class="form-horizontal p-2 bd-highlight" wicket:id="addform">
 		  <div class="form-group">
 		      <button type="submit" class="btn btn-outline-primary" id="addproductbutton"   wicket:id="addproductbutton"><div wicket:id="addproductlabel">Add Product</div></button>
 		      <button type="submit" class="btn btn-outline-primary" id="addcompanybutton"   wicket:id="addcompanybutton"><div wicket:id="addcompanylabel">Add Company</div></button>
@@ -102,15 +110,15 @@
 		      <button type="submit" class="btn btn-outline-primary" id="refreshbutton"      wicket:id="refreshbutton"><div wicket:id="refreshlabel">Refresh</div></button>
 		  </div>
 	</form>
+
 		
 	<div style="clear:both">
 		<!-- ensures that anything below this line is not affected by the upper part that uses float:left and float:right -->
 	</div> 
 	
-	<div class="sticky-top" style="text-align:center">
-	  <br>
+	<div class="sticky-top" style="top:60px; text-align:center; background:yellow">
 	  <div style="background:white; min-width:100%">
-	  	<br><br>
+	  <small><br></small>
         <span style="text-align:center" wicket:id="navigator">[listview navigator]</span>
         <hr>
       </div>
@@ -122,7 +130,9 @@
 	<h2 wicket:id="headerlabel">[e.g. Most recently added products]</h2>
 
 	<div style="text-align:right">
-		<span wicket:id="resultcounter">[e.g. 1 to 20 of 500]</span>
+	  <h5>	
+		<span class="badge badge-pill badge-secondary" wicket:id="resultcounter">[e.g. 1 to 20 of 500]</span>
+	  </h5>
 	</div>
 
 	<div class="d-flex flex-wrap bd-highlight mb-3">

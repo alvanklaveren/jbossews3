@@ -98,9 +98,9 @@ public class GameShopPage extends BasePage {
        
         addForm.add( createFormButton( "addproduct", 	  "Add Product",   AddGamePage.class) );
         addForm.add( createFormButton( "refresh",    	  "Refresh", 	   GameShopPage.class) );
-
-        addOrReplace(addForm);
-	    
+      	addForm.setVisibilityAllowed(isAdministrator(getActiveUser()));
+    	addOrReplace(addForm);      
+        
         final Form<DDCSelectModel> configForm = new Form<DDCSelectModel>("configform", new CompoundPropertyModel<DDCSelectModel>(selectModel));
 
         configForm.addOrReplace( createSelectnumberOfItemsDDC(numberOfItems) );
