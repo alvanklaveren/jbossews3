@@ -75,6 +75,7 @@ public final class DictionaryDutch extends Dictionary {
 		put(translatedSentenceMap, EText.RECENTLY_ADDED, "Recent toegevoegde producten");
 		put(translatedSentenceMap, EText.REGISTER_NEW_USER, "Registreer Nieuwe Gebruiker");
 		put(translatedSentenceMap, EText.SEARCH_RESULTS, "Zoek resultaten");
+		put(translatedSentenceMap, EText.SORT_BY, "Sorteren");
 		put(translatedSentenceMap, EText.UPLOAD_FAILED, "Uploaden van bestand mislukt. Controleer de naam en de grootte (<100kb) van het bestand.");
 		put(translatedSentenceMap, EText.UPDATE_PROFILE, "Pas Profiel Aan");
 		put(translatedSentenceMap, EText.ABOUT_WEBSITE, "Over ...");

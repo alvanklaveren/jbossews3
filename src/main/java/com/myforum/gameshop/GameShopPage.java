@@ -58,9 +58,9 @@ public class GameShopPage extends BasePage {
 	public GameShopPage(PageParameters params) {
 		super(EMenuItem.GameShop);
 
-		numberOfItemsList.add(10);
-		numberOfItemsList.add(20);
-		numberOfItemsList.add(30);
+		numberOfItemsList.add(12);
+		numberOfItemsList.add(24);
+		numberOfItemsList.add(36);
 
 		sortOrderList.add(ESortOrder.AZ.getDescription());
 		sortOrderList.add(ESortOrder.ZA.getDescription());
@@ -71,14 +71,14 @@ public class GameShopPage extends BasePage {
 		title			= ForumUtils.getParmString(	params, "searchtitle",	 ""	);
 		consoleId 		= ForumUtils.getParmInt(	params, "console",        0	);
 		typeId 			= ForumUtils.getParmInt(	params, "type",           0	);
-		numberOfItems	= ForumUtils.getParmInt(	params, "numberofitems", 10	);
+		numberOfItems	= ForumUtils.getParmInt(	params, "numberofitems", 12	);
 		pageNumber		= ForumUtils.getParmInt(	params, "page", 		  0	);
 		sortOrder		= ForumUtils.getParmString(	params, "sortorder", 	 ESortOrder.AZ.getDescription()	);
 		
 		// reset title when user has chosen to go to a particular console or type (games/accessories/etc).
 		if( consoleId != 0 || typeId != 0 ){ title = ""; }
 
-		if( !numberOfItemsList.contains(numberOfItems) ){ numberOfItems = 10; }
+		if( !numberOfItemsList.contains(numberOfItems) ){ numberOfItems = 12; }
 		if( !sortOrderList.contains(sortOrder) ){ sortOrder = ESortOrder.AZ.getDescription(); }
 		
 		selectModel.setGameConsoleId(consoleId);
@@ -101,14 +101,17 @@ public class GameShopPage extends BasePage {
 
         addOrReplace(addForm);
 	    
-        final Form<DDCSelectModel> searchForm = new Form<DDCSelectModel>("searchform", new CompoundPropertyModel<DDCSelectModel>(selectModel));
+        final Form<DDCSelectModel> configForm = new Form<DDCSelectModel>("configform", new CompoundPropertyModel<DDCSelectModel>(selectModel));
 
-	    searchForm.addOrReplace( createSelectnumberOfItemsDDC(numberOfItems) );
-	    searchForm.addOrReplace(new AVKLabel("numberofitemslabel", "Number of Items"));
+        configForm.addOrReplace( createSelectnumberOfItemsDDC(numberOfItems) );
+        configForm.addOrReplace(new AVKLabel("numberofitemslabel", EText.NUMBER_OF_ITEMS));
 
-	    searchForm.addOrReplace( createSelectSortorderDDC(sortOrder) );
-	    searchForm.addOrReplace(new AVKLabel("sortorderlabel", "Sort By"));
+        configForm.addOrReplace( createSelectSortorderDDC(sortOrder) );
+        configForm.addOrReplace(new AVKLabel("sortorderlabel", EText.SORT_BY));
 
+        addOrReplace(configForm);
+        
+        final Form<String> searchForm = new Form<String>("searchform");
         final AutoCompleteTextField<String> searchTitle = new AutoCompleteTextField<String>("searchtitle", new Model<String>()) {
         	private static final long serialVersionUID = 1L;
 
@@ -186,8 +189,7 @@ public class GameShopPage extends BasePage {
 		// Add results counter
 		addOrReplace( createResultCounter(productListView) );        
         
-        addOrReplace( new StatelessPagingNavigator( "navigatortop", params, pageNumber, productListView ) );       
-        addOrReplace( new StatelessPagingNavigator( "navigator",    params, pageNumber, productListView ) );       
+        addOrReplace( new StatelessPagingNavigator( "navigator", params, pageNumber, productListView ) );       
        
 	}
 

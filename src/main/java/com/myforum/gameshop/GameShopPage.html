@@ -15,8 +15,12 @@
 		  	float:left;
 		  }
 		  #producttext{
-			  float:left;
+		  	float:left;
 		  }
+		  
+		  #gamelistitem{
+		  	width:30%;
+		  }		  
 		}
 		
 		/* Small devices (phones and small tablets) */
@@ -35,6 +39,10 @@
 		  #producttext{
 			  float:left;
 		  }
+
+		  #gamelistitem{
+		  	width:50%;
+		  }
 		}
 
 		/* Extra Small devices (phones) */
@@ -49,6 +57,9 @@
 		  #producttext{
 			  float:none;
 		  }
+		  #gamelistitem{
+		  	width:100%;
+		  }	  
 		}
 
 		/*removing the selected value in the gameshop search bar to not display at the bottom of the page*/ 
@@ -64,44 +75,47 @@
 
 	<div wicket:id="errormessage" class="alert alert-danger" role="alert"></div>
 	
-	<div>
-		<form class="form-horizontal" wicket:id="searchform">
-			  <div class="form-group">
-			  	<div class="col-sm-3">
-			  	  <label for="numberofitems" wicket:id="numberofitemslabel">Number of Items</label>
-	  			  <select class="form-control" id="numberofitems" wicket:id="numberofitems"></select>
-	  			</div>
-	  			
-			  	<div class="col-sm-3">
-			  	  <label for="sortorder" wicket:id="sortorderlabel">Sort On</label>
-				  <select class="form-control" id="sortorder" wicket:id="sortorder"></select>
-				</div>
-		 	  </div>	  
+	<form wicket:id="configform" style="float:left; margin-left:20px; width:25%">
+	  <div class="form-group row">
+	  	  <label class="col-sm-6 col-md-6 col-lg-6 col-form-label" for="numberofitems" wicket:id="numberofitemslabel" ></label>
+		  <select class="col-sm-6 col-md-6 col-lg-4 form-control" id="numberofitems" wicket:id="numberofitems"></select>
+ 	  </div>
+ 		  
+ 	  <div class="form-group row">
+	  	  <label class="col-sm-6 col-md-6 col-lg-6 col-form-label" for="sortorder" wicket:id="sortorderlabel"></label>
+		  <select class="col-sm-6 col-md-6 col-lg-4 form-control" id="sortorder" wicket:id="sortorder"></select>
+	  </div>
+	</form>
+
+	<form wicket:id="searchform"> 
+	  <div class="form-inline" style="float:right">
+	    <input type="text" class="form-control" id="searchtitle" wicket:id="searchtitle" placeholder="Search title">
+		<input type="submit" wicket:id="searchbutton" class="btn btn-outline-primary" value="Search">
+ 	  </div>
+	</form>
+
+	<form class="form-horizontal" wicket:id="addform">
+		  <div class="form-group">
+		      <button type="submit" class="btn btn-outline-primary" id="addproductbutton"   wicket:id="addproductbutton"><div wicket:id="addproductlabel">Add Product</div></button>
+		      <button type="submit" class="btn btn-outline-primary" id="addcompanybutton"   wicket:id="addcompanybutton"><div wicket:id="addcompanylabel">Add Company</div></button>
+		      <button type="submit" class="btn btn-outline-primary" id="addratingurlbutton" wicket:id="addratingurlbutton"><div wicket:id="addratingurllabel">Add Rating URL</div></button>
+		      <button type="submit" class="btn btn-outline-primary" id="refreshbutton"      wicket:id="refreshbutton"><div wicket:id="refreshlabel">Refresh</div></button>
+		  </div>
+	</form>
+		
+	<div style="clear:both">
+		<!-- ensures that anything below this line is not affected by the upper part that uses float:left and float:right -->
+	</div> 
 	
-			  <div class="form-inline" style="float:right">
-				<div>
-				  <input type="text" class="form-control" id="searchtitle" wicket:id="searchtitle" placeholder="Search title">
-				  <input type="submit" wicket:id="searchbutton" class="btn btn-outline-primary" value="Search">
-				</div>
-		 	  </div>
-		</form>
-	
-		<form class="form-horizontal" wicket:id="addform">
-			  <div class="form-group">
-			      <button type="submit" class="btn btn-outline-primary" id="addproductbutton"   wicket:id="addproductbutton"><div wicket:id="addproductlabel">Add Product</div></button>
-			      <button type="submit" class="btn btn-outline-primary" id="addcompanybutton"   wicket:id="addcompanybutton"><div wicket:id="addcompanylabel">Add Company</div></button>
-			      <button type="submit" class="btn btn-outline-primary" id="addratingurlbutton" wicket:id="addratingurlbutton"><div wicket:id="addratingurllabel">Add Rating URL</div></button>
-			      <button type="submit" class="btn btn-outline-primary" id="refreshbutton"      wicket:id="refreshbutton"><div wicket:id="refreshlabel">Refresh</div></button>
-			  </div>
-		</form>
-		<br><br><br><br>
-	</div>
-	
-	<div style="text-align:center">
-      <span style="text-align:center" wicket:id="navigatortop">[listview navigator]</span>
+	<div class="sticky-top" style="text-align:center">
+	  <br>
+	  <div style="background:white; min-width:100%">
+	  	<br><br>
+        <span style="text-align:center" wicket:id="navigator">[listview navigator]</span>
+        <hr>
+      </div>
     </div>
-    <br>
-    
+   
     <span wicket:id="ciblabel"></span>
 	<br>
 	
@@ -111,12 +125,10 @@
 		<span wicket:id="resultcounter">[e.g. 1 to 20 of 500]</span>
 	</div>
 
-   	<table wicket:id="productlist" style="width:100%" class="table table-bordered">
-  	  <tr>
-  	    <td>
-  	       
+	<div class="d-flex flex-wrap bd-highlight mb-3">
+	  <div id="gamelistitem" wicket:id="productlist" class="p-2 bd-highlight"> <!-- width 30% ensures three items show next to each other-->
   	     <div id="productimage" style="width:30%;">
-  	      <img id="image" wicket:id="image" style="width:95%;height:auto;padding-left:2%; padding-right:2%; margin-left:auto; margin-right:auto;"/>
+  	      <img onerror="this.style.display='none'" alt="Missing picture" id="image" wicket:id="image" style="width:95%;height:auto;padding-left:2%; padding-right:2%; margin-left:auto; margin-right:auto;"/>
   	      <br>
 		 
 		  <form class="form-horizontal" wicket:id="uploadform">
@@ -153,15 +165,9 @@
 			<input type="submit" class="btn btn-primary" id="saveedit" wicket:id="saveedit" value="Save">
 		  </form>
 		 </div>
-		 
-	    </td>
-	  </tr>
-   	</table>
+	  </div>
+   	</div>
 
-    <div style="text-align:center">
-      <span style="text-align:center" wicket:id="navigator">[listview navigator]</span>
-    </div>
-	
 	<script src="js/leftsidemenu.js"></script>
 	<script src="js/popper.1.12.3.min.js"></script>
   	<script src="js/bootstrap.min.js"></script>

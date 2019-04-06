@@ -23,6 +23,7 @@ public enum EText {
 	, RECENTLY_ADDED( "Most recently added products" )
 	, REGISTER_NEW_USER( "Register New User" )
 	, SEARCH_RESULTS( "Search Results" )
+	, SORT_BY( "Sort by" )
 	, UNABLE_SEND_EMAIL( "Unable to send email" )
 	, UPDATE_PROFILE( "Update Profile")
 	, UPLOAD_FAILED( "Could not upload file. Check file name and size (< 100kb)" )
