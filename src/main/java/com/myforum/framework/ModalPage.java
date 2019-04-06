@@ -3,15 +3,13 @@ package com.myforum.framework;
 import org.apache.wicket.PageReference;
 import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.markup.html.WebPage;
-import org.apache.wicket.protocol.https.RequireHttps;
 
 import com.myforum.base.BasePage;
+import com.myforum.base.IRequiresHttps;
 import com.myforum.base.dictionary.EText;
 import com.myforum.base.dictionary.Translator;
 
-
-@RequireHttps
-public class ModalPage extends WebPage {
+public class ModalPage extends WebPage implements IRequiresHttps {
 	private static final long serialVersionUID = 1L;
 
 	protected ModalWindow parent;

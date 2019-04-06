@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 import com.myforum.base.menu.EMenuItem;
 
-/*disabled HTTPS... is now a paid feature in openshift!*/
-/*@RequireHttps*/ 
 public class AVKPage extends BasePage implements Serializable{
 	private static final long 	serialVersionUID = 1L;
 
