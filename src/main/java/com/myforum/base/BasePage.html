@@ -106,8 +106,10 @@
 </head>
 
 <body style="background:#F3F3FC; color:#333">
-  <span wicket:id="topMenu">Menu</span>
-
+  <div class="fixed-top">
+  	<span wicket:id="topMenu">Menu</span>
+  </div>
+  
   <br><br><br>
 
   <div style="width:100%;margin:0; padding: 0">
@@ -132,7 +134,7 @@
     	<br>
     </div>
     
-    <div id="basepanelright" wicket:id="sidepanelright"> </div>
+    <div id="basepanelright" wicket:id="sidepanelright" class="sticky-top"> </div>
     
     <div style="clear:both"> </div>
 
