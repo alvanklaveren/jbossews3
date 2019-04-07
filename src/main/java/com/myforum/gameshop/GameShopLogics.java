@@ -60,7 +60,7 @@ public class GameShopLogics {
 		GameConsole gameConsole = gameConsoleDao.find(gameConsoleId);
 		ProductType productType = productTypeDao.find(productTypeId);
 		if( gameConsole == null && productType == null){
-			productList = productDao.list(40 /*Maximum number of result*/ ); // get most recently added products
+			productList = productDao.list(36 /*Maximum number of result*/ ); // get most recently added products
 		}
 		if( gameConsole != null && productType == null){	
 			productList = productDao.list( gameConsole, sortOrder );
