@@ -404,6 +404,5 @@ public class SourceSubjectPage extends AVKPage {
     	
     	add( deletePanel ); 
 	    
-	    resetErrorMessage();
 	} 		
 }

@@ -17,5 +17,4 @@ public class AVKPage extends BasePage implements Serializable{
 	public AVKPage(EMenuItem menuItem){
 		super(menuItem);
 	}
-
 }

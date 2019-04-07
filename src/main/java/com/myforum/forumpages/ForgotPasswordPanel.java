@@ -85,7 +85,7 @@ public class ForgotPasswordPanel extends ForumBasePanel {
 	
 	public void emailPassword(String emailAddress, String username, String newPassword){
         HotmailMessage hotmailMessage = new HotmailMessage(emailAddress);
-        hotmailMessage.setSubject("Your password at the AVK Forum has been reset");
+        hotmailMessage.setSubject("Your password at the alvanklaveren.com has been reset");
         hotmailMessage.setBody("Username: " + username + "\nPassword: " + newPassword);
 
         try {
@@ -99,6 +99,7 @@ public class ForgotPasswordPanel extends ForumBasePanel {
 	    	log.error("MessagingException: " + e.getMessage());
 			e.printStackTrace();
         }
-
+        
+        setNotificationMessage( EText.EMAIL_SENT );
 	}
 }

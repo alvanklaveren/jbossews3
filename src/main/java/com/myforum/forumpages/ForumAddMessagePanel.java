@@ -29,7 +29,7 @@ public class ForumAddMessagePanel extends ForumBasePanel {
 		
 		final int codeMessageCategory = CookieLogics.getCookieInt("codeMessageCategory");
         if(codeMessageCategory == 0){
-        	setErrorMessage("An error occurred: Could not find message category");
+        	parent.setPanelErrorMessage("An error occurred: Could not find message category");
     		setResponsePage(ForumBasePage.class);
     		return;
 		}
@@ -78,7 +78,16 @@ public class ForumAddMessagePanel extends ForumBasePanel {
 			private static final long serialVersionUID = 1L;
 			@Override
 	        protected void onEvent(AjaxRequestTarget target) {
-				String replyMessage = replyMessageTA.getDefaultModel().getObject().toString();
+				String replyMessage = "";
+
+				if (replyMessageTA != null && replyMessageTA.getDefaultModel() != null && replyMessageTA.getDefaultModel().getObject() != null) {
+				
+					replyMessage = replyMessageTA.getDefaultModel().getObject().toString();
+					if (replyMessage == null) {
+						replyMessage= "";
+					}
+				} 
+				
 				replyMessage = StringLogics.prepareMessage( replyMessage );
 				replyMessagePreview.setDefaultModel( new Model<String>( replyMessage ) );
         		target.add(thisPanel);

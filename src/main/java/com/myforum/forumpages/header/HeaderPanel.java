@@ -13,7 +13,7 @@ public class HeaderPanel extends AVKPanel {
 	private ForumUser activeUser;
 
 	public HeaderPanel() {
-        super( "headerpanel" );
+        super("headerpanel");
         setOutputMarkupId(true);
 
         addOrReplace( new Label("forumname", new Model<String>("AVK Forum")) );			

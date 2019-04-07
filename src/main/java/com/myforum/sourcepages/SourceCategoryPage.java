@@ -379,8 +379,6 @@ public class SourceCategoryPage extends AVKPage{
 
         add( listView ); 
         add( new PagingNavigator("navigator", listView) );
-        
-	    resetErrorMessage();
-        
+               
 	} 	
 }

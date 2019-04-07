@@ -2,8 +2,6 @@ package com.myforum.forumpages;
 
 import com.myforum.application.CookieLogics;
 import com.myforum.application.DBHelper;
-import com.myforum.base.dictionary.EText;
-import com.myforum.base.dictionary.Translator;
 import com.myforum.forumpages.header.HeaderPanel;
 import com.myforum.framework.AVKPanel;
 import com.myforum.homepage.HomePage;
@@ -15,7 +13,6 @@ public abstract class ForumBasePanel extends AVKPanel{
 	private static final long serialVersionUID = 1L;
 	protected String magicToken;
 	protected ForumBasePage parent;
-	protected Translator translator = Translator.getInstance();
 
 	public ForumBasePanel(final ForumBasePage parent) {
 		super("activepanel");
@@ -34,19 +31,6 @@ public abstract class ForumBasePanel extends AVKPanel{
 		return CredentialLogics.isAdministrator(forumUser);
 	}
 	
-	public void setErrorMessage( String errorMessage ){
-		getSession().setAttribute( "errormessage", Translator.getInstance().translate(errorMessage) );
-	}
-	
-	public void setErrorMessage( EText eText ){
-		getSession().setAttribute( "errormessage", translator.translate( eText.toString() ) );
-	}
-
-	public void resetErrorMessage(){
-		String text = null;
-		setErrorMessage( text );
-	}
-    
 	protected boolean allowModification(ForumUser forumUser){
 		return isAdministrator(forumUser) || isActive(forumUser);
 	}

@@ -14,6 +14,10 @@ public class ForumBasePage extends AVKPage{
 		// the BasePage is just a container, so where to go depends on cookies set or not
     	activePanel = getPanelByCookies();
         addOrReplace(activePanel);
+        
+		// reset any panelerrormessage that has been used (and put on the html panel pages)
+		getSession().setAttribute("panelerrormessage", "");
+		getSession().setAttribute("panelnotificationmessage", "");
 	}   
 
 	public ForumBasePanel getActivePanel(){

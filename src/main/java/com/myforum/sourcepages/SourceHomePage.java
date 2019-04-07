@@ -91,7 +91,6 @@ public class SourceHomePage extends AVKPage {
         addOrReplace( listView );
         addOrReplace( new StatefulPagingNavigator( "navigator", listView ) );
               
-	    resetErrorMessage();
 	}
 	
 }

@@ -86,6 +86,7 @@ public class BasePage extends WebPage implements IRequiresHttps, Serializable{
 		Panel footer = new FooterPanel("footer");
 		add(footer);
 		
+		getSession().setAttribute( "errormessage", "");	
 	}
 
 	public void setErrorMessage( String errorMessage ){
@@ -96,9 +97,12 @@ public class BasePage extends WebPage implements IRequiresHttps, Serializable{
 		getSession().setAttribute( "errormessage", translator.translate( eText.toString() ) );
 	}
 
-	public void resetErrorMessage(){
-		String nullString = null;
-		setErrorMessage( nullString );
+	public void setPanelErrorMessage( String errorMessage ){
+		getSession().setAttribute( "panelerrormessage", translator.translate( errorMessage ) );
+	}
+
+	public void setPanelErrorMessage( EText eText ){
+		getSession().setAttribute( "panelerrormessage", translator.translate( eText.toString() ) );
 	}
 
 	protected boolean isAdministrator(ForumUser forumUser){

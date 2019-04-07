@@ -76,14 +76,14 @@ public class ForumMessageForm extends StatelessForm<Object> {
 				newMessage.setMessageText( messageTextTA.getInput() );
 				
 				if( activeUser.getCode() <= 0 ){
-	        		parent.setErrorMessage( "You have to be logged in to write messages" );
+	        		parent.setPanelErrorMessage( "You have to be logged in to write messages" );
     				isError = true;
     			}   			
 		    	    			
     			// only check for a title in new messages. Comments do not have a title.
     			if( codeMessage == 0 ){
 					if( StringLogics.isEmpty( newMessage.getDescription() ) ){
-						((AVKPage) getPage()).setErrorMessage( "Please add a title" );
+						parent.setPanelErrorMessage( "Please add a title" );
 		        		isError = true;
 					}else{
 		    			getSession().setAttribute( "messageDescription", newMessage.getDescription() );
@@ -91,7 +91,7 @@ public class ForumMessageForm extends StatelessForm<Object> {
     			}
 
 				if( StringLogics.isEmpty( newMessage.getMessageText() ) ){
-					parent.setErrorMessage( "Please add message content" );
+					parent.setPanelErrorMessage( "Please add message content" );
 	        		isError = true;
 				}else{
 	    			getSession().setAttribute( "messageText", newMessage.getMessageText() );
@@ -106,7 +106,7 @@ public class ForumMessageForm extends StatelessForm<Object> {
     				MessageCategory 	messageCategory 	= messageCategoryDao.find( codeMessageCategory );
 
     				if(messageDao.find(codeMessage) == null && codeMessage > 0){
-	        			parent.setErrorMessage("Failed to save comment");
+	        			parent.setPanelErrorMessage("Failed to save comment");
 	        			parent.addOrReplace(new ForumAddMessagePanel(parent));
 	        			return;    					
     				}
@@ -116,7 +116,7 @@ public class ForumMessageForm extends StatelessForm<Object> {
 	    	    	newMessage.setForumUser( activeUser );
 	
 	    	    	if( !DBHelper.saveAndCommit(newMessage) ){
-						parent.setErrorMessage("Failed to save message");
+						parent.setPanelErrorMessage("Failed to save message");
 						parent.addOrReplace(new ForumAddMessagePanel(parent));
 						return;
 					}
@@ -125,7 +125,7 @@ public class ForumMessageForm extends StatelessForm<Object> {
     			// if the message being added was a completely new message (i.e. codeMessage == 0)... 
 	        	if ( codeMessage == 0 ){
 	        		if( isError ){
-	        			parent.setErrorMessage("Failed to save new message");
+	        			// panel error message should now have already been populated by the above if statements
 	        			parent.addOrReplace(new ForumAddMessagePanel(parent));
 	        			return;
 	        		}else{

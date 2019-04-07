@@ -10,6 +10,7 @@ public enum EText {
 	, ADMINISTRATOR_MAINTENANCE( "Administrator Maintenance" )
 	, CIB_LABEL( "CIB = complete in box, but should be read as \"at least includes manual\"" ) 
 	, DO_DELETE_CATEGORY( "Do you really want to delete this category?" )
+	, EMAIL_SENT( "Email sent" )
 	, FAILED_CHANGE_PASSWORD( "Failed to change your password. Sucks to be you." )
 	, FAILED_GENERATE_PASSWORD( "Failed to generate a new password." )
 	, FORGOT_PASSWORD( "Forgot password?" )
