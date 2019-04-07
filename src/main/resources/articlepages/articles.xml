@@ -9,21 +9,31 @@
     </article>
     
     <article>
-      <id>Spring &amp; Wicket</id>
+      <id>SpringAndWicket</id>
       <title>How to add Spring to your existing Wicket application Part 1: Setup</title>
       <document>SpringWicket.html</document>
     </article>
     
     <article>
-      <id>OPENSHIFT v2 - TOMCAT7</id>
+      <id>OPENSHIFTv2-TOMCAT7</id>
       <title>How to install a Java EE/Tomcat7 webapplication on OpenShift Online v2</title>
       <document>openshift-tomcat7.html</document>
     </article>
     
     <article>
-      <id>OPENSHIFT v3 - WILDFLY</id>
+      <id>OPENSHIFTv3-WILDFLY</id>
       <title>How to install a Java EE/Wildfly webapplication on OpenShift Online v3</title>
       <document>openshift-wildfly.html</document>
+    </article>
+  </articlegroup>
+  
+  <articlegroup>
+  	  <title>Webhosting Setup related</title>
+  	  
+      <article>
+      <id>Install-SSL-Certificate</id>
+      <title>Acquire and install an SSL certificate</title>
+      <document>ssl-certificate.html</document>
     </article>
   </articlegroup>
 </avkarticles>

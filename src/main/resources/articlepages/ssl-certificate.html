@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns:wicket>
+  <wicket:head>
+    <title>SSL Certificates</title>
+  </wicket:head>
+
+  <body>
+   <span>
+    <div class="container">
+      <div class="blog-header">
+        <h1 class="blog-title">How I got my SSL certificate</h1>
+        <p class="lead blog-description">Acquire and install an SSL certificate</p>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+          <div class="blog-post">
+            <h2 class="blog-post-title">Acquiring and installing an SSL certificate</h2>
+            <p class="blog-post-meta">April 7, 2019 by <a href="#">Alex</a></p>
+
+            <p style="text-align:justify">It has been a while since I last used a secured webpage (https). Last time I used
+            a free solution (<a href="https://letsencrypt.org/">Let's Encrypt</a>) on an OpenShift environment. This time
+            however, I wanted to quit using free solutions, and bought an SSL certificate through 
+            <a href="https://www.namecheap.com/">Namecheap</a> from a trusted Certificate Authority called 
+            <a href="https://ssl.comodo.com/">Sectigo</a> (formerly Comodo CA). The certificate I got is a PositiveSSL ticket
+            which costs less than 8 dollar a year, which is a fair price to pay for having a CA that is trusted by most browsers.<p style="text-align:justify">
+
+<hr>
+<h3 id="h3">Before we start...</h3>
+	<p style="text-align:justify">
+	Prior to reading the article I expect you to have at least some knowledge of and experience with:
+	</p>
+	<ol class="blog-ul" style="text-align:justify">
+		<li><p>Namecheap</p></li>
+		<li><p>(Apache) Tomcat and Apache (configuration)</p></li>
+		<li><p>the Linux filesystem</p></li>
+	</ol>
+	
+	<p style="text-align:justify">Before we start, mind that this tutorial is, for the most part, interchangeable with any other
+	operating system or (type of) webcontainer (e.g. tomcat), apart from a few details that are (very) specific for the setup of 
+	<a href="alvanklaveren.com">alvanklaveren.com</a>.<br>   
+    </p>
+
+	<h3 id="h3">Acquiring an SSL certificate</h3>
+	<p style="text-align:justify">
+	First, we open a linux terminal, go to a folder where we would like to manage our certificates, and create a keystore. This
+	could be any place you like, but in this example we will use the tomcat configuration folder (tomcat/conf/). <br>
+	In this folder, run the following commands:
+	</p>
+
+	<p style="text-align:justify">
+	1) <kbd>keytool -genkey -keysize 2048 -keyalg RSA -alias tomcat -keystore keystore.jks</kbd> Mind that we use <kbd>tomcat</kbd> 
+	as an alias for the certificate in the keystore. If you want to use another alias, make sure to replace it in all the further instructions below.
+	</p>
+	<ol>
+	   	<li><p style="text-align:justify">password (default the password is changeit. In this example we do <b>not</b> change it!)</p>
+	   	<li><p style="text-align:justify">first and last name: yourdomain.com  (do not prefix www !)</p>
+	   	<li><p style="text-align:justify">organizational unit (e.g. It Department)</p>
+	    <li><p style="text-align:justify">name of organization</p>
+	    <li><p style="text-align:justify">city</p>
+	    <li><p style="text-align:justify">province or state</p>
+	    <li><p style="text-align:justify">country code (2 character code, like NL, UK, IT, and so on)</p>
+	    <li><p style="text-align:justify">Next you can press enter to keep using the same keystore password (changeit), or change it now (and remember... forever !!)</p>
+	</ol>
+
+	<p style="text-align:justify">
+	This will now have generated a keystore named "keystore.jks".<br>
+	</p>
+
+	<p style="text-align:justify">
+	2) Immediately make it a pkcs12 keystore, if it is not already.
+	</p>
+	<ol>
+		<li><kbd>keytool -importkeystore -srckeystore keystore.jks -destkeystore keystore.jks -deststoretype pkcs12</kbd></li><br>
+	    <li><p style="text-align:justify">Make a backup of the keystore, just in case something goes wrong later on: <br><kbd>cp keystore.jks keystore.jks.backup</kbd></p></li>
+	</ol>
+
+	<p style="text-align:justify">
+	3) Generate the csr:
+	</p>
+	<ol>
+		<li><kbd>keytool -certreq -alias tomcat -file tomcat.csr -keystore keystore.jks</kbd></li>
+	</ol>
+
+	<p style="text-align:justify">   
+	So now we have the csr file (<kbd>tomcat.csr</kbd> in this example), that we are going to use to get our certificate.
+	</p>
+
+	<p style="text-align:justify">
+	4) Go to namecheap and get (a new) certificate (reissue)
+	</p>
+	<ol>
+		<li><p style="text-align:justify">Click on the dropdown arrow and select “reissue”</p>
+		<img src="../images/ssl1.png" alt="<picture not found>" style="width:100%; border:1px solid black"></img>
+		<br><br>
+		</li> 
+		<li><p style="text-align:justify">Now copy the content of the CSR generated in step 3 into the “Enter CSR” box and press “Next”</p>
+		<img src="../images/ssl2.png" alt="<picture not found>" style="width:100%; border:1px solid black"></img>
+		<br><br>
+		</li> 
+		<li><p style="text-align:justify">In the next screen, choose “Any other server”, because we are using apache2 on Digital Ocean.</p>
+		<img src="../images/ssl3.png" alt="<picture not found>" style="width:100%; border:1px solid black"></img>
+		<br><br>
+		</li>	
+		<li><p style="text-align:justify">Next, choose Email as DCV method (by far the easiest), and follow the instructions in the emails to get the certificate 
+		and root/intermediate bundle.</p>
+		<img src="../images/ssl4.png" alt="<picture not found>" style="width:100%; border:1px solid black"></img>
+		<br><br>
+		</li>
+		<li><p style="text-align:justify">The first (comodo/sectigo) email asks you to enter the validation code at the given link in the email.
+		When you entered the code, a second email arrives containing a zip file. This zipfile contains a bundle and your domain certificate.
+		In my case, these are <i>alvanklaveren_com.crt</i> and <i>alvanklaveren_com.ca-bundle</i>.</p>
+		</li>
+	</ol>
+
+	<p style="text-align:justify">
+	The bundle contains both the root and intermediate certificate, so we split this into one root.crt, and one intermediate.crt. 
+	<b>Important</b>: The bundle starts with the intermediate, and ends with the root certificate, in that order.<br>
+	Next we copy these to the keystore location, together with alvanklaveren_com.crt. We are now going to import them into the keystore.
+	</p>
+
+	<p style="text-align:justify">
+	5) Import certificates (<b>REMEMBER</b>: we made a copy of the keystore in case something goes wrong).
+	First we import the root, then the intermediate, then the domain:
+	</p>
+	<ol> 
+	   <li><kbd>keytool -import -trustcacerts -alias root -file root.crt -keystore keystore.jks</kbd><br></li>
+	   <li><kbd>keytool -import -trustcacerts -alias intermediate -file intermediate.crt -keystore keystore.jks</kbd><br></li>
+	   <li><kbd>keytool -import -trustcacerts -alias tomcat -file alvanklaveren_com.crt -keystore keystore.jks</kbd><br></li>
+	</ol>
+	
+	<p style="text-align:justify">
+	The intermediate file is important, because otherwise (older) Android devices may give an “unsecure website” warning.
+	</p>
+	
+	<p style="text-align:justify">
+	A specific detail for alvanklaveren.com is that the wicket webpages need to have the <code>@requireshttps</code> 
+	annotation, and the web.xml needs to contain a setup to explain which folders (starting the webroot folder), are exempt from htttps.
+	For alvanklaveren.com, all webpages are secure, except for the gameshopmobile page, that contains a service to send data to a mobile
+	application. It is pointless to make it secure, as it only takes more time to process (and we want our mobile app to be fast). 
+	</p>
+	
+	<p style="text-align:justify">
+	Below shows the partial web.xml for alvanklaveren.com
+	</p>
+	<pre><code>
+	&lt;web-app ...&gt;
+    	...
+		&lt;security-constraint&gt;
+		    &lt;web-resource-collection&gt;
+		        &lt;web-resource-name&gt;server&lt;/web-resource-name&gt;
+		        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+		    &lt;/web-resource-collection&gt;
+		    &lt;user-data-constraint&gt;
+		        &lt;transport-guarantee&gt;CONFIDENTIAL&lt;/transport-guarantee&gt;
+		    &lt;/user-data-constraint&gt;
+		&lt;/security-constraint&gt;
+		
+		&lt;security-constraint&gt;
+		    &lt;web-resource-collection&gt;
+		        &lt;web-resource-name&gt;server&lt;/web-resource-name&gt;
+		        &lt;!-- exclude the call to gameshopmobile. this page is NOT https protected !! --&gt;
+		        &lt;url-pattern&gt;/gameshopmobile/*&lt;/url-pattern&gt;
+		    &lt;/web-resource-collection&gt;
+		    &lt;user-data-constraint&gt;
+		        &lt;transport-guarantee&gt;NONE&lt;/transport-guarantee&gt;
+		    &lt;/user-data-constraint&gt;
+		&lt;/security-constraint&gt;
+		...
+     &lt;/web-app&gt;
+	</code></pre>
+	
+	<h3 id="h3">Final words</h3>
+	<p style="text-align:justify">
+	In this document I described how to get SSL certificates and install them. In another document I will explain how  
+	to setup apache2 to serve tomcat over 443 using virtual hosts (in ssl-default.conf, apache2.conf).
+	</p>
+          </div><!-- /.blog-post -->
+
+        </div><!-- /.blog-main -->
+
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+  
+  </span>
+  
+ </body>
+</html>

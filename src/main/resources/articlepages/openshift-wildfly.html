@@ -45,80 +45,80 @@ Adding other languages (like Python) and webservers (like JBoss) will differ, so
 <p style="text-align:justify">
 First create an account on OpenShift (no explanation necessary). Next, Login to the Openshift webconsole
 <br>
-<img src="../images/openshift-wildfly-1.png" alt="<picture not found>" width="50%" height="30%" style="border:1px solid black"></img>
+<img src="../images/openshift-wildfly-1.png" alt="<picture not found>" style="width:50%; border:1px solid black"></img>
 <br><br>
 Click "Create Project"
 <br><br>
 In the next window, choose a name for your project, a display name, and a description.
 <br><br>
-<img src="../images/openshift-wildfly-2.png" alt="<picture not found>" width="80%" height="40%" style="border:1px solid black"></img>
+<img src="../images/openshift-wildfly-2.png" alt="<picture not found>" style="width:80%; border:1px solid black"></img>
 <br><br>
 In the next window, click on "Java".
 <br><br>
-<img src="../images/openshift-wildfly-3.png" alt="<picture not found>" width="80%" height="40%" style="border:1px solid black"></img>
+<img src="../images/openshift-wildfly-3.png" alt="<picture not found>" style="width:80%; border:1px solid black"></img>
 <br><br>
 In the next window, click on "Wildfly".
 <br><br>
-<img src="../images/openshift-wildfly-4.png" alt="<picture not found>" width="80%" height="40%" style="border:1px solid black"></img>
+<img src="../images/openshift-wildfly-4.png" alt="<picture not found>" style="width:80%; border:1px solid black"></img>
 <br><br>
 In the next window, select version 10.1 and click "Select".
 <br><br>
-<img src="../images/openshift-wildfly-5.png" alt="<picture not found>" width="80%" height="40%" style="border:1px solid black"></img>
+<img src="../images/openshift-wildfly-5.png" alt="<picture not found>" style="width:80%; border:1px solid black"></img>
 <br><br>
 In the next window, give this wildfly pod a unique name, and add the address to your webapplication on GitHub.
 <br><br>
-<img src="../images/openshift-wildfly-6.png" alt="<picture not found>" width="80%" height="40%" style="border:1px solid black"></img>
+<img src="../images/openshift-wildfly-6.png" alt="<picture not found>" style="width:80%; border:1px solid black"></img>
 <br><br>
 In the next window, copy the webhook on the right and add it to your github repository.
 <br><br>
-<img src="../images/openshift-wildfly-7.png" alt="<picture not found>" width="80%" height="40%" style="border:1px solid black"></img>
+<img src="../images/openshift-wildfly-7.png" alt="<picture not found>" style="width:80%; border:1px solid black"></img>
 <br><br>
 Now add this webhook in your github repository. This will auto trigger a build when you make change in your repository.
 <br><br>
-<img src="../images/openshift-wildfly-8.png" alt="<picture not found>" width="80%" height="40%" style="border:1px solid black"></img>
+<img src="../images/openshift-wildfly-8.png" alt="<picture not found>" style="width:80%; border:1px solid black"></img>
 <br><br>
 Go back to the overview window. You will now see a live pod for your webapp.
 <br><br>
-<img src="../images/openshift-wildfly-9.png" alt="<picture not found>" width="80%" height="40%" style="border:1px solid black"></img>
+<img src="../images/openshift-wildfly-9.png" alt="<picture not found>" style="width:80%; border:1px solid black"></img>
 <br><br>
 In the top of this window, click "Add to project" and select "Browse Catalog"
 <br><br>
-<img src="../images/openshift-wildfly-10.png" alt="<picture not found>" width="80%" height="40%" style="border:1px solid black"></img>
+<img src="../images/openshift-wildfly-10.png" alt="<picture not found>" style="width:80%; border:1px solid black"></img>
 <br><br>
 Click on "Datastores"
 <br><br>
-<img src="../images/openshift-wildfly-11.png" alt="<picture not found>" width="80%" height="40%" style="border:1px solid black"></img>
+<img src="../images/openshift-wildfly-11.png" alt="<picture not found>" style="width:80%; border:1px solid black"></img>
 <br><br>
 Click on "MySQL (Persistent)"
 <br><br>
-<img src="../images/openshift-wildfly-12.png" alt="<picture not found>" width="80%" height="40%" style="border:1px solid black"></img>
+<img src="../images/openshift-wildfly-12.png" alt="<picture not found>" style="width:80%; border:1px solid black"></img>
 <br><br>
 When you have added all the info necessary (user, password, databasename), press "Create".<br>
 <big>Important</big>: Do NOT use the name "mysql" as your "Mysql database name". This is reserved for OpenShift and will fail building.<a></a><br>
 In the next window, remember to write down the username, password, and db_name for later use.
 <br><br>
-<img src="../images/openshift-wildfly-13.png" alt="<picture not found>" width="80%" height="40%" style="border:1px solid black"></img>
+<img src="../images/openshift-wildfly-13.png" alt="<picture not found>" style="width:80%; border:1px solid black"></img>
 <br><br>
 To configure your hibernate.cfg.xml with the correct reference to your MySQL db, in the next window click "Actions" and click "Edit YAML".
 <br><br>
-<img src="../images/openshift-wildfly-14.png" alt="<picture not found>" width="80%" height="40%" style="border:1px solid black"></img>
+<img src="../images/openshift-wildfly-14.png" alt="<picture not found>" style="width:80%; border:1px solid black"></img>
 <br><br>
 Now write down the "podIP"
 <br><br>
-<img src="../images/openshift-wildfly-15.png" alt="<picture not found>" width="80%" height="40%" style="border:1px solid black"></img>
+<img src="../images/openshift-wildfly-15.png" alt="<picture not found>" style="width:80%; border:1px solid black"></img>
 <br><br>
 From the overview, select the WebApp pod and click on "Add Storage to [your web app pod name]"
 <br><br>
-<img src="../images/openshift-wildfly-16.png" alt="<picture not found>" width="80%" height="40%" style="border:1px solid black"></img>
+<img src="../images/openshift-wildfly-16.png" alt="<picture not found>" style="width:80%; border:1px solid black"></img>
 <br><br>
 Because we only created the one MySQL pod, it will automatically select it.<br>
 You can mount it to /<podname> and as volume name use /<db_name>. This way it will be easier to find it again if ever needed. 
 <br><br>
-<img src="../images/openshift-wildfly-17.png" alt="<picture not found>" width="80%" height="40%" style="border:1px solid black"></img>
+<img src="../images/openshift-wildfly-17.png" alt="<picture not found>" style="width:80%; border:1px solid black"></img>
 <br><br>
 Last but not least, from the Overview go to "Applications" -> "Routes"
 <br><br>
-<img src="../images/openshift-wildfly-18.png" alt="<picture not found>" width="80%" height="40%" style="border:1px solid black"></img>
+<img src="../images/openshift-wildfly-18.png" alt="<picture not found>" style="width:80%; border:1px solid black"></img>
 <br><br>
 Technically, your website is already available using the (long) unique http address. But if you have bought a domain and want your<br>
 DNS cname to connect to this (long) address, you will have to add an additional route to your domain (in this case www.alvanklaveren.com),<br>
