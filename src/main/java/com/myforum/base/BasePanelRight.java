@@ -20,7 +20,7 @@ public class BasePanelRight extends Panel{
 
 		add( new Label("aboutwebsitetext", translator.translate(EText.ABOUT_WEBSITE_TEXT)).setEscapeModelStrings(false) );
 		
-		String emailAddress = AllConstants.MY_EMAIL;
+		String emailAddress = AllConstants.MAIL_TO;
 		addOrReplace(new ExternalLink("myemail", "mailto:" + emailAddress, translator.translate("message")) );
 
 	}

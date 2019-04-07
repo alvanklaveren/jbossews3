@@ -12,7 +12,9 @@ public final class AllConstants {
 	public static final String FORUM_NAME = "AVK Forum";
 	public static final String MY_EMAIL = getConstantStringValue("email_address");
 	public static final String MY_EMAIL_PASSWORD = getConstantStringValue("email_password");
-	
+
+	public static final String MAIL_TO = "info@alvanklaveren.com";
+
 	public static final int ADMINISTRATOR	= 0;
 	public static final int MEMBER 			= 1;
 	public static final int GUEST 			= 2;
