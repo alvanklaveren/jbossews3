@@ -26,7 +26,7 @@
 		/* Small devices (phones and small tablets) */
 		@media only screen and (max-width:1023px){
 		  #gamelistitem{
-		  	width:50%;
+		  	width:48%;
 		  }
 		}
 
@@ -53,7 +53,7 @@
 			  float:none;
 		  }
 		  #gamelistitem{
-		  	width:100%;
+		  	width:96%;
 		  }	  
 		}
 
@@ -131,47 +131,48 @@
 	</div>
 
 	<div class="d-flex flex-wrap bd-highlight mb-3">
-	  <div id="gamelistitem" wicket:id="productlist" class="p-2 bd-highlight"> <!-- width 30% ensures three items show next to each other-->
-  	     <div id="productimage" style="width:30%;">
-  	      <img onerror="this.style.display='none'" alt="Missing picture" id="image" wicket:id="image" style="width:95%;height:auto;padding-left:2%; padding-right:2%; margin-left:auto; margin-right:auto;"/>
-  	      <br>
-		 
-		  <form class="form-horizontal" wicket:id="uploadform">
-		    <div class="form-group">
-				<input type="file" class="form-control-file" id="imagefile" wicket:id="productImage">
-				<br>
-				<label for="uploadbutton" class="col-sm-1 control-label"></label>
-				<input type="submit" class="btn btn-primary" id="uploadbutton" wicket:id="uploadbutton" value="Upload">
-			</div>
-		  </form>
-		 </div>	     	
-
-  	     <div id="producttext" style="width:70%;"> 	
-	      <h4><span wicket:id="name">Name of Product</span></h4>
-		  <small wicket:id="companyandyear">[Name of Developer]</small>
-   	      <small><span wicket:id="gameConsole.description">[Name of Game Console]</span></small>
-	      <hr>
-	      <span wicket:id="htmlDescription">[Product Description]</span>
-	      <br><br>
-		  <span wicket:id="ratingText">[Rating #]</span><span wicket:id="rating">[Rating]</span><a wicket:id="ratingUrl">[Rating URL]</a>
-		
-
-	      <form class="form-horizontal" wicket:id="productinfoform">
-	        <br>
-			Name <input type="text" class="form-control" id="editname" wicket:id="editname" placeholder="Product Name"></input>
-			Year <input type="text" class="form-control" id="edityear" wicket:id="edityear" placeholder="Year of Release"></input>
-			Description <textarea class="form-control" id="editdescription" wicket:id="editdescription" placeholder="Description"></textarea>
-			GameConsole <select class="form-control" id="gameconsoles" wicket:id="gameconsoles"></select>
-			Product Type <select class="form-control" id="producttypes" wicket:id="producttypes"></select>
-			Developer <select class="form-control" id="companies" wicket:id="companies"></select>
-			<input type="submit" class="btn btn-primary" id="modifyratingbutton" wicket:id="modifyratingbutton" value ="Modify Rating">
-			<br><br>
-			<input type="submit" class="btn btn-primary" id="deleteproductbutton" wicket:id="deleteproductbutton" value="Delete Product">
-			<input type="submit" class="btn btn-primary" id="saveedit" wicket:id="saveedit" value="Save">
-		  </form>
-		 </div>
-	  </div>
-   	</div>
+		<div id="gamelistitem" wicket:id="productlist" class="p-2 bd-highlight border" style="box-shadow:2px 2px 2px #AAAAAA; margin-left:4px; margin-right:4px margin-top:4px; margin-bottom:4px"> 
+			 <!-- width 30% ensures three items show next to each other-->
+	  	     <div id="productimage" style="width:30%;">
+	  	      <img onerror="this.style.display='none'" alt="Missing picture" id="image" wicket:id="image" style="width:95%;height:auto;padding-left:2%; padding-right:2%; margin-left:auto; margin-right:auto;"/>
+	  	      <br>
+			 
+			  <form class="form-horizontal" wicket:id="uploadform">
+			    <div class="form-group">
+					<input type="file" class="form-control-file" id="imagefile" wicket:id="productImage">
+					<br>
+					<label for="uploadbutton" class="col-sm-1 control-label"></label>
+					<input type="submit" class="btn btn-primary" id="uploadbutton" wicket:id="uploadbutton" value="Upload">
+				</div>
+			  </form>
+			 </div>	     	
+	
+	  	     <div id="producttext" style="width:70%;"> 	
+		      <h4><span wicket:id="name">Name of Product</span></h4>
+			  <small wicket:id="companyandyear">[Name of Developer]</small>
+	   	      <small><span wicket:id="gameConsole.description">[Name of Game Console]</span></small>
+		      <hr>
+		      <span wicket:id="htmlDescription">[Product Description]</span>
+		      <br><br>
+			  <span wicket:id="ratingText">[Rating #]</span><span wicket:id="rating">[Rating]</span><a wicket:id="ratingUrl">[Rating URL]</a>
+			
+	
+		      <form class="form-horizontal" wicket:id="productinfoform">
+		        <br>
+				Name <input type="text" class="form-control" id="editname" wicket:id="editname" placeholder="Product Name"></input>
+				Year <input type="text" class="form-control" id="edityear" wicket:id="edityear" placeholder="Year of Release"></input>
+				Description <textarea class="form-control" id="editdescription" wicket:id="editdescription" placeholder="Description"></textarea>
+				GameConsole <select class="form-control" id="gameconsoles" wicket:id="gameconsoles"></select>
+				Product Type <select class="form-control" id="producttypes" wicket:id="producttypes"></select>
+				Developer <select class="form-control" id="companies" wicket:id="companies"></select>
+				<input type="submit" class="btn btn-primary" id="modifyratingbutton" wicket:id="modifyratingbutton" value ="Modify Rating">
+				<br><br>
+				<input type="submit" class="btn btn-primary" id="deleteproductbutton" wicket:id="deleteproductbutton" value="Delete Product">
+				<input type="submit" class="btn btn-primary" id="saveedit" wicket:id="saveedit" value="Save">
+			  </form>
+			 </div>
+		</div>
+	</div>
 
 	<script src="js/leftsidemenu.js"></script>
 	<script src="js/popper.1.12.3.min.js"></script>
