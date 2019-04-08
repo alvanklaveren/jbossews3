@@ -83,9 +83,9 @@ public class AVKApplication extends WebApplication {
 		  // this package scanner will mount all resource classes that are tagged with @ResourcePath("//...")
 		  // PackageScanner.scanPackage("org.wicketstuff.rest.resource");
 		  		  
-		  //setRootRequestMapper(new HttpsMapper(getRootRequestMapper(), new HttpsConfig() ));
-		  // the next line activates https (on 443)
-		  setRootRequestMapper(new HttpsMapper(getRootRequestMapper(), new HttpsConfig(80, 443) ));
+		  setRootRequestMapper(new HttpsMapper(getRootRequestMapper(), new HttpsConfig() ));
+		  // the next line activates https (on 443) BUT DISABLES 8443... so be warned
+		  //setRootRequestMapper(new HttpsMapper(getRootRequestMapper(), new HttpsConfig(80, 443) ));
     }
    
     /**
