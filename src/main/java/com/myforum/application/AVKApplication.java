@@ -83,8 +83,9 @@ public class AVKApplication extends WebApplication {
 		  // this package scanner will mount all resource classes that are tagged with @ResourcePath("//...")
 		  // PackageScanner.scanPackage("org.wicketstuff.rest.resource");
 		  		  
-		  // the next line activates https (using port 8443 on localhost and 843 on openshift)
-		  setRootRequestMapper(new HttpsMapper(getRootRequestMapper(), new HttpsConfig() ));
+		  //setRootRequestMapper(new HttpsMapper(getRootRequestMapper(), new HttpsConfig() ));
+		  // the next line activates https (on 443)
+		  setRootRequestMapper(new HttpsMapper(getRootRequestMapper(), new HttpsConfig(80, 443) ));
     }
    
     /**
