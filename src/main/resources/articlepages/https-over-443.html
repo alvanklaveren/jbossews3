@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:wicket>
+  <wicket:head>
+    <title>HTTPS over port 443</title>
+  </wicket:head>
+
+  <body>
+   <span>
+    <div class="container">
+      <div class="blog-header">
+        <h1 class="blog-title">HTTPS over port 443</h1>
+        <p class="lead blog-description">How I got Tomcat listen to port 443</p>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+          <div class="blog-post">
+            <h2 class="blog-post-title">How to get Tomcat listen to port 443 in a linux environment</h2>
+            <p class="blog-post-meta">April 9, 2019 by <a href="#">Alex</a></p>
+
+            <p style="text-align:justify">The internet can be your friend, or your worst enemy, when trying to
+            troubleshoot basic configuration issues. One that serves over millions of forums and blogs is the
+            infamous "https not working on port 443". Now the thing is, there is a gazillion reasons why it may
+            not be working, so to help you in your search for the correct answer, this article assumes that you
+            at least got it running on another port, which most likely will be port 8443.
+            </p>
+
+<hr>
+<h3 id="h3">Before we start...</h3>
+	<p style="text-align:justify">
+	Prior to reading the article I expect you to have at least some knowledge of and experience with:
+	</p>
+	<ol class="blog-ul" style="text-align:justify">
+		<li><p>(Apache) Tomcat</p></li>
+		<li><p>the Linux filesystem</p></li>
+	</ol>
+	
+	<h3 id="h3">Check your ports</h3>
+	<p style="text-align:justify">
+		Is your Tomcat running? Port 8843 works fine? Great! Then let's go through the basic stuff. Go to your Tomcat config folder
+		(usually tomcat/conf/) and open server.xml. Look up the part that shows &lt;Connector .. port=8443 ..&gt; and make a copy of it
+		changing the port number to 443 (making a copy is important as it will help you keep faith that everything is still working).<br>
+		<br>
+		My server.xml contains (at least):
+	</p>
+<pre><code>
+&lt;Connector port="443" protocol="HTTP/1.1" connectionTimeout="20000" clientAuth="false"
+           SSLEnabled="true"  scheme="https" secure="true" sslProtocol="TLS"  
+           keystoreFile="locationandnameofkeystorefile" keystorePass="mykeystorepassword" /&gt;		
+</code></pre>
+		
+	<p style="text-align:justify">
+		Also make sure your 80/8080 ports have a redirect to 443 like:
+	</p>
+<pre><code>
+&lt;Connector port="80" protocol="HTTP/1.1" connectionTimeout="20000"
+           redirectPort="443" /&gt;	
+</code></pre>
+	<p style="text-align:justify">
+		Now that we have this setup, restart Tomcat (<kbd>sudo service tomcat restart</kbd>) and wait a second or two.
+		Next type <kbd>lsof -i</kbd> and look up a listener for port 8443 and remember the user listening to this port. In this
+		example the user is called <b>tomcat</b>. Now try to find port 443, and you will either find that there is  
+		another user (process) listening to port 443, or another user (process) listening to *:https, or none of the 
+		beforementioned.<br>
+		<br>
+		In case you did find a user listening to either port 443 or *:https, then you will need to stop this process. I 
+		likely one that pops up often in explanations on the Internet is apache2. Apache2 is a very handy tool to support
+		virtual hosts, but in your case you probably have just this one website you are trying to get up and runnning. So
+		kill such a process (e.g. <kbd>sudo service apache2 stop</kbd>).<br>
+		<br>
+		<i>** Before we continue, we just shut down a specific process. However, when you reboot your system it is quite likely
+		that the service will start again. To prevent this, remove it from startup by typing <kbd>sudo systemctl disable apache2</kbd>
+		where apache2 can be replaced by any (running) service you want to disable.</i><br>
+		<br>
+		Next, check if you have a firewall running by typing <kbd>sudo ufw status</kbd>. If you are, make sure to allow
+		80 and 443 to be allowed to accept incoming (outgoing) requests. <kbd>sudo ufw allow 443/tcp</kbd> and 
+		<kbd>sudo ufw allow 80/tcp</kbd>. Mind that this is the minimal command to enable these ports, so invest some time in
+		understanding what this actually does before regretting giving access.<br>
+		<br>
+		But maybe you don't want a firewall in the first place in which case you can just as easily drop it <kbd>sudo ufw disable</kbd>.<br>
+		<br>
+		The next thing you need to understand is that if your Tomcat user is not the actual root user, you will not be able to access the
+		privileged range of ports under 1000. Now there are two ways to fix this problem, of which I would <b>not</b> recommend the first:
+	</p>
+		<ol>
+			<li><p style="text-align:justify"> 
+				Find your tomcat.service file <kbd>find / | grep tomcat*</kbd>), which I expect can be found in your 
+			    /etc/systemd/system/ folder, and open it. This configuration file contains a line called "User=...". In my case, it says
+			    tomcat, but yours can be different. Now when you change this user to root and restart Tomcat, you will see that 
+			    <kbd>lsof -i</kbd> suddenly shows port 443 to be listened to. Solved, right? No! From a security perspective, you should
+			    not have Tomcat run as root.
+			    <br>
+			    </p>
+			</li>
+			<li><p style="text-align:justify">
+				The better solution is to use authbind. If you haven't already installed it, run <kbd>sudo apt-get authbind</kbd>. 
+                Now run the following commands one after the other:<br>
+                </p>
+				<ol>
+					<li><kbd>sudo touch /etc/authbind/byport/443</kbd></li>
+					<li><kbd>sudo chmod 500 /etc/authbind/byport/443</kbd></li>
+					<li><kbd>sudo chown tomcat /etc/authbind/byport/443</kbd></li>
+				</ol>
+				<br>
+			</li>
+		</ol>
+	<p style="text-align:justify">
+		Almost there, just one more thing to do. In case you took a peak at the tomcat.service file, you may have noticed that
+		there is a line saying "ExecStart=/opt/tomcat/bin/startup.sh". On your system this may or may not be in another folder,
+		but you need to open this startup.sh file and change
+	</p> 
+		<pre><code>exec "$PRGDIR"/"$EXECUTABLE" start "$@"</code></pre> 
+		<p>into</p>
+		<pre><code>exec authbind --deep "$PRGDIR"/"$EXECUTABLE" start "$@"</code></pre>. 
+	<p style="text-align:justify">
+		Restart Tomcat, run <kbd>lsof -i</kbd> and you will find Tomcat now listening to port 443. 
+	</p>
+	
+	<h3 id="h3">Final words</h3>
+	<p style="text-align:justify">
+	Configuration is a bitch, and often forgotten once everything is up and running. This document should help you and me in
+	case we ever need to do this monkey trick again.
+	</p>
+          </div><!-- /.blog-post -->
+
+        </div><!-- /.blog-main -->
+
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+  
+  </span>
+  
+ </body>
+</html>

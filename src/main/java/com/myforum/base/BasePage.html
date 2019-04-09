@@ -36,7 +36,6 @@
 
     #basepanelright {
 		float:right; 
-		min-height: 100%; 
 		padding-left: 10px; 
 		padding-right: 10px;
 		top:75px;
@@ -107,49 +106,44 @@
 </head>
 
 <body style="background:#F3F3FC; color:#333">
-  <div class="fixed-top">
-  	<span wicket:id="topMenu">Menu</span>
-  </div>
+	<div class="fixed-top">
+  		<span wicket:id="topMenu">Menu</span>
+  	</div>
   
-  <br><br><br>
+  	<br><br><br>
 
-  <div style="width:100%;margin:0; padding: 0">
+  	<div style="width:100%;margin:0; padding: 0">
+	    <div id="basepanelleft" wicket:id="sidepanelleft"></div>
+	    
+	    <!-- <div class="basepanelcenter" id="centerpanel"> -->
+	    <div id="centerpanel">
+	    	<span wicket:id="english">EN</span> / <span wicket:id="dutch">NL</span>  
+	   		<a style="font-size:12; text-align:center"><br><br><br></a>
+	    	<wicket:child/>
+	    	<br>
+	    </div>
+	    
+	    <div id="basepanelright" wicket:id="sidepanelright" class="sticky-top"> </div>
+	    
+	    <div style="clear:both"> </div>
+	
+	   	<br><hr>
+	
+		<div id="footer" wicket:id="footer">[Footer]</div>
+	
+	</div>
+
 	<div class="alert alert-dismissible text-center cookiealert" role="alert">
 	  <div class="cookiealert-container">
     	<small>This site only uses technical cookies that are necessary for this site to function. By continuing to use this site   
   		you consent to the use of cookies on your device. If you disabled cookies in your browser settings, this site may 
   	 	not function properly.<a href="http://cookiesandyou.com/" target="_blank">Learn more about cookies.</a></small>
-	      <button type="button" class="btn btn-primary btn-sm acceptcookies" aria-label="Close">
-	          Understood
-	      </button>
+  	 	<br>
+  	 	<div style="display: flex;justify-content: center;">
+	    	<button type="button" class="btn btn-primary btn-sm acceptcookies" aria-label="Close">Understood</button>
+	    </div>
 	  </div>
 	</div>
-
-    <div id="basepanelleft" wicket:id="sidepanelleft"></div>
-    
-    <!-- <div class="basepanelcenter" id="centerpanel"> -->
-    <div id="centerpanel">
-    	<span wicket:id="english">EN</span> / <span wicket:id="dutch">NL</span>  
-   		<a style="font-size:12; text-align:center"><br><br><br></a>
-    	<wicket:child/>
-    	<br>
-    </div>
-    
-    <div id="basepanelright" wicket:id="sidepanelright" class="sticky-top"> </div>
-    
-    <div style="clear:both"> </div>
-
-   	<br><hr>
-
-	<div id="footer" wicket:id="footer">[Footer]</div>
-
-	<!--  
-	<div style="position:fixed; bottom:0px; height:20px; width:100%; background-color:#F3F3FC;">
-  		<span style="float:left; color:#333333">alvanklaveren.com</span>
-  		<span wicket:id=today style="float:right; color:#333333">01-01-2017</span>
-  	</div>
- 	-->
-  </div>
 
   <!-- Placed at the end of the document so the pages load faster -->
   <script src="js/popper.1.12.3.min.js"></script>

@@ -23,7 +23,8 @@
             however, I wanted to quit using free solutions, and bought an SSL certificate through 
             <a href="https://www.namecheap.com/">Namecheap</a> from a trusted Certificate Authority called 
             <a href="https://ssl.comodo.com/">Sectigo</a> (formerly Comodo CA). The certificate I got is a PositiveSSL ticket
-            which costs less than 8 dollar a year, which is a fair price to pay for having a CA that is trusted by most browsers.<p style="text-align:justify">
+            which costs less than 8 dollar a year, which is a fair price to pay for having a CA that is trusted by most browsers.
+            </p>
 
 <hr>
 <h3 id="h3">Before we start...</h3>
@@ -143,32 +144,32 @@
 	<p style="text-align:justify">
 	Below shows the partial web.xml for alvanklaveren.com
 	</p>
-	<pre><code>
-	&lt;web-app ...&gt;
-    	...
-		&lt;security-constraint&gt;
-		    &lt;web-resource-collection&gt;
-		        &lt;web-resource-name&gt;server&lt;/web-resource-name&gt;
-		        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
-		    &lt;/web-resource-collection&gt;
-		    &lt;user-data-constraint&gt;
-		        &lt;transport-guarantee&gt;CONFIDENTIAL&lt;/transport-guarantee&gt;
-		    &lt;/user-data-constraint&gt;
-		&lt;/security-constraint&gt;
-		
-		&lt;security-constraint&gt;
-		    &lt;web-resource-collection&gt;
-		        &lt;web-resource-name&gt;server&lt;/web-resource-name&gt;
-		        &lt;!-- exclude the call to gameshopmobile. this page is NOT https protected !! --&gt;
-		        &lt;url-pattern&gt;/gameshopmobile/*&lt;/url-pattern&gt;
-		    &lt;/web-resource-collection&gt;
-		    &lt;user-data-constraint&gt;
-		        &lt;transport-guarantee&gt;NONE&lt;/transport-guarantee&gt;
-		    &lt;/user-data-constraint&gt;
-		&lt;/security-constraint&gt;
-		...
-     &lt;/web-app&gt;
-	</code></pre>
+<pre><code>
+&lt;web-app ...&gt;
+   	...
+	&lt;security-constraint&gt;
+	    &lt;web-resource-collection&gt;
+	        &lt;web-resource-name&gt;server&lt;/web-resource-name&gt;
+	        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+	    &lt;/web-resource-collection&gt;
+	    &lt;user-data-constraint&gt;
+	        &lt;transport-guarantee&gt;CONFIDENTIAL&lt;/transport-guarantee&gt;
+	    &lt;/user-data-constraint&gt;
+	&lt;/security-constraint&gt;
+	
+	&lt;security-constraint&gt;
+	    &lt;web-resource-collection&gt;
+	        &lt;web-resource-name&gt;server&lt;/web-resource-name&gt;
+	        &lt;!-- exclude the call to gameshopmobile. this page is NOT https protected !! --&gt;
+	        &lt;url-pattern&gt;/gameshopmobile/*&lt;/url-pattern&gt;
+	    &lt;/web-resource-collection&gt;
+	    &lt;user-data-constraint&gt;
+	        &lt;transport-guarantee&gt;NONE&lt;/transport-guarantee&gt;
+	    &lt;/user-data-constraint&gt;
+	&lt;/security-constraint&gt;
+	...
+&lt;/web-app&gt;
+</code></pre>
 	
 	<h3 id="h3">Final words</h3>
 	<p style="text-align:justify">

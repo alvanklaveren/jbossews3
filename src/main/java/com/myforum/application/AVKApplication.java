@@ -84,7 +84,7 @@ public class AVKApplication extends WebApplication {
 		  // PackageScanner.scanPackage("org.wicketstuff.rest.resource");
 		  		  
 		  setRootRequestMapper(new HttpsMapper(getRootRequestMapper(), new HttpsConfig() ));
-		  // the next line activates https (on 443) BUT DISABLES 8443... so be warned
+		  // the next line activates https (on 443) BUT HttpsConfig() already adds 443 these by default
 		  //setRootRequestMapper(new HttpsMapper(getRootRequestMapper(), new HttpsConfig(80, 443) ));
     }
    

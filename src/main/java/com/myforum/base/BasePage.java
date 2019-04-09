@@ -68,13 +68,6 @@ public class BasePage extends WebPage implements IRequiresHttps, Serializable{
 		panelRight = new BasePanelRight("sidepanelright");
 		add(panelRight);
 		
-		// do not show the right panel, when on mobile devices
-		// this unfortunately DOES trigger some javascript, which may result in info shown on browser before continuing to page
-		// this has been replaced by java code IN the basepage.html
-		//if( getClientProperties().getBrowserWidth() <= 800) {
-		//	panelRight.setVisible(false);
-		//}
-
 		// Not all pages will show error messages, but the ones that do (and should) have different "ideal" locations to show this error,
 		// so we allow putting it in each page manually, but we do not want to explicitly repeat the code for it, hence the below try-catch
 		try {

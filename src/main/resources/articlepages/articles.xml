@@ -35,5 +35,11 @@
       <title>Acquire and install an SSL certificate</title>
       <document>ssl-certificate.html</document>
     </article>
+
+      <article>
+      <id>HTTPS-over-port-443</id>
+      <title>How to get tomcat run over port 443 (https)</title>
+      <document>https-over-443.html</document>
+    </article>
   </articlegroup>
 </avkarticles>
