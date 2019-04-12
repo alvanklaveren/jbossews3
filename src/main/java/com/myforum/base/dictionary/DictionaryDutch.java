@@ -60,6 +60,7 @@ public final class DictionaryDutch extends Dictionary {
 		put(translatedSentenceMap, EText.ADD_COMPANY, "Bedrijf toevoegen");
 		put(translatedSentenceMap, EText.ADD_RATING_URL, "Beoordeling URL toevoegen");
 		put(translatedSentenceMap, EText.ADMINISTRATOR_MAINTENANCE, "Administrator Onderhoud");
+		put(translatedSentenceMap, EText.COMPANY_ALREADY_EXISTS, "Bedrijf bestaat al in de database");
 		put(translatedSentenceMap, EText.APPLY_CHANGES, "Wijzigingen Toepassen");
 		put(translatedSentenceMap, EText.CIB_LABEL, "CIB = compleet in box, maar moet hier worden gelezen als \"bevat in ieder geval een handleiding\"" );
 		put(translatedSentenceMap, EText.DO_DELETE_CATEGORY, "Wil je deze category echt verwijderen?");
@@ -70,7 +71,8 @@ public final class DictionaryDutch extends Dictionary {
 		put(translatedSentenceMap, EText.MOVE_MESSAGE, "Verplaats Bericht Naar Andere Category");
 		put(translatedSentenceMap, EText.NUMBER_OF_ITEMS, "Aantal per Pagina");
 		put(translatedSentenceMap, EText.PRODUCT_TYPE, "Type Product");
-		put(translatedSentenceMap, EText.PLEASE_ADD_URL, "Voeg een URL toe" );
+		put(translatedSentenceMap, EText.PLEASE_ADD_COMPANY, "Je hebt geen bedrijfsnaam opgegeven. Voeg een bedrijfsnaam toe.");
+		put(translatedSentenceMap, EText.PLEASE_ADD_URL, "Je hebt geen URL opgegeven. Voeg een geldige URL toe." );
 		put(translatedSentenceMap, EText.PLEASE_APPLY_RATING, "Voeg een waarde van waardering toe" );
 		put(translatedSentenceMap, EText.RECENTLY_ADDED, "Recent toegevoegde producten");
 		put(translatedSentenceMap, EText.REGISTER_NEW_USER, "Registreer Nieuwe Gebruiker");

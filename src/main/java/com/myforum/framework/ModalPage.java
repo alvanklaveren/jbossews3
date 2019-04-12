@@ -6,8 +6,6 @@ import org.apache.wicket.markup.html.WebPage;
 
 import com.myforum.base.BasePage;
 import com.myforum.base.IRequiresHttps;
-import com.myforum.base.dictionary.EText;
-import com.myforum.base.dictionary.Translator;
 
 public class ModalPage extends WebPage implements IRequiresHttps {
 	private static final long serialVersionUID = 1L;
@@ -36,18 +34,5 @@ public class ModalPage extends WebPage implements IRequiresHttps {
     
 	protected String getTitle(){
 		return "No title defined"; 
-	}
-	
-	public void setErrorMessage( String errorMessage ){
-		getSession().setAttribute( "errormessage", Translator.getInstance().translate( errorMessage ) );
-	}
-
-	public void setErrorMessage( EText eText ){
-		getSession().setAttribute( "errormessage", Translator.getInstance().translate( eText.toString() ) );
-	}
-
-	public void resetErrorMessage(){
-		String nullString = null;
-		setErrorMessage( nullString );
 	}
 }

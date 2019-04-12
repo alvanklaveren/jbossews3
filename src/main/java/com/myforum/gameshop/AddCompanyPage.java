@@ -11,6 +11,7 @@ import org.apache.wicket.model.PropertyModel;
 import com.myforum.application.DBHelper;
 import com.myforum.application.StringLogics;
 import com.myforum.base.BasePage;
+import com.myforum.base.dictionary.EText;
 import com.myforum.framework.ModalPage;
 import com.myforum.tables.Company;
 import com.myforum.tables.dao.CompanyDao;
@@ -62,16 +63,15 @@ public class AddCompanyPage extends ModalPage {
 
 			@Override
 			protected void onEvent(AjaxRequestTarget target) {			
-				if (!canSave(company)){
-					//setResponsePage(AddCompanyPage.class, toPageParameters(company));
-					return; // necessary, because otherwise the below lines will also be triggered.
+				if (canSave(company)){
+					DBHelper.saveAndCommit(company);
+
+					// reset the error message
+					originPage.setErrorMessage( "" );
+				}else {
+					DBHelper.rollback();
 				}
-
-				DBHelper.saveAndCommit(company);
-
-				// reset the error message
-				originPage.setErrorMessage( "" );
-				
+			
 				parent.close(target);
 				
 				return;
@@ -106,12 +106,12 @@ public class AddCompanyPage extends ModalPage {
 	private boolean canSave(Company company){
 		String description = company.getDescription();
 		if (StringLogics.isEmpty(description)){
-			originPage.setErrorMessage(  "Description is empty" );
+			originPage.setErrorMessage(EText.PLEASE_ADD_COMPANY);
 			return false;
 		}
 		
-		if( new CompanyDao().findByDescription( description ) != null ){
-			originPage.setErrorMessage( "Company '" + description + "' already exists in the database" );
+		if( new CompanyDao().findByDescription(description) != null ){
+			originPage.setErrorMessage(description + EText.COMPANY_ALREADY_EXISTS);
 			return false;
 		};
 			

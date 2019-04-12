@@ -54,8 +54,7 @@ public class GameShopPage extends BasePage {
 	private 		List<Integer> 	numberOfItemsList 	= new ArrayList<Integer>();
 	private 		List<String> 	sortOrderList	 	= new ArrayList<String>();
 
-	
-	public GameShopPage(PageParameters params) {
+	public GameShopPage(final PageParameters params) {
 		super(EMenuItem.GameShop);
 
 		numberOfItemsList.add(12);
@@ -87,9 +86,28 @@ public class GameShopPage extends BasePage {
 		// START ADDING TO UI
 		final ModalWindow modalAddCompany = ForumUtils.createModalWindow( "modalAddCompany", this, new AddCompanyPage(GameShopPage.this.getPageReference(), this) );
 		add(modalAddCompany);
-
+		
+		// refresh page directly after adding a company, because the dropdown lists containing company will not yet contain the new company
+		modalAddCompany.setWindowClosedCallback(new ModalWindow.WindowClosedCallback() {
+			private static final long serialVersionUID = 1L;
+			@Override
+			public void onClose(AjaxRequestTarget target) {	
+				setResponsePage(GameShopPage.class, params);
+			}
+		});
+			
+		
 		final ModalWindow modalAddRatingUrl = ForumUtils.createModalWindow( "modalAddRatingUrl", this, new AddRatingUrlPage(GameShopPage.this.getPageReference(), this) );
 		add(modalAddRatingUrl);
+
+		// refresh page directly after adding a company, because the dropdown lists containing company will not yet contain the new company
+		modalAddRatingUrl.setWindowClosedCallback(new ModalWindow.WindowClosedCallback() {
+			private static final long serialVersionUID = 1L;
+			@Override
+			public void onClose(AjaxRequestTarget target) {	
+				setResponsePage(GameShopPage.class, params);
+			}
+		});
 
 		// Form for add message button and refresh button
         final Form<String> addForm = new Form<String>("addform");

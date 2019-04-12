@@ -10,7 +10,6 @@ import org.apache.wicket.model.PropertyModel;
 
 import com.myforum.application.DBHelper;
 import com.myforum.application.StringLogics;
-import com.myforum.base.AVKPage;
 import com.myforum.base.BasePage;
 import com.myforum.base.dictionary.EText;
 import com.myforum.framework.ModalPage;
@@ -64,15 +63,14 @@ public class AddRatingUrlPage extends ModalPage {
 
 			@Override
 			protected void onEvent(AjaxRequestTarget target) {			
-				if (!canSave(ratingUrl)){
-					//setResponsePage(AddRatingUrlPage.class, toPageParameters(ratingUrl));
-					return; // necessary, because otherwise the below lines will also be triggered.
+				if (canSave(ratingUrl)){
+					DBHelper.saveAndCommit(ratingUrl);
+
+					// reset the error message
+					originPage.setErrorMessage( "" );
+				}else {
+					DBHelper.rollback();
 				}
-
-				DBHelper.saveAndCommit(ratingUrl);
-
-				// reset the error message
-				setErrorMessage( "" );
 				
 				parent.close(target);
 				
@@ -108,12 +106,12 @@ public class AddRatingUrlPage extends ModalPage {
 	private boolean canSave(RatingUrl ratingUrl){
 		String url = ratingUrl.getUrl();
 		if (StringLogics.isEmpty(url)){
-			setErrorMessage( EText.PLEASE_ADD_URL );
+			originPage.setErrorMessage( EText.PLEASE_ADD_URL );
 			return false;
 		}
 		
 		if( new RatingUrlDao().findKey( url ) > 0 ){
-			setErrorMessage( "Rating URL '" + url + "' already exists in the database" );
+			originPage.setErrorMessage( "Rating URL '" + url + "' already exists in the database" );
 			return false;
 		};
 			
