@@ -267,8 +267,8 @@ public final class ForumUtils{
                
         modal.setResizable(false);
         modal.setAutoSize(false);
-        modal.setInitialWidth(500);
-        modal.setInitialHeight(500);
+        modal.setInitialWidth(360);
+        modal.setInitialHeight(550);
         
         modalPage.setParent(modal);
         
