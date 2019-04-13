@@ -260,7 +260,15 @@ public final class ForumUtils{
         // Create the modal window.
         final ModalWindow modal;
         modal = new ModalWindow(wicketId);
-        modal.setCookieName("modal");
+        //modal.setCookieName("modal");
+       
+        // reset positions, to prevent resizing issues
+        //CookieLogics.setCookie("wicket-modal-window-positions", "");
+               
+        modal.setResizable(false);
+        modal.setAutoSize(false);
+        modal.setInitialWidth(500);
+        modal.setInitialHeight(500);
         
         modalPage.setParent(modal);
         

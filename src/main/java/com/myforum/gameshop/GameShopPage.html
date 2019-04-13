@@ -67,6 +67,7 @@
   <wicket:extend>
 	<div wicket:id="modalAddCompany"></div>
 	<div wicket:id="modalAddRatingUrl"></div>
+	<div wicket:id="modalProductImage"></div>
 
 	<div wicket:id="errordiv" class="alert alert-warning alert-dismissible fade show" role="alert">
 		<a wicket:id="errormessage"></a>
@@ -139,17 +140,19 @@
 		<div id="gamelistitem" wicket:id="productlist" class="p-2 bd-highlight border" style="box-shadow:2px 2px 2px #AAAAAA; margin-left:4px; margin-right:4px margin-top:4px; margin-bottom:4px"> 
 			 <!-- width 30% ensures three items show next to each other-->
 	  	     <div id="productimage" style="width:30%;">
-	  	      <img onerror="this.style.display='none'" alt="Missing picture" id="image" wicket:id="image" style="width:95%;height:auto;padding-left:2%; padding-right:2%; margin-left:auto; margin-right:auto;"/>
-	  	      <br>
-			 
-			  <form class="form-horizontal" wicket:id="uploadform">
-			    <div class="form-group">
-					<input type="file" class="form-control-file" id="imagefile" wicket:id="productImage">
-					<br>
-					<label for="uploadbutton" class="col-sm-1 control-label"></label>
-					<input type="submit" class="btn btn-primary" id="uploadbutton" wicket:id="uploadbutton" value="Upload">
-				</div>
-			  </form>
+		  	     <div wicket:id="imagediv">
+		  	      <img onerror="this.style.display='none'" alt="Missing picture" id="image" wicket:id="image" style="width:95%;height:auto;padding-left:2%; padding-right:2%; margin-left:auto; margin-right:auto;"/>
+		  	     </div>
+		  	     <br>
+				 
+				 <form class="form-horizontal" wicket:id="uploadform">
+				    <div class="form-group">
+						<input type="file" class="form-control-file" id="imagefile" wicket:id="productImage">
+						<br>
+						<label for="uploadbutton" class="col-sm-1 control-label"></label>
+						<input type="submit" class="btn btn-primary" id="uploadbutton" wicket:id="uploadbutton" value="Upload">
+					</div>
+				 </form>
 			 </div>	     	
 	
 	  	     <div id="producttext" style="width:70%;"> 	

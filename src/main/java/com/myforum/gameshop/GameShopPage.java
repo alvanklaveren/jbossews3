@@ -3,9 +3,11 @@ package com.myforum.gameshop;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.basic.MultiLineLabel;
 import org.apache.wicket.markup.html.form.Button;
@@ -14,6 +16,7 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.form.upload.FileUploadField;
+import org.apache.wicket.markup.html.image.NonCachingImage;
 import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PageableListView;
@@ -109,6 +112,9 @@ public class GameShopPage extends BasePage {
 			}
 		});
 
+		final ModalWindow modalShowProductImage = ForumUtils.createModalWindow( "modalProductImage", this, new ShowProductImagePage(GameShopPage.this.getPageReference(), this) );
+		add(modalShowProductImage);
+		
 		// Form for add message button and refresh button
         final Form<String> addForm = new Form<String>("addform");
         addForm.add( createFormModalButton( "addcompany",   "Add Company", 	  modalAddCompany) );
@@ -225,8 +231,25 @@ public class GameShopPage extends BasePage {
             public void populateItem(final ListItem<Product> listItem) {
 				final Product	product		 	= listItem.getModelObject();
 
-       			listItem.add( ForumUtils.loadImage(GameShopLogics.getImage(product), "image") );
+				WebMarkupContainer imageDiv = new WebMarkupContainer("imagediv");
+				imageDiv.add(new AjaxEventBehavior("onclick") {
+					private static final long serialVersionUID = 1L;
+					@Override
+       		        protected void onEvent(AjaxRequestTarget target) {
+						final ModalWindow modalShowProductImage = ForumUtils.createModalWindow( "modalProductImage", GameShopPage.this, new ShowProductImagePage(GameShopPage.this.getPageReference(), GameShopPage.this, product) );
+						GameShopPage.this.addOrReplace(modalShowProductImage);
+						modalShowProductImage.show(target);
+       		            return;
+       		        }
+       		    });
 				
+       			imageDiv.setOutputMarkupId(true);		
+				
+				NonCachingImage productImage = ForumUtils.loadImage(GameShopLogics.getImage(product), "image");
+       				      			     			
+				imageDiv.add( productImage );
+       			listItem.add(imageDiv);
+       			
        			CompoundPropertyModel<Product> productModel = new CompoundPropertyModel<Product>(product);
       			listItem.setModel(productModel);
        			
