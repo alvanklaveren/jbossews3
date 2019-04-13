@@ -3,6 +3,7 @@ package com.myforum.base;
 import java.io.Serializable;
 
 import org.apache.wicket.markup.head.IHeaderResponse;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -71,7 +72,14 @@ public class BasePage extends WebPage implements IRequiresHttps, Serializable{
 		// Not all pages will show error messages, but the ones that do (and should) have different "ideal" locations to show this error,
 		// so we allow putting it in each page manually, but we do not want to explicitly repeat the code for it, hence the below try-catch
 		try {
-				addOrReplace( new ErrorLabel() );
+				WebMarkupContainer errorDiv = new WebMarkupContainer("errordiv");
+				addOrReplace( errorDiv );
+
+				ErrorLabel errorLabel = new ErrorLabel();
+				errorDiv.addOrReplace( errorLabel );
+
+				errorDiv.setVisible(errorLabel.isVisible());
+
 		}catch(Exception e) {
 			// do nothing... it is okay if it did not succeed
 		}

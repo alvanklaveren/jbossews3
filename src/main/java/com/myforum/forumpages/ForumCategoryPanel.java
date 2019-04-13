@@ -121,10 +121,12 @@ public class ForumCategoryPanel extends ForumBasePanel{
 				// close current session first, to prevent session already managing the object
 				DBHelper.closeSession();
 
-				// delete message
+				// delete category
 				if( !DBHelper.deleteAndCommit(messageCategory)){
 					setErrorMessage("Failed to delete the category");
-					target.add(new ForumCategoryPanel(parent));
+
+					// and return to forum home page
+					setResponsePage(ForumBasePage.class);
 				}
 				
 				// Synchronize necessary to prevent Cookie not having been set prior to rendering the new panel
@@ -132,8 +134,8 @@ public class ForumCategoryPanel extends ForumBasePanel{
 					CookieLogics.deleteCookie("codeMessage");
 					CookieLogics.deleteCookie("codeMessageCategory");
 
-					// and return to forum category since message is deleted
-					target.add(new ForumHomePanel(parent));
+					// and return to forum home page
+					setResponsePage(ForumBasePage.class);
 				}
             }
 

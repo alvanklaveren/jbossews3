@@ -111,7 +111,7 @@ public class AddCompanyPage extends ModalPage {
 		}
 		
 		if( new CompanyDao().findByDescription(description) != null ){
-			originPage.setErrorMessage(description + EText.COMPANY_ALREADY_EXISTS);
+			originPage.setErrorMessage(EText.COMPANY_ALREADY_EXISTS);
 			return false;
 		};
 			

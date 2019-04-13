@@ -24,7 +24,6 @@ import com.myforum.application.StringLogics;
 import com.myforum.base.AVKPage;
 import com.myforum.base.ForumLogics;
 import com.myforum.framework.AVKButton;
-import com.myforum.framework.ErrorLabel;
 import com.myforum.framework.ResponseButton;
 import com.myforum.security.CredentialLogics;
 import com.myforum.tables.Classification;
@@ -105,22 +104,27 @@ public class UserModifyAccountPage extends AVKPage {
 		return true;
 	}
 
-	private void checkCurrentPassword(ForumUser forumUser, String currentPassword){
-		if( !CredentialLogics.validCredentials(forumUser.getUsername(), currentPassword) ){
+	private boolean checkCurrentPassword(ForumUser forumUser, String currentPassword){
+		boolean isPasswordValid = CredentialLogics.validCredentials(forumUser.getUsername(), currentPassword);
+		if( !isPasswordValid ){
 			setErrorMessage( "Current password is incorrect" );
             setResponsePage( UserModifyAccountPage.class, getPageParameters() );
-	    	return;
 		}
+
+		return isPasswordValid;
 	}
 	
-	private void checkNewPassword(String newPassword, String retypePassword){
+	private boolean checkNewPassword(String newPassword, String retypePassword){
 		if( !StringLogics.isEmpty(newPassword) ){
 			if( newPassword.equals(retypePassword) ){
+				return true;
+			}else{
 				setErrorMessage( "New password is not equal to retyped password" );			
                 setResponsePage( UserModifyAccountPage.class, getPageParameters() );
-                return;
 			}
 		}
+
+		return false;
 	}
 	
 	private ForumUser getForumUserFromParameters(PageParameters params){
@@ -159,8 +163,8 @@ public class UserModifyAccountPage extends AVKPage {
 		String displayName		= ForumUtils.getInput( displayNameTF ); 
 
 		if(hasChanged(passwordTF,"")){
-			checkCurrentPassword(forumUser, currentPassword);
-			checkNewPassword(newPassword, retypePassword);
+			if (!checkCurrentPassword(forumUser, currentPassword)) return;
+			if (!checkNewPassword(newPassword, retypePassword)) return;
 		}
 
 		String currentDisplayName = forumUser.getDisplayName();
@@ -184,7 +188,7 @@ public class UserModifyAccountPage extends AVKPage {
 					
 		if( needsSaving() ){				
 			if( DBHelper.saveAndCommit(forumUser)){
-				setErrorMessage( "Changes saved" );
+				setErrorMessage( "" );
 				getSession().setAttribute("ContentHasChanged", false );
 				setResponsePage(ForumBasePage.class);
 				return;

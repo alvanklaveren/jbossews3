@@ -19,8 +19,7 @@ public class ErrorLabel extends Label{
 			setDefaultModel(errorModel);
 			setVisible(true);
 		}
-		// do NOT remove the message, because inherited function will duplicate the call to errorlabel
-		// reset this in basepage !!
+		// do NOT remove the message, because inherited function will duplicate the call to errorlabel reset this in basepage !!
 		// getSession().setAttribute("errormessage", "");
 	}
 }

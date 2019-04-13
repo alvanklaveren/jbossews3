@@ -294,6 +294,7 @@ public class ForumAdministratorPage extends AVKPage {
 			    	}
 			    	MessageCategory messageCategory = new MessageCategory();
 			    	messageCategory.setDescription( categoryDescriptionTF.getInput() );
+			    	DBHelper.saveAndCommit(messageCategory);
 			    	messageCategoryDao.add( messageCategory );
 
 			    	setResponsePage( new ForumAdministratorPage() );
