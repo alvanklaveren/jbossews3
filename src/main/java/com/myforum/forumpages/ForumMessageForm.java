@@ -11,7 +11,6 @@ import org.apache.wicket.model.Model;
 import com.myforum.application.CookieLogics;
 import com.myforum.application.DBHelper;
 import com.myforum.application.StringLogics;
-import com.myforum.base.AVKPage;
 import com.myforum.tables.ForumUser;
 import com.myforum.tables.Message;
 import com.myforum.tables.MessageCategory;
@@ -60,6 +59,9 @@ public class ForumMessageForm extends StatelessForm<Object> {
 				
 			@Override
 			public void onSubmit() {
+				// start clean, no error!
+				parent.setErrorMessage("");
+				
 		        int codeMessageCategory = CookieLogics.getCookieInt("codeMessageCategory");
 		        if(codeMessageCategory == 0){
 		        	CookieLogics.deleteCookie("codeMessageCategory");

@@ -14,8 +14,6 @@ import com.myforum.application.CookieLogics;
 import com.myforum.application.StringLogics;
 import com.myforum.framework.AVKButton;
 import com.myforum.homepage.HomePage;
-import com.myforum.tables.MessageCategory;
-import com.myforum.tables.dao.MessageCategoryDao;
 
 public class ForumAddMessagePanel extends ForumBasePanel {
 	private static final long 		serialVersionUID 	= 1L;
@@ -38,7 +36,7 @@ public class ForumAddMessagePanel extends ForumBasePanel {
     		return;       	
         }
 
-        MessageCategory	messageCategory = new MessageCategoryDao().find( codeMessageCategory );
+        //MessageCategory	messageCategory = new MessageCategoryDao().find( codeMessageCategory );
         
         final Label replyMessagePreview = new Label( "replymessagepreview", "" );
         replyMessagePreview.setEscapeModelStrings(false); 	// allow HTML
@@ -98,7 +96,6 @@ public class ForumAddMessagePanel extends ForumBasePanel {
 		previewButton.setDefaultFormProcessing( false );
 
 		
-		addOrReplace(new Label("messagecategory", new Model<String>(messageCategory.getDescription())));
 		addOrReplace(form);
 		addOrReplace(previewButton);
 		addOrReplace(replyMessagePreview);	
