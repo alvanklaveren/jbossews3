@@ -25,7 +25,7 @@ public class ForgotPasswordPanel extends ForumBasePanel {
 	
 	private static Logger log = LoggerFactory.getLogger(ForgotPasswordPanel.class);
 	
-	public ForgotPasswordPanel(ForumBasePage parent) {
+	public ForgotPasswordPanel(final ForumBasePage parent) {
 		super(parent);
 
 		// Form for add message button
@@ -61,7 +61,7 @@ public class ForgotPasswordPanel extends ForumBasePanel {
         		String newPassword = forumUserDao.generateNewPassword(forumUser);
         		if(StringLogics.isEmpty(newPassword)){
         			DBHelper.getTransaction().rollback();
-        			setErrorMessage( EText.FAILED_GENERATE_PASSWORD );
+        			parent.setErrorMessage( EText.FAILED_GENERATE_PASSWORD );
         			setResponsePage(ForumBasePage.class);
         			return;
         		}  
@@ -69,7 +69,7 @@ public class ForgotPasswordPanel extends ForumBasePanel {
                 if( DBHelper.saveAndCommit(forumUser)){
                 	emailPassword(forumUser.getEmailAddress(), forumUser.getUsername(), newPassword);
                 }else{
-					setErrorMessage( EText.FAILED_CHANGE_PASSWORD );
+                	parent.setErrorMessage( EText.FAILED_CHANGE_PASSWORD );
 				}
 	        	
 	        	setResponsePage(ForumBasePage.class);
@@ -85,21 +85,22 @@ public class ForgotPasswordPanel extends ForumBasePanel {
 	
 	public void emailPassword(String emailAddress, String username, String newPassword){
         HotmailMessage hotmailMessage = new HotmailMessage(emailAddress);
-        hotmailMessage.setSubject("Your password at the alvanklaveren.com has been reset");
+        hotmailMessage.setSubject("Your password at alvanklaveren.com has been reset");
         hotmailMessage.setBody("Username: " + username + "\nPassword: " + newPassword);
 
         try {
         	hotmailMessage.send();
         } catch (AddressException e) {
-        	setErrorMessage( EText.UNABLE_SEND_EMAIL );
+        	parent.setErrorMessage( EText.UNABLE_SEND_EMAIL );
 	    	log.error("AddressException: " + e.getMessage());
 			e.printStackTrace();
         } catch (MessagingException e) {
-        	setErrorMessage( EText.UNABLE_SEND_EMAIL );
+        	parent.setErrorMessage( EText.UNABLE_SEND_EMAIL );
 	    	log.error("MessagingException: " + e.getMessage());
 			e.printStackTrace();
         }
         
-        setNotificationMessage( EText.EMAIL_SENT );
+		//TODO: Broken.. fix later
+        parent.setErrorMessage( EText.EMAIL_SENT );
 	}
 }

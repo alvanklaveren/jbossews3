@@ -123,7 +123,7 @@ public class ForumCategoryPanel extends ForumBasePanel{
 
 				// delete category
 				if( !DBHelper.deleteAndCommit(messageCategory)){
-					setErrorMessage("Failed to delete the category");
+					parent.setErrorMessage("Failed to delete the category");
 
 					// and return to forum home page
 					setResponsePage(ForumBasePage.class);

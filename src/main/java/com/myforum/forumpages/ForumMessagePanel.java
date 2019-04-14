@@ -86,14 +86,14 @@ public class ForumMessagePanel extends ForumBasePanel {
 				List<Message> threadMessages = messageDao.getThreadMessages(message);
 				for(Message thread:threadMessages){
 					if(!DBHelper.deleteAndCommit(thread)){
-						setErrorMessage("Failed to delete thread messages");
+						parent.setErrorMessage("Failed to delete thread messages");
 						target.add( new ForumMessagePanel(parent) );
 						return;					
 					}
 				}
 				
 				if( !DBHelper.deleteAndCommit(message) ){
-					setErrorMessage("Failed to delete message");
+					parent.setErrorMessage("Failed to delete message");
 					target.add( new ForumMessagePanel(parent) );
 					return;
 				}
@@ -182,7 +182,7 @@ public class ForumMessagePanel extends ForumBasePanel {
 			public void onSubmit() {
 				message.setMessageText(editMessageTextTA.getInput());
 				if( !DBHelper.saveAndCommit(message) ){
-					setErrorMessage("Failed to save message");
+					parent.setErrorMessage("Failed to save message");
 				}
 				messageTextLabel.setDefaultModel( new Model<String>( StringLogics.prepareMessage( message.getMessageText() ) ) );
 				editMessageForm.setVisible( false );
@@ -247,7 +247,7 @@ public class ForumMessagePanel extends ForumBasePanel {
         				threadMessage.setMessageText( editReplyMessageTextTA.getInput() );
         				
         				if( !DBHelper.saveAndCommit(threadMessage) ){
-        					setErrorMessage( "Failed to save message" );
+        					parent.setErrorMessage( "Failed to save message" );
         					parent.addOrReplace(new ForumMessagePanel(parent));
         					return;
         				}
@@ -284,7 +284,7 @@ public class ForumMessagePanel extends ForumBasePanel {
         			@Override
                     protected void onConfirm(AjaxRequestTarget target) {
         				if(!DBHelper.deleteAndCommit(threadMessage)){
-        					setErrorMessage("Failed to delete message");
+        					parent.setErrorMessage("Failed to delete message");
         				}
         				
     					setResponsePage(new ForumBasePage());

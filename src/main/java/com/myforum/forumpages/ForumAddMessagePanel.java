@@ -29,7 +29,7 @@ public class ForumAddMessagePanel extends ForumBasePanel {
 		
 		final int codeMessageCategory = CookieLogics.getCookieInt("codeMessageCategory");
         if(codeMessageCategory == 0){
-        	parent.setPanelErrorMessage("An error occurred: Could not find message category");
+        	parent.setErrorMessage("An error occurred: Could not find message category");
     		setResponsePage(ForumBasePage.class);
     		return;
 		}

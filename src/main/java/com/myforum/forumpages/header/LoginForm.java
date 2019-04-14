@@ -79,7 +79,7 @@ public class LoginForm extends StatelessForm<Object>{
 	        	String password = passwordTF.getInput();
         	    	        	        	
 	        	if(!CredentialLogics.validCredentials(username, password)){
-	        		((AVKPage) getPage()).setPanelErrorMessage( "Incorrect login credentials" );
+	        		((AVKPage) getPage()).setErrorMessage( "Incorrect login credentials" );
 	        		CookieLogics.deleteCookie("magictoken");
 	        	}else{  	      	
 		        	// user name + password valid. Connect user to forum.
