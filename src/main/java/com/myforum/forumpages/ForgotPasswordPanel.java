@@ -100,7 +100,6 @@ public class ForgotPasswordPanel extends ForumBasePanel {
 			e.printStackTrace();
         }
         
-		//TODO: Broken.. fix later
-        parent.setErrorMessage( EText.EMAIL_SENT );
+        parent.setSuccessMessage( EText.EMAIL_SENT );
 	}
 }

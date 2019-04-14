@@ -6,12 +6,12 @@ import org.apache.wicket.model.Model;
 import com.myforum.application.StringLogics;
 import com.myforum.base.dictionary.Translator;
 
-public class PanelErrorLabel extends Label{
+public class SuccessLabel extends Label{
 	private static final long serialVersionUID = 1L;
 
-	public PanelErrorLabel() {
-		super("panelerrormessage");
-		String errorMessage = (String) getSession().getAttribute("panelerrormessage");
+	public SuccessLabel() {
+		super("successmessage");
+		String errorMessage = (String) getSession().getAttribute("successmessage");
 		if(StringLogics.isEmpty(errorMessage)){
 			setVisible(false);
 		}else{

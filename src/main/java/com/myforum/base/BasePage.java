@@ -21,6 +21,7 @@ import com.myforum.base.menu.EMenuItem;
 import com.myforum.base.menu.MenuPanel;
 import com.myforum.framework.ErrorLabel;
 import com.myforum.framework.LanguageLabel;
+import com.myforum.framework.SuccessLabel;
 import com.myforum.homepage.HomePage;
 import com.myforum.security.CredentialLogics;
 import com.myforum.tables.ForumUser;
@@ -60,30 +61,38 @@ public class BasePage extends WebPage implements IRequiresHttps, Serializable{
 
 		add( new Label("pagetitle", getPageTitle()) );
 		
+		// Top Menu
 		Panel topMenu = new MenuPanel("topMenu", activeMenuItem);
 		add(topMenu);
 
+		// Left Side Page
 		panelLeft = new BasePanelLeft("sidepanelleft");
 		add(panelLeft);
 
+		// Right Side Page
 		panelRight = new BasePanelRight("sidepanelright");
 		add(panelRight);
 		
-		// Not all pages will show error messages, but the ones that do (and should) have different "ideal" locations to show this error,
-		// so we allow putting it in each page manually, but we do not want to explicitly repeat the code for it, hence the below try-catch
-		try {
-				WebMarkupContainer errorDiv = new WebMarkupContainer("errordiv");
-				addOrReplace( errorDiv );
+		// Error Label
+		WebMarkupContainer errorDiv = new WebMarkupContainer("errordiv");
+		addOrReplace( errorDiv );
 
-				ErrorLabel errorLabel = new ErrorLabel();
-				errorDiv.addOrReplace( errorLabel );
+		ErrorLabel errorLabel = new ErrorLabel();
+		errorDiv.addOrReplace( errorLabel );
 
-				errorDiv.setVisible(errorLabel.isVisible());
+		errorDiv.setVisible(errorLabel.isVisible());			
 
-		}catch(Exception e) {
-			// do nothing... it is okay if it did not succeed
-		}
+		// Success Label
+		WebMarkupContainer successDiv = new WebMarkupContainer("successdiv");
+		addOrReplace( successDiv );
+
+		SuccessLabel successLabel = new SuccessLabel();
+		successDiv.addOrReplace( successLabel );
+
+		successDiv.setVisible(successLabel.isVisible());			
+
 		
+		// Footer
 		Panel footer = new FooterPanel("footer");
 		add(footer);
 		
@@ -96,6 +105,14 @@ public class BasePage extends WebPage implements IRequiresHttps, Serializable{
 
 	public void setErrorMessage( EText eText ){
 		getSession().setAttribute( "errormessage", translator.translate( eText.toString() ) );
+	}
+
+	public void setSuccessMessage( String errorMessage ){
+		getSession().setAttribute( "successmessage", translator.translate( errorMessage ) );
+	}
+
+	public void setSuccessMessage( EText eText ){
+		getSession().setAttribute( "successmessage", translator.translate( eText.toString() ) );
 	}
 
 	protected boolean isAdministrator(ForumUser forumUser){
