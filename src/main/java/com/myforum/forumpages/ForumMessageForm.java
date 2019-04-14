@@ -60,7 +60,7 @@ public class ForumMessageForm extends StatelessForm<Object> {
 			@Override
 			public void onSubmit() {
 				// start clean, no error!
-				parent.setErrorMessage("");
+				parent.setPanelErrorMessage("");
 				
 		        int codeMessageCategory = CookieLogics.getCookieInt("codeMessageCategory");
 		        if(codeMessageCategory == 0){
@@ -78,14 +78,14 @@ public class ForumMessageForm extends StatelessForm<Object> {
 				newMessage.setMessageText( messageTextTA.getInput() );
 				
 				if( activeUser.getCode() <= 0 ){
-	        		parent.setErrorMessage( "You have to be logged in to write messages" );
+	        		parent.setPanelErrorMessage( "You have to be logged in to write messages" );
     				isError = true;
     			}   			
 		    	    			
     			// only check for a title in new messages. Comments do not have a title.
     			if( codeMessage == 0 ){
 					if( StringLogics.isEmpty( newMessage.getDescription() ) ){
-						parent.setErrorMessage( "Please add a title" );
+						parent.setPanelErrorMessage( "Please add a title" );
 		        		isError = true;
 					}else{
 		    			getSession().setAttribute( "messageDescription", newMessage.getDescription() );
@@ -93,7 +93,7 @@ public class ForumMessageForm extends StatelessForm<Object> {
     			}
 
 				if( StringLogics.isEmpty( newMessage.getMessageText() ) ){
-					parent.setErrorMessage( "Please add message content" );
+					parent.setPanelErrorMessage( "Please add message content" );
 	        		isError = true;
 				}else{
 	    			getSession().setAttribute( "messageText", newMessage.getMessageText() );
@@ -108,7 +108,7 @@ public class ForumMessageForm extends StatelessForm<Object> {
     				MessageCategory 	messageCategory 	= messageCategoryDao.find( codeMessageCategory );
 
     				if(messageDao.find(codeMessage) == null && codeMessage > 0){
-	        			parent.setErrorMessage("Failed to save comment");
+	        			parent.setPanelErrorMessage("Failed to save comment");
 	        			parent.addOrReplace(new ForumAddMessagePanel(parent));
 	        			return;    					
     				}
@@ -118,7 +118,7 @@ public class ForumMessageForm extends StatelessForm<Object> {
 	    	    	newMessage.setForumUser( activeUser );
 	
 	    	    	if( !DBHelper.saveAndCommit(newMessage) ){
-						parent.setErrorMessage("Failed to save message");
+						parent.setPanelErrorMessage("Failed to save message");
 						parent.addOrReplace(new ForumAddMessagePanel(parent));
 						return;
 					}

@@ -97,6 +97,7 @@ public class BasePage extends WebPage implements IRequiresHttps, Serializable{
 		add(footer);
 		
 		getSession().setAttribute( "errormessage", "");	
+		getSession().setAttribute( "successmessage", "");	
 	}
 
 	public void setErrorMessage( String errorMessage ){
@@ -113,6 +114,14 @@ public class BasePage extends WebPage implements IRequiresHttps, Serializable{
 
 	public void setSuccessMessage( EText eText ){
 		getSession().setAttribute( "successmessage", translator.translate( eText.toString() ) );
+	}
+
+	public void setPanelErrorMessage( String errorMessage ){
+		getSession().setAttribute( "panelerrormessage", translator.translate( errorMessage ) );
+	}
+
+	public void setPanelErrorMessage( EText eText ){
+		getSession().setAttribute( "panelerrormessage", translator.translate( eText.toString() ) );
 	}
 
 	protected boolean isAdministrator(ForumUser forumUser){
