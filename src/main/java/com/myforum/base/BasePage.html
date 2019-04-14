@@ -119,6 +119,13 @@
 	    <div id="centerpanel">
 	    	<span wicket:id="english">EN</span> / <span wicket:id="dutch">NL</span>  
 	   		<a style="font-size:12; text-align:center"><br><br><br></a>
+  			<div wicket:id="errordiv" class="alert alert-warning alert-dismissible fade show" role="alert">
+				<a wicket:id="errormessage"></a>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    		<span aria-hidden="true">&times;</span>
+		  		</button>
+			</div>
+	   		
 	    	<wicket:child/>
 	    	<br>
 	    </div>
