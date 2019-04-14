@@ -7,7 +7,7 @@
 		   </tr> 	
 		    <tr wicket:id="messagecategories">
 			    <td style="width:90%">
-			    	<a class=hoverblue wicket:id="description"></a>
+			    	<a wicket:id="description" style="cursor:pointer;" data-toggle="tooltip" data-placement="top" title="Click to open category"></a>
 				    <form wicket:id="renamecategoryform">
 						<input type="text" wicket:id="categorydescription" style="width:75%"></input>
 						<input type="submit" class="btn btn-outline-primary btn-sm" wicket:id="renamebutton" value="Rename Category" style="width:24%"></input>

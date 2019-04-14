@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.PageableListView;
@@ -91,9 +90,22 @@ public class ForumCategoryPanel extends ForumBasePanel{
 				String 	messageTime 	= timeFormat.format(listItem.getModelObject().getMessageDate());
 				String 	description 	= message.getDescription();
 
-				listItem.add( new Label( "messagedate", messageDate ));
-				listItem.add( new Label( "messagetime", messageTime ));
-                listItem.add( new Label( "userdisplayname", displayName ));
+
+                ClickableForumLabel messagedateLabel = new ClickableForumLabel( "messagedate", new Model<String>(messageDate));
+                messagedateLabel.setParent(parent);
+                messagedateLabel.setMessage(message);
+                listItem.add(messagedateLabel);
+
+                ClickableForumLabel messagetimeLabel = new ClickableForumLabel( "messagetime", new Model<String>(messageTime));
+                messagetimeLabel.setParent(parent);
+                messagetimeLabel.setMessage(message);
+                listItem.add(messagetimeLabel);
+
+                ClickableForumLabel userdisplaynameLabel = new ClickableForumLabel( "userdisplayname", new Model<String>(displayName));
+                userdisplaynameLabel.setParent(parent);
+                userdisplaynameLabel.setMessage(message);
+                listItem.add(userdisplaynameLabel);
+                
                 ClickableForumLabel descriptionLabel = new ClickableForumLabel( "messagedescription", new Model<String>(description) );
                 descriptionLabel.setParent(parent);
                 descriptionLabel.setMessage(message);
