@@ -1,3 +1,4 @@
+package com.myforum.framework;
 
 
 import javax.mail.Authenticator;
