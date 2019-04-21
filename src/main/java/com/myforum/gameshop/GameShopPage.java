@@ -589,6 +589,9 @@ public class GameShopPage extends BasePage {
 					end = totalNumberOfResults;
 				}
 				
+				if (end == 0)
+					start = -1;
+				
 				StringBuilder sb = new StringBuilder();
 				String space = " ";
 				sb.append( String.valueOf(start + 1) )				.append(space)
