@@ -20,7 +20,7 @@ import com.myforum.base.dictionary.Translator;
 import com.myforum.base.menu.EMenuItem;
 import com.myforum.base.menu.MenuPanel;
 import com.myforum.framework.ErrorLabel;
-import com.myforum.framework.LanguageLabel;
+import com.myforum.framework.LanguageButton;
 import com.myforum.framework.SuccessLabel;
 import com.myforum.homepage.HomePage;
 import com.myforum.security.CredentialLogics;
@@ -56,8 +56,8 @@ public class BasePage extends WebPage implements IRequiresHttps, Serializable{
 			return;
 		}
 		
-		add( new LanguageLabel("english", "EN", ELanguage.English) );
-		add( new LanguageLabel("dutch",   "NL", ELanguage.Dutch) );
+		add( new LanguageButton("english", "EN", ELanguage.English) );
+		add( new LanguageButton("dutch",   "NL", ELanguage.Dutch) );
 
 		add( new Label("pagetitle", getPageTitle()) );
 		
