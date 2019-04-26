@@ -65,7 +65,7 @@ public enum EAboutMe {
 	"op de leeftijd van 38 jaar terug naar de universiteit te gaan om alsnog zijn master in science te halen en tegelijkertijd meer kennis op te doen van de huidige stand\n" + 
 	"van de wetenschap op het gebied van Informatica, eindigend met een onderzoek naar large deep neural networks, en studeerde met lof af in 2019.  \n" + 
 	"<br><br>\n" + 
-	"Momenteel werkt hij aan cloud-based oplossingen, microservices, en websites ()voornamelijk in Java en Typescript) om bioscopen en distributeurs te ondersteunen.\n" + 
+	"Momenteel werkt hij aan cloud-based oplossingen, microservices, en websites (voornamelijk in Java en Typescript) om bioscopen en distributeurs te ondersteunen.\n" + 
 	"\n" + 
 	"</p>\n" + 
 	"In zijn professionele heeft hij onder andere gewerkt met:\n" + 
