@@ -53,7 +53,7 @@ public enum EAboutMe {
 	Dutch (
 	"<h2>Over mij</h2>\n" + 
 	"<p class=\"text-justify\">\n" + 
-	"Alexander is een software engineer (MSc) met <yearsworking></span> werk ervaring in het bouwen en onderhouden van oplossingen voor nationale en  \n" + 
+	"Alexander is een software engineer (MSc) met <yearsworking></span> jaar werkervaring in het bouwen en onderhouden van oplossingen voor nationale en  \n" + 
 	"internationale film distributie bedrijven bij <a href=\"http://www.maccs.com\"><b>MACCS International</b></a>, onderdeel van de <a href=\"https://vistagroup.co.nz/\">Vista Group</a>. \n" + 
 	"Het gaat hier om oplossingen voor de theatrical sales, finance, interfaces, en logistics.<br><br>\n" + 
 	"In de eerste periode van zijn carriere begon hij als een software developer die bijdroeg in de ontwikkeling en onderhoud van de desktop enterprise applicatie Maccs,\n" + 
