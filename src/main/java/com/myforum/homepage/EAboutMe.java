@@ -57,10 +57,10 @@ public enum EAboutMe {
 	"internationale film distributie bedrijven bij <a href=\"http://www.maccs.com\"><b>MACCS International</b></a>, onderdeel van de <a href=\"https://vistagroup.co.nz/\">Vista Group</a>. \n" + 
 	"Het gaat hier om oplossingen voor de theatrical sales, finance, interfaces, en logistics.<br><br>\n" + 
 	"In de eerste periode van zijn carriere begon hij als een software developer die bijdroeg in de ontwikkeling en onderhoud van de desktop enterprise applicatie Maccs,\n" + 
-	"maar al snel groeidde hij door naar functies waar hij verantwoordelijk werd voor grotere projecten, met daarbij de GAP analyses, installatie van en training in Maccs on-site \n" + 
-	"bij klanten in Nederland en het buiten.\n" + 
+	"maar al snel groeidde hij door naar functies waar hij verantwoordelijk werd voor grotere projecten, en deed daarbij GAP analyses voor, installaties van en trainingen in Maccs \n" + 
+	"bij klanten in Nederland en het buitenland.\n" + 
 	"<br><br>\n" + 
-	"In de tweede helft van zijn carriere werd hij team lead / project manager Theatrical Distribution en stuurde vanuit deze functie de teams van development en deployment aan. \n" + 
+	"In de tweede helft van zijn carriere werd hij team lead en project manager van de volledige divisie Theatrical Distribution en stuurde vanuit deze functie de teams van development en deployment aan. \n" + 
 	"Omdat met deze rol de afstand tot het hands-on software development bijna geheel was verdwenen, begon hij zich af te vragen of dit wel was wat hij wilde, en besloot\n" + 
 	"op de leeftijd van 38 jaar terug naar de universiteit te gaan om alsnog zijn master in science te halen en tegelijkertijd meer kennis op te doen van de huidige stand\n" + 
 	"van de wetenschap op het gebied van Informatica, eindigend met een onderzoek naar large deep neural networks, en studeerde met lof af in 2019.  \n" + 
