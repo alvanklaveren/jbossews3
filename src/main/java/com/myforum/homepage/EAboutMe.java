@@ -68,7 +68,7 @@ public enum EAboutMe {
 	"Momenteel werkt hij aan cloud-based oplossingen, microservices, en websites (voornamelijk in Java en Typescript) om bioscopen en distributeurs te ondersteunen.\n" + 
 	"\n" + 
 	"</p>\n" + 
-	"In zijn professionele heeft hij onder andere gewerkt met:\n" + 
+	"In zijn professionele leven heeft hij onder andere gewerkt met:\n" + 
 	"<ul>\n" + 
 	"  <li>Java (Eclipse/IntelliJ)</li>\n" + 
 	"  <li>PowerScript: PowerBuilder</li>\n" + 
@@ -93,8 +93,8 @@ public enum EAboutMe {
 	"</ul>\n" + 
 	"\n" + 
 	"<p class=\"text-justify\">\n" + 
-	"Afgaand op wat je op deze site tegenkomt, is het geen verassing dat Alex een passie heeft voor (retro) video games. Maar hij\n" + 
-	"houdt ook van motorrijden, en een biertje pakken met vrienden (vooral op zonnig dagen).\n" + 
+	"Afgaand op wat je op deze site tegenkomt, zal het geen verassing zijn dat Alex een passie heeft voor (retro) video games. Maar hij\n" + 
+	"houdt ook van motorrijden en tijd doorbrengen met vrienden (vooral op zonnig dagen).\n" + 
 	"</p>\n" 
 	)
 	;
