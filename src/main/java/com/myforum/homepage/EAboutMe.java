@@ -93,7 +93,7 @@ public enum EAboutMe {
 	"</ul>\n" + 
 	"\n" + 
 	"<p class=\"text-justify\">\n" + 
-	"Afgaand op wat je op deze site tegenkomt, zal het geen verassing zijn dat Alex een passie heeft voor (retro) video games. Maar hij\n" + 
+	"Afgaand op wat je op deze site tegenkomt, zal het geen verrassing zijn dat Alex een passie heeft voor (retro) video games. Maar hij\n" + 
 	"houdt ook van motorrijden en tijd doorbrengen met vrienden (vooral op zonnig dagen).\n" + 
 	"</p>\n" 
 	)
