@@ -1,57 +1,13 @@
 <html xmlns:wicket>
 <wicket:extend>
 	<div class="container">
-	  <div class="row">
-	    <div class="col-md-8">
-	    	<a wicket:id="cv">Click here to download my Curriculum Vitae (in Dutch)</a>
-	    	<br><br>
-	    	<h2 wicket:id="aboutme">About me</h2>
-		    <p class="text-justify">
-			Alexander is a software engineer (MSc) with <span wicket:id="yearsworking"></span> years of experience in creating system solutions for national and 
-			international film distribution companies at a company called <a href="http://www.maccs.com"><b>MACCS International</b></a>, a <a href="https://vistagroup.co.nz/">Vista Group</a> Company. 
-			This includes, but is not limited to, solutions for theatrical sales, finance, interfaces, and logistics.<br><br>
-			In the first period of his career, he started as a software developer working both on maintenance and new enhancements to the enterprise application called Maccs,
-			and quickly moved to taking lead in projects, deploying Maccs on-site at clients both in the Netherlands and abroad (mainly in Europe), and training the end users.
-			<br><br>
-			During the second period, he became team lead for a group of developers to maintain and evolve the Maccs application, which quickly evolved into a management role. 
-			Because of the nature of this role, dealing more with meetings than actual hands-on software development, he felt he was losing touch with his original passion.  
-			He decided to go back to University at the age of 38 to gain new knowledge and insights in the field of software engineering, ending his study with
-			a thesis on rule extraction from a large deep neural network.<br>
-			<br>
-			Currently he is working on new cloud-based solutions, microservices, and websites to support exhibitors and distributors, mainly developed using
-			Java and Typescript.   
-			
-			</p>
-			In his professional life he has worked with:
-			<ul>
-			  <li>Java (Eclipse/IntelliJ)</li>
-			  <li>PowerScript: PowerBuilder</li>
-			  <li>Hibernate/JPA</li>
-			  <li>Spring (Boot/MVC/AOP)/Wicket</li>
-			  <li>CSS/Bootstrap</li>
-			  <li>Angular/Typescript</li>
-			  <li>Subversion/Github</li>
-			  <li>Tomcat</li>
-			  <li>AWS</li>
-			  <li>Oracle/MariaDB</li>
-			  <li>Windows</li>
-			</ul>
-			and at home with:
-			<ul>
-			  <li>Java Android (Android Studio)</li>
-			  <li>Python (Pycharm)</li>
-			  <li>TensorFlow/Theano</li>
-			  <li>MySQL</li>
-			  <li>BitBucket/Git</li>
-			  <li>Linux (Ubuntu)</li>
-			</ul>
-
-	    	<p class="text-justify">
-	    	Given the type of content on this site, it will be no surprise to you that Alex is passionate about (retro) games. But he also
-	    	enjoys cruising around on his motorcycle, and spending time with friends (especially on sunny days).
-	    	</p>
-	    </div>    
-	  </div>    
+		<div class="row">
+	    	<div class="col-md-8">
+	    		<a wicket:id="cv"><wicket:container wicket:id="cvtext"/></a>
+				<br><br> 
+	      		<span wicket:id="markup"></span>
+	    	</div>
+		</div>
 	</div>
 </wicket:extend>
 </html>

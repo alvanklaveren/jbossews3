@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 
 import com.myforum.application.ForumUtils;
 import com.myforum.base.AVKPage;
+import com.myforum.base.dictionary.Translator;
 import com.myforum.base.menu.EMenuItem;
 
 public class ArticlePage extends AVKPage {
@@ -86,7 +87,7 @@ public class ArticlePage extends AVKPage {
 	
     @Override
     protected String getPageTitle() {
-    	return "AVK - Articles";
+    	return "AVK - " + Translator.getInstance().translate("Articles");
     }
 
 	@Override

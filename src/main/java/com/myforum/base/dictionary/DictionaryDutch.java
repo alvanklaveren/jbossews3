@@ -81,6 +81,7 @@ public final class DictionaryDutch extends Dictionary {
 		put(translatedSentenceMap, EText.UPLOAD_FAILED, "Uploaden van bestand mislukt. Controleer de naam en de grootte (<100kb) van het bestand.");
 		put(translatedSentenceMap, EText.UPDATE_PROFILE, "Pas Profiel Aan");
 		put(translatedSentenceMap, EText.ABOUT_WEBSITE, "Over ...");
+		put(translatedSentenceMap, EText.ABOUT_ME, "Over mij");
 
 		StringBuilder aboutText = new StringBuilder();
 		aboutText.append( "Deze website is gemaakt, geschreven en wordt onderhouden door  A.L. van Klaveren.<br>Momenteel is het gebouwd in " ); 

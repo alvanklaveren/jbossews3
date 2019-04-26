@@ -32,6 +32,7 @@ public enum EText {
 	, UPLOAD_FAILED( "Could not upload file. Check file name and size (< 100kb)" )
 	, ABOUT_WEBSITE ("About ..." )
 	, ABOUT_WEBSITE_TEXT( "<Translation not found>" )
+	, ABOUT_ME ("About me");
 	;
 	
 

@@ -33,6 +33,7 @@ import com.myforum.application.ForumUtils;
 import com.myforum.application.StringLogics;
 import com.myforum.base.BasePage;
 import com.myforum.base.dictionary.EText;
+import com.myforum.base.dictionary.Translator;
 import com.myforum.base.menu.EMenuItem;
 import com.myforum.framework.AVKButton;
 import com.myforum.framework.AVKLabel;
@@ -610,7 +611,7 @@ public class GameShopPage extends BasePage {
 	
     @Override
     protected String getPageTitle() {
-    	return "AVK - Game Collection";
+    	return "AVK - " + Translator.getInstance().translate("Game Collection");
     }
 
 }

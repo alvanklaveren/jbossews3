@@ -14,6 +14,7 @@ import com.myforum.application.CookieLogics;
 import com.myforum.application.ForumUtils;
 import com.myforum.application.StringLogics;
 import com.myforum.base.AVKPage;
+import com.myforum.base.dictionary.Translator;
 import com.myforum.base.menu.EMenuItem;
 import com.myforum.framework.AVKLabel;
 import com.myforum.framework.StatelessPagingNavigator;
@@ -83,7 +84,7 @@ public class HomePage extends AVKPage {
 	
     @Override
     protected String getPageTitle() {
-    	return "AVK - Home";
+    	return "AVK - " + Translator.getInstance().translate("Home");
     }
 	
 }
