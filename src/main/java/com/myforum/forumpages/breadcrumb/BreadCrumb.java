@@ -1,4 +1,4 @@
-package com.myforum.base.breadcrumb;
+package com.myforum.forumpages.breadcrumb;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.myforum.base.breadcrumb;
+package com.myforum.forumpages.breadcrumb;
 
 import org.apache.wicket.markup.html.panel.Panel;
 

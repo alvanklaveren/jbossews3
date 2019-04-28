@@ -4,7 +4,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.Model;
 
 import com.myforum.base.AVKPage;
-import com.myforum.base.breadcrumb.BreadCrumbPanel;
+import com.myforum.forumpages.breadcrumb.BreadCrumbPanel;
 import com.myforum.framework.AVKPanel;
 import com.myforum.tables.ForumUser;
 
