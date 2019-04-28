@@ -1,5 +1,6 @@
 package com.myforum.email;
 
+
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 
@@ -7,12 +8,11 @@ import javax.mail.PasswordAuthentication;
 public class MailAuthenticator extends Authenticator {
      String user;
      String pw;
-
-     public MailAuthenticator (EmailMessage emailMessage)
+     public MailAuthenticator (String username, String password)
      {
         super();
-        user = emailMessage.getFrom();
-        pw = emailMessage.getPassWord();
+        this.user = username;
+        this.pw = password;
      }
     public PasswordAuthentication getPasswordAuthentication()
     {
