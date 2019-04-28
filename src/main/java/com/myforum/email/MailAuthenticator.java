@@ -14,6 +14,13 @@ public class MailAuthenticator extends Authenticator {
         this.user = username;
         this.pw = password;
      }
+     
+     public MailAuthenticator (EmailMessage emailMessage){
+		 super();
+		 user = emailMessage.getFrom();
+		 pw = emailMessage.getPassWord();
+     }
+     
     public PasswordAuthentication getPasswordAuthentication()
     {
        return new PasswordAuthentication(user, pw);
