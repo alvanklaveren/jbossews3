@@ -1,4 +1,4 @@
-package com.myforum.base.dictionary;
+package com.myforum.dictionary;
 
 public final class DictionaryDutch extends Dictionary {
 

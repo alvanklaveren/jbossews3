@@ -7,7 +7,7 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.Model;
 
 import com.myforum.base.AVKPage;
-import com.myforum.base.dictionary.Translator;
+import com.myforum.dictionary.Translator;
 
 public class ResponseFormModalButton extends AjaxButton{
 	private static final long serialVersionUID = 1L;

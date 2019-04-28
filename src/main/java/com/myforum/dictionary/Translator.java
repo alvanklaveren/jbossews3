@@ -1,4 +1,4 @@
-package com.myforum.base.dictionary;
+package com.myforum.dictionary;
 
 import java.io.Serializable;
 

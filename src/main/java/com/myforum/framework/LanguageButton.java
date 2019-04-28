@@ -9,8 +9,8 @@ import org.apache.wicket.model.Model;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.myforum.base.dictionary.ELanguage;
-import com.myforum.base.dictionary.Translator;
+import com.myforum.dictionary.ELanguage;
+import com.myforum.dictionary.Translator;
 
 public class LanguageButton extends Button {
 	private static final long serialVersionUID = 1L;

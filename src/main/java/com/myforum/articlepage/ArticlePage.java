@@ -16,8 +16,8 @@ import org.slf4j.LoggerFactory;
 
 import com.myforum.application.ForumUtils;
 import com.myforum.base.AVKPage;
-import com.myforum.base.dictionary.Translator;
 import com.myforum.base.menu.EMenuItem;
+import com.myforum.dictionary.Translator;
 
 public class ArticlePage extends AVKPage {
 	private static final long serialVersionUID = 1L;

@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import com.myforum.application.DBHelper;
 import com.myforum.application.StringLogics;
-import com.myforum.base.dictionary.EText;
+import com.myforum.dictionary.EText;
 import com.myforum.email.HotmailMessage;
 import com.myforum.framework.AVKButton;
 import com.myforum.tables.ForumUser;

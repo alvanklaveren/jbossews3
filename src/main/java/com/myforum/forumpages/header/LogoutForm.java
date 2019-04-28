@@ -7,7 +7,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.myforum.application.AllConstants;
 import com.myforum.application.CookieLogics;
-import com.myforum.base.dictionary.Translator;
+import com.myforum.dictionary.Translator;
 import com.myforum.forumpages.ForumBasePage;
 import com.myforum.forumpages.UserModifyAccountPage;
 import com.myforum.forumpages.UserRegistrationPage;

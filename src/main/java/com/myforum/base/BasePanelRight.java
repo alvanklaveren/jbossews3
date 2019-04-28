@@ -5,8 +5,8 @@ import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import com.myforum.application.AllConstants;
-import com.myforum.base.dictionary.EText;
-import com.myforum.base.dictionary.Translator;
+import com.myforum.dictionary.EText;
+import com.myforum.dictionary.Translator;
 
 public class BasePanelRight extends Panel{
 	private static final long serialVersionUID = 1L;

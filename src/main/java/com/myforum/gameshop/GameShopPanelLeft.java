@@ -6,8 +6,8 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.Model;
 
 import com.myforum.base.BasePanelLeft;
-import com.myforum.base.dictionary.EText;
-import com.myforum.base.dictionary.Translator;
+import com.myforum.dictionary.EText;
+import com.myforum.dictionary.Translator;
 import com.myforum.tables.GameConsole;
 import com.myforum.tables.ProductType;
 import com.myforum.tables.dao.GameConsoleDao;

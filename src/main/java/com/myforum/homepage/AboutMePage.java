@@ -8,8 +8,8 @@ import org.apache.wicket.markup.html.link.DownloadLink;
 
 import com.myforum.application.ForumUtils;
 import com.myforum.base.AVKPage;
-import com.myforum.base.dictionary.Translator;
 import com.myforum.base.menu.EMenuItem;
+import com.myforum.dictionary.Translator;
 
 public class AboutMePage extends AVKPage {
 	private static final long serialVersionUID = 1L;

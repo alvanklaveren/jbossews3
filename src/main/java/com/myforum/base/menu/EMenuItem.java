@@ -1,6 +1,6 @@
 package com.myforum.base.menu;
 
-import com.myforum.base.dictionary.Translator;
+import com.myforum.dictionary.Translator;
 
 public enum EMenuItem {
 	DUMMY			(0, "", ""),

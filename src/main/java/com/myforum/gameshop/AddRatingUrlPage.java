@@ -11,7 +11,7 @@ import org.apache.wicket.model.PropertyModel;
 import com.myforum.application.DBHelper;
 import com.myforum.application.StringLogics;
 import com.myforum.base.BasePage;
-import com.myforum.base.dictionary.EText;
+import com.myforum.dictionary.EText;
 import com.myforum.framework.ModalPage;
 import com.myforum.tables.RatingUrl;
 import com.myforum.tables.dao.RatingUrlDao;

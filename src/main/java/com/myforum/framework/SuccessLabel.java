@@ -4,7 +4,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.Model;
 
 import com.myforum.application.StringLogics;
-import com.myforum.base.dictionary.Translator;
+import com.myforum.dictionary.Translator;
 
 public class SuccessLabel extends Label{
 	private static final long serialVersionUID = 1L;

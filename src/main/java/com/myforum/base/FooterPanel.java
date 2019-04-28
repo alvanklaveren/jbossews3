@@ -9,8 +9,8 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 
 import com.myforum.application.AllConstants;
-import com.myforum.base.dictionary.EText;
-import com.myforum.base.dictionary.Translator;
+import com.myforum.dictionary.EText;
+import com.myforum.dictionary.Translator;
 
 public class FooterPanel extends Panel{
 	private static final long serialVersionUID = 1L;
