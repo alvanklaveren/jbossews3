@@ -6,24 +6,27 @@
 
   <body>
    <span>
-	<div class="blog-header">
-	  <h1 class="blog-title">Wicket and Spring</h1>
-	  <p class="lead blog-description">Installing Spring Framework on top of Wicket. Here are a few things to remember...</p>
-	</div>
+    <div class="container">
+	   	<div class="blog-header">
+		  <h1 class="blog-title">Wicket and Spring</h1>
+		  <p class="lead blog-description">Installing Spring Framework on top of Wicket. Here are a few things to remember...</p>
+		</div>
+	
+		<div class="row">
+		  <div class="col-sm-8 blog-main">
+		    <div class="blog-post">
+	           <h2 class="blog-post-title">Wicket and Spring</h2>
+	           <p class="blog-post-meta">February 1, 2017 by <a href="#">Alex</a></p>
+	
+	           <p style="text-align:justify">The Spring Framework offers a couple of things Wicket doesn't. In order to use the Spring Framework in my Wicket web application,
+	             I hit a few bumps: shared dependencies, configuration (like Property-> Deployment Assembly, applicationcontext.xml, web.xml and pom.xml), and missing Spring
+	             jars, that were not clearly reported as missing in the (eclipse) Console. In this article, I will address all of them individually.
+	           </p>
 
-<div class="row">
-  <div class="col-sm-8 blog-main">
-    <div class="blog-post">
-           <h2 class="blog-post-title">Wicket and Spring</h2>
-           <p class="blog-post-meta">February 1, 2017 by <a href="#">Alex</a></p>
-
-           <p style="text-align:justify">The Spring Framework offers a couple of things Wicket doesn't. In order to use the Spring Framework in my Wicket web application,
-             I hit a few bumps: shared dependencies, configuration (like Property-> Deployment Assembly, applicationcontext.xml, web.xml and pom.xml), and missing Spring
-             jars, that were not clearly reported as missing in the (eclipse) Console. In this article, I will address all of them individually.</p>
-        <hr>
-	    <h3 class="h3">Spring library</h3>
-       	<p style="text-align:justify">The first thing to do is download (and/or copy the maven dependencies) all (yes ALL) spring jars from the maven repository. (You can always throw them
-                   away later, but for now, you do not want to be harrassed by missing objects or functions). To help you a little on your way, here is the part of xml for your pom.xml:</p>
+	        <hr>
+		    <h3 class="h3">Spring library</h3>
+	       	<p style="text-align:justify">The first thing to do is download (and/or copy the maven dependencies) all (yes ALL) spring jars from the maven repository. (You can always throw them
+	                   away later, but for now, you do not want to be harrassed by missing objects or functions). To help you a little on your way, here is the part of xml for your pom.xml:</p>
 <pre><code><small>&lt;!--  SPRING DEPENDENCIES --&gt;
 &lt;dependency&gt;
     &lt;groupId&gt;org.springframework&lt;/groupId&gt;
@@ -222,10 +225,10 @@ public class Runner{
 		</small>	
 		</p>
 	
-		
-     </div><!-- /.blog-post -->
-   </div><!-- /.blog-main -->
-  </div><!-- /.row -->
+       </div><!-- /.blog-post -->
+     </div><!-- /.blog-main -->
+    </div><!-- /.row -->
+  </div> <!-- /.container -->
  </span>
    
 </body>
