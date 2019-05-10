@@ -16,6 +16,15 @@ import com.myforum.gameshop.codetable.CodeTablesPage;
 import com.myforum.homepage.AboutMePage;
 import com.myforum.homepage.HomePage;
 
+import org.apache.wicket.core.request.mapper.MountedMapper;
+import org.apache.wicket.request.component.IRequestablePage;
+import org.apache.wicket.request.mapper.parameter.PageParametersEncoder;
+import org.apache.wicket.request.mapper.info.PageComponentInfo;
+import org.apache.wicket.request.IRequestHandler;
+import org.apache.wicket.request.Url;
+import org.apache.wicket.core.request.handler.BookmarkableListenerInterfaceRequestHandler;
+import org.apache.wicket.core.request.handler.ListenerInterfaceRequestHandler;
+
 
 public class AVKApplication extends WebApplication {
     public AVKApplication() {
@@ -60,6 +69,11 @@ public class AVKApplication extends WebApplication {
 		  mountPage("/articles/#{id}", ArticlePage.class);
 		  mountPage("/gameshop/#{console}/#{type}/#{searchtitle}", GameShopPage.class);
 		  mountPage("/codetable/#{codetable}", CodeTablesPage.class);
+
+		  // Force disabling of versioning for all pages that do NOT or NEVER use stateful information or page parameters.
+		  getRootRequestMapperAsCompound().add(new NoVersionMapper("/", HomePage.class));
+		  getRootRequestMapperAsCompound().add(new NoVersionMapper("/aboutme", AboutMePage.class));
+
 		  
 		  // to REST pages, not inherited from basepage, therefore NOT https !!
 		  // acme_address in constants contains the verification code from the HTTPS provider to verify that I am who I say I am
@@ -94,6 +108,34 @@ public class AVKApplication extends WebApplication {
     @Override
     public Class<? extends Page> getHomePage() {
         return HomePage.class;
+    }
+ 
+    /**
+     * This class forces the versioning to be removed, regardless of the page needing versioning.
+     * Specifically some pages, like HomePage, simply do not need versioning, but unnecessarily 
+     * decide that they are in some way stateful, which they are not !! (for instance because of 
+     * an image that normally NEVER changes !!).
+     *
+     */
+    private static class NoVersionMapper extends MountedMapper {
+
+        public NoVersionMapper(String mountPath, final Class<? extends IRequestablePage> pageClass) {
+            super(mountPath, pageClass, new PageParametersEncoder());
+        }
+
+        @Override
+        protected void encodePageComponentInfo(Url url, PageComponentInfo info) {
+            //Does nothing
+        }
+
+        @Override
+        public Url mapHandler(IRequestHandler requestHandler) {
+            if (requestHandler instanceof ListenerInterfaceRequestHandler || requestHandler instanceof BookmarkableListenerInterfaceRequestHandler) {
+                return null;
+            } else {
+                return super.mapHandler(requestHandler);
+            }
+        }
     }
     
 }
