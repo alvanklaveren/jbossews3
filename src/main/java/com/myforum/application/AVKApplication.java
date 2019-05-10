@@ -71,8 +71,10 @@ public class AVKApplication extends WebApplication {
 		  mountPage("/codetable/#{codetable}", CodeTablesPage.class);
 
 		  // Force disabling of versioning for all pages that do NOT or NEVER use stateful information or page parameters.
-		  getRootRequestMapperAsCompound().add(new NoVersionMapper("/", HomePage.class));
-		  getRootRequestMapperAsCompound().add(new NoVersionMapper("/aboutme", AboutMePage.class));
+		  // *** But slashed out again, because it messes up the CSS and JS of bootstrap, ***
+		  // *** so unless I find a workaround, this is not going to work                 ***
+		  //getRootRequestMapperAsCompound().add(new NoVersionMapper("/", HomePage.class));
+		  //getRootRequestMapperAsCompound().add(new NoVersionMapper("/aboutme", AboutMePage.class));
 
 		  
 		  // to REST pages, not inherited from basepage, therefore NOT https !!
