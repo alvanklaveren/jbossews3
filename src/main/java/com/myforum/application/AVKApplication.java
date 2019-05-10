@@ -60,10 +60,10 @@ public class AVKApplication extends WebApplication {
 		  // getExceptionSettings().setUnexpectedExceptionDisplay(IExceptionSettings.SHOW_INTERNAL_ERROR_PAGE); 
 		
 		  //mountPage("/", HomePage.class); // DO NOT USE. will disable bootstrap (css)
-		  
-		  //mountPage("/sources", SourceHomePage.class);
+		  mountPage("/home", HomePage.class); 
 		  mountPage("/forum", ForumBasePage.class);
 		  mountPage("/aboutme", AboutMePage.class);
+		  //mountPage("/sources", SourceHomePage.class);
 		  		  
 		  // now for some REST stuff supported by Wicket
 		  mountPage("/articles/#{id}", ArticlePage.class);
@@ -73,8 +73,8 @@ public class AVKApplication extends WebApplication {
 		  // Force disabling of versioning for all pages that do NOT or NEVER use stateful information or page parameters.
 		  // *** But slashed out again, because it messes up the CSS and JS of bootstrap, ***
 		  // *** so unless I find a workaround, this is not going to work                 ***
-		  //getRootRequestMapperAsCompound().add(new NoVersionMapper("/", HomePage.class));
-		  //getRootRequestMapperAsCompound().add(new NoVersionMapper("/aboutme", AboutMePage.class));
+		  getRootRequestMapperAsCompound().add(new NoVersionMapper("/home", HomePage.class));
+		  getRootRequestMapperAsCompound().add(new NoVersionMapper("/aboutme", AboutMePage.class));
 
 		  
 		  // to REST pages, not inherited from basepage, therefore NOT https !!
