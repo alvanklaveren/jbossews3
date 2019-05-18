@@ -15,6 +15,7 @@ import com.myforum.application.CookieLogics;
 import com.myforum.application.DBHelper;
 import com.myforum.application.ForumUtils;
 import com.myforum.base.ClickableForumLabel;
+import com.myforum.framework.AVKLabel;
 import com.myforum.framework.AreYouSurePanel;
 import com.myforum.framework.ResponseFormButton;
 import com.myforum.framework.StatelessPagingNavigator;
@@ -47,6 +48,11 @@ public class ForumCategoryPanel extends ForumBasePanel{
         	setResponsePage(ForumBasePage.class);
         	return;
         }
+        
+		add( new AVKLabel("date", "Date"));
+		add( new AVKLabel("user", "User"));
+		add( new AVKLabel("description", "Description"));
+
         
         final MessageCategory messageCategory = messageCategoryDao.find( codeMessageCategory );
         

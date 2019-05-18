@@ -54,6 +54,8 @@ public final class DictionaryDutch extends Dictionary {
 		translatedWordMap.put("with", 			"met");
 		translatedWordMap.put("yes", 			"ja");
 		translatedWordMap.put("message", 		"bericht");
+		translatedWordMap.put("date", 			"datum");
+		translatedWordMap.put("user", 			"gebruiker");
 		
 		put(translatedSentenceMap, EText.ADD_CATEGORY, "Category toevoegen");
 		put(translatedSentenceMap, EText.ADD_PRODUCT, "Product toevoegen");

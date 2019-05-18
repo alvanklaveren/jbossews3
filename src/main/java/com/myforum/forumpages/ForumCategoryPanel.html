@@ -1,18 +1,18 @@
 <html xmlns:wicket>
 <wicket:extend>
 	<a wicket:id="deletePanel"></a>
-	<br><br>
 
 	<form wicket:id="form">
+		<br><br>
 		<input wicket:id="addnewmessage" type="submit" class="btn btn-outline-primary btn-sm" value="Add New Message">
 	</form>
 
    	
    	<table style="width:100%;" class="table table-striped">
    	  	<tr>
-    	<td style="width:10%"><b>Date</b></td>
-    	<td style="width:10%"><b>User</b></td>    	
-   	    <td style="width:80%"><b>Message Description</b></td>
+    	<td style="width:10%"><b><span wicket:id="date">Date</span></b></td>
+    	<td style="width:10%"><b><span wicket:id="user">User</span></b></td>    	
+   	    <td style="width:80%"><b><span wicket:id="description">Message Description</span></b></td>
 	    </tr>
   	    <tr wicket:id="messagelist">
 	    	<td style="width:10%;text-align:center;">
