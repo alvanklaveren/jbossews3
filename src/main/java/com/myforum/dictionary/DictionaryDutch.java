@@ -82,6 +82,7 @@ public final class DictionaryDutch extends Dictionary {
 		put(translatedSentenceMap, EText.UPDATE_PROFILE, "Pas Profiel Aan");
 		put(translatedSentenceMap, EText.ABOUT_WEBSITE, "Over ...");
 		put(translatedSentenceMap, EText.ABOUT_ME, "Over mij");
+		put(translatedSentenceMap, EText.CLICK_TO_NAVIGATE, "Klik om hier naar toe te gaan");
 
 		StringBuilder aboutText = new StringBuilder();
 		aboutText.append( "Deze website is gemaakt, geschreven en wordt onderhouden door  A.L. van Klaveren.<br>Momenteel is het gebouwd in " ); 

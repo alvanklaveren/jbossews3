@@ -8,6 +8,8 @@ import org.apache.wicket.markup.html.link.StatelessLink;
 
 import com.myforum.application.CookieLogics;
 import com.myforum.base.AVKPage;
+import com.myforum.dictionary.EText;
+import com.myforum.dictionary.Translator;
 import com.myforum.forumpages.ForumBasePage;
 import com.myforum.forumpages.ForumBasePanel;
 import com.myforum.framework.AVKLabel;
@@ -92,6 +94,9 @@ public class BreadCrumbItem implements Serializable{
 			sLink.add(new AttributeModifier("class", "active"));
 
 		} else {
+			sLink.add(new AttributeModifier("title", Translator.getInstance().translate(EText.CLICK_TO_NAVIGATE)));
+			sLink.add(new AttributeModifier("style", "cursor:pointer;"));
+
 			// need to add href="#" for the CSS to work. Does not override the clicked event so everything still works peachy
 			breadcrumbItemLabel.add(new AttributeModifier("href", "#")); 
 		}
