@@ -34,6 +34,7 @@ public enum EText {
 	, ABOUT_WEBSITE_TEXT( "<Translation not found>" )
 	, ABOUT_ME ("About me")
 	, CLICK_TO_NAVIGATE ("Click to navigate")
+	, NUMBER_OF_MESSAGES ("# Messages")
 	;
 	
 

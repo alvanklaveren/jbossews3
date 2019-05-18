@@ -15,7 +15,9 @@ import org.apache.wicket.model.Model;
 import com.myforum.application.DBHelper;
 import com.myforum.application.ForumUtils;
 import com.myforum.base.ClickableForumLabel;
+import com.myforum.dictionary.EText;
 import com.myforum.framework.AVKButton;
+import com.myforum.framework.AVKLabel;
 import com.myforum.framework.StatelessPagingNavigator;
 import com.myforum.security.CredentialLogics;
 import com.myforum.tables.MessageCategory;
@@ -40,6 +42,9 @@ public class ForumHomePanel extends ForumBasePanel {
 			messageCategoryDao.removeCategory(messageCategories, -1);
 		}
 
+		add( new AVKLabel("category", "Category"));
+		add( new AVKLabel("numberofmessages", EText.NUMBER_OF_MESSAGES));
+		
 		// Add messageCategoryListView of existing messageCategories
         PageableListView<MessageCategory> listView = new PageableListView<MessageCategory>("messagecategories", messageCategories, 30) {
 			private static final long serialVersionUID = 1L;
