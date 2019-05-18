@@ -85,10 +85,19 @@ public class BreadCrumbItem implements Serializable{
 				return !isActive;
 			}
 		};
+		
+		AVKLabel breadcrumbItemLabel = new AVKLabel("label", displayText); 
+		
 		if(isActive){ 
-			sLink.add(new AttributeModifier("class", "breadcrumb-item active"));
+			sLink.add(new AttributeModifier("class", "active"));
+
+		} else {
+			// need to add href="#" for the CSS to work. Does not override the clicked event so everything still works peachy
+			breadcrumbItemLabel.add(new AttributeModifier("href", "#")); 
 		}
-		sLink.add(new AVKLabel("label", displayText));
+
+		sLink.add(breadcrumbItemLabel);
+
 		return sLink;
 	}
 
