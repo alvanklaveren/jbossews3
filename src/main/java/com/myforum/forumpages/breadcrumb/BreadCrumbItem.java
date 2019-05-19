@@ -91,14 +91,11 @@ public class BreadCrumbItem implements Serializable{
 		AVKLabel breadcrumbItemLabel = new AVKLabel("label", displayText); 
 		
 		if(isActive){ 
-			sLink.add(new AttributeModifier("class", "active"));
+			sLink.add(new AttributeModifier("class", "breadcrumb-item active"));
 
 		} else {
 			sLink.add(new AttributeModifier("title", Translator.getInstance().translate(EText.CLICK_TO_NAVIGATE)));
 			sLink.add(new AttributeModifier("style", "cursor:pointer;"));
-
-			// need to add href="#" for the CSS to work. Does not override the clicked event so everything still works peachy
-			breadcrumbItemLabel.add(new AttributeModifier("href", "#")); 
 		}
 
 		sLink.add(breadcrumbItemLabel);
