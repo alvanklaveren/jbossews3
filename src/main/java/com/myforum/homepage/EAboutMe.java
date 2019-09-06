@@ -16,7 +16,7 @@ public enum EAboutMe {
 	"He decided to go back to University at the age of 38 to gain new knowledge and insights in the field of software engineering, graduating with\n" + 
 	"a thesis on rule extraction from a large deep neural network.\n" + 
 	"<br><br>\n" + 
-	"He iscurrently working on new cloud-based solutions, microservices, and websites to support exhibitors and distributors, mainly developed using\n" + 
+	"He is currently working on new cloud-based solutions, microservices, and websites to support exhibitors and distributors, mainly developed using\n" + 
 	"Java and Typescript.\n" + 
 	"\n" + 
 	"</p>\n" + 
