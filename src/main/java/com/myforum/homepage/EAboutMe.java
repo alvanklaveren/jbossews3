@@ -11,12 +11,12 @@ public enum EAboutMe {
 	"In the first period of his career, he started as a software developer working both on maintenance and new enhancements to the enterprise application called Maccs,\n" + 
 	"and quickly moved to taking lead in projects, deploying Maccs on-site at clients both in the Netherlands and abroad (mainly in Europe), and training the end users.\n" + 
 	"<br><br>\n" + 
-	"During the second period, he became team lead for a group of developers to maintain and evolve the Maccs application, which quickly evolved into a management role. \n" + 
-	"Because of the nature of this role, dealing more with meetings than actual hands-on software development, he felt he was losing touch with his original passion.  \n" + 
-	"He decided to go back to University at the age of 38 to gain new knowledge and insights in the field of software engineering, ending his study with\n" + 
+	"During the second period, he became team lead for a group of developers to maintain and improve the Maccs application, which quickly evolved into a management role. \n" + 
+	"Because of the nature of this role, dealing more with meetings than actual hands-on software development, he felt he was losing touch with his original passion. \n" + 
+	"He decided to go back to University at the age of 38 to gain new knowledge and insights in the field of software engineering, graduating with\n" + 
 	"a thesis on rule extraction from a large deep neural network.\n" + 
 	"<br><br>\n" + 
-	"Currently he is working on new cloud-based solutions, microservices, and websites to support exhibitors and distributors, mainly developed using\n" + 
+	"He iscurrently working on new cloud-based solutions, microservices, and websites to support exhibitors and distributors, mainly developed using\n" + 
 	"Java and Typescript.\n" + 
 	"\n" + 
 	"</p>\n" + 
@@ -26,7 +26,7 @@ public enum EAboutMe {
 	"  <li>PowerScript: PowerBuilder</li>\n" + 
 	"  <li>Hibernate/JPA</li>\n" + 
 	"  <li>Spring (Boot/AOP)/Wicket</li>\n" + 
-	"  <li>CSS/Bootstrap</li>\n" + 
+	"  <li>HTML/JS/CSS/Bootstrap</li>\n" + 
 	"  <li>Angular/Typescript</li>\n" + 
 	"  <li>Subversion/Github</li>\n" + 
 	"  <li>Tomcat</li>\n" + 
