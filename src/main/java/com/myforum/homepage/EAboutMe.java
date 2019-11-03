@@ -16,8 +16,8 @@ public enum EAboutMe {
 	"He decided to go back to University at the age of 38 to gain new knowledge and insights in the field of software engineering, graduating with\n" + 
 	"a thesis on rule extraction from a large deep neural network.\n" + 
 	"<br><br>\n" + 
-	"He is currently working on new cloud-based solutions, microservices, and websites to support exhibitors and distributors, mainly developed using\n" + 
-	"Java and Typescript.\n" + 
+	"He is currently working on new cloud-based solutions, microservices, and websites to support exhibitors and distributors, mainly developed in\n" + 
+	"Java and Angular.\n" + 
 	"\n" + 
 	"</p>\n" + 
 	"In his professional life he has worked with:\n" + 
@@ -27,7 +27,7 @@ public enum EAboutMe {
 	"  <li>Hibernate/JPA</li>\n" + 
 	"  <li>Spring (Boot/AOP)/Wicket</li>\n" + 
 	"  <li>HTML/JS/CSS/Bootstrap</li>\n" + 
-	"  <li>Angular/Typescript</li>\n" + 
+	"  <li>Angular(Typescript)</li>\n" + 
 	"  <li>Subversion/Github</li>\n" + 
 	"  <li>Tomcat</li>\n" + 
 	"  <li>AWS</li>\n" + 
@@ -37,8 +37,7 @@ public enum EAboutMe {
 	"and at home with:\n" + 
 	"<ul>\n" + 
 	"  <li>Java Android (Android Studio)</li>\n" + 
-	"  <li>Python (Pycharm)</li>\n" + 
-	"  <li>TensorFlow/Theano</li>\n" + 
+	"  <li>Rust/Webassembly</li>\n" + 
 	"  <li>MySQL</li>\n" + 
 	"  <li>BitBucket/Git</li>\n" + 
 	"  <li>Linux (Ubuntu)</li>\n" + 
@@ -65,7 +64,7 @@ public enum EAboutMe {
 	"op de leeftijd van 38 jaar terug naar de universiteit te gaan om alsnog zijn master in science te halen en tegelijkertijd meer kennis op te doen van de huidige stand\n" + 
 	"van de wetenschap op het gebied van Informatica, eindigend met een onderzoek naar large deep neural networks, en studeerde met lof af in 2019.  \n" + 
 	"<br><br>\n" + 
-	"Momenteel werkt hij aan cloud-based oplossingen, microservices, en websites (voornamelijk in Java en Typescript) om bioscopen en distributeurs te ondersteunen.\n" + 
+	"Momenteel werkt hij aan cloud-based oplossingen, microservices, en websites (voornamelijk in Java en Angular) om bioscopen en distributeurs te ondersteunen.\n" + 
 	"\n" + 
 	"</p>\n" + 
 	"In zijn professionele leven heeft hij onder andere gewerkt met:\n" + 
@@ -85,8 +84,7 @@ public enum EAboutMe {
 	"en thuis met:\n" + 
 	"<ul>\n" + 
 	"  <li>Java Android (Android Studio)</li>\n" + 
-	"  <li>Python (Pycharm)</li>\n" + 
-	"  <li>TensorFlow/Theano</li>\n" + 
+	"  <li>Rust/Webassembly</li>\n" + 
 	"  <li>MySQL</li>\n" + 
 	"  <li>BitBucket/Git</li>\n" + 
 	"  <li>Linux (Ubuntu)</li>\n" + 
