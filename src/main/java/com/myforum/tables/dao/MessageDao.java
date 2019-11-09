@@ -1,5 +1,6 @@
 package com.myforum.tables.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -16,6 +17,8 @@ public class MessageDao extends HibernateDao<Message, Integer>{
 
 	@SuppressWarnings("unchecked")
 	public List<Message> getMessages( MessageCategory messageCategory ){
+		List<Message> messageList = new ArrayList<>();
+		
 		Session session = prepareTransaction();
 
     	Criteria criteria = session.createCriteria( daoType );
@@ -23,7 +26,14 @@ public class MessageDao extends HibernateDao<Message, Integer>{
     	criteria.add(Restrictions.isNull("message"));
     	criteria.addOrder( Order.desc( "messageDate" ) );
     	
-        return criteria.list(); 
+    	try {
+    		messageList = criteria.list();
+    	}catch(Exception e) {
+    		System.out.println("My Error: " + e.getMessage());
+    		e.printStackTrace();
+    		throw new RuntimeException("FAIL!!");
+    	}
+        return messageList;
     }
 	
 	@SuppressWarnings("unchecked")
