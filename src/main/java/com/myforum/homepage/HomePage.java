@@ -59,8 +59,6 @@ public class HomePage extends AVKPage {
 		MessageDao messageDao = new MessageDao();
 		messageList = messageDao.getMessages( messageCategory );
 	    	    
-		System.out.println("FUCK");
-		
 	    PageableListView <Message> listView = new PageableListView <Message>("messagelist", messageList, 10) {
 			private static final long serialVersionUID = 1L;
 			
