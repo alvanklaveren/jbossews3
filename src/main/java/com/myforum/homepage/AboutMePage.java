@@ -34,7 +34,7 @@ public class AboutMePage extends AVKPage {
 		String markupText = "";
 		switch( Translator.getInstance().getDefaultLanguage()) {
 		case English:
-			downloadlink.add(new Label("cvtext", "Click here to download my Curriculum Vitae (in Dutch)"));
+			downloadlink.add(new Label("cvtext", "Click here to download my Curriculum Vitae"));
 			markupText = EAboutMe.English.toString();
 			break;
 		case Dutch:
@@ -42,7 +42,7 @@ public class AboutMePage extends AVKPage {
 			markupText = EAboutMe.Dutch.toString();
 			break;
 		default:
-			downloadlink.add(new Label("cvtext", "Click here to download my Curriculum Vitae (in Dutch)"));
+			downloadlink.add(new Label("cvtext", "Click here to download my Curriculum Vitae"));
 			markupText = EAboutMe.English.toString();
 		}
 				
