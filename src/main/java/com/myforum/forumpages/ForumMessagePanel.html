@@ -1,105 +1,118 @@
 <html xmlns:wicket>
 <wicket:extend>
-	<span wicket:id="deletePanel"></span>
-	<br>
-	<form wicket:id="form">
-		<input wicket:id="movemessage" type="submit" value="Move Message To Other Category">
-	</form>
+  <span wicket:id="deletePanel"></span>
+  <br>
+  <form wicket:id="form">
+    <input wicket:id="movemessage" type="submit" value="Move Message To Other Category">
+  </form>
 	
-	<table style="width:100%" class="table table-striped">
-	<tr>
-		<td style="width:15%" bgcolor="#FFF7E0">
-			<font size="2"><span class=hoverblue wicket:id="edittext"></span></font>
-		</td>
-		<td style="width:85%" bgcolor="#FFF7E0">
-			<font size="4"><b><span wicket:id="description"></span></b></font>
-		</td>
-	</tr>
-	<tr>
-		<td style="width:15%" valign="top" bgcolor="#FFF7E0">
-		    <img align="top" wicket:id="avatarpicture" width="80px" height="80px"/>	    
-		    <br>
-		    <font size="2">
-		    	<span wicket:id="userdisplayname"></span>  
-		    	<span wicket:id="messagedate"></span>
-		    </font>
-		</td>
-		
-		<td style="width:85%" bgcolor="#FFFFFF" valign="top">
+  <table style="width:100%">
+  <tr>
+	  <td style="width:20%"></td>
+	  <td style="width:60%">
+		<table style="width:100%">
+		  <tr>
+			<td style="width:100%;border-bottom:1pt solid #EEEEEE;">
+				<h3><span wicket:id="description">MESSAGE DESCRIPTION</span></h3>
+			</td>
+		  </tr>
+		  <font size="2"><span class=hoverblue wicket:id="edittext"></span></font>
+		  <tr>	
+		    <td style="width:100%" bgcolor="#FFFFFF" valign="top">
 			<span wicket:id="messagetext"></span>
 			<form wicket:id="editmessageform">
-			<table>
-			<tr>
-				<td>
-					Styles
-				</td>
-				<td>
-					**text**: <b>text</b>
-				</td>
-				<td>
-					*text* : <i>text</i>
-				</td>
-				<td>
-					`text` : <span style="background:#DDD">text</span>  
-				</td>
-				<td>
-					[h:http://www.alvanklaveren.com] = <a href="http://www.alvanklaveren.com">http://www.alvanklaveren.com</a>
-				</td>
-			</tr>
-			</table>
-
+			Styles **text**: <b>text</b> *text* : <i>text</i> `text` : <span style="background:#DDD">text</span>  
+			[h:https://www.alvanklaveren.com;my website] = <a href="https://www.alvanklaveren.com">my website</a>
+	
 			
 	 		<textarea wicket:id="editmessagetext" style="width:100%;height:200px;"></textarea>
 	 		<input wicket:id="canceledit" type="submit" value="Cancel">
 	 		<input wicket:id="saveedit" type="submit" value="Save">
 			</form>
-		</td>
-		
-	</tr>
-	</table>
-
-	<span wicket:id="addcomment" class=hoverblue>Add Comment</span>
-	<br><br>
-
-	<form wicket:id="newmessageform">
-		Description <input type="text" wicket:id="replydescription" style="width:90%" maxlength="80"></input>
-	 	<br>
- 		<textarea wicket:id="replymessage" style="width:100%; height: 138px"></textarea>
- 		<br>
- 		<input class="btn btn-success" type="submit" wicket:id="cancel" value="Cancel">
- 		<input class="btn btn-warning" type="submit" wicket:id="save" value="Save"> 
-	</form>
-	<br>
-	<div wicket:id="threadmessagelist">
-		<table style="width:100%" class="table table-striped">
-			<tr>
-				<td style="width:10%" valign="top" bgcolor="#FFF7E0">
-				    <img align="top" wicket:id="threadavatarpicture" width="30x" height="30px"/>
-				    <font size="2"><a class=hoverblue wicket:id="editreplytext">Edit</a></font>
-				    <br>
-				    <font size="2">
-					    <a wicket:id="replyuserdisplayname"></a>
-				    </font>
-					<br>
-				    <font size="1">
-					    <a wicket:id="replydate"></a>
-				    </font>
-				    <span wicket:id="deleteThreadPanel"><br><br></span>
-				</td>
-				
-				<td style="width:90%" bgcolor="#FFFFFF" valign="top">
-					<span style="vertical-align:top;" wicket:id="replymessage"></span>
-					<form wicket:id="editreplymessageform">
-						<textarea wicket:id="editreplymessagetext" style="width:100%;height:200px;"></textarea> 
-						<br>
-				 		<input class="btn btn-success" type="submit" wicket:id="canceleditreply" value="Cancel">
- 						<input class="btn btn-warning" type="submit" wicket:id="saveeditreply" value="Save"> 
-					</form>			
-				</td>
-			</tr>
+		    </td>
+		  </tr>
 		</table>
-        <br>
-    </div>
-
+	
+	    <table style="width:100%">
+		  <tr>
+		    <td style="width:80%"></td>
+		    <td style="width:15%">
+		    <div style="min-width:160px;max-width:160px;background-color:#E1ECF4">
+		      <font size="2" color="#777777">
+	      	        Asked <span wicket:id="messagedate">message date</span>
+		      </font>
+		      <br>
+		      <img align="top" wicket:id="avatarpicture" width="40px" height="40px"/>
+		      <font size="2" color="#317AD4">
+	    	        <span wicket:id="userdisplayname">username</span>
+		      </font>
+		    </div>
+		    </td>
+		    <td style="width:5%"></td>
+		  </tr>
+	    </table>
+	
+		<br>
+		<div style="border-bottom:1pt solid #EEEEEE;"></div>
+	
+		<a wicket:id="addcomment" class=hoverblue>Add Comment</a>
+		<br><br>
+	
+		<form wicket:id="newmessageform">
+			Description <input type="text" wicket:id="replydescription" style="width:90%" maxlength="80"></input>
+		 	<br>
+	 		<textarea wicket:id="replymessage" style="width:100%; height: 138px"></textarea>
+	 		<br>
+	 		<input class="btn btn-success" type="submit" wicket:id="cancel" value="Cancel">
+	 		<input class="btn btn-warning" type="submit" wicket:id="save" value="Save"> 
+	  	    <br>
+		</form>
+	
+		<h4><span wicket:id="numberofanswers"></span> Answers</h4>
+	
+		<div wicket:id="threadmessagelist">
+		  <div style="border-bottom:1pt solid #EEEEEE;"></div>
+		  <span wicket:id="deleteThreadPanel"></span>
+		  <font size="2"><span class=hoverblue wicket:id="editreplytext">Edit</span></font>
+	
+		  <table style="width:100%">
+		    <tr>
+			<td style="width:90%" bgcolor="#FFFFFF" valign="top">
+			  <span style="vertical-align:top;" wicket:id="replymessage"></span>
+			  <form wicket:id="editreplymessageform">
+			    Styles **text**: <b>text</b> *text* : <i>text</i> `text` : <span style="background:#DDD">text</span>  
+			    [h:https://www.alvanklaveren.com;my website] = <a href="https://www.alvanklaveren.com">my website</a>
+				<textarea wicket:id="editreplymessagetext" style="width:100%;height:200px;"></textarea> 
+				<br>
+		 		<input class="btn btn-success" type="submit" wicket:id="canceleditreply" value="Cancel">
+				<input class="btn btn-warning" type="submit" wicket:id="saveeditreply" value="Save"> 
+			  </form>			
+			</td>
+		    </tr>
+		    <tr>
+		      <td style="width:80%"></td>
+		      <td style="width:15%">
+		        <div style="min-width:160px;max-width:160px;background-color:#FFFFFF">
+		          <font size="2" color="#777777">
+	      	            Answered <span wicket:id="replydate">reply date</span>
+		          </font>
+		          <br>
+		          <img align="top" wicket:id="threadavatarpicture" width="40px" height="40px"/>
+		          <font size="2" color="#317AD4">
+	    	            <span wicket:id="replyuserdisplayname">reply username</span>
+		          </font>
+		        </div>
+		      </td>
+		      <td style="width:5%"></td>
+		    </tr>
+	      </table>
+	
+	      <br>
+	    </div>
+	
+	  </td>
+	  <td style="width:20%"></td>
+  </tr>
+  </table>
 </wicket:extend>
 </html>

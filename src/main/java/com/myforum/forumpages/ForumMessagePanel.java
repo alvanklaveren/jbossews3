@@ -56,13 +56,13 @@ public class ForumMessagePanel extends ForumBasePanel {
 		
 		final MultiLineLabel messageTextLabel = new MultiLineLabel( "messagetext", StringLogics.prepareMessage(message.getMessageText()) );
 		messageTextLabel.setEscapeModelStrings( false );
-		
+			
 		// Form for reply
 		final Form<Object> newMessageForm = new ForumMessageForm( "newmessageform", getActiveUser(), parent);
 		newMessageForm.setVisible( false );
 
        	final Label editTextLabel = new Label("edittext", new Model<String>("[Edit]") );
-
+       	
        	final Form<Object> editMessageForm = createEditMessageForm(message, messageTextLabel, editTextLabel); 
 
        	editTextLabel.setVisible( getActiveUser() != null && getActiveUser().getCode() > 0 && allowModification(message.getForumUser()) );
@@ -125,6 +125,9 @@ public class ForumMessagePanel extends ForumBasePanel {
         addCommentLabel.setVisible( getActiveUser() != null && getActiveUser().getCode() > 0 );
         
         PropertyListView<Message> threadMessageListView = createThreadMessageView(message);
+        
+        int numberOfAnswers = threadMessageListView.getList().size();
+        add( new Label("numberofanswers", new Model<String>(String.valueOf(numberOfAnswers))) );
 
         add( new Label( "description", 			message.getDescription() ) );
 		add( new Label( "messagedate", 			dateFormat.format(message.getMessageDate() ) ) );
