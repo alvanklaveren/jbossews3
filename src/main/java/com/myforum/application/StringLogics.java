@@ -3,11 +3,22 @@ package com.myforum.application;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.Base64;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.wicket.ajax.AjaxEventBehavior;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
+import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.image.NonCachingImage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.myforum.base.ForumLogics;
+import com.myforum.gameshop.GameShopLogics;
+import com.myforum.gameshop.GameShopPage;
+import com.myforum.gameshop.ShowProductImagePage;
  
 public final class StringLogics{
 	
@@ -88,6 +99,7 @@ public final class StringLogics{
 		preparedText = convertToHTML( preparedText, "*", "<i>", "</i>" );		
 		
 		preparedText = setHyperLink( preparedText );
+		preparedText = setRawImage( preparedText );
 		
 		return preparedText;
 	}
@@ -114,6 +126,44 @@ public final class StringLogics{
 
 	}
 
+	public static String setRawImage( String messageText ) {
+
+		String modifiedMessageText = messageText;
+		
+		String imageCoded = findFirst(modifiedMessageText, "[i:", "]");
+
+		while (imageCoded.length() > 0) { 
+
+			String imgHTML = "[image not found]";
+			
+			try {
+				int codeImage = Integer.parseInt(imageCoded.replace("[i:", "").replaceAll("]", ""));
+				byte[] rawImage = ForumLogics.getImage(codeImage);
+				byte[] rawImageBase64 = Base64.getEncoder().encode(rawImage);
+
+
+				if (rawImage != null) {
+					imgHTML = "<img src=\"data:image/jpg;base64,";
+					
+					for(byte b : rawImageBase64) {
+						imgHTML += (char) b;
+					}
+ 
+					imgHTML += "\" style=\"width:auto; max-width:100%\"></img>";
+				}
+			} catch(Exception e) {
+				
+			}
+				
+			modifiedMessageText = modifiedMessageText.replace(imageCoded, imgHTML);
+			
+			imageCoded = findFirst(modifiedMessageText, "[i:", "]");
+		}
+
+		System.out.println(modifiedMessageText);
+		return modifiedMessageText.trim();
+	}
+	
 	public static String setHyperLink( String messageText ){
 
 		String modifiedMessageText = messageText;

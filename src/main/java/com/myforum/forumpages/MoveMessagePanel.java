@@ -101,7 +101,7 @@ public class MoveMessagePanel extends ForumBasePanel {
 
 			@Override
 			public void onSubmit() {				
-				if( !DBHelper.saveAndCommit(message)){
+				if( DBHelper.saveAndCommit(message) == null){
 					parent.setErrorMessage("Failed to move message to new category");
 					parent.addOrReplace(new MoveMessagePanel(parent));
 				}

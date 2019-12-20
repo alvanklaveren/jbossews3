@@ -75,7 +75,7 @@ public abstract class AbstractDropDownChoice implements Serializable{
 	private boolean save(AVKTable newSelection){
 		update(newSelection);
 		if (isAutoSave){
-			return DBHelper.saveAndCommit(table); // saves the trouble of scrolling back and pressing save !
+			return (DBHelper.saveAndCommit(table) != null); // saves the trouble of scrolling back and pressing save !
 		}
 		return true;
 	}

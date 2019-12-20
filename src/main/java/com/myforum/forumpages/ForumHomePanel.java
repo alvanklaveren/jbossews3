@@ -78,7 +78,7 @@ public class ForumHomePanel extends ForumBasePanel {
 						
 						messageCategory.setDescription( newCategoryDescription );
 						
-						if( !DBHelper.saveAndCommit(messageCategory) ){
+						if( DBHelper.saveAndCommit(messageCategory) == null ){
 							parent.setErrorMessage("Failed to rename the category");
 							parent.addOrReplace( new ForumHomePanel(parent) );
 						}

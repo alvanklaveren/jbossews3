@@ -187,7 +187,7 @@ public class UserModifyAccountPage extends AVKPage {
 		}
 					
 		if( needsSaving() ){				
-			if( DBHelper.saveAndCommit(forumUser)){
+			if( DBHelper.saveAndCommit(forumUser) != null){
 				setErrorMessage( "" );
 				getSession().setAttribute("ContentHasChanged", false );
 				setResponsePage(ForumBasePage.class);

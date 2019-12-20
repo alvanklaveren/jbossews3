@@ -81,11 +81,12 @@ public final class DictionaryDutch extends Dictionary {
 		put(translatedSentenceMap, EText.SEARCH_RESULTS, "Zoek resultaten");
 		put(translatedSentenceMap, EText.SORT_BY, "Sorteren");
 		put(translatedSentenceMap, EText.UPLOAD_FAILED, "Uploaden van bestand mislukt. Controleer de naam en de grootte (<100kb) van het bestand.");
+		put(translatedSentenceMap, EText.UPLOAD_SUCCESSFUL, "Uploaden van bestand gelukt.");
 		put(translatedSentenceMap, EText.UPDATE_PROFILE, "Pas Profiel Aan");
 		put(translatedSentenceMap, EText.ABOUT_WEBSITE, "Over ...");
 		put(translatedSentenceMap, EText.ABOUT_ME, "Over mij");
 		put(translatedSentenceMap, EText.CLICK_TO_NAVIGATE, "Klik om hier naar toe te gaan");
-		put(translatedSentenceMap, EText.NUMBER_OF_MESSAGES, "# Berichten");
+		put(translatedSentenceMap, EText.NUMBER_OF_MESSAGES, "# Berichten");		
 
 		StringBuilder aboutText = new StringBuilder();
 		aboutText.append( "Deze website is gemaakt, geschreven en wordt onderhouden door  A.L. van Klaveren.<br>Momenteel is het gebouwd in " ); 

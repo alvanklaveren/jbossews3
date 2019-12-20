@@ -19,6 +19,7 @@ import com.myforum.tables.GameConsole;
 import com.myforum.tables.LoginCred;
 import com.myforum.tables.Message;
 import com.myforum.tables.MessageCategory;
+import com.myforum.tables.MessageImage;
 import com.myforum.tables.Notifications;
 import com.myforum.tables.Product;
 import com.myforum.tables.ProductImage;
@@ -63,6 +64,7 @@ public final class DBHelper {
 	        configuration.addAnnotatedClass(Constants.class);
 	        configuration.addAnnotatedClass(MessageCategory.class);
 	        configuration.addAnnotatedClass(Message.class);
+	        configuration.addAnnotatedClass(MessageImage.class);
 	        configuration.addAnnotatedClass(Classification.class);
 	        configuration.addAnnotatedClass(LoginCred.class);
 	        configuration.addAnnotatedClass(Notifications.class);
@@ -162,7 +164,7 @@ public final class DBHelper {
 	  return session.getTransaction();	 
   }
   
-  public static boolean saveAndCommit( Object object ){
+  public static Object saveAndCommit( Object object ){
 	Session session = openSession();
 	Object newRef = session.merge(object);
 	Transaction transaction = session.getTransaction();
@@ -172,10 +174,10 @@ public final class DBHelper {
 	}catch( Exception ex){
 		ex.printStackTrace();
 		transaction.rollback();
-		return false;
+		return null;
 	}
 	
-	return true;
+	return newRef;
   }
 
   public static boolean deleteAndCommit( Object object ){

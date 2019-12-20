@@ -108,12 +108,16 @@ public class BasePage extends WebPage implements IRequiresHttps, Serializable{
 		getSession().setAttribute( "errormessage", translator.translate( eText.toString() ) );
 	}
 
-	public void setSuccessMessage( String errorMessage ){
-		getSession().setAttribute( "successmessage", translator.translate( errorMessage ) );
+	public void setSuccessMessage( String succesMessage ){
+		getSession().setAttribute( "successmessage", translator.translate( succesMessage ) );
 	}
 
 	public void setSuccessMessage( EText eText ){
 		getSession().setAttribute( "successmessage", translator.translate( eText.toString() ) );
+	}
+
+	public void setSuccessMessage( EText eText, String succesMessage ){
+		getSession().setAttribute( "successmessage", translator.translate( eText.toString() ) + translator.translate( succesMessage ) );
 	}
 
 	public void setPanelErrorMessage( String errorMessage ){

@@ -184,7 +184,7 @@ public class ForumMessagePanel extends ForumBasePanel {
 			@Override
 			public void onSubmit() {
 				message.setMessageText(editMessageTextTA.getInput());
-				if( !DBHelper.saveAndCommit(message) ){
+				if( DBHelper.saveAndCommit(message) == null ){
 					parent.setErrorMessage("Failed to save message");
 				}
 				messageTextLabel.setDefaultModel( new Model<String>( StringLogics.prepareMessage( message.getMessageText() ) ) );
@@ -249,7 +249,7 @@ public class ForumMessagePanel extends ForumBasePanel {
         			public void onSubmit() {
         				threadMessage.setMessageText( editReplyMessageTextTA.getInput() );
         				
-        				if( !DBHelper.saveAndCommit(threadMessage) ){
+        				if( DBHelper.saveAndCommit(threadMessage) == null ){
         					parent.setErrorMessage( "Failed to save message" );
         					parent.addOrReplace(new ForumMessagePanel(parent));
         					return;

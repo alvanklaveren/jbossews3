@@ -88,7 +88,7 @@ public class LoginCredDao extends HibernateDao<LoginCred, Integer>{
     	if( TimeUnit.MINUTES.convert(diff, TimeUnit.MILLISECONDS) >= 5){
    	    	loginCred.setTokenDate(new java.sql.Date( ForumUtils.todayNow().getTime()));
 
-   	    	if(!DBHelper.saveAndCommit(loginCred)){
+   	    	if(DBHelper.saveAndCommit(loginCred) == null){
    	    		log.error("Failed to update LoginCred record.");
    	    		return false;	
    	    	};
@@ -138,7 +138,7 @@ public class LoginCredDao extends HibernateDao<LoginCred, Integer>{
 		loginCred.setMagicToken(magicToken);
 		loginCred.setTokenDate(new java.sql.Date( ForumUtils.todayNow().getTime()));
 		
-		if( !DBHelper.saveAndCommit(loginCred)){
+		if(DBHelper.saveAndCommit(loginCred) == null){
 			log.error("Failed to update LoginCred record.");
 			return false;	
 		};

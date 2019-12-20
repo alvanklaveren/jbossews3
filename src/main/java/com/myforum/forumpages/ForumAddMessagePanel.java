@@ -5,15 +5,20 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.form.upload.FileUploadField;
 import org.apache.wicket.model.Model;
 
 import com.myforum.application.CookieLogics;
 import com.myforum.application.StringLogics;
+import com.myforum.base.ForumLogics;
+import com.myforum.dictionary.EText;
 import com.myforum.framework.AVKButton;
 import com.myforum.homepage.HomePage;
+import com.myforum.tables.MessageImage;
 
 public class ForumAddMessagePanel extends ForumBasePanel {
 	private static final long 		serialVersionUID 	= 1L;
@@ -95,10 +100,53 @@ public class ForumAddMessagePanel extends ForumBasePanel {
 
 		previewButton.setDefaultFormProcessing( false );
 
+	    add(createImageUploadForm(parent, replyMessageTA));
 		
 		addOrReplace(form);
 		addOrReplace(previewButton);
 		addOrReplace(replyMessagePreview);	
+	}
+	
+	private Button createUploadButton(final FileUploadField imageFile, final ForumBasePage parent, final TextArea<String> replyMessageTA){
+		Button uploadButton = new Button( "uploadbutton" ){
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void onSubmit() {
+				MessageImage messageImage = ForumLogics.uploadImage(imageFile);
+				if(messageImage == null){
+					parent.setPanelErrorMessage( EText.UPLOAD_FAILED );
+					return;
+				};	
+				
+				String messageText = replyMessageTA.getModelObject() != null ? replyMessageTA.getModelObject() : "";
+				messageText += "[i:" + messageImage.getCode() +"]";
+				replyMessageTA.setModel(new Model<String>(messageText));						
+				return;
+			}
+		};
+		uploadButton.setDefaultFormProcessing( false );
+		uploadButton.setOutputMarkupId(true);
+		return uploadButton;
+	}
+
+	/*
+	 * Creates a from for uploading an image in a listItem
+	 */
+	private Form<MessageImage> createImageUploadForm(final ForumBasePage parent, final TextArea<String> replyMessageTA){
+		// Form for messageImage
+		final Form<MessageImage> uploadForm = new Form<MessageImage>( "uploadform" );
+		uploadForm.setOutputMarkupId(true);
+		
+		final FileUploadField imageFile = new FileUploadField( "messageImage" );
+		imageFile.setOutputMarkupId(true);
+		uploadForm.add(imageFile);
+
+		Button uploadButton 			= createUploadButton(imageFile, parent, replyMessageTA);
+		uploadForm.add(uploadButton);
+
+		uploadForm.setVisible(true);
+		return uploadForm;
 	}
 		
 }

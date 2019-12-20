@@ -117,7 +117,7 @@ public class ForumMessageForm extends StatelessForm<Object> {
     		    	newMessage.setMessageDate( new Date() );
 	    	    	newMessage.setForumUser( activeUser );
 	
-	    	    	if( !DBHelper.saveAndCommit(newMessage) ){
+	    	    	if( DBHelper.saveAndCommit(newMessage) == null ){
 						parent.setPanelErrorMessage("Failed to save message");
 						parent.addOrReplace(new ForumAddMessagePanel(parent));
 						return;

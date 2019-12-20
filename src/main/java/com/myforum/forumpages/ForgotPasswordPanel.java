@@ -66,7 +66,7 @@ public class ForgotPasswordPanel extends ForumBasePanel {
         			return;
         		}  
         		
-                if( DBHelper.saveAndCommit(forumUser)){
+                if( DBHelper.saveAndCommit(forumUser) != null){
                 	emailPassword(forumUser.getEmailAddress(), forumUser.getUsername(), newPassword);
                 }else{
                 	parent.setErrorMessage( EText.FAILED_CHANGE_PASSWORD );
