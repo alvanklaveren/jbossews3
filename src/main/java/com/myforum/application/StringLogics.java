@@ -160,7 +160,6 @@ public final class StringLogics{
 			imageCoded = findFirst(modifiedMessageText, "[i:", "]");
 		}
 
-		System.out.println(modifiedMessageText);
 		return modifiedMessageText.trim();
 	}
 	
@@ -204,7 +203,7 @@ public final class StringLogics{
 
 	}
 
-	private static String findFirst(String source, String start, String end) {
+	public static String findFirst(String source, String start, String end) {
 		int startPos = source.indexOf(start);
 		if (startPos == -1) {
 			return "";

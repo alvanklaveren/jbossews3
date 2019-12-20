@@ -10,6 +10,7 @@ import org.apache.wicket.model.Model;
 
 import com.myforum.application.CookieLogics;
 import com.myforum.application.DBHelper;
+import com.myforum.application.ForumUtils;
 import com.myforum.application.StringLogics;
 import com.myforum.tables.ForumUser;
 import com.myforum.tables.Message;
@@ -122,6 +123,11 @@ public class ForumMessageForm extends StatelessForm<Object> {
 						parent.addOrReplace(new ForumAddMessagePanel(parent));
 						return;
 					}
+	    	    	
+					// uploaded images are only linked once the message is saved. 
+					// this makes it easier to clean up the message_image table where all 'code_message' columns are null
+					ForumUtils.linkImages(newMessage);		
+
     			}
       	
     			// if the message being added was a completely new message (i.e. codeMessage == 0)... 

@@ -24,8 +24,10 @@ import com.myforum.framework.AreYouSurePanel;
 import com.myforum.framework.ResponseFormButton;
 import com.myforum.tables.ForumUser;
 import com.myforum.tables.Message;
+import com.myforum.tables.MessageImage;
 import com.myforum.tables.dao.ForumUserDao;
 import com.myforum.tables.dao.MessageDao;
+import com.myforum.tables.dao.MessageImageDao;
 
 public class ForumMessagePanel extends ForumBasePanel {
 
@@ -187,6 +189,11 @@ public class ForumMessagePanel extends ForumBasePanel {
 				if( DBHelper.saveAndCommit(message) == null ){
 					parent.setErrorMessage("Failed to save message");
 				}
+
+				// uploaded images are only linked once the message is saved. 
+				// this makes it easier to clean up the message_image table where all 'code_message' columns are null
+				ForumUtils.linkImages(message);		
+				
 				messageTextLabel.setDefaultModel( new Model<String>( StringLogics.prepareMessage( message.getMessageText() ) ) );
 				editMessageForm.setVisible( false );
 				editTextLabel.setVisible( true );

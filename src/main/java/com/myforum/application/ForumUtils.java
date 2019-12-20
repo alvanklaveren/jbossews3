@@ -28,6 +28,9 @@ import org.slf4j.LoggerFactory;
 import com.myforum.base.BasePage;
 import com.myforum.framework.ModalPage;
 import com.myforum.tables.ForumUser;
+import com.myforum.tables.Message;
+import com.myforum.tables.MessageImage;
+import com.myforum.tables.dao.MessageImageDao;
 
 
 public final class ForumUtils{
@@ -373,5 +376,26 @@ public final class ForumUtils{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	public static void linkImages(Message message) {
+		String modifiedMessageText = message.getMessageText();
+		String imgCoded = StringLogics.findFirst(modifiedMessageText, "[i:", "]");
+	
+		// now save the code_message to all connected images 
+		MessageImageDao messageImageDAO = new MessageImageDao();
+		while(imgCoded.length() > 0) {
+			String codeImage = imgCoded.replace("[i:", "").replaceAll("]", "");
+			try {
+				MessageImage messageImage = messageImageDAO.find(Integer.parseInt(codeImage));
+				messageImage.setMessage(message);
+				DBHelper.saveAndCommit(messageImage);
+			} catch(Exception e) {
+				// though luck..
+			}
+			
+			modifiedMessageText = modifiedMessageText.replace(imgCoded, "");
+			imgCoded = StringLogics.findFirst(modifiedMessageText, "[i:", "]");
+		}
+	}
+	
 }
