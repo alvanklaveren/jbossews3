@@ -56,7 +56,7 @@ public final class DictionaryDutch extends Dictionary {
 		translatedWordMap.put("message", 		"bericht");
 		translatedWordMap.put("date", 			"datum");
 		translatedWordMap.put("user", 			"gebruiker");
-		
+
 		put(translatedSentenceMap, EText.ADD_CATEGORY, "Category toevoegen");
 		put(translatedSentenceMap, EText.ADD_PRODUCT, "Product toevoegen");
 		put(translatedSentenceMap, EText.ADD_COMPANY, "Bedrijf toevoegen");
@@ -77,6 +77,7 @@ public final class DictionaryDutch extends Dictionary {
 		put(translatedSentenceMap, EText.PLEASE_ADD_URL, "Je hebt geen URL opgegeven. Voeg een geldige URL toe." );
 		put(translatedSentenceMap, EText.PLEASE_APPLY_RATING, "Voeg een waarde van waardering toe" );
 		put(translatedSentenceMap, EText.RECENTLY_ADDED, "Recent toegevoegde producten");
+		put(translatedSentenceMap, EText.RECENTLY_ADDED_COLLAPSIBLE_MENU, "Recent Erbij");
 		put(translatedSentenceMap, EText.REGISTER_NEW_USER, "Registreer Nieuwe Gebruiker");
 		put(translatedSentenceMap, EText.SEARCH_RESULTS, "Zoek resultaten");
 		put(translatedSentenceMap, EText.SORT_BY, "Sorteren");

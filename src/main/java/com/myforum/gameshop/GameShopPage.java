@@ -93,13 +93,9 @@ public class GameShopPage extends BasePage {
 		selectModel.setProductTypeId(typeId);
 
 		// START ADDING TO UI
-		menuItems = new StringBuilder();
-		
-
-		menuItems.append(new MenuItem(translator.translate(EText.RECENTLY_ADDED), "/gameshop").toHtml());
-
-		
 		List<GameConsole> gameConsoleList = new GameConsoleDao().list();
+		menuItems = new StringBuilder();
+		menuItems.append(new MenuItem(translator.translate(EText.RECENTLY_ADDED_COLLAPSIBLE_MENU), "/gameshop").toHtml());
 		for(GameConsole gameConsole:gameConsoleList){
 			menuItems.append(new MenuItem(gameConsole.getDescription(), "/gameshop/"+ gameConsole.getCode()).toHtml());
 		}
