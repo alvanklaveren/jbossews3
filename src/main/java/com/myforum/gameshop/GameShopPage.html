@@ -164,6 +164,17 @@
 		    margin-left: 0px;
 		}
 		
+		#content{
+			color: #000;
+			background: #fff;
+		}
+
+		#content.active #image{
+			width: auto;
+			min-width:0;
+			
+		}
+		
 		.dropdown-toggle::after {
 		    right: 0px;
 		}		
@@ -178,6 +189,7 @@
 	
 		    $('#sidebarCollapse').on('click', function () {
 		        $('#sidebar').toggleClass('active');
+		        $('#content').toggleClass('active');
 		    });
 	
 		});
@@ -186,27 +198,29 @@
   
   <wicket:extend>
   
+	  <div style="padding-left:10px">
+	    <button type="button" id="sidebarCollapse" class="btn btn-outline-primary">
+	      <i class="fas fa-bars"></i>
+	      <span>Menu</span>
+	  	</button>
+	  </div> 
+	  
+	  <br>
+  
 	  <div class="wrapper">
 	    <nav id="sidebar">
 	       <ul class="navbar-nav align-items-end" wicket:id="menuItems">
 	       	 <!--  <wicket:container wicket:id="menuItems" /> -->
 	       </ul>
 	    </nav>
-	    
+    
 	    <div id="content">
 			<div wicket:id="modalAddCompany"></div>
 			<div wicket:id="modalAddRatingUrl"></div>
 			<div wicket:id="modalProductImage"></div>
-		
+	
 			<div class="container">
-				<div class="row">
-					<div style="padding-left:10px">
-			          <button type="button" id="sidebarCollapse" class="btn btn-outline-primary">
-			            <i class="fas fa-bars"></i>
-			            <span>Menu</span>
-			          </button>
-					</div> 
-				
+				<div class="row">			
 				  	<div class="col-lg-6 col-md-auto">
 						<form wicket:id="configform" style="margin-left:0px; width:100%">
 						  <div class="d-flex bd-highlight" style="width:100%">
