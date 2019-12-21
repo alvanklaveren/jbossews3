@@ -18,7 +18,12 @@ public class MenuItem{
 		itemHRef = item.hRef();	
 		return this;
 	}
-	
+
+	public MenuItem(String itemText, String itemHRef){
+		this.itemText = itemText;
+		this.itemHRef = itemHRef;	
+	}
+
 	public String toHtml(){
 		return createDynamicHtml(itemText, itemHRef);
 	};
@@ -54,7 +59,7 @@ public class MenuItem{
 
 	    return sb.toString(); 
 	}
-
+	
 	public String getHRefHtml(String href){
 	    StringBuilder sb = new StringBuilder();
 		sb.append(" href=\"");

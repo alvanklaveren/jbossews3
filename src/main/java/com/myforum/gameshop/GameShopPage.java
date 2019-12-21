@@ -33,6 +33,7 @@ import com.myforum.application.ForumUtils;
 import com.myforum.application.StringLogics;
 import com.myforum.base.BasePage;
 import com.myforum.base.menu.EMenuItem;
+import com.myforum.base.menu.MenuItem;
 import com.myforum.dictionary.EText;
 import com.myforum.dictionary.Translator;
 import com.myforum.framework.AVKButton;
@@ -42,9 +43,11 @@ import com.myforum.framework.StatelessPagingNavigator;
 import com.myforum.gameshop.DDC.CompanyDDC;
 import com.myforum.gameshop.DDC.GameConsoleDDC;
 import com.myforum.gameshop.DDC.ProductTypeDDC;
+import com.myforum.tables.GameConsole;
 import com.myforum.tables.Product;
 import com.myforum.tables.ProductImage;
 import com.myforum.tables.ProductRating;
+import com.myforum.tables.dao.GameConsoleDao;
 import com.myforum.tables.dao.ProductDao;
 
 public class GameShopPage extends BasePage {
@@ -57,6 +60,8 @@ public class GameShopPage extends BasePage {
 	private final 	DDCSelectModel 	selectModel 		= new DDCSelectModel();
 	private 		List<Integer> 	numberOfItemsList 	= new ArrayList<Integer>();
 	private 		List<String> 	sortOrderList	 	= new ArrayList<String>();
+
+	private StringBuilder menuItems;
 
 	public GameShopPage(final PageParameters params) {
 		super(EMenuItem.GameShop);
@@ -88,6 +93,21 @@ public class GameShopPage extends BasePage {
 		selectModel.setProductTypeId(typeId);
 
 		// START ADDING TO UI
+		menuItems = new StringBuilder();
+		
+
+		menuItems.append(new MenuItem(translator.translate(EText.RECENTLY_ADDED), "/gameshop").toHtml());
+
+		
+		List<GameConsole> gameConsoleList = new GameConsoleDao().list();
+		for(GameConsole gameConsole:gameConsoleList){
+			menuItems.append(new MenuItem(gameConsole.getDescription(), "/gameshop/"+ gameConsole.getCode()).toHtml());
+		}
+		
+		Label menuItemLabel = new Label("menuItems", new Model<String>(menuItems.toString()) );
+		menuItemLabel.setEscapeModelStrings(false);
+		add(menuItemLabel);
+		
 		final ModalWindow modalAddCompany = ForumUtils.createModalWindow( "modalAddCompany", this, new AddCompanyPage(GameShopPage.this.getPageReference(), this) );
 		add(modalAddCompany);
 		

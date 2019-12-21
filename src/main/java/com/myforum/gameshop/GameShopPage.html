@@ -57,124 +57,262 @@
 		  }	  
 		}
 
+		/*anything other than phones, hide the collapsable menu bar*/	
+		@media only screen and (min-width:768px) {
+		    #sidebar {
+		        margin-left: -260px;
+		        visibility: hidden;
+		    }
+		    
+		    #sidebarCollapse {
+		        visibility: hidden;
+		    }
+		    
+		    #sidebar.active {
+		        margin-left: -260px;
+		    }
+		    
+		    #content{
+				padding-left:0px;
+		    }		    
+		}
+		
+		/*on small devices, show the collapsable game menu*/	
+		@media only screen and (max-width:767px){
+		    #content{
+				padding-left:10px;
+		    }
+					    
+		    #sidebar ul.components {
+			    padding: 20px 0;
+			    border-bottom: 1px solid #47748b;
+			}
+			
+			#sidebar ul p {
+			    color: #fff;
+			    padding: 10px;
+			}
+			
+			#sidebar ul li a {
+				color: #fff;
+			    padding: 10px;
+			    font-size: 1.1em;
+			    display: block;
+			}
+			#sidebar ul li a:hover {
+			    color: #0072C6;
+			    background: #fff;
+			}
+			
+			#sidebar ul li.active > a, a[aria-expanded="true"] {
+			    color: #fff;
+			    background: #6d7fcc;
+			}
+			ul ul a {
+			    font-size: 0.9em !important;
+			    padding-left: 30px !important;
+			    background: #6d7fcc;
+			}
+		
+			#sidebar .sidebar-header {
+			    padding: 20px;
+			    background: #0072C6;
+			}	
+			
+			.dropdown-toggle::after {
+			    display: block;
+			    position: absolute;
+			    top: 50%;
+			    right: 20px;
+			    transform: translateY(-50%);
+			}		
+			
+			a, a:hover, a:focus {
+			    color: inherit;
+			    text-decoration: none;
+			    transition: all 0.3s;
+			}		
+					
+		}
+
+		#listnavigator{
+			top: 60px; 
+			text-align:center; 
+		}
+
 		/*removing the selected value in the gameshop search bar to not display at the bottom of the page*/ 
 		.ui-helper-hidden-accessible{
 	        display:none !important;
 	    }	
-    </style>
+	    
+		.wrapper {
+		    display: flex;
+		    align-items: stretch;
+		    min-height: 100vh;
+		}
+			
+		#sidebar {
+			margin-left: -260px;
+		    min-width: 250px;
+		    max-width: 250px;
+		    background: #0072C6;
+    		color: #fff;
+    		transition: all 0.3s;
+		}
+		
+		#sidebar.active {
+		    margin-left: 0px;
+		}
+		
+		.dropdown-toggle::after {
+		    right: 0px;
+		}		
+		    
+		a[data-toggle="collapse"] {
+		    position: relative;
+		}
+		
+	</style>
+	<script>
+		$(document).ready(function () {
+	
+		    $('#sidebarCollapse').on('click', function () {
+		        $('#sidebar').toggleClass('active');
+		    });
+	
+		});
+	</script>
   </wicket:head>
   
   <wicket:extend>
-	<div wicket:id="modalAddCompany"></div>
-	<div wicket:id="modalAddRatingUrl"></div>
-	<div wicket:id="modalProductImage"></div>
-
-	<div class="container">
-		<div class="row">
-		  	<div class="col-lg-6 col-md-auto">
-				<form wicket:id="configform" style="margin-left:0px; width:100%">
-				  <div class="d-flex bd-highlight" style="width:100%">
-					<div class="p-2 flex-fill bd-highlight" style="width:50%">
-				  	  <label wicket:id="numberofitemslabel"></label>
-					  <select class="form-control" id="numberofitems" wicket:id="numberofitems"></select>
-					</div>
-					<div class="p-2 flex-fill bd-highlight" style="width:50%">
-				  	  <label wicket:id="sortorderlabel"></label>
-					  <select class="form-control" id="sortorder" wicket:id="sortorder"></select>
-					</div>
-				  </div>
-				</form>
-			</div>
-			<div class="col">
-				<form wicket:id="searchform" class="d-flex bd-highlight"> 
-				  <div class="form-inline ml-auto p-2 flex-fill bd-highlight">
-				    <input type="text" class="form-control" id="searchtitle" wicket:id="searchtitle" placeholder="Search title">
-					<input type="submit" wicket:id="searchbutton" class="btn btn-outline-primary" value="Search">
-			 	  </div>
-				</form>
-			</div>
-		</div>
-	</div>
-
-	<form class="form-horizontal p-2 bd-highlight" wicket:id="addform">
-		  <div class="form-group">
-		      <button type="submit" class="btn btn-outline-primary" id="addproductbutton"   wicket:id="addproductbutton"><div wicket:id="addproductlabel">Add Product</div></button>
-		      <button type="submit" class="btn btn-outline-primary" id="addcompanybutton"   wicket:id="addcompanybutton"><div wicket:id="addcompanylabel">Add Company</div></button>
-		      <button type="submit" class="btn btn-outline-primary" id="addratingurlbutton" wicket:id="addratingurlbutton"><div wicket:id="addratingurllabel">Add Rating URL</div></button>
-		      <button type="submit" class="btn btn-outline-primary" id="refreshbutton"      wicket:id="refreshbutton"><div wicket:id="refreshlabel">Refresh</div></button>
-		  </div>
-	</form>
-
+  
+	  <div class="wrapper">
+	    <nav id="sidebar">
+	       <ul class="navbar-nav align-items-end" wicket:id="menuItems">
+	       	 <!--  <wicket:container wicket:id="menuItems" /> -->
+	       </ul>
+	    </nav>
+	    
+	    <div id="content">
+			<div wicket:id="modalAddCompany"></div>
+			<div wicket:id="modalAddRatingUrl"></div>
+			<div wicket:id="modalProductImage"></div>
 		
-	<div style="clear:both">
-		<!-- ensures that anything below this line is not affected by the upper part that uses float:left and float:right -->
-	</div> 
-	
-	<div class="sticky-top" style="top:60px; text-align:center; background:yellow">
-	  <div style="background:white; min-width:100%">
-	  <small><br></small>
-        <span style="text-align:center" wicket:id="navigator">[listview navigator]</span>
-        <hr>
-      </div>
-    </div>
-   
-    <span wicket:id="ciblabel"></span>
-	<br>
-	
-	<h2 wicket:id="headerlabel">[e.g. Most recently added products]</h2>
-
-	<div style="text-align:right">
-	  <h5>	
-		<span class="badge badge-pill badge-secondary" wicket:id="resultcounter">[e.g. 1 to 20 of 500]</span>
-	  </h5>
-	</div>
-
-	<div class="d-flex flex-wrap bd-highlight mb-3">
-		<div id="gamelistitem" wicket:id="productlist" class="p-2 bd-highlight border" style="box-shadow:2px 2px 2px #AAAAAA; margin-left:4px; margin-right:4px margin-top:4px; margin-bottom:4px"> 
-			 <!-- width 30% ensures three items show next to each other-->
-	  	     <div id="productimage" style="width:30%;">
-		  	     <div wicket:id="imagediv" data-toggle="tooltip" data-placement="top" title="Click to enlarge image" style="cursor:zoom-in;">
-		  	      <img onerror="this.style.display='none'" alt="Missing picture" id="image" wicket:id="image" style="width:95%;height:auto;padding-left:2%; padding-right:2%; margin-left:auto; margin-right:auto; cursor:pointer;"/>
-		  	     </div>
-		  	     <br>
-				 
-				 <form class="form-horizontal" wicket:id="uploadform">
-				    <div class="form-group">
-						<input type="file" class="form-control-file" id="imagefile" wicket:id="productImage">
-						<br>
-						<label for="uploadbutton" class="col-sm-1 control-label"></label>
-						<input type="submit" class="btn btn-primary" id="uploadbutton" wicket:id="uploadbutton" value="Upload">
+			<div class="container">
+				<div class="row">
+					<div style="padding-left:10px">
+			          <button type="button" id="sidebarCollapse" class="btn btn-outline-primary">
+			            <i class="fas fa-bars"></i>
+			            <span>Menu</span>
+			          </button>
+					</div> 
+				
+				  	<div class="col-lg-6 col-md-auto">
+						<form wicket:id="configform" style="margin-left:0px; width:100%">
+						  <div class="d-flex bd-highlight" style="width:100%">
+							<div class="p-2 flex-fill bd-highlight" style="width:50%">
+						  	  <label wicket:id="numberofitemslabel"></label>
+							  <select class="form-control" id="numberofitems" wicket:id="numberofitems"></select>
+							</div>
+							<div class="p-2 flex-fill bd-highlight" style="width:50%">
+						  	  <label wicket:id="sortorderlabel"></label>
+							  <select class="form-control" id="sortorder" wicket:id="sortorder"></select>
+							</div>
+						  </div>
+						</form>
 					</div>
-				 </form>
-			 </div>	     	
-	
-	  	     <div id="producttext" style="width:70%;"> 	
-		      <h4><span wicket:id="name">Name of Product</span></h4>
-			  <small wicket:id="companyandyear">[Name of Developer]</small>
-	   	      <small><span wicket:id="gameConsole.description">[Name of Game Console]</span></small>
-		      <hr>
-		      <span wicket:id="htmlDescription">[Product Description]</span>
-		      <br><br>
-			  <span wicket:id="ratingText">[Rating #]</span><span wicket:id="rating">[Rating]</span><a wicket:id="ratingUrl">[Rating URL]</a>
+					<div class="col">
+						<form wicket:id="searchform" class="d-flex bd-highlight"> 
+						  <div class="form-inline ml-auto p-2 flex-fill bd-highlight">
+						    <input type="text" class="form-control" id="searchtitle" wicket:id="searchtitle" placeholder="Search title">
+							<input type="submit" wicket:id="searchbutton" class="btn btn-outline-primary" value="Search">
+					 	  </div>
+						</form>
+					</div>
+				</div>
+			</div>
+		
+			<form class="form-horizontal p-2 bd-highlight" wicket:id="addform">
+				  <div class="form-group">
+				      <button type="submit" class="btn btn-outline-primary" id="addproductbutton"   wicket:id="addproductbutton"><div wicket:id="addproductlabel">Add Product</div></button>
+				      <button type="submit" class="btn btn-outline-primary" id="addcompanybutton"   wicket:id="addcompanybutton"><div wicket:id="addcompanylabel">Add Company</div></button>
+				      <button type="submit" class="btn btn-outline-primary" id="addratingurlbutton" wicket:id="addratingurlbutton"><div wicket:id="addratingurllabel">Add Rating URL</div></button>
+				      <button type="submit" class="btn btn-outline-primary" id="refreshbutton"      wicket:id="refreshbutton"><div wicket:id="refreshlabel">Refresh</div></button>
+				  </div>
+			</form>
+		
+				
+			<div style="clear:both">
+				<!-- ensures that anything below this line is not affected by the upper part that uses float:left and float:right -->
+			</div> 
 			
-	
-		      <form class="form-horizontal" wicket:id="productinfoform">
-		        <br>
-				Name <input type="text" class="form-control" id="editname" wicket:id="editname" placeholder="Product Name"></input>
-				Year <input type="text" class="form-control" id="edityear" wicket:id="edityear" placeholder="Year of Release"></input>
-				Description <textarea class="form-control" id="editdescription" wicket:id="editdescription" placeholder="Description"></textarea>
-				GameConsole <select class="form-control" id="gameconsoles" wicket:id="gameconsoles"></select>
-				Product Type <select class="form-control" id="producttypes" wicket:id="producttypes"></select>
-				Developer <select class="form-control" id="companies" wicket:id="companies"></select>
-				<input type="submit" class="btn btn-primary" id="modifyratingbutton" wicket:id="modifyratingbutton" value ="Modify Rating">
-				<br><br>
-				<input type="submit" class="btn btn-primary" id="deleteproductbutton" wicket:id="deleteproductbutton" value="Delete Product">
-				<input type="submit" class="btn btn-primary" id="saveedit" wicket:id="saveedit" value="Save">
-			  </form>
-			 </div>
-		</div>
-	</div>
-
+			<div class="sticky-top" id="listnavigator">
+			  <div style="background:white; min-width:100%">
+			  <small><br></small>
+		        <span style="text-align:center" wicket:id="navigator">[listview navigator]</span>
+		        <hr>
+		      </div>
+		    </div>
+		   
+		    <span wicket:id="ciblabel"></span>
+			<br>
+			
+			<h2 wicket:id="headerlabel">[e.g. Most recently added products]</h2>
+		
+			<div style="text-align:right">
+			  <h5>	
+				<span class="badge badge-pill badge-secondary" wicket:id="resultcounter">[e.g. 1 to 20 of 500]</span>
+			  </h5>
+			</div>
+		
+			<div class="d-flex flex-wrap bd-highlight mb-3">
+				<div id="gamelistitem" wicket:id="productlist" class="p-2 bd-highlight border" style="box-shadow:2px 2px 2px #AAAAAA; margin-left:4px; margin-right:4px margin-top:4px; margin-bottom:4px"> 
+					 <!-- width 30% ensures three items show next to each other-->
+			  	     <div id="productimage" style="width:30%;">
+				  	     <div wicket:id="imagediv" data-toggle="tooltip" data-placement="top" title="Click to enlarge image" style="cursor:zoom-in;">
+				  	      <img onerror="this.style.display='none'" alt="Missing picture" id="image" wicket:id="image" style="width:95%;height:auto;padding-left:2%; padding-right:2%; margin-left:auto; margin-right:auto; cursor:pointer;"/>
+				  	     </div>
+				  	     <br>
+						 
+						 <form class="form-horizontal" wicket:id="uploadform">
+						    <div class="form-group">
+								<input type="file" class="form-control-file" id="imagefile" wicket:id="productImage">
+								<br>
+								<label for="uploadbutton" class="col-sm-1 control-label"></label>
+								<input type="submit" class="btn btn-primary" id="uploadbutton" wicket:id="uploadbutton" value="Upload">
+							</div>
+						 </form>
+					 </div>	     	
+			
+			  	     <div id="producttext" style="width:70%;"> 	
+				      <h4><span wicket:id="name">Name of Product</span></h4>
+					  <small wicket:id="companyandyear">[Name of Developer]</small>
+			   	      <small><span wicket:id="gameConsole.description">[Name of Game Console]</span></small>
+				      <hr>
+				      <span wicket:id="htmlDescription">[Product Description]</span>
+				      <br><br>
+					  <span wicket:id="ratingText">[Rating #]</span><span wicket:id="rating">[Rating]</span><a wicket:id="ratingUrl">[Rating URL]</a>
+					
+			
+				      <form class="form-horizontal" wicket:id="productinfoform">
+				        <br>
+						Name <input type="text" class="form-control" id="editname" wicket:id="editname" placeholder="Product Name"></input>
+						Year <input type="text" class="form-control" id="edityear" wicket:id="edityear" placeholder="Year of Release"></input>
+						Description <textarea class="form-control" id="editdescription" wicket:id="editdescription" placeholder="Description"></textarea>
+						GameConsole <select class="form-control" id="gameconsoles" wicket:id="gameconsoles"></select>
+						Product Type <select class="form-control" id="producttypes" wicket:id="producttypes"></select>
+						Developer <select class="form-control" id="companies" wicket:id="companies"></select>
+						<input type="submit" class="btn btn-primary" id="modifyratingbutton" wicket:id="modifyratingbutton" value ="Modify Rating">
+						<br><br>
+						<input type="submit" class="btn btn-primary" id="deleteproductbutton" wicket:id="deleteproductbutton" value="Delete Product">
+						<input type="submit" class="btn btn-primary" id="saveedit" wicket:id="saveedit" value="Save">
+					  </form>
+					 </div>
+				</div>
+			</div>
+ 	  	</div>
+	  </div>
+  
 	<script src="js/leftsidemenu.js"></script>
 	<script src="js/popper.1.12.3.min.js"></script>
   	<script src="js/bootstrap.min.js"></script>
