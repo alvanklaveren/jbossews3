@@ -2,7 +2,7 @@ package com.myforum.base.menu;
 
 public class DDMenuItem{
 	private String 		itemText, itemHRef;
-	private boolean 	isActive = false, disabled = false;
+	private boolean 	disabled = false;
 		
 	public DDMenuItem(EMenuItem item){
 		init(item);
@@ -10,7 +10,7 @@ public class DDMenuItem{
 
 	public DDMenuItem(EMenuItem item, int activeMenuItemId){
 		init(item);
-		if(item.id() == activeMenuItemId){ isActive = true; }
+		// if(item.id() == activeMenuItemId){ isActive = true; }
 	}
 
 	public DDMenuItem init(EMenuItem item){

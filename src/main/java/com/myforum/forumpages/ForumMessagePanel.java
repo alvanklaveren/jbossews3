@@ -24,10 +24,8 @@ import com.myforum.framework.AreYouSurePanel;
 import com.myforum.framework.ResponseFormButton;
 import com.myforum.tables.ForumUser;
 import com.myforum.tables.Message;
-import com.myforum.tables.MessageImage;
 import com.myforum.tables.dao.ForumUserDao;
 import com.myforum.tables.dao.MessageDao;
-import com.myforum.tables.dao.MessageImageDao;
 
 public class ForumMessagePanel extends ForumBasePanel {
 

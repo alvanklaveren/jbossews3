@@ -16,7 +16,8 @@ public class MenuPanel extends Panel {
 	private static final long serialVersionUID = 1L;
 	private StringBuilder menuItems;
 
-   	private Logger log = LoggerFactory.getLogger(MenuPanel.class);
+   	@SuppressWarnings("unused")
+	private Logger log = LoggerFactory.getLogger(MenuPanel.class);
 
 	public MenuPanel(String id, int activeMenuItem) {
 		super(id);

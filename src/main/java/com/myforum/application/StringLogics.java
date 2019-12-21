@@ -7,18 +7,10 @@ import java.util.Base64;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.wicket.ajax.AjaxEventBehavior;
-import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
-import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.image.NonCachingImage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.myforum.base.ForumLogics;
-import com.myforum.gameshop.GameShopLogics;
-import com.myforum.gameshop.GameShopPage;
-import com.myforum.gameshop.ShowProductImagePage;
  
 public final class StringLogics{
 	

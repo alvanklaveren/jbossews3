@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.wicket.markup.html.form.upload.FileUploadField;
-import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.util.lang.Bytes;
 
 import com.myforum.application.DBHelper;
