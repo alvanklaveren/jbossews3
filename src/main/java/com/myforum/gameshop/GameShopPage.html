@@ -164,15 +164,23 @@
 		    margin-left: 0px;
 		}
 		
-		#content{
+		#content {
 			color: #000;
-			background: #fff;
+			background: rgba(255,255,255,0.0);
 		}
 
-		#content.active #image{
+		#content.active #image {
 			width: auto;
 			min-width:0;
 			
+		}
+
+		#content.active #topcontent { 
+			visibility: hidden;
+		}
+
+		#content.active #listnavigator { 
+			visibility: hidden;
 		}
 		
 		.dropdown-toggle::after {
@@ -220,7 +228,7 @@
 			<div wicket:id="modalProductImage"></div>
 	
 			<div class="container">
-				<div class="row">			
+				<div class="row" id="topcontent">			
 				  	<div class="col-lg-6 col-md-auto">
 						<form wicket:id="configform" style="margin-left:0px; width:100%">
 						  <div class="d-flex bd-highlight" style="width:100%">
