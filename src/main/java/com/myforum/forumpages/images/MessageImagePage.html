@@ -1,0 +1,29 @@
+<html xmlns:wicket>
+  <wicket:head>
+    <link href="css/jquery-ui.css" rel="stylesheet"> <!-- necessary for auto complete list in search input field -->
+  </wicket:head>
+  
+  <wicket:extend>
+			  
+	<div class="d-flex flex-wrap bd-highlight mb-3">
+	  <div id="imagelistitem" wicket:id="imagelist" class="p-2 bd-highlight border" style="box-shadow:2px 2px 2px #AAAAAA; margin-left:4px; margin-right:4px margin-top:4px; margin-bottom:4px"> 
+	    <!-- width 30% ensures three items show next to each other-->
+	    <div id="messageimage" style="width:30%;">
+		  <div wicket:id="imagediv" data-toggle="tooltip" data-placement="top" title="Click to select">
+		    <img onerror="this.style.display='none'" alt="Missing picture" id="image" wicket:id="image" style="width:95%;height:auto;padding-left:2%; padding-right:2%; margin-left:auto; margin-right:auto; cursor:pointer;"/>
+		  </div>
+		  <br>				 
+		</div>
+			     	
+	    <div id="messageid" style="width:70%;"> 	
+		  <small><span wicket:id=messageid>Message ID</span></small>
+		  <br>	
+	    </div>
+	  </div>
+    </div>	
+
+	<script src="js/leftsidemenu.js"></script>
+	<script src="js/popper.1.12.3.min.js"></script>
+  	<script src="js/bootstrap.min.js"></script>
+  </wicket:extend>
+</html>

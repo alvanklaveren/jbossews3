@@ -3,6 +3,7 @@ package com.myforum.forumpages;
 import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
+import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
@@ -13,10 +14,14 @@ import org.apache.wicket.markup.html.form.upload.FileUploadField;
 import org.apache.wicket.model.Model;
 
 import com.myforum.application.CookieLogics;
+import com.myforum.application.ForumUtils;
 import com.myforum.application.StringLogics;
 import com.myforum.base.ForumLogics;
 import com.myforum.dictionary.EText;
+import com.myforum.forumpages.images.MessageImagePage;
 import com.myforum.framework.AVKButton;
+import com.myforum.framework.AVKLabel;
+import com.myforum.gameshop.ResponseFormModalButton;
 import com.myforum.homepage.HomePage;
 import com.myforum.tables.MessageImage;
 
@@ -40,6 +45,22 @@ public class ForumAddMessagePanel extends ForumBasePanel {
     		setResponsePage(HomePage.class);
     		return;       	
         }
+
+		final ModalWindow modalMessageImagePage = ForumUtils.createModalWindow( "modalMessageImagePage", parent, new MessageImagePage(parent.getPageReference(), parent) );
+		add(modalMessageImagePage);
+		
+		modalMessageImagePage.setWindowClosedCallback(new ModalWindow.WindowClosedCallback() {
+			private static final long serialVersionUID = 1L;
+			@Override
+			public void onClose(AjaxRequestTarget target) {
+				// TODO: maybe, when i feel like it, find a way to copy the image ID to the message text
+			}
+		});
+			
+        final Form<String> selectForm = new Form<String>("selectform");
+
+        selectForm.add( createFormModalButton( "selectimage", "Select Image", modalMessageImagePage) );
+        addOrReplace(selectForm);
 
         //MessageCategory	messageCategory = new MessageCategoryDao().find( codeMessageCategory );
         
@@ -142,11 +163,24 @@ public class ForumAddMessagePanel extends ForumBasePanel {
 		imageFile.setOutputMarkupId(true);
 		uploadForm.add(imageFile);
 
-		Button uploadButton 			= createUploadButton(imageFile, parent, replyMessageTA);
+		Button uploadButton = createUploadButton(imageFile, parent, replyMessageTA);
 		uploadForm.add(uploadButton);
 
 		uploadForm.setVisible(true);
 		return uploadForm;
 	}
 		
+	/*
+	 * The below function creates form buttons, like 'Add Company', which will open a MODAL WINDOW when clicked. 
+	 * @Arguments: id - name in html, like selectmessagebutton, but without the 'button' text, so we can reuse selectmessage for the label  
+	 */
+	private ResponseFormModalButton createFormModalButton( String id, String buttonText, ModalWindow modal ){
+        ResponseFormModalButton formButton = new ResponseFormModalButton(id + "button", buttonText, modal, isAdministrator(getActiveUser()));
+
+        final Label buttonLabel = new AVKLabel( id + "label", buttonText );
+        formButton.add(buttonLabel);
+
+        return formButton;
+	}
+
 }

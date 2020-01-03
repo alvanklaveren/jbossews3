@@ -2,6 +2,8 @@
 <wicket:extend>
 	<h2>Add New Message</h2> 
 	
+	<div wicket:id="modalMessageImagePage"></div>
+	
 	<form wicket:id="newmessageform">
 		<div class="row">
 			<div class="col-md-1">Styles</div>
@@ -32,6 +34,14 @@
 		  <input type="submit" class="btn btn-primary" id="uploadbutton" wicket:id="uploadbutton" value="Upload">
 	   </div>
 	</form>
+	<br>
+	  <form class="form-horizontal p-2 bd-highlight" wicket:id="selectform">
+        <div class="form-group">
+		      <button type="submit" class="btn btn-outline-primary" id="selectimagebutton" wicket:id="selectimagebutton">
+		        <div wicket:id="selectimagelabel">Select Image</div>
+		      </button>
+	    </div>
+	  </form>
 	<br>
 	<input class="btn btn-outline-primary btn-sm" wicket:id="preview" type="button" value="Preview Message">	
 	<br>
