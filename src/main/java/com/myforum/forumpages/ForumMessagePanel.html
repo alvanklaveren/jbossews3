@@ -3,7 +3,7 @@
   <span wicket:id="deletePanel"></span>
   <br>
   <form wicket:id="form">
-    <input wicket:id="movemessage" type="submit" value="Move Message To Other Category">
+    <input class="btn btn-outline-primary" wicket:id="movemessage" type="submit" value="Move Message To Other Category">
   </form>
 	
   <table style="width:100%">
@@ -16,7 +16,7 @@
 				<h3><span wicket:id="description">MESSAGE DESCRIPTION</span></h3>
 			</td>
 		  </tr>
-		  <font size="2"><span class=hoverblue wicket:id="edittext"></span></font>
+		  <font size="2"><span class="btn btn-outline-primary" wicket:id="edittext"></span></font>
 		  <tr>	
 		    <td style="width:100%" bgcolor="#FFFFFF" valign="top">
 			<span wicket:id="messagetext"></span>
@@ -26,8 +26,8 @@
 	
 			
 	 		<textarea wicket:id="editmessagetext" style="width:100%;height:200px;"></textarea>
-	 		<input wicket:id="canceledit" type="submit" value="Cancel">
-	 		<input wicket:id="saveedit" type="submit" value="Save">
+	 		<input class="btn btn-warning" wicket:id="canceledit" type="submit" value="Cancel">
+	 		<input class="btn btn-success" wicket:id="saveedit" type="submit" value="Save">
 			</form>
 		    </td>
 		  </tr>
@@ -55,7 +55,7 @@
 		<br>
 		<div style="border-bottom:1pt solid #EEEEEE;"></div>
 	
-		<a wicket:id="addcomment" class=hoverblue>Add Comment</a>
+		<button wicket:id="addcomment" class="btn btn-outline-primary"><i class="far fa-comment"> Add Comment</i></button>
 		<br><br>
 	
 		<form wicket:id="newmessageform">
@@ -63,8 +63,8 @@
 		 	<br>
 	 		<textarea wicket:id="replymessage" style="width:100%; height: 138px"></textarea>
 	 		<br>
-	 		<input class="btn btn-success" type="submit" wicket:id="cancel" value="Cancel">
-	 		<input class="btn btn-warning" type="submit" wicket:id="save" value="Save"> 
+	 		<input class="btn btn-warning" type="submit" wicket:id="cancel" value="Cancel">
+	 		<input class="btn btn-success" type="submit" wicket:id="save" value="Save"> 
 	  	    <br>
 		</form>
 	
@@ -73,7 +73,7 @@
 		<div wicket:id="threadmessagelist">
 		  <div style="border-bottom:1pt solid #EEEEEE;"></div>
 		  <span wicket:id="deleteThreadPanel"></span>
-		  <font size="2"><span class=hoverblue wicket:id="editreplytext">Edit</span></font>
+		  <font size="2"><span class="btn btn-outline-primary" wicket:id="editreplytext"></span></font>
 	
 		  <table style="width:100%">
 		    <tr>
@@ -84,8 +84,8 @@
 			    [h:https://www.alvanklaveren.com;my website] = <a href="https://www.alvanklaveren.com">my website</a>
 				<textarea wicket:id="editreplymessagetext" style="width:100%;height:200px;"></textarea> 
 				<br>
-		 		<input class="btn btn-success" type="submit" wicket:id="canceleditreply" value="Cancel">
-				<input class="btn btn-warning" type="submit" wicket:id="saveeditreply" value="Save"> 
+		 		<input class="btn btn-warning" type="submit" wicket:id="canceleditreply" value="Cancel">
+				<input class="btn btn-success" type="submit" wicket:id="saveeditreply" value="Save"> 
 			  </form>			
 			</td>
 		    </tr>

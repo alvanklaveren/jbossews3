@@ -61,7 +61,8 @@ public class ForumMessagePanel extends ForumBasePanel {
 		final Form<Object> newMessageForm = new ForumMessageForm( "newmessageform", getActiveUser(), parent);
 		newMessageForm.setVisible( false );
 
-       	final Label editTextLabel = new Label("edittext", new Model<String>("[Edit]") );
+       	final Label editTextLabel = new Label("edittext", new Model<String>("<i class=\"far fa-edit\"></i>") );
+       	editTextLabel.setEscapeModelStrings(false);
        	
        	final Form<Object> editMessageForm = createEditMessageForm(message, messageTextLabel, editTextLabel); 
 
@@ -111,7 +112,8 @@ public class ForumMessagePanel extends ForumBasePanel {
         //TODO: The delete button was not properly hiding... need to figure this out
        	deletePanel.setVisible(getActiveUser() != null && getActiveUser().getCode() > 0 && allowModification(message.getForumUser()));
     
-        final Label addCommentLabel = new Label("addcomment", new Model<String>("Add Comment"));
+        final Label addCommentLabel = new Label("addcomment", new Model<String>("<i class=\"far fa-comment\"></i> Add Comment"));
+        addCommentLabel.setEscapeModelStrings(false);
         addCommentLabel.add( new AjaxEventBehavior("onclick") {
 			private static final long serialVersionUID = 1L;
 			@Override
@@ -306,13 +308,10 @@ public class ForumMessagePanel extends ForumBasePanel {
                 //TODO: The delete button was not properly hiding... need to figure this out
                	deleteThreadPanel.setVisible(getActiveUser() != null && getActiveUser().getCode() > 0 && allowModification(message.getForumUser()));
                 
-        		final Label editReplyTextLabel = new Label( "editreplytext", new Model<String>("Edit") );
+        		final Label editReplyTextLabel = new Label( "editreplytext", new Model<String>("<i class=\"far fa-edit\"></i>") );
         		editReplyTextLabel.setOutputMarkupId( true );
-        		editReplyTextLabel.setVisible(getActiveUser() != null && getActiveUser().getCode() > 0 && allowModification(message.getForumUser()));
-        		
-               	if(allowModification(threadMessage.getForumUser())){
-        			editReplyTextLabel.setVisible( false );
-                }
+        		editReplyTextLabel.setEscapeModelStrings(false);
+        		editReplyTextLabel.setVisible(getActiveUser() != null && getActiveUser().getCode() > 0 && allowModification(message.getForumUser()));       		
         	    
         	    editReplyTextLabel.add( new AjaxEventBehavior("onclick") {
         			private static final long serialVersionUID = 1L;

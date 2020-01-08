@@ -82,4 +82,10 @@ public class MessageImagePage extends ModalPage {
 
 		return imageListView;
 	}
+	
+	@Override
+	protected String getTitle(){
+			return "Select Image ...";
+	}
+
 }
