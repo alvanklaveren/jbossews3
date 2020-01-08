@@ -427,6 +427,14 @@
 					<include>documents/*.*</include>
 					<include>images/*.*</include>
 					<include>css/*.*</include>
+					<include>fontawesome/*.*</include>
+					<include>fontawesome/css/*.*</include>
+					<include>fontawesome/js/*.*</include>
+					<include>fontawesome/less/*.*</include>
+					<include>fontawesome/metadata/*.*</include>
+					<include>fontawesome/scss/*.*</include>
+					<include>fontawesome/sprites/*.*</include>
+					<include>fontawesome/webfonts/*.*</include>
 					<include>js/*.*</include>
 					<include>*.*</include>
 				</includes>
