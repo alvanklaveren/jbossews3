@@ -22,25 +22,25 @@ public enum EAboutMe {
 	"</p>\n" + 
 	"In his professional life he has worked with:\n" + 
 	"<ul>\n" + 
-	"  <li>Java (Eclipse/IntelliJ)</li>\n" + 
-	"  <li>PowerScript: PowerBuilder</li>\n" + 
-	"  <li>Hibernate/JPA</li>\n" + 
-	"  <li>Spring (Boot/AOP)/Wicket</li>\n" + 
-	"  <li>HTML/JS/CSS/Bootstrap</li>\n" + 
-	"  <li>Angular(Typescript)</li>\n" + 
-	"  <li>Subversion/Github</li>\n" + 
+	"  <li><i class=\"fab fa-java\"></i> Java (Eclipse/IntelliJ)</li>\n" + 
+	"  <li>PowerScript (PowerBuilder)</li>\n" + 
+	"  <li>Hibernate, JPA</li>\n" + 
+	"  <li>Spring (Boot, AOP), Wicket</li>\n" + 
+	"  <li><i class=\"fab fa-bootstrap\"></i> Bootstrap (<i class=\"fab fa-css3\"></i> CSS, <i class=\"fab fa-js\"></i> JS)</li>\n" + 
+	"  <li>Typescript (<i class=\"fab fa-angular\"></i> Angular)</li>\n" + 
+	"  <li>Subversion, <i class=\"fab fa-github\"></i> Github</li>\n" + 
 	"  <li>Tomcat</li>\n" + 
-	"  <li>AWS</li>\n" + 
-	"  <li>Oracle/MariaDB/AuroraDB</li>\n" + 
-	"  <li>Windows</li>\n" + 
+	"  <li><i class=\"fab fa-aws\"></i> Amazon Web Services</li>\n" + 
+	"  <li>Oracle, MariaDB, AuroraDB</li>\n" + 
+	"  <li><i class=\"fab fa-windows\"></i> Windows</li>\n" + 
 	"</ul>\n" + 
 	"and at home with:\n" + 
 	"<ul>\n" + 
-	"  <li>Java Android (Android Studio)</li>\n" + 
-	"  <li>Rust/Webassembly</li>\n" + 
+	"  <li><i class=\"fab fa-android\"></i> Java Android (Android Studio)</li>\n" + 
+	"  <li>Rust, Webassembly</li>\n" + 
 	"  <li>MySQL</li>\n" + 
-	"  <li>BitBucket/Git</li>\n" + 
-	"  <li>Linux (Ubuntu)</li>\n" + 
+	"  <li><i class=\"fab fa-bitbucket\"></i> BitBucket, <i class=\"fab fa-github-alt\"></i> Git</li>\n" + 
+	"  <li><i class=\"fab fa-linux\"></i> Linux (<i class=\"fab fa-ubuntu\"></i> Ubuntu)</li>\n" + 
 	"</ul>\n" + 
 	"\n" + 
 	"<p class=\"text-justify\">\n" + 
@@ -69,25 +69,25 @@ public enum EAboutMe {
 	"</p>\n" + 
 	"In zijn professionele leven heeft hij onder andere gewerkt met:\n" + 
 	"<ul>\n" + 
-	"  <li>Java (Eclipse/IntelliJ)</li>\n" + 
-	"  <li>PowerScript: PowerBuilder</li>\n" + 
-	"  <li>Hibernate/JPA</li>\n" + 
-	"  <li>Spring (Boot/AOP)/Wicket</li>\n" + 
-	"  <li>CSS/Bootstrap</li>\n" + 
-	"  <li>Angular/Typescript</li>\n" + 
-	"  <li>Subversion/Github</li>\n" + 
+	"  <li><i class=\"fab fa-java\"></i> Java (Eclipse/IntelliJ)</li>\n" + 
+	"  <li>PowerScript (PowerBuilder)</li>\n" + 
+	"  <li>Hibernate, JPA</li>\n" + 
+	"  <li>Spring (Boot, AOP), Wicket</li>\n" + 
+	"  <li><i class=\"fab fa-bootstrap\"></i> Bootstrap (<i class=\"fab fa-css3\"></i> CSS, <i class=\"fab fa-js\"></i> JS)</li>\n" + 
+	"  <li>Typescript (<i class=\"fab fa-angular\"></i> Angular)</li>\n" + 
+	"  <li>Subversion, <i class=\"fab fa-github\"></i> Github</li>\n" + 
 	"  <li>Tomcat</li>\n" + 
-	"  <li>AWS</li>\n" + 
-	"  <li>Oracle/MariaDB/AuroraDB</li>\n" + 
-	"  <li>Windows</li>\n" + 
+	"  <li><i class=\"fab fa-aws\"></i> Amazon Web Services</li>\n" + 
+	"  <li>Oracle, MariaDB, AuroraDB</li>\n" + 
+	"  <li><i class=\"fab fa-windows\"></i> Windows</li>\n" + 
 	"</ul>\n" + 
 	"en thuis met:\n" + 
 	"<ul>\n" + 
-	"  <li>Java Android (Android Studio)</li>\n" + 
-	"  <li>Rust/Webassembly</li>\n" + 
+	"  <li><i class=\"fab fa-android\"></i> Java Android (Android Studio)</li>\n" + 
+	"  <li>Rust, Webassembly</li>\n" + 
 	"  <li>MySQL</li>\n" + 
-	"  <li>BitBucket/Git</li>\n" + 
-	"  <li>Linux (Ubuntu)</li>\n" + 
+	"  <li><i class=\"fab fa-bitbucket\"></i> BitBucket, <i class=\"fab fa-github-alt\"></i> Git</li>\n" + 
+	"  <li><i class=\"fab fa-linux\"></i> Linux (<i class=\"fab fa-ubuntu\"></i> Ubuntu)</li>\n" + 
 	"</ul>\n" + 
 	"\n" + 
 	"<p class=\"text-justify\">\n" + 
