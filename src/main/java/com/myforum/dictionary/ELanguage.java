@@ -9,15 +9,17 @@ public enum ELanguage {
 	String  description;
 	int		id;
 	String  languageId;
+	Dictionary dictionary;
 	
 	ELanguage(int id, String description, String languageId){
 		this.id = id;
 		this.description = description;
 		this.languageId = languageId;
+		this.dictionary = new Dictionary(this);
 	}
 	
 	Dictionary getDictionary(){
-		return new Dictionary(this);
+		return dictionary;
 	}
 
 	public int getId(){

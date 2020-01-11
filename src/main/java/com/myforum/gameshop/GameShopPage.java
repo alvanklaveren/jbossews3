@@ -104,6 +104,9 @@ public class GameShopPage extends BasePage {
 		menuItemLabel.setEscapeModelStrings(false);
 		add(menuItemLabel);
 		
+		Label navigationLabel = new AVKLabel("navigation", "Navigation");
+		add(navigationLabel);
+		
 		final ModalWindow modalAddCompany = ForumUtils.createModalWindow( "modalAddCompany", this, new AddCompanyPage(GameShopPage.this.getPageReference(), this) );
 		add(modalAddCompany);
 		
