@@ -9,10 +9,13 @@ import org.apache.wicket.markup.html.link.DownloadLink;
 import com.myforum.application.ForumUtils;
 import com.myforum.base.AVKPage;
 import com.myforum.base.menu.EMenuItem;
+import com.myforum.dictionary.EText;
 import com.myforum.dictionary.Translator;
 
 public class AboutMePage extends AVKPage {
 	private static final long serialVersionUID = 1L;
+
+	private Translator translator = Translator.getInstance();
 
 	public AboutMePage() {
 		super(EMenuItem.AboutMe);
@@ -30,30 +33,24 @@ public class AboutMePage extends AVKPage {
 			years = String.valueOf(workingYears);
 		}
 
-		// now choose the language for the about me text
-		String markupText = "";
 		switch( Translator.getInstance().getDefaultLanguage()) {
 		case English:
 			downloadlink.add(new Label("cvtext", "Click here to download my Curriculum Vitae"));
-			markupText = EAboutMe.English.toString();
 			break;
 		case Dutch:
 			downloadlink.add(new Label("cvtext", "Klik hier om mijn Curriculum Vitae te downloaden"));
-			markupText = EAboutMe.Dutch.toString();
 			break;
 		default:
 			downloadlink.add(new Label("cvtext", "Click here to download my Curriculum Vitae"));
-			markupText = EAboutMe.English.toString();
 		}
-				
-		markupText = markupText.replace("<yearsworking>", years);
-		
+
+		String markupText = translator.translate(EText.ABOUT_ME_TEXT).replace("<yearsworking>", years);
 		add(new Label("markup", markupText).setEscapeModelStrings(false));	
 	}
 		
     @Override
     protected String getPageTitle() {
-    	return "AVK - " + Translator.getInstance().translate("About Me");
+    	return "AVK - " + Translator.getInstance().translate(EText.ABOUT_ME);
     }
 
 }

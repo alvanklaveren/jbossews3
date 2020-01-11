@@ -30,6 +30,7 @@ import com.myforum.tables.SourceCategory;
 import com.myforum.tables.SourceSubject;
 import com.myforum.tables.SourceText;
 import com.myforum.tables.SourceType;
+import com.myforum.tables.Translation;
 
 
 public final class DBHelper {
@@ -62,25 +63,25 @@ public final class DBHelper {
 	        configuration.configure("hibernate.cfg.xml");
 
 	        configuration.addAnnotatedClass(Constants.class);
+	        configuration.addAnnotatedClass(Company.class);
+	        configuration.addAnnotatedClass(ForumUser.class);
+	        configuration.addAnnotatedClass(GameConsole.class);
 	        configuration.addAnnotatedClass(MessageCategory.class);
 	        configuration.addAnnotatedClass(Message.class);
 	        configuration.addAnnotatedClass(MessageImage.class);
 	        configuration.addAnnotatedClass(Classification.class);
 	        configuration.addAnnotatedClass(LoginCred.class);
 	        configuration.addAnnotatedClass(Notifications.class);
+	        configuration.addAnnotatedClass(Product.class);
+	        configuration.addAnnotatedClass(ProductType.class);
+	        configuration.addAnnotatedClass(ProductImage.class);
+	        configuration.addAnnotatedClass(ProductRating.class);
+	        configuration.addAnnotatedClass(RatingUrl.class);
 	        configuration.addAnnotatedClass(SourceCategory.class);
 	        configuration.addAnnotatedClass(SourceSubject.class);
 	        configuration.addAnnotatedClass(SourceType.class);
 	        configuration.addAnnotatedClass(SourceText.class);
-	        configuration.addAnnotatedClass(ForumUser.class);
-
-	        configuration.addAnnotatedClass(Company.class);
-	        configuration.addAnnotatedClass(GameConsole.class);
-	        configuration.addAnnotatedClass(ProductType.class);
-	        configuration.addAnnotatedClass(Product.class);
-	        configuration.addAnnotatedClass(ProductImage.class);
-	        configuration.addAnnotatedClass(ProductRating.class);
-	        configuration.addAnnotatedClass(RatingUrl.class);
+	        configuration.addAnnotatedClass(Translation.class);
 
 	        configuration.configure();
 	        serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();

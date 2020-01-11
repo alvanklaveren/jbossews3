@@ -3,12 +3,12 @@ package com.myforum.dictionary;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.myforum.tables.dao.TranslationDao;
 
-/*
- * Abstract Dictionary, containing the default mapping on English
- */
-public abstract class Dictionary{
-	private ELanguage language;
+
+public final class Dictionary{
+	
+	private ELanguage eLanguage;
 	
 	protected Map<String, String> translatedWordMap     = new HashMap<String, String>();
 	protected Map<String, String> translatedSentenceMap = new HashMap<String, String>();
@@ -17,12 +17,12 @@ public abstract class Dictionary{
 		map.put(eText.toString(), sentence);
 	}; 
 	
-	Dictionary(ELanguage language){
-		this.language = language;
+	Dictionary(ELanguage eLanguage){
+		this.eLanguage = eLanguage;
 	}
 
 	public ELanguage getLanguage(){
-		return language;
+		return eLanguage;
 	}
 
 	public String toString(){
@@ -30,37 +30,20 @@ public abstract class Dictionary{
 	}
 
 	public String translate(String text){
-		if(text == null) 	return null;
-		if(text.equals("")) return "";
-
-		String foreignText = null;
-		// first check whether it is a full sentence
-		foreignText = translatedSentenceMap.get(text);
 		
-		if( foreignText != null){ 
-			return foreignText; 
+		if(text.isEmpty() ) { return text; }
+
+		// first check if the word or sentence is IN the database table TRANSLATION
+		String foreignText = new TranslationDao().findByLanguage(eLanguage.getLanguageId(), text);
+		if(foreignText != null) {
+			// if the word started with upper case, make sure the foreign words ALSO starts with upper case
+			return text.charAt(0) != text.toLowerCase().charAt(0) ? camelCase(foreignText): foreignText;
 		}
 
-		// if it did not translate, then maybe it is just one word
-		
-		// when translating, ignore uppercase
-		String lowercaseText = text.toLowerCase();
-		foreignText = translatedWordMap.get(lowercaseText);
-		
-		// when the first char is uppercase, then force the first char to be uppercase in the foreignt text as well
-		if( text.charAt(0) != lowercaseText.charAt(0) && foreignText != null ){
-			foreignText = foreignText.toUpperCase().charAt(0) + foreignText.substring(1);
-		}
-
-		if( foreignText != null ){ 
-			return foreignText; 
-		}
-
-		// It could still be a full sentence, however it appears to NOT have been specifically declared in the dictionary.
-		// Translate as many words as possible.
+		// if it did not find the original text, then look at the words in variable text one by one 
 		String[] splittedSentence = text.split( "\\s+");
 		
-		// when there is only one string (or less) in the array, then just return text... no translation appeared to be possible...
+		// only one string (or less) in the array? Then just return text.
 		if (splittedSentence.length <= 1) return text; 
 		
 		StringBuilder foreignSB = new StringBuilder();
@@ -71,5 +54,9 @@ public abstract class Dictionary{
 		}
 		return foreignSB.toString();
 	};
+	
+	private String camelCase(String text) {
+		return text.toUpperCase().charAt(0) + text.substring(1);
+	}
 	
 }
