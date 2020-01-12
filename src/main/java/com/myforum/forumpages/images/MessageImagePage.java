@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.wicket.PageReference;
 import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.image.NonCachingImage;
@@ -13,20 +14,25 @@ import org.apache.wicket.markup.html.list.PageableListView;
 import org.apache.wicket.model.CompoundPropertyModel;
 import com.myforum.application.ForumUtils;
 import com.myforum.base.BasePage;
-import com.myforum.framework.ModalPage;
+import com.myforum.framework.AnswerPopup;
+import com.myforum.framework.ModalPanel;
 import com.myforum.tables.MessageImage;
 import com.myforum.tables.dao.MessageImageDao;
 
-public class MessageImagePage extends ModalPage {
+public class MessageImagePage extends ModalPanel {
 	private static final long serialVersionUID = 1L;
 
 	int numberOfItems = 10000;
 	
-	public MessageImagePage(final PageReference modalWindowPageRef, final BasePage originPage) {
-		super(modalWindowPageRef, originPage);
+	AnswerPopup modalResult;
+	
+	public MessageImagePage(final ModalWindow modal, final PageReference modalWindowPageRef, final BasePage originPage, final AnswerPopup modalResult) {
+		super(modal.getContentId(), modalWindowPageRef, originPage);
 
 		// show max number of items... because pagingnavigator needs to be adjusted to support modal windows
 		numberOfItems = 10000;
+		
+		this.modalResult = modalResult;
 		
 		// Add list of ALL images
 		final PageableListView<MessageImage> imageListView = createImageListView();
@@ -53,6 +59,8 @@ public class MessageImagePage extends ModalPage {
 					private static final long serialVersionUID = 1L;
 					@Override
        		        protected void onEvent(AjaxRequestTarget target) {
+						modalResult.setAnswer("[i:" + messageImage.getCode() + "]");
+						parent.close(target);
        		            return;
        		        }
        		    });

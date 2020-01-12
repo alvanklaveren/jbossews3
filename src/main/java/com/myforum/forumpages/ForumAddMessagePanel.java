@@ -14,13 +14,13 @@ import org.apache.wicket.markup.html.form.upload.FileUploadField;
 import org.apache.wicket.model.Model;
 
 import com.myforum.application.CookieLogics;
-import com.myforum.application.ForumUtils;
 import com.myforum.application.StringLogics;
 import com.myforum.base.ForumLogics;
 import com.myforum.dictionary.EText;
 import com.myforum.forumpages.images.MessageImagePage;
 import com.myforum.framework.AVKButton;
 import com.myforum.framework.AVKLabel;
+import com.myforum.framework.AnswerPopup;
 import com.myforum.gameshop.ResponseFormModalButton;
 import com.myforum.homepage.HomePage;
 import com.myforum.tables.MessageImage;
@@ -30,11 +30,14 @@ public class ForumAddMessagePanel extends ForumBasePanel {
 	
 	private ForumAddMessagePanel thisPanel;
 
+	private AnswerPopup modalResult;
+	
 	public ForumAddMessagePanel(final ForumBasePage parent){
 		super(parent);
 	
 		thisPanel = this;
-		
+		modalResult = new AnswerPopup("");
+				
 		final int codeMessageCategory = CookieLogics.getCookieInt("codeMessageCategory");
         if(codeMessageCategory == 0){
         	parent.setErrorMessage("An error occurred: Could not find message category");
@@ -45,22 +48,6 @@ public class ForumAddMessagePanel extends ForumBasePanel {
     		setResponsePage(HomePage.class);
     		return;       	
         }
-
-		final ModalWindow modalMessageImagePage = ForumUtils.createModalWindow( "modalMessageImagePage", parent, new MessageImagePage(parent.getPageReference(), parent) );
-		add(modalMessageImagePage);
-		
-		modalMessageImagePage.setWindowClosedCallback(new ModalWindow.WindowClosedCallback() {
-			private static final long serialVersionUID = 1L;
-			@Override
-			public void onClose(AjaxRequestTarget target) {
-				// TODO: maybe, when i feel like it, find a way to copy the image ID to the message text
-			}
-		});
-			
-        final Form<String> selectForm = new Form<String>("selectform");
-
-        selectForm.add( createFormModalButton( "selectimage", "Select Image", modalMessageImagePage) );
-        addOrReplace(selectForm);
 
         //MessageCategory	messageCategory = new MessageCategoryDao().find( codeMessageCategory );
         
@@ -96,7 +83,15 @@ public class ForumAddMessagePanel extends ForumBasePanel {
 				replyMessagePreview.setDefaultModel( new Model<String>( replyMessageTA.getInput() ) );
 			}
 	    });
-		
+
+        // Create the modal window.
+        ModalWindow messageImageModal = createSelectImageModal(replyMessageTA);
+		add(messageImageModal);
+
+        final Form<String> selectForm = new Form<String>("selectform");
+        selectForm.add( createFormModalButton( "selectimage", "Select Image", messageImageModal) );
+        addOrReplace(selectForm);
+
 		Button previewButton = new AVKButton( "preview", "Preview Message" );
 		previewButton.add( new AjaxEventBehavior( "onclick" ) {
 			private static final long serialVersionUID = 1L;
@@ -126,6 +121,38 @@ public class ForumAddMessagePanel extends ForumBasePanel {
 		addOrReplace(form);
 		addOrReplace(previewButton);
 		addOrReplace(replyMessagePreview);	
+	}
+	
+	private ModalWindow createSelectImageModal(final TextArea<String> messageTA) {
+        // Create the modal window.
+        ModalWindow messageImageModal = new ModalWindow("modalMessageImagePage");
+        final MessageImagePage messageImagePage = new MessageImagePage(messageImageModal, parent.getPageReference(), parent, modalResult);
+    	messageImageModal.setResizable(true);
+    	messageImageModal.setAutoSize(false);
+    	messageImageModal.setInitialWidth(300);
+    	messageImageModal.setInitialHeight(600);
+      	messageImageModal.setContent(messageImagePage);
+        messageImagePage.setParent(messageImageModal);
+        
+		messageImageModal.setWindowClosedCallback( new ModalWindow.WindowClosedCallback() {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+            public void onClose( AjaxRequestTarget target ) {
+                if ( modalResult.getAnswer() != null ) {
+    				String messageText = messageTA.getModelObject() != null ? messageTA.getModelObject() : "";
+    				messageText += modalResult.getAnswer();
+    				
+    				// TODO: so the below does not refresh the textarea.. wtf.  
+    				messageTA.setModel(new Model<String>(messageText));
+    				
+    				// addOrReplace(messageTA); This is NOT working (not refreshing.. even crashing sometimes)
+                }
+            }
+        });
+		
+		return messageImageModal;
 	}
 	
 	private Button createUploadButton(final FileUploadField imageFile, final ForumBasePage parent, final TextArea<String> replyMessageTA){
