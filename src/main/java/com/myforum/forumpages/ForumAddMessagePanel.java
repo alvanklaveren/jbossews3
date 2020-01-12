@@ -142,12 +142,9 @@ public class ForumAddMessagePanel extends ForumBasePanel {
             public void onClose( AjaxRequestTarget target ) {
                 if ( modalResult.getAnswer() != null ) {
     				String messageText = messageTA.getModelObject() != null ? messageTA.getModelObject() : "";
-    				messageText += modalResult.getAnswer();
-    				
-    				// TODO: so the below does not refresh the textarea.. wtf.  
-    				messageTA.setModel(new Model<String>(messageText));
-    				
-    				// addOrReplace(messageTA); This is NOT working (not refreshing.. even crashing sometimes)
+    				messageText += modalResult.getAnswer();  				
+    				messageTA.setModelObject(messageText);
+    				target.add(thisPanel);   				
                 }
             }
         });
