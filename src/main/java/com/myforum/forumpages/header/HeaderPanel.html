@@ -8,8 +8,9 @@
 	    	<input type="text" class="form-control form-control-sm" id="inputUsername" wicket:id="username" placeholder="Username">
 			<label class="sr-only" for="inputPassword">Password</label>
 	    	<input type="password" class="form-control form-control-sm" id="inputPassword" wicket:id="password" placeholder="Password">
-	 		<input type="submit" wicket:id="login" class="btn btn-outline-primary btn-sm" value="Login">
-		</div>
+	 		<span wicket:id="login" class="btn btn-outline-primary btn-sm"></span>
+	 		
+		</div><br>
 		<div class="form-group">
 	 	  <font size="2">
 		    <a class="hoverblue form-text" wicket:id="forgotpassword"><span wicket:id="forgotlabel">Forgot password?</span></a>
@@ -22,7 +23,7 @@
 	 	  <div class="form-group">
 			<span wicket:id="activeuser"></span>
 		 	<br><br>
-		 	<input type="submit" wicket:id="logout" class="btn btn-outline-primary btn-sm" value="Logout">
+		 	<span wicket:id="logout" class="btn btn-outline-primary btn-sm"></span>
 			<input type="submit" wicket:id="updateprofile" class="btn btn-outline-primary btn-sm" value="Update Profile">
 		 	<input type="submit" wicket:id="adminmaintenance" class="btn btn-outline-primary btn-sm" value="Administrator Maintenance">	
 		 	<input type="submit" wicket:id="userregistration" class="btn btn-outline-primary btn-sm" value="Register New User">

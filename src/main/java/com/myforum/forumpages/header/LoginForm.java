@@ -1,9 +1,10 @@
 package com.myforum.forumpages.header;
 
 import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.OnChangeAjaxBehavior;
-import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.markup.html.form.TextField;
@@ -12,10 +13,10 @@ import org.apache.wicket.model.Model;
 
 import com.myforum.application.CookieLogics;
 import com.myforum.base.AVKPage;
+import com.myforum.dictionary.EText;
 import com.myforum.dictionary.Translator;
 import com.myforum.forumpages.ForgotPasswordPanel;
 import com.myforum.forumpages.ForumBasePage;
-import com.myforum.framework.AVKButton;
 import com.myforum.framework.AVKLabel;
 import com.myforum.security.CredentialLogics;
 import com.myforum.tables.ForumUser;
@@ -51,7 +52,16 @@ public class LoginForm extends StatelessForm<Object>{
 		final PasswordTextField passwordTF = new PasswordTextField( "password", new Model<String>() );
 		passwordTF.add( new AttributeModifier("placeholder", new Model<String>( translator.translate("Password"))) );
 		add( passwordTF );
-		
+
+		passwordTF.add( new OnChangeAjaxBehavior(){
+			private static final long serialVersionUID = 1L;
+			
+			@Override
+			protected void onUpdate( AjaxRequestTarget target ) {
+				// Override normal behavior so onclick event in loginButton is able to get the modelobject from passwordTF component.
+			}
+		});
+
 		final StatelessLink<Object> forgotPasswordLink = new StatelessLink<Object>( "forgotpassword" ){
 			private static final long serialVersionUID = 1L;
 
@@ -70,13 +80,13 @@ public class LoginForm extends StatelessForm<Object>{
 		forgotPasswordLink.add(new AVKLabel("forgotlabel", "Forgot password?"));
         add( forgotPasswordLink );
 					
-	    Button loginButton = new AVKButton( "login", "Login" ) {
+        Label loginButton = new AVKLabel("login", "<i class=\"fas fa-sign-in-alt\"></i> " + Translator.getInstance().translate(EText.SIGN_IN));
+        loginButton.add(new AjaxEventBehavior("onclick") {
 			private static final long serialVersionUID = 1L;
-	
 			@Override
-			public void onSubmit() {
-	        	String username = usernameTF.getInput();
-	        	String password = passwordTF.getInput();
+	        protected void onEvent(AjaxRequestTarget target) {
+	        	String username = usernameTF.getModel().getObject();
+	        	String password = passwordTF.getModel().getObject();
         	    	        	        	
 	        	if(!CredentialLogics.validCredentials(username, password)){
 	        		((AVKPage) getPage()).setErrorMessage( "Incorrect login credentials" );
@@ -97,10 +107,11 @@ public class LoginForm extends StatelessForm<Object>{
 	        	setResponsePage( getPage().getClass() );
 	        	return;
 			}
-	    };
-	    loginButton.setDefaultFormProcessing( false );
+		});
+	    loginButton.setEscapeModelStrings(false);
+	    loginButton.setOutputMarkupId(true);
 	    add( loginButton );  
-	    
+	    	    
 	}
 	
     @Override

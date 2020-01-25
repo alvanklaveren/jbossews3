@@ -38,6 +38,8 @@ public enum EText {
 	, CLICK_TO_NAVIGATE ("Click to navigate")
 	, NUMBER_OF_MESSAGES ("# Messages")
 	, RECENTLY_ADDED_COLLAPSIBLE_MENU("Recently Added")
+	, SIGN_IN("Sign In")
+	, SIGN_OUT("Sign Out")
 	;
 	
 

@@ -1,5 +1,7 @@
 package com.myforum.forumpages.header;
 
+import org.apache.wicket.ajax.AjaxEventBehavior;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.StatelessForm;
@@ -7,12 +9,14 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.myforum.application.AllConstants;
 import com.myforum.application.CookieLogics;
+import com.myforum.dictionary.EText;
 import com.myforum.dictionary.Translator;
 import com.myforum.forumpages.ForumBasePage;
 import com.myforum.forumpages.UserModifyAccountPage;
 import com.myforum.forumpages.UserRegistrationPage;
 import com.myforum.forumpages.administrator.ForumAdministratorPage;
 import com.myforum.framework.AVKButton;
+import com.myforum.framework.AVKLabel;
 import com.myforum.framework.ResponseButton;
 import com.myforum.security.CredentialLogics;
 import com.myforum.tables.ForumUser;
@@ -52,17 +56,19 @@ public class LogoutForm extends StatelessForm<Object>{
         updateProfileButton.setDefaultFormProcessing( false );
 		add( updateProfileButton );
 
-		Button logoutButton = new AVKButton( "logout", "Logout" ) {
+        Label logoutButton = new AVKLabel("logout", "<i class=\"fas fa-sign-out-alt\"></i> " + Translator.getInstance().translate(EText.SIGN_OUT));
+        logoutButton.add(new AjaxEventBehavior("onclick") {
 			private static final long serialVersionUID = 1L;
 			@Override
-			public void onSubmit() {
+	        protected void onEvent(AjaxRequestTarget target) {
 				CookieLogics.deleteCookie("magictoken");
 				getSession().invalidateNow(); // remember that now the session is invalidated, all getsession-variables are reset to null
 				setResponsePage( ForumBasePage.class );
 				return;
             }
-        };		
-        logoutButton.setDefaultFormProcessing( false );
+        });		
+        logoutButton.setOutputMarkupId(true);
+        logoutButton.setEscapeModelStrings(false);
 	    add( logoutButton );
 	
 		ResponseButton userRegistrationButton = new ResponseButton( "userregistration", "Register New User", UserRegistrationPage.class );

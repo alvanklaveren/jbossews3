@@ -17,4 +17,5 @@ public class AVKLabel extends Label{
 		super(id, new Model<String>(Translator.getInstance().translate(labelEText)));
 	}
 
+
 }
