@@ -32,7 +32,6 @@
 
 	#centerpanel{
 		min-height: 100%; 
-		background:#FFFFFF; 
 		border: thin solid white; 
 		box-shadow:5px 5px 20px grey;
 	}
@@ -108,7 +107,7 @@
  <wicket:header-items/>
 </head>
 
-<body style="background:#F3F3FC; color:#333">
+<body id="avkTheme">
 	<div class="fixed-top">
   		<span wicket:id="topMenu">Menu</span>
   	</div>
@@ -120,6 +119,14 @@
 	    
 	    <!-- <div class="basepanelcenter" id="centerpanel"> -->
 	    <div id="centerpanel">
+
+			<small><br/></small>
+	    	<div data-toggle="tooltip" data-placement="top" title="Click to select theme" style="float:left;">
+		    	<div class="btn-group btn-group-sm" role="group" aria-label="Select Theme">
+ 		    		<button type="button" class="btn btn-outline-secondary" style="cursor:pointer;" wicket:id="light">Light</button>
+		    		<button type="button" class="btn btn-outline-secondary" style="cursor:pointer;" wicket:id="dark">Dark</button>
+		    	</div>  
+	    	</div>
 
 			<small><br/></small>
 	    	<div data-toggle="tooltip" data-placement="top" title="Click to select language" style="float:right;">

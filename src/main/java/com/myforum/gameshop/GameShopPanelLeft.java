@@ -29,20 +29,19 @@ public class GameShopPanelLeft extends BasePanelLeft {
 
 	    sb.append("<br/>");
 		sb.append("<div class=\"sidenav\">");
-		sb.append("<a href=\"/gameshop\">"+ translator.translate( EText.RECENTLY_ADDED ) +"</a>");
-	    sb.append("<br/>");
+		sb.append("<a href=\"/gameshop\" class=\"dropdown-btn\">"+ translator.translate( EText.RECENTLY_ADDED ) +"</a>");
+	    sb.append("<br style=\"line-height: 1px;\"/>");
 
 		for(GameConsole gameConsole:gameConsoleList){
-			sb.append("<button class=\"dropdown-btn\">" + gameConsole.getDescription() + "</button>");
+			sb.append("<a href=\"#\" class=\"dropdown-btn\">" + gameConsole.getDescription() + "</a>");
 
 			sb.append("<div class=\"dropdown-container\">");
 			for(ProductType productType:productTypeList){
 			    sb.append("<a href=\"/gameshop/" + gameConsole.getCode() + "/" + productType.getCode() + "\">" + productType.getDescription() + "</a>");
 			}
 		    sb.append("</div>");
-		    sb.append("<br/>");
+		    sb.append("<br style=\"line-height: 1px;\"/>");
 		}
-
 	    sb.append("</div>");
 
 		Label leftSideMenuLabel = new Label("leftsidemenu", new Model<String>( sb.toString() ));

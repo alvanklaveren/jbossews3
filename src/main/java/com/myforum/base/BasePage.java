@@ -2,6 +2,7 @@ package com.myforum.base;
 
 import java.io.Serializable;
 
+import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
@@ -13,6 +14,7 @@ import org.apache.wicket.settings.IRequestCycleSettings;
 
 import com.myforum.application.CookieLogics;
 import com.myforum.application.DBHelper;
+import com.myforum.application.ETheme;
 import com.myforum.application.ForumUtils;
 import com.myforum.base.menu.EMenuItem;
 import com.myforum.base.menu.MenuPanel;
@@ -22,6 +24,7 @@ import com.myforum.dictionary.Translator;
 import com.myforum.framework.ErrorLabel;
 import com.myforum.framework.LanguageButton;
 import com.myforum.framework.SuccessLabel;
+import com.myforum.framework.ThemeButton;
 import com.myforum.homepage.HomePage;
 import com.myforum.security.CredentialLogics;
 import com.myforum.tables.ForumUser;
@@ -36,7 +39,7 @@ public class BasePage extends WebPage implements IRequiresHttps, Serializable{
 	protected String 	 magicToken;
 	protected Panel 	 panelLeft, panelRight;
 	protected Translator translator = Translator.getInstance();
-	
+
 	public BasePage(){
 		initPage(EMenuItem.DUMMY.id()); // no active page
 	}
@@ -50,15 +53,22 @@ public class BasePage extends WebPage implements IRequiresHttps, Serializable{
 		setVersioned(false);
 		setStatelessHint(true);
 		DBHelper.closeSession();
-
+	
 		if ( !CredentialLogics.canOpen(getActiveUser(), this) ){
 			setResponsePage(HomePage.class);
 			return;
 		}
-		
+
+		if(CookieLogics.getCookieInt(ETheme.cookieName) == 0) {
+			CookieLogics.setCookieForever(ETheme.cookieName, ETheme.Light.getId());
+		}
+
+		add( new ThemeButton("light", ETheme.Light.getDescription(), ETheme.Light) );
+		add( new ThemeButton("dark",  ETheme.Dark.getDescription(),  ETheme.Dark) );
+
 		add( new LanguageButton("english", "EN", ELanguage.English) );
 		add( new LanguageButton("dutch",   "NL", ELanguage.Dutch) );
-
+		
 		add( new Label("pagetitle", getPageTitle()) );
 		
 		// Top Menu
@@ -195,10 +205,12 @@ public class BasePage extends WebPage implements IRequiresHttps, Serializable{
     }
     
 	@Override public void renderHead(IHeaderResponse response){
-//		  response.render(CssHeaderItem.forReference(new CssResourceReference(BasePage.class,"css/basepage.css")));
-//		  response.render(JavaScriptHeaderItem.forReference(new JQueryPluginResourceReference(HomePage.class,"HomePage.js")));
-//		  response.render(new FilteredHeaderItem(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(HomePage.class,"top.js")),JavaScriptFilteredIntoFooterHeaderResponse.HEADER_FILTER_NAME));
-		}
+		// response.render(CssHeaderItem.forReference(new CssResourceReference(BasePage.class,"css/basepage.css")));
+		// response.render(JavaScriptHeaderItem.forReference(new JQueryPluginResourceReference(HomePage.class,"HomePage.js")));
+		// response.render(new FilteredHeaderItem(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(HomePage.class,"top.js")),JavaScriptFilteredIntoFooterHeaderResponse.HEADER_FILTER_NAME));
+		
+		response.render(CssHeaderItem.forCSS(ETheme.getActiveTheme().getStyle(), "avkTheme"));
+	}
 
 	@Override
 	protected void onAfterRender()
@@ -207,4 +219,5 @@ public class BasePage extends WebPage implements IRequiresHttps, Serializable{
 		DBHelper.closeSession();
 		super.onAfterRender();
 	}
+
 }

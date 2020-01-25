@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -12,6 +13,7 @@ import org.apache.wicket.util.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.myforum.application.AllConstants;
 import com.myforum.application.ForumUtils;
 import com.myforum.base.AVKPage;
 import com.myforum.base.menu.EMenuItem;
@@ -87,11 +89,4 @@ public class ArticlePage extends AVKPage {
     protected String getPageTitle() {
     	return "AVK - " + Translator.getInstance().translate("Articles");
     }
-
-	@Override
-	public void renderHead(IHeaderResponse response) {
-		// STOP using an alternate css... it does not add anything of real worth AND the left-right sides get screwed up 
-	    //response.render(CssHeaderItem.forReference(new CssResourceReference(ArticlePage.class, "blog.css")));
-	    //response.render(CssHeaderItem.forReference(new CssResourceReference(ArticlePage.class, "ie10-viewport-bug-workaround.css")));
-	}
 }
