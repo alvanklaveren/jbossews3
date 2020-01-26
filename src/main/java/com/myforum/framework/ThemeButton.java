@@ -22,6 +22,12 @@ public class ThemeButton extends Button {
 	}
 
 	public ThemeButton(String id, String labelText, final ETheme theme){
+		
+		this(id, labelText, theme, false);
+	}
+
+	public ThemeButton(String id, String labelText, final ETheme theme, boolean setActive /* is used only when cookie is missing*/){
+		
 		super(id);
 		add(new AjaxEventBehavior("onclick"){
 			private static final long serialVersionUID = 1L;
@@ -37,7 +43,7 @@ public class ThemeButton extends Button {
 			}			
 		});
 
-		if(theme.getId() == CookieLogics.getCookieInt(ETheme.cookieName)) {
+		if(theme.getId() == CookieLogics.getCookieInt(ETheme.cookieName) || setActive) {
 			add(new AttributeAppender("class", "btn btn-secondary"));
 			setDefaultModel(new Model<String>("<b>" + labelText + "</b>"));
 		} else {

@@ -2,8 +2,8 @@ package com.myforum.application;
 
 public enum ETheme {
 
-	  Light(1, "Light", "body{ background:#F3F3FC; color:#303030; } #centerpanel{background:#FFFFFF;}")
-	, Dark(2, "Dark", "body{ background:#000000; color:#F3F3FC } #centerpanel{ background:#303030; color:#F3F3FC }")
+	  Light(1, "Light", "body{ background:#F3F3FC; color:#303030; } #centerpanel{background:#FFFFFF;} ")
+	, Dark(2, "Dark", "body{ background:#000000; color:#F3F3FC } #centerpanel{ background:#303030; color:#F3F3FC } code{color:#F3F3FC} pre{color:#F3F3FC}")
   ;
 
 	int		id;

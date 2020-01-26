@@ -50,7 +50,7 @@
 			<p style="text-align:justify">The following is a minimalistic subset of the actual code in my services, but gives you an idea of how Rest-Easy can be used, based on the autoscan not being available,
 							   and subscribing the services in the application class. Let's start with the service class, HelloPojo.java, that we are going to use later on.</p>
 			<big>HelloPojo.java</big>
-			<pre><code>import javax.ws.rs.GET;
+			<pre><code>	import javax.ws.rs.GET;
 	import javax.ws.rs.Path;
 	import javax.ws.rs.PathParam;
 	import javax.ws.rs.Produces;
@@ -103,7 +103,7 @@
 			 </p>
 			
 			<big>RestServices.java</big>
-	<pre><code>import java.util.HashSet;
+	<pre><code>	import java.util.HashSet;
 	import java.util.Set;
 	
 	import javax.ws.rs.ApplicationPath;
@@ -147,7 +147,7 @@
 				Now for some configuration. Fortunately, this is limited to only two files, <i>pom.xml</i> (for building and deploying your web application) and <i>web.xml</i>.
 			</p>
 			<big>pom.xml</big>
-	<pre><code>...
+	<pre><code>	...
 	&lt;properties&gt;
 		...
 		&lt;resteasy.version&gt;3.0.18.Final&lt;/resteasy.version&gt;
@@ -188,7 +188,7 @@
 				<i>resteasy.version</i> , to control the version number of the dependencies. 
 			</p>
 			<big>web.xml</big>
-	<pre><code>...
+	<pre><code>	...
 	<i>&lt;!-- 
 	  &lt;context-param&gt;
 		&lt;param-name&gt;resteasy.scan&lt;/param-name&gt;

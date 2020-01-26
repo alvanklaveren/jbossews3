@@ -61,9 +61,11 @@ public class BasePage extends WebPage implements IRequiresHttps, Serializable{
 
 		if(CookieLogics.getCookieInt(ETheme.cookieName) == 0) {
 			CookieLogics.setCookieForever(ETheme.cookieName, ETheme.Light.getId());
+			add( new ThemeButton("light", ETheme.Light.getDescription(), ETheme.Light, true /*setActive*/) );
+		} else {
+			add( new ThemeButton("light", ETheme.Light.getDescription(), ETheme.Light, false /*setActive*/ ) );
 		}
-
-		add( new ThemeButton("light", ETheme.Light.getDescription(), ETheme.Light) );
+		
 		add( new ThemeButton("dark",  ETheme.Dark.getDescription(),  ETheme.Dark) );
 
 		add( new LanguageButton("english", "EN", ELanguage.English) );
