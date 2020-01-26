@@ -5,15 +5,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import org.apache.wicket.markup.head.CssHeaderItem;
-import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.myforum.application.AllConstants;
 import com.myforum.application.ForumUtils;
 import com.myforum.base.AVKPage;
 import com.myforum.base.menu.EMenuItem;
@@ -24,7 +21,7 @@ public class ArticlePage extends AVKPage {
 
 	private static Logger LOG = LoggerFactory.getLogger(ArticlePage.class); 
 	
-	public ArticlePage(PageParameters params) {
+	public ArticlePage(final PageParameters params) {
 		super(EMenuItem.Articles);
 		String articleRestId = ForumUtils.getParmString(params, "id", "");
 		
@@ -48,28 +45,30 @@ public class ArticlePage extends AVKPage {
 			e.printStackTrace();
 		}
 		
+		Label navigatorLabel = null;
+		
 		// only for the default article, dynamically add the articles to form an index
-		if(article == ArticleFactory.getInstance().getDefaultArticle()){
+		if(article.equals(ArticleFactory.getInstance().getDefaultArticle())){
 			// refresh article setup based on articles.xml
 			ArticleFactory.createArticles();
 			
+			htmlContent = htmlContent.replace("<titlelabel/>", translator.translate("Articles") );
+			htmlContent = htmlContent.replace("<descriptionlabel/>", translator.translate("Firsthand experience with Languages, Frameworks and IDEs") );
 			htmlContent = htmlContent.replace("<articleindex/>", ArticleFactory.getInstance().getArticleIndex() );
-			Label navigatorLabel = new Label("navigator", "");
-			navigatorLabel.setVisible(false);
-			addOrReplace(navigatorLabel);
-		}else{
-			Label navigatorLabel = new Label("navigator", getNavigatorHTML(article));
-			navigatorLabel.setEscapeModelStrings(false); 
-			addOrReplace(navigatorLabel);
-		}
 
-		htmlContent = htmlContent.replace("<titlelabel/>", translator.translate("Articles") );
-		htmlContent = htmlContent.replace("<descriptionlabel/>", translator.translate("Firsthand experience with Languages, Frameworks and IDEs") );
-		
+			navigatorLabel = new Label("navigator", "");
+		}else{
+
+			navigatorLabel = new Label("navigator", getNavigatorHTML(article));
+		}
+	
 		Label htmlContentLabel = new Label("htmlcontent", htmlContent);
 		htmlContentLabel.setEscapeModelStrings(false);
 		addOrReplace(htmlContentLabel);
-		
+
+		navigatorLabel.setEscapeModelStrings(false); 
+		addOrReplace(navigatorLabel);
+
 	
 	}
 

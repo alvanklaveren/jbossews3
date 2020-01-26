@@ -70,9 +70,14 @@ public final class CookieLogics{
 			cookie.setValue(value);
 		}
 		
+		// now I don't really know why, but when I do not forcibly set the path to "/",
+		// in the article page it will eventually create a defaultTheme cookie with path "/articles"
+		// when I go to one of the articles, and press next or previous. Apparently there is something 
+		// wrong with Bookmarkable pages, that force a path in the webrequest, eventually creating a 
+		// cookie with a path "/articles". So we force the cookiepath to "/" to prevent this behaviour
+		cookie.setPath(AllConstants.COOKIE_PATH);
 		//cookie.setDomain(AllConstants.COOKIE_DOMAIN);
-		//cookie.setPath(AllConstants.COOKIE_PATH);
-		
+
 		if(keepForever){ 
 			cookie.setMaxAge(60 * 60 * 24 * 365 * 10); // 10 years into the future.
 		}else{
