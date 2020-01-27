@@ -22,7 +22,7 @@ import com.myforum.dictionary.ELanguage;
 import com.myforum.dictionary.EText;
 import com.myforum.dictionary.Translator;
 import com.myforum.framework.ErrorLabel;
-import com.myforum.framework.LanguageButton;
+import com.myforum.framework.LanguageLabel;
 import com.myforum.framework.SuccessLabel;
 import com.myforum.framework.ThemeButton;
 import com.myforum.homepage.HomePage;
@@ -59,17 +59,19 @@ public class BasePage extends WebPage implements IRequiresHttps, Serializable{
 			return;
 		}
 
+		boolean defaultThemeActive = false;
 		if(CookieLogics.getCookieInt(ETheme.cookieName) == 0) {
 			CookieLogics.setCookieForever(ETheme.cookieName, ETheme.Light.getId());
-			add( new ThemeButton("light", ETheme.Light.getDescription(), ETheme.Light, true /*setActive*/) );
+			defaultThemeActive = true;
 		} else {
-			add( new ThemeButton("light", ETheme.Light.getDescription(), ETheme.Light, false /*setActive*/ ) );
-		}
+			defaultThemeActive = false;
+		}		
 		
+		add( new ThemeButton("light", ETheme.Light.getDescription(), ETheme.Light, defaultThemeActive) );
 		add( new ThemeButton("dark",  ETheme.Dark.getDescription(),  ETheme.Dark) );
 
-		add( new LanguageButton("english", "EN", ELanguage.English) );
-		add( new LanguageButton("dutch",   "NL", ELanguage.Dutch) );
+		add( new LanguageLabel("flag_uk", ELanguage.English) );
+		add( new LanguageLabel("flag_nl", ELanguage.Dutch) );
 		
 		add( new Label("pagetitle", getPageTitle()) );
 		
