@@ -426,6 +426,7 @@
 					<include>articlepages/*.*</include>
 					<include>documents/*.*</include>
 					<include>images/*.*</include>
+					<include>fonts/*.*</include>
 					<include>css/*.*</include>
 					<include>fontawesome/*.*</include>
 					<include>fontawesome/css/*.*</include>
