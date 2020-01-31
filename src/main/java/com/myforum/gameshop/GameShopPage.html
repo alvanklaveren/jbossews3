@@ -232,7 +232,7 @@
 	
 			<div class="container" id="topcontent">
 				<div class="row">			
-				  	<div class="col-lg-6 col-md-auto">
+				  	<div class="col-lg-6 col-auto mr-auto">
 						<form wicket:id="configform" style="margin-left:0px; width:100%">
 						  <div class="d-flex bd-highlight" style="width:100%">
 							<div class="p-2 flex-fill bd-highlight" style="width:50%">
@@ -246,11 +246,13 @@
 						  </div>
 						</form>
 					</div>
-					<div class="col">
+					<div class="col-md-auto">
 						<form wicket:id="searchform" class="d-flex bd-highlight"> 
-						  <div class="form-inline ml-auto p-2 flex-fill bd-highlight">
+						  <div class="input-group">
 						    <input type="text" class="form-control" id="searchtitle" wicket:id="searchtitle" placeholder="Search title">
-							<button wicket:id="searchbutton" class="btn btn-outline-primary h-100"><i class="fas fa-search"> </i></button>
+						    <div class="input-group-append btn-group">
+								<button wicket:id="searchbutton" class="btn btn-outline-primary h-100"><i class="fas fa-search"> </i></button>
+							</div>
 					 	  </div>
 						</form>
 					</div>
