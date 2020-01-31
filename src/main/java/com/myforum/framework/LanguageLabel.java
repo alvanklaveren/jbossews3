@@ -3,7 +3,6 @@ package com.myforum.framework;
 
 import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.Model;
 import org.slf4j.Logger;
@@ -37,13 +36,13 @@ public class LanguageLabel extends Label {
 			}			
 		});
 
-		String labelText  = "<img src=\"" + language.getFontFile() + "\" width=20px height=20px alt=\"" + language.getIsoA2() + "\">";
-		if( Translator.getInstance().getDefaultLanguage() == language){
-			add(new AttributeAppender("class", "btn btn-secondary"));
-			setDefaultModel(new Model<String>("<b>" + labelText + "</b>"));		
-		} else {
-			setDefaultModel(new Model<String>(labelText));					
-		}
+		String labelText  = "<img src=\"" + language.getFontFile() + "\" width=" + language.getFontWidth() + "px height=" + language.getFontHeight() + "px alt=\"" + language.getIsoA2() + "\">";
+//		if( Translator.getInstance().getDefaultLanguage() == language){
+//			//add(new AttributeAppender("class", "btn btn-secondary"));
+//			setDefaultModel(new Model<String>("<b>" + labelText + "</b>"));		
+//		} else {
+		labelText += " " + language.toString();
+		setDefaultModel(new Model<String>(labelText));					
 		
 		setEscapeModelStrings(false); // necessary, to get it displayed in BOLD
 	}

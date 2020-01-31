@@ -8,6 +8,7 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.protocol.http.ClientProperties;
 import org.apache.wicket.protocol.http.request.WebClientInfo;
 import org.apache.wicket.settings.IRequestCycleSettings;
@@ -70,9 +71,15 @@ public class BasePage extends WebPage implements IRequiresHttps, Serializable{
 		add( new ThemeButton("light", ETheme.Light.getDescription(), ETheme.Light, defaultThemeActive) );
 		add( new ThemeButton("dark",  ETheme.Dark.getDescription(),  ETheme.Dark) );
 
-		add( new LanguageLabel("flag_uk", ELanguage.English) );
+		add( new LanguageLabel("flag_gb", ELanguage.English) );
 		add( new LanguageLabel("flag_nl", ELanguage.Dutch) );
 		
+		ELanguage selectedLanguage = Translator.getInstance().getDefaultLanguage();
+		String labelText  = "<img src=\"" + selectedLanguage.getFontFile() + "\" width=" + selectedLanguage.getFontWidth() + "px height=" + selectedLanguage.getFontHeight() + "px alt=\"" + selectedLanguage.getIsoA2() + "\">";
+		Label selectedLanguageLabel = new Label("flag_selected", new Model<String>(labelText));
+		selectedLanguageLabel.setEscapeModelStrings(false);
+		add(selectedLanguageLabel);	 
+
 		add( new Label("pagetitle", getPageTitle()) );
 		
 		// Top Menu

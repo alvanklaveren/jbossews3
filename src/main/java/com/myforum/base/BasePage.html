@@ -16,7 +16,7 @@
  <!--  <link href="css/bootstrap.min.css" rel="stylesheet"> -->
  
  <!--  FontAwesome -->
- <link href="/fontawesome/css/all.css" rel="stylesheet"> <!--load all styles -->
+ <link href="fontawesome/css/all.css" rel="stylesheet"> <!--load all styles -->
  
  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
  <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -122,20 +122,26 @@
 
 			<small><br/></small>
 
-			<div>
-		    	<div data-toggle="tooltip" data-placement="top" title="Click to select language" style="float:right;">
-			    	<div class="btn-group btn-group-sm" role="group" aria-label="Select Language">
-	 		    		<button type="button" class="btn btn-outline-secondary" wicket:id="flag_uk" style="cursor:pointer;">1</button>
-			    		<button type="button" class="btn btn-outline-secondary" wicket:id="flag_nl" style="cursor:pointer;">2</button>
-			    	</div>  
-		    	</div>
-	
-		    	<div data-toggle="tooltip" data-placement="top" title="Click to select theme" style="float:left;">
+			<div class="row">
+		    	<div data-toggle="tooltip" data-placement="top" title="Click to select theme" class="col-auto mr-auto">
 			    	<div class="btn-group btn-group-sm" role="group" aria-label="Select Theme">
 	 		    		<button type="button" class="btn btn-outline-secondary" style="cursor:pointer;" wicket:id="light">Light</button>
 			    		<button type="button" class="btn btn-outline-secondary" style="cursor:pointer;" wicket:id="dark">Dark</button>
 			    	</div>  
 		    	</div>
+		    	
+		    	<div data-toggle="tooltip" data-placement="top" title="Click to select language" class="col-auto">
+			      <div class="btn-group btn-group-sm dropleft" role="group" aria-label="Select Language">
+			    	<button id="btnGroupDropLanguage" type="button" class="btn btn-sm btn-outline-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      					<span wicket:id="flag_selected"></span>
+    				</button>
+	   				<div class="dropdown-menu" aria-labelledby="btnGroupDropLanguage">
+	 		    		<button type="button" class="dropdown-item" wicket:id="flag_gb" style="cursor:pointer;">1</button>
+			    		<button type="button" class="dropdown-item" wicket:id="flag_nl" style="cursor:pointer;">2</button>
+					</div>
+			      </div>  
+		    	</div>
+		    	
 		    </div>
 
 	   		<a style="font-size:12; text-align:center"><br><br><br></a>
@@ -179,7 +185,8 @@
 	</div>
 
   <!-- Placed at the end of the document so the pages load faster -->
-  <script src="js/popper.1.12.3.min.js"></script>
+  <!-- <script src="js/popper.1.12.3.min.js"></script> -->
+  <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
 
   <!--  Cookie Banner -->

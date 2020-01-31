@@ -216,6 +216,8 @@ public class GameShopPage extends BasePage {
 				return;
 			}
 	    };    
+	    searchButton.setEscapeModelStrings(false);
+
 	    searchForm.addOrReplace(searchButton);
 	    
         addOrReplace(searchForm);
