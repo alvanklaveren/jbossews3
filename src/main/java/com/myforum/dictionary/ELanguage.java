@@ -2,8 +2,8 @@ package com.myforum.dictionary;
 
 public enum ELanguage {
 
-  English (1, "English", "us", "/fonts/flag_gb.svg", "UK", 30, 20)
-, Dutch   (2, "Dutch", "nl", "/fonts/flag_nl.svg", "NL", 20, 20),    
+  English (1, "English", "us", "/fonts/flag_gb.svg", "UK", 35, 35)
+, Dutch   (2, "Dutch", "nl", "/fonts/flag_nl.svg", "NL", 35, 35),    
 ;
 
 	String  description;
