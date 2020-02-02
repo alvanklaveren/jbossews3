@@ -27,16 +27,19 @@ public class MenuPanel extends Panel {
 		
 		menuItems = new StringBuilder();
 		menuItems.append(new MenuItem(EMenuItem.Home, activeMenuItem).toHtml());
+
+		menuItems.append(new MenuItem(EMenuItem.Forum, activeMenuItem).toHtml());
+		menuItems.append(new MenuItem(EMenuItem.GameShop, activeMenuItem).toHtml());
 		
-		DropDownMenuItem dropDownMenu = new DropDownMenuItem(EMenuItem.Applications.defaultText());
-		dropDownMenu.addMenuItem(new DDMenuItem(EMenuItem.Forum, activeMenuItem));
-		dropDownMenu.addMenuItem(new DDMenuItem(EMenuItem.GameShop, activeMenuItem));
+		//DropDownMenuItem dropDownMenu = new DropDownMenuItem(EMenuItem.Applications.defaultText());
+		//dropDownMenu.addMenuItem(new DDMenuItem(EMenuItem.Forum, activeMenuItem));
+		//dropDownMenu.addMenuItem(new DDMenuItem(EMenuItem.GameShop, activeMenuItem));
 		//dropDownMenu.addMenuItem(new DDMenuItem(EMenuItem.Sources, activeMenuItem));
 		//dropDownMenu.addMenuItem(new MenuDividerItem());
 		//dropDownMenu.addMenuItem(new DDMenuHeaderItem("More to come"));
 		//dropDownMenu.addMenuItem(new MenuItem(EMenuItem.AVKOS).disable());
 		//dropDownMenu.addMenuItem(new MenuItem(EMenuItem.AppCreator).disable());
-		menuItems.append(dropDownMenu.toHtml());
+		//menuItems.append(dropDownMenu.toHtml());
 
 		if ( isAdministrator(getActiveUser()) ){
 			DropDownMenuItem dropDownMenu2 = new DropDownMenuItem(EMenuItem.CodeTables.defaultText());
