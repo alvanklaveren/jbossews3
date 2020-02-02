@@ -37,7 +37,7 @@
 }
 
 /* Add an active class to the active dropdown button */
-.active {
+.sidenav active {
   color: white;
   background: #729fcf; /* Old browsers */
   background: -moz-linear-gradient(top,  #729fcf 0%, #729fcf 100%); /* FF3.6+ */
