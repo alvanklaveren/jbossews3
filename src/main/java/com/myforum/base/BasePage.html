@@ -49,6 +49,10 @@
 		width:15%;
 	  }
 	  
+	  #logo_small{
+	  	display:none;
+	  }
+	  
 	  #centerpanel{
 		float:left; 
 	  	width:70%;
@@ -89,6 +93,11 @@
 	  #footerabout{
 	  	display:block;
 	  }
+	  
+	  #logo_big{
+	  	display:none;
+	  }
+	  
 	}
  </style>
 
@@ -120,16 +129,16 @@
 	    <div id="centerpanel">
 
 			<small><br/></small>
-
+ 
 			<div class="row">
-		    	<div data-toggle="tooltip" data-placement="top" title="Click to select theme" class="col-auto mr-auto">
+		    	<div class="col" data-toggle="tooltip" data-placement="top" title="Click to select theme">
 			    	<div class="btn-group btn-group-sm" role="group" aria-label="Select Theme">
 	 		    		<button type="button" class="btn btn-outline-secondary" style="cursor:pointer;" wicket:id="light">Light</button>
 			    		<button type="button" class="btn btn-outline-secondary" style="cursor:pointer;" wicket:id="dark">Dark</button>
 			    	</div>  
 		    	</div>
 		    	
-		    	<div data-toggle="tooltip" data-placement="top" title="Click to select language" class="col-auto">
+		    	<div class="col text-right" data-toggle="tooltip" data-placement="top" title="Click to select language">
 			      <div class="btn-group btn-group-sm dropleft" role="group" aria-label="Select Language">
    					<span wicket:id="flag_selected" id="btnGroupDropLanguage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>
 	   				<div class="dropdown-menu" aria-labelledby="btnGroupDropLanguage">
