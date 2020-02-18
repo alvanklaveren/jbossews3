@@ -130,23 +130,19 @@
 
 			<small><br/></small>
  
-			<div class="row">
-		    	<div class="col" data-toggle="tooltip" data-placement="top" title="Click to select theme">
-			    	<div class="btn-group btn-group-sm" role="group" aria-label="Select Theme">
-	 		    		<button type="button" class="btn btn-outline-secondary" style="cursor:pointer;" wicket:id="light">Light</button>
-			    		<button type="button" class="btn btn-outline-secondary" style="cursor:pointer;" wicket:id="dark">Dark</button>
-			    	</div>  
-		    	</div>
+			<div>
+		    	<div class="btn-group btn-group-sm" role="group" aria-label="Select Theme" data-toggle="tooltip" data-placement="top" title="Click to select theme">
+ 		    		<button type="button" class="btn btn-outline-secondary" style="cursor:pointer;" wicket:id="light">Light</button>
+		    		<button type="button" class="btn btn-outline-secondary" style="cursor:pointer;" wicket:id="dark">Dark</button>
+		    	</div>  
 		    	
-		    	<div class="col text-right" data-toggle="tooltip" data-placement="top" title="Click to select language">
-			      <div class="btn-group btn-group-sm dropleft" role="group" aria-label="Select Language">
-   					<span wicket:id="flag_selected" id="btnGroupDropLanguage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>
-	   				<div class="dropdown-menu" aria-labelledby="btnGroupDropLanguage">
-	 		    		<button type="button" class="dropdown-item" wicket:id="flag_gb" style="cursor:pointer;">1</button>
-			    		<button type="button" class="dropdown-item" wicket:id="flag_nl" style="cursor:pointer;">2</button>
-					</div>
-			      </div>  
-		    	</div>
+  		        <div class="btn-group btn-group-sm dropleft" role="group" aria-label="Select Language" style="float:right;" data-toggle="tooltip" data-placement="top" title="Click to select language">
+  				  <span wicket:id="flag_selected" id="btnGroupDropLanguage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>
+   				  <div class="dropdown-menu" aria-labelledby="btnGroupDropLanguage">
+ 		    		<button type="button" class="dropdown-item" wicket:id="flag_gb" style="cursor:pointer;">1</button>
+		    		<button type="button" class="dropdown-item" wicket:id="flag_nl" style="cursor:pointer;">2</button>
+				  </div>
+		        </div>  
 		    	
 		    </div>
 
