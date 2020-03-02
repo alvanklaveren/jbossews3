@@ -47,9 +47,9 @@ public class HomePage extends AVKPage {
 		CookieLogics.deleteCookie("codeMessageCategory");
 		CookieLogics.deleteCookie("codeMessage");
 
-		Label helloLabel = new AVKLabel( "hellolabel", "Hello Galaxy");
+		//Label helloLabel = new AVKLabel( "hellolabel", "Hello Galaxy");
 
-		addOrReplace(helloLabel);
+		//addOrReplace(helloLabel);
 		//addOrReplace(new BookmarkablePageLink<ForumBasePage>("forum", ForumBasePage.class));
 		//addOrReplace(new BookmarkablePageLink<SourceHomePage>("sourcepage", SourceHomePage.class));
 
