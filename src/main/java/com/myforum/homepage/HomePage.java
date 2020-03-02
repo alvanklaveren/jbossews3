@@ -8,16 +8,14 @@ import java.util.List;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.basic.MultiLineLabel;
 import org.apache.wicket.markup.html.list.ListItem;
+import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.list.PageableListView;
 
 import com.myforum.application.CookieLogics;
-import com.myforum.application.ForumUtils;
 import com.myforum.application.StringLogics;
 import com.myforum.base.AVKPage;
 import com.myforum.base.menu.EMenuItem;
 import com.myforum.dictionary.Translator;
-import com.myforum.framework.AVKLabel;
-import com.myforum.framework.StatelessPagingNavigator;
 import com.myforum.tables.Message;
 import com.myforum.tables.MessageCategory;
 import com.myforum.tables.dao.MessageCategoryDao;
@@ -30,7 +28,6 @@ public class HomePage extends AVKPage {
 	private final MessageCategoryDao 	messageCategoryDao 	= new MessageCategoryDao();
 	private final SimpleDateFormat		dateFormat			= new SimpleDateFormat("yyyy/MM/dd");
 	private List<Message> 				messageList 		= Collections.synchronizedList( new ArrayList<Message>() );
-	private long pageNumber = 0;
 	
 	//@SpringBean
 	//protected HelloService helloService;
@@ -40,8 +37,6 @@ public class HomePage extends AVKPage {
 	
 		// First spring bean
 		//System.out.println(helloService.getHelloWorldMessage());
-		
-		pageNumber	= ForumUtils.getParmInt(getPageParameters(), "page", 0);
 		
 		CookieLogics.deleteCookie("moveMessage");
 		CookieLogics.deleteCookie("codeMessageCategory");
@@ -59,7 +54,7 @@ public class HomePage extends AVKPage {
 		MessageDao messageDao = new MessageDao();
 		messageList = messageDao.getMessages( messageCategory );
 	    	    
-	    PageableListView <Message> listView = new PageableListView <Message>("messagelist", messageList, 10) {
+	    ListView <Message> listView = new ListView <Message>("messagelist", messageList) {
 			private static final long serialVersionUID = 1L;
 			
 			@Override
@@ -78,7 +73,6 @@ public class HomePage extends AVKPage {
         };
 		
         addOrReplace( listView ); 
-        addOrReplace( new StatelessPagingNavigator( "navigator", getPageParameters(), pageNumber, listView ) );       
 		
 	}
 	
