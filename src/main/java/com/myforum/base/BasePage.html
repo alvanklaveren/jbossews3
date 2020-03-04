@@ -36,6 +36,12 @@
  	background: #0052A6;
  	}
  
+	#hellogalaxy{
+  		width:70%; 
+  		border:2; 
+  		box-shadow:2px 5px 10px #66A0A0;
+	}
+ 
     #basepanelleft {
 		float:left;
 		min-height: 100%; 
@@ -61,11 +67,11 @@
 	  display:block;
 		width:15%;
 	  }
-	  
+
 	  #logo_small{
 	  	display:none;
-	  }
-	  
+	  } 
+	     
 	  #centerpanel{
 		float:left; 
 	  	width:70%;
@@ -93,6 +99,12 @@
 	  	display:none;
 	  }
 
+	  #hellogalaxy {
+	  	width:96%; 
+	  	border:1; 
+	  	box-shadow:1px 1px 2px #66A0A0;
+	  }
+  
 	  #centerpanel{
 	  	width:98%;
 		margin-left: auto; 
@@ -155,11 +167,11 @@
  		    		<button type="button" class="dropdown-item" wicket:id="flag_gb" style="cursor:pointer;">1</button>
 		    		<button type="button" class="dropdown-item" wicket:id="flag_nl" style="cursor:pointer;">2</button>
 				  </div>
-		        </div>  
-		    	
+		        </div>      	
 		    </div>
 
-	   		<a style="font-size:12; text-align:center"><br><br><br></a>
+	   		<a style="font-size:2; text-align:center"><br></a>
+
   			<div wicket:id="errordiv" class="alert alert-warning alert-dismissible fade show" role="alert">
 				<a wicket:id="errormessage"></a>
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -172,9 +184,10 @@
 		    		<span aria-hidden="true">&times;</span>
 		  		</button>
 			</div>
-	   		
+
+	   		<a style="font-size:4; text-align:center"><br></a>
+	   			   		
 	    	<wicket:child/>
-	    	<br>
 	    </div>
 	    
 	    <div id="basepanelright" wicket:id="sidepanelright" class="sticky-top"> </div>
