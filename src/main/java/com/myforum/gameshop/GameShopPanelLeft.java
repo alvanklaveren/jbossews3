@@ -27,7 +27,6 @@ public class GameShopPanelLeft extends BasePanelLeft {
 		List<GameConsole> gameConsoleList = new GameConsoleDao().list();
 		List<ProductType> productTypeList = new ProductTypeDao().list(); 
 
-	    sb.append("<br/>");
 		sb.append("<div class=\"sidenav\">");
 		sb.append("<a href=\"/gameshop\" class=\"dropdown-btn\">"+ translator.translate( EText.RECENTLY_ADDED ) +"</a>");
 	    sb.append("<br style=\"line-height: 1px;\"/>");

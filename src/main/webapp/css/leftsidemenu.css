@@ -10,15 +10,19 @@
 
 /* Style the sidenav links and the dropdown button */
 .sidenav a, .dropdown-btn {
+  border-left: thick solid #337ab7;
   padding: 1px 12px;
-  color: #fff;
-  background: #337ab7;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #000;
+  background: #fff;
   text-decoration: none;
   font-size: 15px;
   display: block;
   width: 100%;
-  border-bottom: 1px solid rgba(0,0,0,0.3);
-  border-top: 1px solid rgba(255,255,255,0.2);
+  border-bottom: 1px solid #337ab7;
+  border-top: 1px solid #337ab7;
+  border-right: 1px solid #337ab7;
   font-weight: 500;
   cursor: pointer;
   outline: none;
@@ -26,7 +30,8 @@
 
 /* On mouse-over */
 .dropdown-btn:hover {
-  background: #729fcf; /* Old browsers */
+  color: #fff;
+  background: #337ab7; /* Old browsers */
   background: -moz-linear-gradient(top,  #729fcf 0%, #729fcf 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#729fcf), color-stop(100%,#729fcf)); /* Chrome,Safari4+ */
   background: -webkit-linear-gradient(top,  #729fcf 0%,#729fcf 100%); /* Chrome10+,Safari5.1+ */
@@ -55,11 +60,15 @@
 }
 
 .dropdown-container a{
+  padding-left: 30px;
+  border-left: 1px solid #eee;
   text-decoration: none;
   width: 100%;
   color: #555;
   background: #fff;
+  border-top: 0px solid #eee;
   border-bottom: 1px solid #eee;
+  border-right: 1px solid #eee;
 }
 
 .dropdown-container a:hover {
