@@ -8,6 +8,7 @@ import org.apache.wicket.model.Model;
 import com.myforum.base.BasePanelLeft;
 import com.myforum.dictionary.EText;
 import com.myforum.dictionary.Translator;
+import com.myforum.framework.AVKLabel;
 import com.myforum.tables.GameConsole;
 import com.myforum.tables.ProductType;
 import com.myforum.tables.dao.GameConsoleDao;
@@ -22,11 +23,14 @@ public class GameShopPanelLeft extends BasePanelLeft {
 	public GameShopPanelLeft(String id) {
 		super(id);
 
+		Label navigationLabel = new AVKLabel("navigation", "Navigation");
+		add(navigationLabel);
+
 		StringBuilder sb = new StringBuilder();
 		
 		List<GameConsole> gameConsoleList = new GameConsoleDao().list();
 		List<ProductType> productTypeList = new ProductTypeDao().list(); 
-
+		
 		sb.append("<div class=\"sidenav\">");
 		sb.append("<a href=\"/gameshop\" class=\"dropdown-btn\">"+ translator.translate( EText.RECENTLY_ADDED ) +"</a>");
 	    sb.append("<br style=\"line-height: 1px;\"/>");
