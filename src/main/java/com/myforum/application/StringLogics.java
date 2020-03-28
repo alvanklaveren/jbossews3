@@ -298,6 +298,7 @@ public final class StringLogics{
 		log.info(strStart);
 		
 		// next, find version numbers that are somewhere in the middle of a string
+		String origStrStart = new String(strStart);
 		strStart = strStart.replace(" II ", 	" 2 ");
 		strStart = strStart.replace(" III ", 	" 3 ");
 		strStart = strStart.replace(" IV ", 	" 4 ");
@@ -318,29 +319,70 @@ public final class StringLogics{
 		strStart = strStart.replace(" XIX ", 	" 19 ");
 		strStart = strStart.replace(" XX ", 	" 20 ");
 
-		// and vice versa
-		strStart = strStart.replace(" 2 ", 		" II ");
-		strStart = strStart.replace(" 3 ", 		" III ");
-		strStart = strStart.replace(" 4 ", 		" IV ");
-		strStart = strStart.replace(" 5 ", 		" V ");
-		strStart = strStart.replace(" 6 ", 		" VI ");
-		strStart = strStart.replace(" 7 ", 		" VII ");
-		strStart = strStart.replace(" 8 ", 		" VIII ");
-		strStart = strStart.replace(" 9 ", 		" IX ");
-		strStart = strStart.replace(" 10 ", 	" X ");
-		strStart = strStart.replace(" 11 ", 	" XI ");
-		strStart = strStart.replace(" 12 ", 	" XII ");
-		strStart = strStart.replace(" 13 ", 	" XIII ");
-		strStart = strStart.replace(" 14 ", 	" XIV ");
-		strStart = strStart.replace(" 15 ", 	" XV ");
-		strStart = strStart.replace(" 16 ", 	" XVI ");
-		strStart = strStart.replace(" 17 ", 	" XVII ");
-		strStart = strStart.replace(" 18 ", 	" XVIII ");
-		strStart = strStart.replace(" 19 ", 	" XIX ");
-		strStart = strStart.replace(" 20 ", 	" XX ");
+		strStart = strStart.replace(" II-", 	" 2 ");
+		strStart = strStart.replace(" III-", 	" 3 ");
+		strStart = strStart.replace(" IV-", 	" 4 ");
+		strStart = strStart.replace(" V-", 		" 5 ");
+		strStart = strStart.replace(" VI-", 	" 6 ");
+		strStart = strStart.replace(" VII-", 	" 7 ");
+		strStart = strStart.replace(" VIII-", 	" 8 ");
+		strStart = strStart.replace(" IX-", 	" 9 ");
+		strStart = strStart.replace(" X-", 		" 10 ");
+		strStart = strStart.replace(" XI-", 	" 11 ");
+		strStart = strStart.replace(" XII-", 	" 12 ");
+		strStart = strStart.replace(" XIII-", 	" 13 ");
+		strStart = strStart.replace(" XIV-", 	" 14 ");
+		strStart = strStart.replace(" XV-", 	" 15 ");
+		strStart = strStart.replace(" XVI-", 	" 16 ");
+		strStart = strStart.replace(" XVII-", 	" 17 ");
+		strStart = strStart.replace(" XVIII-", 	" 18 ");
+		strStart = strStart.replace(" XIX-", 	" 19 ");
+		strStart = strStart.replace(" XX-", 	" 20 ");
+
+		// and vice versa (but only if the above did not already change it)
+		if(origStrStart.equals(strStart)) {
+			strStart = strStart.replace(" 2 ", 		" II ");
+			strStart = strStart.replace(" 3 ", 		" III ");
+			strStart = strStart.replace(" 4 ", 		" IV ");
+			strStart = strStart.replace(" 5 ", 		" V ");
+			strStart = strStart.replace(" 6 ", 		" VI ");
+			strStart = strStart.replace(" 7 ", 		" VII ");
+			strStart = strStart.replace(" 8 ", 		" VIII ");
+			strStart = strStart.replace(" 9 ", 		" IX ");
+			strStart = strStart.replace(" 10 ", 	" X ");
+			strStart = strStart.replace(" 11 ", 	" XI ");
+			strStart = strStart.replace(" 12 ", 	" XII ");
+			strStart = strStart.replace(" 13 ", 	" XIII ");
+			strStart = strStart.replace(" 14 ", 	" XIV ");
+			strStart = strStart.replace(" 15 ", 	" XV ");
+			strStart = strStart.replace(" 16 ", 	" XVI ");
+			strStart = strStart.replace(" 17 ", 	" XVII ");
+			strStart = strStart.replace(" 18 ", 	" XVIII ");
+			strStart = strStart.replace(" 19 ", 	" XIX ");
+			strStart = strStart.replace(" 20 ", 	" XX ");
+		}
 		
 		log.info(strStart);
 		return strStart;
+	}
+	
+	public static int indexOfDifference(CharSequence cs1, CharSequence cs2) {
+	    if (cs1 == cs2) {
+	        return -1;
+	    }
+	    if (cs1 == null || cs2 == null) {
+	        return 0;
+	    }
+	    int i;
+	    for (i = 0; i < cs1.length() && i < cs2.length(); ++i) {
+	        if (cs1.charAt(i) != cs2.charAt(i)) {
+	            break;
+	        }
+	    }
+	    if (i < cs2.length() || i < cs1.length()) {
+	        return i;
+	    }
+	    return -1;
 	}
 	
 }
