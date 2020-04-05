@@ -1,10 +1,6 @@
 package com.myforum.tables.dao;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -16,12 +12,10 @@ import org.hibernate.transform.Transformers;
 
 import com.myforum.application.StringLogics;
 import com.myforum.gameshop.ESortOrder;
-import com.myforum.tables.ForumUser;
+import com.myforum.gameshop.GameShopLogics;
 import com.myforum.tables.GameConsole;
 import com.myforum.tables.Product;
 import com.myforum.tables.ProductType;
-
-import antlr.StringUtils;
 
 public class ProductDao extends HibernateDao<Product, Integer>{
 
@@ -169,62 +163,7 @@ public class ProductDao extends HibernateDao<Product, Integer>{
     	
     	List<Product> defaultList = (List<Product>) criteria.list();
     	
-    	final Map<String, Integer> versionMap = new HashMap<>();
-    	final Map<String, String> shortNameMap = new HashMap<>();
-    	
-
-    	for(Product product: defaultList) {
-
-    		Integer version = 0;
-    		String  shortName = product.getName();
-    		
-    		String productName = product.getName();
-    		String productNameAlt = StringLogics.convertVersionNumbers(product.getName());
-    		
-    		int diffIndex = StringLogics.indexOfDifference(productName, productNameAlt);
-    		if(diffIndex >= 0) {
-				shortName = productNameAlt.substring(0,diffIndex);
-
-				try {
-    				version = Integer.parseInt(productNameAlt.substring(diffIndex, diffIndex + 2)); // version > 10
-    			} catch(Exception e) {
-        			try {
-        				version = Integer.parseInt(productNameAlt.substring(diffIndex, diffIndex + 1)); // version < 10
-        			} catch(Exception e2) {
-        				version = 0; // makes sure all version-less products with same name are sorted on name only
-        			}
-    			}
-    		}
-    		
-    		versionMap.put(product.getName(), version);
-    		shortNameMap.put(product.getName(), shortName);
-    	}
-    	
-	    Collections.sort(defaultList, new Comparator<Product>() {
-	    	@Override
-	        public int compare(Product p1, Product p2) {
-	    		
-	    		int p1Version = versionMap.get(p1.getName());
-	    		int p2Version = versionMap.get(p2.getName());
-	    		String p1Short = shortNameMap.get(p1.getName());
-	    		String p2Short = shortNameMap.get(p2.getName());
-	    		    		
-	    		if(p1Version == 0 && p2Version > 0 && p1Short.equals(p2Short)) {
-	    			return 1;
-	    		}
-
-	    		if(p1Version > 0 && p2Version == 0 && p1Short.equals(p2Short)) {
-	    			return -1;
-	    		}
-	    		
-	    		if(p1Version > 0 && p2Version > 0 && p1Short.equals(p2Short)) {
-	    			return p1Version - p2Version;
-	    		}
-
-	    		return StringLogics.convertVersionNumbers(p1.getName()).compareTo(StringLogics.convertVersionNumbers(p2.getName()));
-	        }
-	    });
-
+    	defaultList = GameShopLogics.sortProductList(defaultList);
     	
     	return defaultList;
     }

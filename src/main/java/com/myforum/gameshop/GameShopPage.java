@@ -165,7 +165,11 @@ public class GameShopPage extends BasePage {
 				List<String> choices = Generics.newArrayList();
 				
 				int count = 0;
-				for (Product product : new ProductDao().listUniqueNames())
+				List<Product> productList = new ProductDao().listUniqueNames();
+				
+				productList = GameShopLogics.sortProductList(productList);
+				
+				for (Product product : productList)
 				{
 					if (product.getName().toLowerCase().contains(input.toLowerCase()))
 					{				
