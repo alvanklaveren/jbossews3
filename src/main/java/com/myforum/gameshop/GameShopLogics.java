@@ -65,6 +65,7 @@ public class GameShopLogics {
 		ProductType productType = productTypeDao.find(productTypeId);
 		if( gameConsole == null && productType == null){
 			productList = productDao.list(24 /*Maximum number of result*/ ); // get most recently added products
+			return productList; // do not sort.. we want the last entries to show up first
 		}
 		if( gameConsole != null && productType == null){	
 			productList = productDao.list( gameConsole, sortOrder );
