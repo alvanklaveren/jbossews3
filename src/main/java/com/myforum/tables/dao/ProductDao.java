@@ -163,7 +163,7 @@ public class ProductDao extends HibernateDao<Product, Integer>{
     	
     	List<Product> defaultList = (List<Product>) criteria.list();
     	
-    	defaultList = GameShopLogics.sortProductList(defaultList);
+    	defaultList = GameShopLogics.sortProductList(defaultList, ESortOrder.AZ);
     	
     	return defaultList;
     }
