@@ -79,12 +79,12 @@ public class GameShopLogics {
 			productList = productDao.list( gameConsole, productType, sortOrder );
 		}
 				
-		productList = sortProductList(productList);
+		productList = sortProductList(productList, sortOrder);
 		
 		return productList;
 	}
 	
-	public static List<Product> sortProductList(List<Product> defaultList) {
+	public static List<Product> sortProductList(List<Product> defaultList, ESortOrder sortOrder) {
 		
     	final Map<String, Integer> versionMap = new HashMap<>();
     	final Map<String, String> shortNameMap = new HashMap<>();
@@ -116,30 +116,59 @@ public class GameShopLogics {
     		shortNameMap.put(product.getName(), shortName);
     	}
     	
-	    Collections.sort(defaultList, new Comparator<Product>() {
-	    	@Override
-	        public int compare(Product p1, Product p2) {
-	    		
-	    		int p1Version = versionMap.get(p1.getName());
-	    		int p2Version = versionMap.get(p2.getName());
-	    		String p1Short = shortNameMap.get(p1.getName());
-	    		String p2Short = shortNameMap.get(p2.getName());
-	    		    		
-	    		if(p1Version == 0 && p2Version > 0 && p1Short.equals(p2Short)) {
-	    			return 1;
-	    		}
-
-	    		if(p1Version > 0 && p2Version == 0 && p1Short.equals(p2Short)) {
-	    			return -1;
-	    		}
-	    		
-	    		if(p1Version > 0 && p2Version > 0 && p1Short.equals(p2Short)) {
-	    			return p1Version - p2Version;
-	    		}
-
-	    		return StringLogics.convertVersionNumbers(p1.getName()).compareTo(StringLogics.convertVersionNumbers(p2.getName()));
-	        }
-	    });
+    	if(sortOrder.equals(ESortOrder.AZ)) {
+    	
+		    Collections.sort(defaultList, new Comparator<Product>() {
+		    	@Override
+		        public int compare(Product p1, Product p2) {
+		    		
+		    		int p1Version = versionMap.get(p1.getName());
+		    		int p2Version = versionMap.get(p2.getName());
+		    		String p1Short = shortNameMap.get(p1.getName());
+		    		String p2Short = shortNameMap.get(p2.getName());
+		    		    		
+		    		if(p1Version == 0 && p2Version > 0 && p1Short.equals(p2Short)) {
+		    			return 1;
+		    		}
+	
+		    		if(p1Version > 0 && p2Version == 0 && p1Short.equals(p2Short)) {
+		    			return -1;
+		    		}
+		    		
+		    		if(p1Version > 0 && p2Version > 0 && p1Short.equals(p2Short)) {
+		    			return p1Version - p2Version;
+		    		}
+	
+		    		return StringLogics.convertVersionNumbers(p1.getName()).compareTo(StringLogics.convertVersionNumbers(p2.getName()));
+		        }
+		    });
+    	} else if(sortOrder.equals(ESortOrder.ZA)) {
+    		
+		    Collections.sort(defaultList, new Comparator<Product>() {
+		    	@Override
+		        public int compare(Product p1, Product p2) {
+		    		
+		    		int p1Version = versionMap.get(p1.getName());
+		    		int p2Version = versionMap.get(p2.getName());
+		    		String p1Short = shortNameMap.get(p1.getName());
+		    		String p2Short = shortNameMap.get(p2.getName());
+		    		    		
+		    		if(p1Version == 0 && p2Version > 0 && p1Short.equals(p2Short)) {
+		    			return 1;
+		    		}
+	
+		    		if(p1Version > 0 && p2Version == 0 && p1Short.equals(p2Short)) {
+		    			return -1;
+		    		}
+		    		
+		    		if(p1Version > 0 && p2Version > 0 && p1Short.equals(p2Short)) {
+		    			return p1Version - p2Version;
+		    		}
+	
+		    		return StringLogics.convertVersionNumbers(p2.getName()).compareTo(StringLogics.convertVersionNumbers(p1.getName()));
+		        }
+		    });   		
+    	}
 	    
 	    return defaultList;
 	}
