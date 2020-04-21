@@ -167,7 +167,7 @@ public class GameShopPage extends BasePage {
 				int count = 0;
 				List<Product> productList = new ProductDao().listUniqueNames();
 				
-				productList = GameShopLogics.sortProductList(productList);
+				productList = GameShopLogics.sortProductList(productList, ESortOrder.AZ);
 				
 				for (Product product : productList)
 				{
